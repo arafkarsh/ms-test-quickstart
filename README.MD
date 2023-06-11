@@ -62,5 +62,5 @@ All the tests will be fully automated as part of your CI/CD pipeline.
 - Faster XML (2.13.0-rc1)
 
 
-Copyright (c) 2021, arafkarsh, Author: Araf Karsh Hamid
+Copyright (c) 2021, Author: Araf Karsh Hamid
 
