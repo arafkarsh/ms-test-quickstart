@@ -1,0 +1,21 @@
+{
+    "headers": {
+        "Content-Type": ["application/json"],
+        "sessionId": ["6a271a11-3e4d-44b2-bbb8-92b8e341d3bb"],
+        "app": ["bigBasket"]
+    },
+    "body": {
+        "transactionId": "8c21079c-7038-4843-8374-3bbaf1082187",
+        "transactionDate": "2021-07-31T21:32:48.052",
+        "orderValue": 230.0,
+        "paymentType": "CREDIT_CARD",
+        "cardDetails": {
+            "cardNumber": "4232-5863-5852-5338",
+            "holderName": "John Doe",
+            "expiryMonth": 2,
+            "expiryYear": 2030,
+            "cardCode": 423,
+            "cardType": "MASTER"
+        }
+    }
+}

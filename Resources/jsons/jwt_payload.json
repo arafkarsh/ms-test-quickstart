@@ -1,0 +1,8 @@
+{
+    "aud": "ShoppingServices",
+    "sub": "araf.karsh",
+    "iss": "metarivu",
+    "exp": "1629047748",
+    "iat": "1627838148",
+    "jti": "e15eef64-9325-49e2-8f31-9cda758ef13a"
+}

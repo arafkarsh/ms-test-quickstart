@@ -1,0 +1,36 @@
+#!/bin/sh
+# -------------------------------------------------------------------------------------------
+# @author: Araf Karsh Hamid
+# -------------------------------------------------------------------------------------------
+# Developer Local Compile Process
+# ===========================================================================================
+# 1. Clean up the target folder
+# 2. Generate the Build Number (from git commit count) and Build Date
+# 3. Build the Service
+# 4. Copy the jar file to the Lib Folder
+# 5. Start the Service using ./run script and then test it with ./test script
+# After the Successful build and Startup of the Service, It should show the Build No. & Date
+# -------------------------------------------------------------------------------------------
+
+echo "---------------------------------------------------------------------------------------"
+echo "Compiling Order Microservice"
+echo "---------------------------------------------------------------------------------------"
+echo "Clean up the target folder: mvn clean"
+echo "---------------------------------------------------------------------------------------"
+mvn clean
+# -------------------------------------------------------------------------------------------
+echo "Git Commit Count = "`git rev-list HEAD --count`
+echo "---------------------------------------------------------------------------------------"
+generateBuildNumber
+# -------------------------------------------------------------------------------------------
+echo "Build the Order Microservice : mvn -e package"
+echo "---------------------------------------------------------------------------------------"
+mvn -e package
+# -------------------------------------------------------------------------------------------
+echo cp target/ms-order-service-*.jar lib/
+echo "---------------------------------------------------------------------------------------"
+cp target/ms-order-service-*.jar lib/
+# -------------------------------------------------------------------------------------------
+echo "Start the Service using ./run script and then test it with ./test script"
+echo "After the Successful build and Startup of the Service, It should show the Build No. & Date"
+echo "---------------------------------------------------------------------------------------"

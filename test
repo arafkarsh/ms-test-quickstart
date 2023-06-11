@@ -1,0 +1,34 @@
+#!/bin/sh
+
+API_VERSION=v1
+
+echo "---------------------------------------------------------------------------------------"
+echo "Testing Order Microservice"
+echo "---------------------------------------------------------------------------------------"
+mvn test
+echo "---------------------------------------------------------------------------------------"
+echo "curl localhost:9080/api/$API_VERSION/order/service/home"
+curl localhost:9080/api/$API_VERSION/order/service/home
+echo ""
+echo "---------------------------------------------------------------------------------------"
+echo "curl localhost:9080/api/$API_VERSION/order/service/health"
+curl localhost:9080/api/$API_VERSION/order/service/health
+echo ""
+echo "---------------------------------------------------------------------------------------"
+echo "curl localhost:9080/api/$API_VERSION/order/service/ready"
+curl localhost:9080/api/$API_VERSION/order/service/ready
+echo ""
+echo "---------------------------------------------------------------------------------------"
+echo "curl -X POST localhost:9080/api/$API_VERSION/order/service/restart"
+curl  -X POST localhost:9080/api/$API_VERSION/order/service/restart
+echo ""
+echo "---------------------------------------------------------------------------------------"
+sleep 3
+echo "curl localhost:9080/api/$API_VERSION/order/service/home"
+curl localhost:9080/api/$API_VERSION/order/service/home
+echo ""
+echo "---------------------------------------------------------------------------------------"
+echo "curl localhost:9080/api/$API_VERSION/order/service/ready"
+curl localhost:9080/api/$API_VERSION/order/service/ready
+echo ""
+echo "---------------------------------------------------------------------------------------"

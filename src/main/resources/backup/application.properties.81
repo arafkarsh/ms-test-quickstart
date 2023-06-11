@@ -1,0 +1,49 @@
+# =======================================================================
+# Order Service Properties
+# =======================================================================
+build.number=82
+build.date=Wed Aug 11 02:00:13 IST 2021
+# =======================================================================
+# Order Service Properties
+# =======================================================================
+server.port=9080
+server.version=0.9.1
+server.restart=true
+#logging.level=INFO
+spring.codec.max-in-memory-size=3MB
+token.key=sigmaEpsilon6109871597
+app.property.list=element1, element2, element3
+app.property.map={key1:'val1', key2 : 'val2', key3 : 'val3'}
+# =======================================================================
+# Remote Server Properties 
+# =======================================================================
+payment.gateway.host=127.0.0.1
+payment.gateway.port=8080
+remote.host=127.0.0.1
+remote.port=8080
+remote.protocol=http
+# =======================================================================
+# Open API Properties
+# For More Info: https://springdoc.org/#Introduction
+# =======================================================================
+# Disabling the /v3/api-docs enpoint
+springdoc.api-docs.enabled=true
+# Disabling the swagger-ui
+#springdoc.swagger-ui.enabled=true
+# Packages to include
+# springdoc.packagesToScan=io.fusion.water, io.fusion.fire
+# Paths to include
+# springdoc.pathsToMatch=/v1, /api/health/**
+# To expose the swagger-ui, on the management port
+#springdoc.use-management-port=true
+# This property enables the openapi and swaggerui endpoints to be exposed 
+# beneath the actuator base path.
+# management.endpoints.web.exposure.include=openapi, swaggerui
+# =======================================================================
+# Mongo Properties 
+# =======================================================================
+spring.data.mongodb.uri=mongodb://localhost:27017/orderdb
+# =======================================================================
+# Mongock Properties 
+# =======================================================================
+mongock.change-logs-scan-package=io.fusion.water.order.adapters

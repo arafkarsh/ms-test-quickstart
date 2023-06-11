@@ -1,0 +1,66 @@
+{
+  "provider": {
+    "name": "PaymentService"
+  },
+  "consumer": {
+    "name": "OrderService"
+  },
+  "interactions": [
+    {
+      "description": "word Jane, service returns a greeting.",
+      "request": {
+        "method": "GET",
+        "path": "/remoteEcho/Jane"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "wordData": "Jane",
+          "responseTime": "2021-08-11T02:20:46.219",
+          "dayOftheYear": 223,
+          "greetings": "Good Morning Jane"
+        }
+      },
+      "providerStates": [
+        {
+          "name": "Given the word service returns a greeting.",
+          "params": {
+            "word": "Jane"
+          }
+        }
+      ]
+    },
+    {
+      "description": "The word Jane, the service returns a greeting.",
+      "request": {
+        "method": "GET",
+        "path": "/remoteEcho/Jane"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "wordData": "Jane",
+          "responseTime": "2021-08-11T02:20:48.274",
+          "dayOftheYear": 223,
+          "greetings": "Good Morning Jane"
+        }
+      },
+      "providerStates": [
+        {
+          "name": "The word Jane, service returns a greeting.",
+          "params": {
+            "word": "Jane"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.0.10"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+    "orderId": "17722a84-4698-4c2c-88fa-be587573e030",
+    "orderDate": "2021-07-31T21:27:50.864",
+    "customer": {
+        "customerId": "UUID",
+        "firstName": "John",
+        "lastName": "Doe",
+        "phoneNumber": "0123456789",
+        "phoneList": ["0123456789"]
+    },
+    "orderItems": [{
+        "itemId": "uuid1",
+        "itemName": "iPhone 12",
+        "itemValue": 799,
+        "itemCurrency": "USD",
+        "quantity": 1
+    }, {
+        "itemId": "uuid2",
+        "itemName": "iPhone 12 Pro",
+        "itemValue": 999,
+        "itemCurrency": "USD",
+        "quantity": 1
+    }, {
+        "itemId": "uuid3",
+        "itemName": "Apple Watch Series 6",
+        "itemValue": 450,
+        "itemCurrency": "USD",
+        "quantity": 2
+    }],
+    "shippingAddress": {
+        "streetName": "321 Cobblestone Ln,",
+        "addressLine2": "",
+        "city": "Edison",
+        "state": "NJ",
+        "landMark": "",
+        "country": "USA",
+        "zipCode": "08820"
+    },
+    "paymentType": "CREDIT_CARD",
+    "orderStatus": "INITIATED",
+    "paymentDetails": {
+        "transactionId": "17722a84-4698-4c2c-88fa-be587573e030",
+        "transactionDate": "2021-07-31T21:27:50.864",
+        "orderValue": 2248.0,
+        "paymentType": "CREDIT_CARD",
+        "cardDetails": {
+            "cardNumber": "8967-9561-1957-5762",
+            "holderName": "John Doe",
+            "expiryMonth": 11,
+            "expiryYear": 2031,
+            "cardCode": 867,
+            "cardType": "MASTER"
+        }
+    },
+    "paymentStatus": null,
+    "totalValue": 2248.0,
+    "customerAvailable": true,
+    "totalItems": 3,
+    "shippingAddressAvailable": true
+}

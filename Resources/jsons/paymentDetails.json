@@ -1,0 +1,14 @@
+{
+    "transactionId": "fb908151-d249-4d30-a6a1-4705729394f4",
+    "transactionDate": "2021-07-31T21:27:51.180",
+    "orderValue": 230.0,
+    "paymentType": "CREDIT_CARD",
+    "cardDetails": {
+        "cardNumber": "1787-6465-2755-2539",
+        "holderName": "Ann Doe",
+        "expiryMonth": 3,
+        "expiryYear": 2029,
+        "cardCode": 863,
+        "cardType": "MASTER"
+    }
+}
