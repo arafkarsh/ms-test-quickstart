@@ -5,9 +5,9 @@ Order Microservice is part of an eCommerce Application. The objective of selecti
 Order Service REST Endpoints are documented using Open API v3. 
 You can access the API's using http://localhost:9080/swagger-ui.html
 
-![Order Service API based on Open API v3](https://raw.githubusercontent.com/MetaArivu/ms-order-service/master/diagrams/Order-OpenAPI-Order.jpg)
+![Order Service API based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Order-OpenAPI-Order.jpg)
 
-![Order Service API based on Open API v3](https://raw.githubusercontent.com/MetaArivu/ms-order-service/master/diagrams/Order-OpenAPI-Core.jpg)
+![Order Service API based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Order-OpenAPI-Core.jpg)
 
 Other Services
 
@@ -20,7 +20,7 @@ Currently Order Service has a Mock Implementation of these services.
 
 Now let us focus on Microservices Testing Strategies.
 
-![Microservice Testing Strategies](https://raw.githubusercontent.com/MetaArivu/ms-order-service/master/diagrams/Microservices-Testing-Strategies-1.jpg)
+![Microservice Testing Strategies](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Strategies-1.jpg)
 
 The following Test Categories helps you to automate the testing for Microservices based development resulting in ZERO End-2-End Testing.
 All the tests will be fully automated as part of your CI/CD pipeline.
@@ -33,7 +33,7 @@ All the tests will be fully automated as part of your CI/CD pipeline.
 - Integration & Contract Testing (PACT & WireMock + JUnit)
 - UI Testing - User Flow (Selenium with Cucumber + JUnit)
 
-![Microservices Testing Categories](https://raw.githubusercontent.com/MetaArivu/ms-order-service/master/diagrams/Microservices-Testing-Strategies-2.jpg)
+![Microservices Testing Categories](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Strategies-2.jpg)
 
 ## Dependencies
 
@@ -42,7 +42,7 @@ All the tests will be fully automated as part of your CI/CD pipeline.
 
 ## Testing Frameworks
 
-![Microservices Testing Frameworks](https://raw.githubusercontent.com/MetaArivu/ms-order-service/master/diagrams/Microservices-Testing-Tools.jpg)
+![Microservices Testing Frameworks](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Tools.jpg)
 
 - SpringBootTest 2 (2.5.3)
 - JUnit 5 (5.7.2)
@@ -62,5 +62,5 @@ All the tests will be fully automated as part of your CI/CD pipeline.
 - Faster XML (2.13.0-rc1)
 
 
-Copyright (c) 2021, MetaArivu, Author: Araf Karsh Hamid
+Copyright (c) 2021, arafkarsh, Author: Araf Karsh Hamid
 
