@@ -19,6 +19,7 @@ package test.fusion.water.order.restassured.tests;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // Custom Annotations based on JUnit 5
 import test.fusion.water.order.junit5.annotations.tests.Critical;
@@ -38,7 +39,6 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Staticially Import Classes from the following packages
@@ -49,6 +49,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 /**
+ * REST Assured Examples based on BDD
+ *
  * @author: Araf Karsh Hamid
  * @version:
  * @date:
@@ -87,9 +89,6 @@ public class OrderTests {
      * 5. Total Value is greater than Zero
      * 6. Payment Details are available
      * 7. Payment Order Value = Total Order Value
-     *
-     *         // when()
-     *         //         .get("/order/1234/")
      */
     @DisplayName("Get the Order")
     @Test
