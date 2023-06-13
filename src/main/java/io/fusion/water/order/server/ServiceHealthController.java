@@ -17,6 +17,7 @@ package io.fusion.water.order.server;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.cucumber.messages.internal.com.google.protobuf.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -67,7 +68,7 @@ public class ServiceHealthController {
 	
 	private final String title = "<h1>Welcome to Order Service<h1/>"
 					+ ServiceHelp.NL
-					+"<h3>Copyright (c) MetaArivu Pvt Ltd, 2021</h3>"
+					+"<h3>Copyright (c) Araf Karsh Hamid, 2021-23</h3>"
 					+ ServiceHelp.NL
 					;
 

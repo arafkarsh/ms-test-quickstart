@@ -25,6 +25,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import io.fusion.water.order.domainLayer.models.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -40,14 +41,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 
 import io.fusion.water.order.adapters.service.OrderServiceImpl;
-import io.fusion.water.order.domainLayer.models.Customer;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.models.OrderItem;
-import io.fusion.water.order.domainLayer.models.OrderStatus;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
-import io.fusion.water.order.domainLayer.models.PaymentType;
-import io.fusion.water.order.domainLayer.models.ShippingAddress;
 import io.fusion.water.order.domainLayer.services.PaymentService;
 import test.fusion.water.order.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit5.annotations.tests.Functional;
@@ -161,6 +154,8 @@ public class OrderItemGroupTest {
 				.addShippingAddress(new ShippingAddress
 						("321 Cobblestone Ln,", "", "Edison", "NJ", "", "USA", "08820"))
 				.addPaymentType(PaymentType.CREDIT_CARD)
+				.addCardDetails(new CardDetails
+						("1234 5678 9876 5432", "John Doe", 7, 2025, 456, CardType.MASTER))
 				.build();
 		
 	}

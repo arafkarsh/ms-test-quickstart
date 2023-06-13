@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import io.fusion.water.order.domainLayer.models.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -52,14 +53,6 @@ import org.slf4j.Logger;
 import io.fusion.water.order.adapters.service.OrderServiceImpl;
 import io.fusion.water.order.adapters.service.PackingServiceImpl;
 import io.fusion.water.order.adapters.service.WarehouseServiceImpl;
-import io.fusion.water.order.domainLayer.models.Customer;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.models.OrderItem;
-import io.fusion.water.order.domainLayer.models.OrderStatus;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
-import io.fusion.water.order.domainLayer.models.PaymentType;
-import io.fusion.water.order.domainLayer.models.ShippingAddress;
 import io.fusion.water.order.domainLayer.services.PaymentService;
 import io.fusion.water.order.domainLayer.services.ShippingService;
 import test.fusion.water.order.junit5.annotations.tests.Critical;
@@ -272,6 +265,8 @@ public class WarehouseServiceTest {
 				.addShippingAddress(new ShippingAddress
 						("321 Cobblestone Ln,", "", "Edison", "NJ", "", "USA", "08820"))
 				.addPaymentType(PaymentType.CREDIT_CARD)
+				.addCardDetails(new CardDetails
+						("1234 5678 9876 5432", "John Doe", 7, 2025, 456, CardType.MASTER))
 				.waitingForPayment()
 				.build());
 		
@@ -285,6 +280,8 @@ public class WarehouseServiceTest {
 				.addShippingAddress(new ShippingAddress
 						("323 Cobblestone Ln,", "", "Edison", "NJ", "", "USA", "08820"))
 				.addPaymentType(PaymentType.DEBIT_CARD)
+				.addCardDetails(new CardDetails
+						("1234 5678 9876 5432", "John Doe", 7, 2025, 456, CardType.MASTER))
 				.waitingForPayment()
 				.build());
 		
@@ -298,6 +295,8 @@ public class WarehouseServiceTest {
 				.addShippingAddress(new ShippingAddress
 						("323 Cobblestone Ln,", "", "Edison", "NJ", "", "USA", "08820"))
 				.addPaymentType(PaymentType.GOOGLE_PAY)
+				.addCardDetails(new CardDetails
+						("1234 5678 9876 5432", "John Doe", 7, 2025, 456, CardType.MASTER))
 				.waitingForPayment()
 				.build());
 		
