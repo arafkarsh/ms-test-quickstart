@@ -64,12 +64,6 @@ public class ServiceEventListener {
 				? serviceConfig.getServerVersion() : "v0.0.0";
 		log.info("Order Service is ready! ....... ..." 
 				+ ServiceHelp.LOGO
-				+ "Build No. = "+" :: Build Date = "
-				+ " :: Restart = "+ServiceHelp.getCounter() 
-				+ ServiceHelp.NL + ServiceHelp.DL
-				);
-		System.out.println(LocalDateTime.now()+"|Order Service is ready! ....... ..." 
-				+ ServiceHelp.LOGO
 				+ "Build No. = "+serviceConfig.getBuildNumber()
 				+ " :: Build Date = "+serviceConfig.getBuildDate()
 				+ " :: Restart = "+ServiceHelp.getCounter()

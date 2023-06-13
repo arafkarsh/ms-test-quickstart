@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.fusion.water.order</groupId>
 	<artifactId>ms-order-service</artifactId>
-	<version>0.9.2</version>
+	<version>0.9.3</version>
 	<packaging>jar</packaging>
 	<name>msOrderService</name>
 	<description>Order Microservice With Test Case Automation</description>
@@ -44,6 +44,7 @@
 		<wiremock.version>2.29.1</wiremock.version>
 		<cucumber.version>6.10.4</cucumber.version>		
 		<selenium.version>4.0.0-beta-4</selenium.version>
+		<restassured.version>5.3.0</restassured.version>
 		<pact.version>4.0.10</pact.version>
 		<assertj.version>3.20.2</assertj.version>
 		
@@ -319,7 +320,20 @@
 		    <scope>test</scope>
 		</dependency>
 
+		<!-- ================================================================= -->
 		<!-- INTEGRATION / CONTRACT TESTING ================================== -->
+		<!-- ================================================================= -->
+
+		<!-- ================================================================= -->
+		<!-- REST Assured Framework -->
+		<!-- ================================================================= -->
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- ================================================================= -->
 		<!-- Spring Boot Testing Framework -->
