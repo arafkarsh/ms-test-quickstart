@@ -20,6 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.io.IOException;
 import java.util.HashMap;
 
+import io.fusion.water.order.OrderApplication;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -39,22 +40,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
 import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.consumer.MockServer;
-import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
-import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
-import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.core.model.RequestResponseInteraction;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import io.fusion.water.order.domainLayer.models.EchoData;
 import io.fusion.water.order.domainLayer.models.EchoResponseData;
 import io.fusion.water.order.domainLayer.models.PaymentDetails;
 import io.fusion.water.order.domainLayer.models.PaymentStatus;
@@ -81,7 +77,7 @@ import test.fusion.water.order.utils.SampleData;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(PactConsumerTestExt.class)
 @PactTestFor(providerName = "PaymentService")
-@SpringBootTest(classes={io.fusion.water.order.OrderService.class})
+@SpringBootTest(classes={OrderApplication.class})
 public class PactContractTest {
 	
 	@Autowired
@@ -109,7 +105,7 @@ public class PactContractTest {
 	    		pd.getTransactionId(), pd.getTransactionDate());
     }
     
-    @Pact(consumer = "OrderService")
+    @Pact(consumer = "OrderApplication")
     public RequestResponsePact remoteEcho(PactDslWithProvider builder) {
 		System.out.println("creating Pact for /remoteEchoGet/");
 		
@@ -132,7 +128,7 @@ public class PactContractTest {
 		return rrp;
     }
     
-    @Pact(consumer = "OrderService")
+    @Pact(consumer = "OrderApplication")
     @Disabled
     public RequestResponsePact processPayments(PactDslWithProvider builder) {
 		HashMap<String, String> headers = new HashMap<String,String>();

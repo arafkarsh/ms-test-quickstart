@@ -19,7 +19,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 
-import io.fusion.water.order.OrderService;
+import io.fusion.water.order.OrderApplication;
 
 /**
  * SpringBootServletInitializer is an interface to run SpringApplication 
@@ -38,7 +38,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(
 			SpringApplicationBuilder application) {
-		return application.sources(OrderService.class);
+		return application.sources(OrderApplication.class);
 	}
 
 }

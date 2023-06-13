@@ -17,12 +17,12 @@ package io.fusion.water.order;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Collections;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.MultipartConfigElement;
 
-import io.fusion.water.order.server.ServiceHelp;
+import io.fusion.water.order.server.ServiceConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 
 import org.springframework.boot.CommandLineRunner;
@@ -36,14 +36,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.unit.DataSize;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -67,7 +65,7 @@ import static java.lang.invoke.MethodHandles.lookup;
 @ServletComponentScan
 @RestController
 @SpringBootApplication(scanBasePackages = { "io.fusion.water.order" })
-public class OrderService {
+public class OrderApplication {
 
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());
@@ -76,6 +74,9 @@ public class OrderService {
 								+"<h3>Copyright (c) MetaArivu Pvt Ltd, 2021</h3>";
 	
 	private static ConfigurableApplicationContext context;
+
+	@Autowired
+	private ServiceConfiguration serviceConfig;
 	
 	/**
 	 * Start the Order Service
@@ -97,7 +98,7 @@ public class OrderService {
 		System.out.println("Booting Order Service ..... ..");
 
 		try {
-			context = SpringApplication.run(OrderService.class, args);
+			context = SpringApplication.run(OrderApplication.class, args);
 			log.info("Booting Order Service ..... ...Startup completed!");
 			System.out.println(LocalDateTime.now()+"|Booting Order Service ..... ...Startup completed!");
 
@@ -196,13 +197,17 @@ public class OrderService {
 			.info(new Info()
 				.title("Order Microservice")
 				.description("Microservices Testing Strategies - Guide")
-				.version(ServiceHelp.VERSION)
+				.version(getServerVersion())
 				.license(new License().name("License: Apache 2.0")
 					.url("http://www.metarivu.com"))
 				)
 			.externalDocs(new ExternalDocumentation()
 				.description("Order Service Source Code")
 				.url("https://github.com/MetaArivu/ms-order-service"));
+	}
+
+	private String getServerVersion() {
+		return (serviceConfig != null) ? serviceConfig.getServerVersion() : "v0.0.0";
 	}
 	
 	/**

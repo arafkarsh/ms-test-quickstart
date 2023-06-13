@@ -15,9 +15,9 @@
  */
 package test.fusion.water.order.springboot2.tests;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import io.fusion.water.order.OrderApplication;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -52,7 +52,7 @@ import test.fusion.water.order.junit5.annotations.tools.SpringTest2;
 @NonFunctional()
 // --------------------------------------------
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@SpringBootTest(classes={io.fusion.water.order.OrderService.class})
+@SpringBootTest(classes={OrderApplication.class})
 public class SpringExampleTest {
 	
 	@Autowired

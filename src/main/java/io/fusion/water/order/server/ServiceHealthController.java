@@ -23,7 +23,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +39,7 @@ import java.time.LocalDateTime;
 import static java.lang.invoke.MethodHandles.lookup;
 
 
-import io.fusion.water.order.OrderService;
+import io.fusion.water.order.OrderApplication;
 import io.fusion.water.order.domainLayer.models.EchoData;
 import io.fusion.water.order.domainLayer.models.EchoResponseData;
 import io.swagger.v3.oas.annotations.Operation;
@@ -97,9 +96,9 @@ public class ServiceHealthController {
 			HttpServletRequest request) throws Exception {
 		System.out.println(LocalDateTime.now()+"|Request to Health of Service... ");
 		if(serviceConfig == null) {
-			System.out.println(LocalDateTime.now()+"|OrderService|Error Autowiring Service config!!!");
+			System.out.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
 		} else {
-			System.out.println(LocalDateTime.now()+"|OrderService|Version="+ServiceHelp.VERSION);
+			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
 		}
 		return ResponseEntity.ok("200:Service-Health-OK");	
 	}
@@ -120,11 +119,15 @@ public class ServiceHealthController {
 			HttpServletRequest request) throws Exception {
 		System.out.println(LocalDateTime.now()+"|Request to Ready Check.. ");
 		if(serviceConfig == null) {
-			System.out.println(LocalDateTime.now()+"|OrderService|Error Autowiring Service config!!!");
+			System.out.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
 		} else {
-			System.out.println(LocalDateTime.now()+"|OrderService|Version="+ServiceHelp.VERSION);
+			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
 		}
 		return ResponseEntity.ok("200:Service-Ready");	
+	}
+
+	private String getServerVersion() {
+		return (serviceConfig != null) ? serviceConfig.getServerVersion() : "v0.0.0";
 	}
 	
 	/**
@@ -143,12 +146,12 @@ public class ServiceHealthController {
 	@GetMapping("/log")
     public String log() {
 		System.out.println(LocalDateTime.now()+"|Request to Log Level.. ");
-    	log.trace("OrderService|This is TRACE level message");
-        log.debug("OrderService|This is a DEBUG level message");
-        log.info("OrderService|This is an INFO level message");
-        log.warn("OrderService|This is a WARN level message");
-        log.error("OrderService|This is an ERROR level message");
-        return "OrderService|See the log for details";
+    	log.trace("OrderApplication|This is TRACE level message");
+        log.debug("OrderApplication|This is a DEBUG level message");
+        log.info("OrderApplication|This is an INFO level message");
+        log.warn("OrderApplication|This is a WARN level message");
+        log.error("OrderApplication|This is an ERROR level message");
+        return "OrderApplication|See the log for details";
     }
 	
 	/**
@@ -168,13 +171,13 @@ public class ServiceHealthController {
 		System.out.println(LocalDateTime.now()+"|Request to Restart... ");
 
 		if(serviceConfig == null) {
-			System.out.println(LocalDateTime.now()+"|OrderService|Error Autowiring Service config!!!");
+			System.out.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
 		} else {
-			System.out.println(LocalDateTime.now()+"|OrderService|Version="+ServiceHelp.VERSION);
+			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
 		}
     	if(serviceConfig != null && serviceConfig.isServerRestart()) {
-    		log.info("OrderService|Server Restart Request Received ....");
-    		OrderService.restart();
+    		log.info("OrderApplication|Server Restart Request Received ....");
+    		OrderApplication.restart();
     	}
     } 
     /**
@@ -196,11 +199,11 @@ public class ServiceHealthController {
 		System.out.println(LocalDateTime.now()+"|Request for RemoteEcho ");
 
     	if(serviceConfig == null) {
-			System.out.println(LocalDateTime.now()+"|OrderService|Error Autowiring Service config!!!");
+			System.out.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
 		} else {
-			System.out.println(LocalDateTime.now()+"|OrderService|Version="+ServiceHelp.VERSION);
+			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
     	}
-		System.out.println(LocalDateTime.now()+"|OrderService|RemoteEcho Call .... "+echoData);
+		System.out.println(LocalDateTime.now()+"|OrderApplication|RemoteEcho Call .... "+echoData);
     	if(echoData == null) {
 			return ResponseEntity.notFound().build();
 		}

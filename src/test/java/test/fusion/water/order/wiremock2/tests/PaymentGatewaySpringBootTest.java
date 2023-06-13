@@ -26,13 +26,12 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import io.fusion.water.order.OrderApplication;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -57,7 +56,6 @@ import io.fusion.water.order.domainLayer.services.PaymentService;
 import io.fusion.water.order.server.ServiceConfiguration;
 import io.fusion.water.order.utils.Utils;
 import test.fusion.water.order.junit5.annotations.tests.Functional;
-import test.fusion.water.order.junit5.annotations.tests.NonFunctional;
 import test.fusion.water.order.junit5.annotations.tools.SpringTest2;
 import test.fusion.water.order.junit5.annotations.tools.WireMock2;
 import test.fusion.water.order.junit5.extensions.TestTimeExtension;
@@ -83,7 +81,7 @@ import test.fusion.water.order.utils.SampleData;
 // Tagging done ---------------------------------------------------------
 @TestMethodOrder(OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@SpringBootTest(classes={io.fusion.water.order.OrderService.class})
+@SpringBootTest(classes={OrderApplication.class})
 @ExtendWith(TestTimeExtension.class)
 public class PaymentGatewaySpringBootTest {
 	

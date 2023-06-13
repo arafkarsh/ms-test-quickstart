@@ -148,7 +148,24 @@
 		    <artifactId>jackson-jaxrs-json-provider</artifactId>
 		    <version>${fasterxml.version}</version>
 		</dependency>
-		
+
+		<!-- ================================================================= -->
+		<!--
+		    1. You should place rest-assured before the JUnit dependency declaration in your pom.xml / build.gradle
+		       in order to make sure that the correct version of Hamcrest is used.
+			2. REST Assured includes JsonPath and XmlPath as transitive dependencies
+		-->
+		<!-- ================================================================= -->
+		<!-- REST Assured Framework -->
+		<!-- ================================================================= -->
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- UNIT TESTING ==================================================== -->
 		
  		<!-- ================================================================= -->
@@ -323,17 +340,6 @@
 		<!-- ================================================================= -->
 		<!-- INTEGRATION / CONTRACT TESTING ================================== -->
 		<!-- ================================================================= -->
-
-		<!-- ================================================================= -->
-		<!-- REST Assured Framework -->
-		<!-- ================================================================= -->
-		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>${restassured.version}</version>
-			<scope>test</scope>
-		</dependency>
 
 		<!-- ================================================================= -->
 		<!-- Spring Boot Testing Framework -->
@@ -565,7 +571,7 @@
 						</goals>
 						<configuration>
 							<classifier>spring-boot</classifier>
-							<mainClass>io.fusion.water.order.OrderService</mainClass>
+							<mainClass>io.fusion.water.order.OrderApplication</mainClass>
 							<excludeGroupIds>test.fusion.water.order</excludeGroupIds>
 						</configuration>
 					</execution>
@@ -598,7 +604,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>libs/</classpathPrefix>
-							<mainClass>io.fusion.water.order.OrderService</mainClass>
+							<mainClass>io.fusion.water.order.OrderApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
