@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.fusion.water.order</groupId>
 	<artifactId>ms-order-service</artifactId>
-	<version>0.9.3</version>
+	<version>0.9.4</version>
 	<packaging>jar</packaging>
 	<name>msOrderService</name>
 	<description>Order Microservice With Test Case Automation</description>
@@ -166,14 +166,17 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>json-schema-validator</artifactId>
 			<version>${restassured.version}</version>
 			<scope>test</scope>
 		</dependency>
-
+		<!--
+		There is an issue with this lib with current the current set of libraries.
+		Enabling this library causes compile time failures.
+		-->
+		<!--
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>spring-mock-mvc</artifactId>
@@ -181,6 +184,7 @@
 			<scope>test</scope>
 		</dependency>
 		-->
+
 
 		<!-- UNIT TESTING ==================================================== -->
 		

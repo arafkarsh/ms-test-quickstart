@@ -71,5 +71,8 @@ public class ServiceEventListener {
 				+ " :: Restart = "+ServiceHelp.getCounter()
 				+ ServiceHelp.NL + ServiceHelp.DL
 				);
+		log.info(ServiceHelp.NL + "API URL : http://localhost:9080/swagger-ui.html"
+				+ ServiceHelp.NL + ServiceHelp.DL
+		);
 	}
 }
