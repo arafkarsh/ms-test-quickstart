@@ -16,13 +16,10 @@
 
 package io.fusion.water.order.adapters.service;
 
+import io.fusion.water.order.domainLayer.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.models.OrderStatus;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
 import io.fusion.water.order.domainLayer.services.OrderRepository;
 import io.fusion.water.order.domainLayer.services.OrderService;
 import io.fusion.water.order.domainLayer.services.PaymentService;
@@ -44,7 +41,8 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	public OrderEntity getOrderById(String _id) {
-		return orderRepo.getOrderById(_id);
+		// return orderRepo.getOrderById(_id);
+		return mockGetOrderById(_id);
 	}
 
 	@Override
@@ -92,6 +90,25 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public PaymentStatus processPayments(PaymentDetails _paymentDetails) {
 		return paymentService.processPayments(_paymentDetails);
+	}
+
+	private OrderEntity mockGetOrderById(String _orderId) {
+		return new OrderEntity.Builder()
+				.addCustomer(new Customer
+						("UUID", "John", "Doe", "0123456789"))
+				.setOrderId(_orderId)
+				.addOrderItem(new OrderItem
+						("uuid1", "iPhone 12", 799, "USD", 1))
+				.addOrderItem(new OrderItem
+						("uuid2", "iPhone 12 Pro", 999, "USD", 1))
+				.addOrderItem(new OrderItem
+						("uuid3", "Apple Watch Series 6", 450, "USD", 2))
+				.addShippingAddress(new ShippingAddress
+						("321 Cobblestone Ln,", "", "Edison", "NJ", "", "USA", "08820"))
+				.addPaymentType(PaymentType.CREDIT_CARD)
+				.addCardDetails(new CardDetails
+						("XXXX XXXX XXXX 5432", "John Doe", 7, 2025, 0, CardType.MASTER))
+				.build();
 	}
 
 }

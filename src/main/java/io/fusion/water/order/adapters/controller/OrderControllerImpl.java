@@ -62,7 +62,7 @@ public class OrderControllerImpl implements OrderController {
 	private static final Logger log = getLogger(lookup().lookupClass());
 
 	@Autowired
-	OrderService orderBusinessService;
+	OrderService orderService;
 	
 	/**
 	 * Get Order - Follows REST Guidelines for URI
@@ -82,7 +82,7 @@ public class OrderControllerImpl implements OrderController {
 	public ResponseEntity<OrderEntity> getOrderById(@PathVariable("orderId") String _id) {
     	OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.getOrderById(_id);
+			orderEntity = orderService.getOrderById(_id);
 		} catch (Exception e) {
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
 		}
@@ -108,7 +108,7 @@ public class OrderControllerImpl implements OrderController {
 		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_order));
     	OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.processOrder(_order);
+			orderEntity = orderService.processOrder(_order);
 		} catch (Exception e) {
 			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
@@ -137,7 +137,7 @@ public class OrderControllerImpl implements OrderController {
 		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_order));
     	OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.cancelOrder(_order);
+			orderEntity = orderService.cancelOrder(_order);
 		} catch (Exception e) {
 			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
@@ -167,7 +167,7 @@ public class OrderControllerImpl implements OrderController {
 		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_id));
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.cancelOrder(_id);
+			orderEntity = orderService.cancelOrder(_id);
 		} catch (Exception e) {
 			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
@@ -198,7 +198,7 @@ public class OrderControllerImpl implements OrderController {
 		System.out.println(LocalDateTime.now()+"|Order="+_id+"|Status="+_status);
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.updateOrderStatus(_id, _status);
+			orderEntity = orderService.updateOrderStatus(_id, _status);
 		} catch (Exception e) {
 			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
@@ -206,4 +206,5 @@ public class OrderControllerImpl implements OrderController {
 		System.out.println(LocalDateTime.now()+"|Order Updated.");
 		return ResponseEntity.ok(orderEntity);
 	}
+
 }

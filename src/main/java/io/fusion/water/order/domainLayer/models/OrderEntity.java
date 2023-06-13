@@ -193,7 +193,19 @@ public class OrderEntity {
 			order.addCustomer(_customer);
 			return this;
 		}
-		
+
+		/**
+		 * THIS IS ONLY FROM TESTING PERSPECTIVE
+		 * Set the Order ID
+		 *
+		 * @param _orderId
+		 * @return
+		 */
+		public Builder setOrderId(String _orderId) {
+			order.orderId = _orderId;
+			return this;
+		}
+
 		/**
 		 * Add Order Item
 		 * @param _item
@@ -254,7 +266,58 @@ public class OrderEntity {
 			order.orderStatus = OrderStatus.PAYMENT_EXPECTED;
 			return this;
 		}
-		
+		// ------------------------------------------------------------------------------------
+		// Following Methods ADDED ONLY FOR TESTING purpose
+		// ------------------------------------------------------------------------------------
+		/**
+		 * Order Status = PAYMENT EXPECTED
+		 */
+		public Builder orderWaitingForPayment() {
+			order.orderStatus = OrderStatus.PAYMENT_EXPECTED;
+			return this;
+		}
+		/**
+		 * Order Status = PREPARING
+		 */
+		public Builder orderIsGettingPrepared() {
+			order.orderStatus = OrderStatus.PREPARING;
+			return this;
+		}
+
+		/**
+		 * Order Status = READY_FOR_SHIPMENT
+		 */
+		public Builder orderReadyForShipment() {
+			order.orderStatus = OrderStatus.READY_FOR_SHIPMENT;
+			return this;
+		}
+
+		/**
+		 * Order Status = IN_TRANSIT
+		 */
+		public Builder orderInTransit() {
+			order.orderStatus = OrderStatus.IN_TRANSIT;
+			return this;
+		}
+
+		/**
+		 * Order Status = DELIVERED
+		 */
+		public Builder orderDelivered() {
+			order.orderStatus = OrderStatus.DELIVERED;
+			return this;
+		}
+
+		/**
+		 * Order Status = RETURNED
+		 */
+		public Builder orderReturned() {
+			order.orderStatus = OrderStatus.RETURNED;
+			return this;
+		}
+
+		// END OF METHODS FOR TESTING --------------------------------------------------------------
+
 		/**
 		 * Build the Order
 		 * @return
