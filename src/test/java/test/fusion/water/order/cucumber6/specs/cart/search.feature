@@ -14,4 +14,4 @@ Feature: Amazon Search Result
     Examples: 
       | keyword     | title                                |
       | iPhone 12   | Apple iPhone 12 (128GB)              |
-      | iPhone 12   | Google Pixel 5 5G 128GB - Just Black |         
+      | iPhone 14   | Apple iPhone 12 (128GB) Blue         |

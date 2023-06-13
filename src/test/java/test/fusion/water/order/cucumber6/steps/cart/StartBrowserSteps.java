@@ -48,7 +48,7 @@ public class StartBrowserSteps implements En {
 		});
 
 		When("I click the search button", () -> {
-
+			// System.out.println("Page:1] Search Results>   ");
 		});
 		
 		Then("I should see title {word}", (String title) -> {

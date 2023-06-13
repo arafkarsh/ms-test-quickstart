@@ -32,6 +32,7 @@ public class WebDriverChrome {
 		  ChromeOptions options = new ChromeOptions();
 		  options.setHeadless(headless);
 		  options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+		  // This will fix the issue with Chrome v110 and above
 		  options.addArguments("--remote-allow-origins=*");
 
 		  // Create Web Driver for Chrome
