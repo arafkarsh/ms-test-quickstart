@@ -26,13 +26,17 @@ public class WebDriverChrome {
 	   * @return
 	   */
 	  public static WebDriver getChromeDriver(boolean headless, int timeout) {
+		  // Optional. If not specified, WebDriver searches the PATH for chromedriver.
+		  // System.setProperty("webdriver.chrome.driver", "/Users/arafkarsh/ChromeDriver/mac-m1/chromedriver");
+
 		  ChromeOptions options = new ChromeOptions();
 		  options.setHeadless(headless);
 		  options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-		
+		  options.addArguments("--remote-allow-origins=*");
+
 		  // Create Web Driver for Chrome
 		  WebDriver driver = new ChromeDriver(options);
-		  driver.manage().window().maximize();
+		  // driver.manage().window().maximize();
 		  driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 		  return driver; 
 	  }
