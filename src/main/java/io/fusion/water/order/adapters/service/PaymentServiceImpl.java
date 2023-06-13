@@ -85,7 +85,9 @@ public class PaymentServiceImpl implements PaymentService {
 	 * @return
 	 */
 	public PaymentStatus processPayments(PaymentDetails _paymentDetails) {
-		return paymentGateWay.processPayments(_paymentDetails);
+		// return paymentGateWay.processPayments(_paymentDetails);
+		// For Testing Purpose ONLY
+		return processPaymentsDefault(_paymentDetails);
 	}
 	
 	/**

@@ -79,10 +79,14 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	public OrderEntity updateOrderStatus(String _id, String _status) {
 		// Fetch Order based on Order Id
-		OrderEntity order = orderRepo.getOrderById(_id);
+		// OrderEntity order = orderRepo.getOrderById(_id);
+		OrderEntity order = mockGetOrderById(_id);
+
 		// Check Order Status and set the the status in the Order
 		if(_status.equalsIgnoreCase(OrderStatus.READY_FOR_SHIPMENT.name())) {
 			order.orderReadyForShipment();
+		} else if (_status.equalsIgnoreCase(OrderStatus.PAYMENT_EXPECTED.name())) {
+			order.orderWaitingForPayment();
 		}
 		return orderRepo.saveOrder(order);
 	}

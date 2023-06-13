@@ -103,7 +103,7 @@ public class OrderControllerImpl implements OrderController {
             content = @Content)
     })
 	@Override
-	@PostMapping("/create")
+	@PostMapping("/")
 	public ResponseEntity<OrderEntity> saveOrder(@RequestBody OrderEntity _order) {
 		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_order));
     	OrderEntity orderEntity = null;
@@ -191,10 +191,10 @@ public class OrderControllerImpl implements OrderController {
             description = "Unable to Update Order Status",
             content = @Content)
     })
-	@PutMapping("/status/{orderId}/{status}/")
-	public ResponseEntity<OrderEntity> updateOrdeStatus(
+	@PutMapping("/{orderId}/status/{statusId}/")
+	public ResponseEntity<OrderEntity> updateOrderStatus(
 			@PathVariable("orderId") String _id, 
-			@PathVariable("orderId") String _status) {
+			@PathVariable("statusId") String _status) {
 		System.out.println(LocalDateTime.now()+"|Order="+_id+"|Status="+_status);
 		OrderEntity orderEntity = null;
 		try  {

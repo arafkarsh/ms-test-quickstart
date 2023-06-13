@@ -21,7 +21,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient.RequestBodySpec;
 import org.springframework.test.web.reactive.server.WebTestClient.UriSpec;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClient.RequestBodyUriSpec;
 
 /**
  * Test Client to Send Requests to Mock Server
@@ -69,20 +68,5 @@ public abstract class AbstractTestClient {
 	public UriSpec<RequestBodySpec> post() {
 		return (UriSpec<RequestBodySpec>) getClient().post();
 	}
-	
-	/**
-	public WebClient getClient(int timeouts)  {
-		HttpClient httpClient = HttpClient.create()
-				  .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
-				  .responseTimeout(Duration.ofMillis(5000))
-				  .doOnConnected(conn -> 
-				    conn.addHandlerLast(new ReadTimeoutHandler(5000, TimeUnit.MILLISECONDS))
-				      .addHandlerLast(new WriteTimeoutHandler(5000, TimeUnit.MILLISECONDS)));
-
-		client = WebClient.builder()
-				  .clientConnector(new ReactorClientHttpConnector(httpClient))
-				  .build();
-	}
-	*/
 
 }

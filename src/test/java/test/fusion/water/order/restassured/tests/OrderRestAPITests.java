@@ -16,6 +16,8 @@
 package test.fusion.water.order.restassured.tests;
 
 // JUnit 5
+import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domainLayer.models.OrderStatus;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,9 +33,9 @@ import test.fusion.water.order.junit5.extensions.TestTimeExtension;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
+import test.fusion.water.order.restassured.utils.OrderMockObjects;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
@@ -62,7 +64,7 @@ import static org.hamcrest.Matchers.is;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
-public class OrderTests {
+public class OrderRestAPITests {
 
     private Response response = null;
 
@@ -75,6 +77,21 @@ public class OrderTests {
         // RestAssured.port = 9080;
         // RestAssured.rootPath = "/api/v1";
 
+    }
+
+    @DisplayName("1. POST: Create the Order")
+    @Test
+    @Order(1)
+    public void testPostOrder() {
+        OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        given()
+                .contentType("application/json")
+                .body(orderEntity)
+        .when()
+                .post("/order/")
+        .then()
+                .assertThat()
+                .statusCode(200);
     }
 
     /**
@@ -90,9 +107,9 @@ public class OrderTests {
      * 6. Payment Details are available
      * 7. Payment Order Value = Total Order Value
      */
-    @DisplayName("Get the Order")
+    @DisplayName("2. GET: Fetch the Order")
     @Test
-    @Order(1)
+    @Order(2)
     public void getOrderById() {
         response =
         given()
@@ -126,12 +143,46 @@ public class OrderTests {
     /**
      * 7. Payment Order Value = Total Order Value
      */
-    @DisplayName("Check the Order Value Against Payment")
+    @DisplayName("3. Check the Order Value Against Payment")
     @Test
-    @Order(2)
+    @Order(3)
     public void checkOrderValueAgainstPayment() {
         float orderValue = response.path("paymentDetails.orderValue");
         float totalValue = response.path("totalValue");
         assertEquals(orderValue, totalValue, 0.01f);  // comparing two values
+    }
+
+    @DisplayName("4. PUT: Update Order Status for Waiting for Payment")
+    @Test
+    @Order(4)
+    public void testPutOrderStatus() {
+        String orderId = "1234";  // Replace with actual order ID
+        String statusId = OrderStatus.PAYMENT_EXPECTED.name();  // Replace with actual status ID
+
+        given()
+                .contentType("application/json")
+                .pathParam("orderId", orderId)
+                .pathParam("statusId", statusId)
+        .when()
+                .put("/order/{orderId}/status/{statusId}/")
+        .then()
+                .assertThat()
+                .statusCode(200)
+                .body("orderStatus", equalTo(statusId));
+    }
+
+    @DisplayName("5. DELETE: Cancel the Order Status on Order ID")
+    @Test
+    @Order(5)
+    public void testCancelOrder() {
+        String orderId = "1234";  // Replace with actual order ID
+        given()
+                .contentType("application/json")
+                .pathParam("orderId", orderId)
+        .when()
+                .delete("/order/cancel/{orderId}/")
+        .then()
+                .assertThat()
+                .statusCode(200);
     }
 }
