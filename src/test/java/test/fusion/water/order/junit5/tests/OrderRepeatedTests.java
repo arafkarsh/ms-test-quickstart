@@ -140,8 +140,9 @@ public class OrderRepeatedTests {
 	    	assertTrue(order.isCustomerAvailable());
 	    }
     }
-    
-    @Nested
+
+	@DisplayName("2. Repeat Contact Creation Test 3 Times")
+	@Nested
     class RepeatedTests {
 	    @DisplayName("Repeat Contact Creation Test 3 Times")
 	    @RepeatedTest(value = 3,

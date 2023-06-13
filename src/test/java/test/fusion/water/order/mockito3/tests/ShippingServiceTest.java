@@ -356,7 +356,7 @@ public class ShippingServiceTest {
 			System.out.println("Test 11 > "+e.getMessage());
 			// e.printStackTrace();
 		}
-
+		// Add the variant where Exception is tested implicitly
 		// Verify
 		assertTrue(failed);
 	}

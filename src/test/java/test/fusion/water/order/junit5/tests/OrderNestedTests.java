@@ -15,14 +15,7 @@ package test.fusion.water.order.junit5.tests;
  * limitations under the License.
  */
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -37,11 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Assumptions;
 
 import io.fusion.water.order.domainLayer.models.Customer;
 import io.fusion.water.order.domainLayer.models.OrderEntity;
@@ -75,17 +63,127 @@ public class OrderNestedTests {
         System.out.println("Create an Empty Order..");
         order = new OrderEntity();
     }
-    
-    @DisplayName("Repeat Contact Creation Test 3 Times")
-    @RepeatedTest(value = 3,
-            name = "Repeating Order Creation Test {currentRepetition} of {totalRepetitions}")
-    public void shouldTestOrderCreationRepeatedly() {
-    	order = new OrderEntity.Builder()
-    			.addCustomer(
-    					new Customer
-    					("UUID", "John", "Doe", "0123456789"))
-    			.build(); 
-    	assertTrue(order.isCustomerAvailable());
+
+    @DisplayName("1. Generic Test Cases")
+    @Nested
+    class genericTests {
+        @Test
+        @DisplayName("1.1 Should Create Customer in order")
+        @Order(1)
+        public void shouldCreateCustomer() {
+            Customer c = new Customer("UUID", "John", "Doe", "0123456789");
+            order = new OrderEntity.Builder().addCustomer(c).build();
+            assertTrue(order.isCustomerAvailable());
+        }
+
+        @Test
+        @DisplayName("1.2 Should Not Create Customer When First Name is Null")
+        @Order(2)
+        public void shouldThrowRuntimeExceptionWhenFirstNameIsNull() {
+            Assertions.assertThrows(RuntimeException.class, () -> {
+                order = new OrderEntity.Builder()
+                        .addCustomer(new Customer("UUID", null, "Doe", "0123456789"))
+                        .build();
+            });
+        }
+
+        @Test
+        @DisplayName("1.3 Should Not Create Customer When Last Name is Null")
+        @Order(3)
+        public void shouldThrowRuntimeExceptionWhenLastNameIsNull() {
+            Assertions.assertThrows(RuntimeException.class, () -> {
+                order = new OrderEntity.Builder()
+                        .addCustomer(new Customer("UUID", "John", null, "0123456789"))
+                        .build();
+            });
+        }
+
+        @Test
+        @DisplayName("1.4 Should Not Create Contact When Phone Number is Null")
+        @Order(4)
+        public void shouldThrowRuntimeExceptionWhenPhoneNumberIsNull() {
+            Assertions.assertThrows(RuntimeException.class, () -> {
+                order = new OrderEntity.Builder()
+                        .addCustomer(new Customer("UUID", "John", "Doe", null))
+                        .build();
+            });
+        }
+    }
+
+    @DisplayName("2. Repeat Contact Creation Test n Times")
+    @Nested
+    class RepeatedTests {
+        @DisplayName("2.1 Repeat Contact Creation Test 3 Times")
+        @RepeatedTest(value = 3,
+                name = "Repeating Order Creation Test {currentRepetition} of {totalRepetitions}")
+        @Order(1)
+        public void shouldTestOrderCreationRepeatedly() {
+            order = new OrderEntity.Builder()
+                    .addCustomer(
+                            new Customer
+                                    ("UUID", "John", "Doe", "0123456789"))
+                    .build();
+            assertTrue(order.isCustomerAvailable());
+        }
+        @DisplayName("2.2 Repeat Contact Creation Test 5 Times")
+        @RepeatedTest(value = 5,
+                name = "Repeating Order Creation Test {currentRepetition} of {totalRepetitions}")
+        @Order(2)
+        public void shouldTestOrderCreationRepeatedly2() {
+            order = new OrderEntity.Builder()
+                    .addCustomer(
+                            new Customer
+                                    ("UUID", "John", "Doe", "0123456789"))
+                    .build();
+            assertTrue(order.isCustomerAvailable());
+        }
+    }
+
+    @DisplayName("3. Parametrized Tests")
+    @Nested
+    class ParametrizedTests {
+        @DisplayName("3.1 Phone Number should match the required Format")
+        @ParameterizedTest
+        @ValueSource(strings = {"0123456777", "0123456888", "0123456999"})
+        @Order(1)
+        public void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
+            order = new OrderEntity.Builder()
+                    .addCustomer(
+                            new Customer
+                                    ("UUID", "John", "Doe", phoneNumber))
+                    .build();
+            assertTrue(order.isCustomerAvailable());
+            assertEquals(1, order.getCustomer().getPhoneList().size());
+        }
+
+        @DisplayName("3.2 CSV Source Case - Phone Number should match the required Format")
+        @ParameterizedTest
+        @CsvSource({"0123456777", "0123456888", "0123456999"})
+        @Order(2)
+        public void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
+            order = new OrderEntity.Builder()
+                    .addCustomer(
+                            new Customer
+                                    ("UUID", "John", "Doe", phoneNumber))
+                    .build();
+            assertTrue(order.isCustomerAvailable());
+            assertEquals(1, order.getCustomer().getPhoneList().size());
+        }
+
+        @DisplayName("3.3 CSV File Source Case - Phone Number should match the required Format")
+        @ParameterizedTest
+        @CsvFileSource(resources = "/phoneList.csv")
+        @Order(3)
+        public void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
+            order = new OrderEntity.Builder()
+                    .addCustomer(
+                            new Customer
+                                    ("UUID", "John", "Doe", phoneNumber))
+                    .build();
+            assertTrue(order.isCustomerAvailable());
+            assertEquals(1, order.getCustomer().getPhoneList().size());
+        }
+
     }
 
     @AfterEach
