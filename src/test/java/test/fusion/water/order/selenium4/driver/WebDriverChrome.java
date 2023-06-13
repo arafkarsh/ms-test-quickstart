@@ -27,7 +27,7 @@ public class WebDriverChrome {
 	   */
 	  public static WebDriver getChromeDriver(boolean headless, int timeout) {
 		  // Optional. If not specified, WebDriver searches the PATH for chromedriver.
-		  // System.setProperty("webdriver.chrome.driver", "/Users/arafkarsh/ChromeDriver/mac-m1/chromedriver");
+		  // System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
 
 		  ChromeOptions options = new ChromeOptions();
 		  options.setHeadless(headless);
