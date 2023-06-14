@@ -18,10 +18,10 @@ package io.fusion.water.order.adapters.service;
 
 import java.time.LocalDateTime;
 
+import io.fusion.water.order.adapters.external.ExternalGateWay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.fusion.water.order.adapters.external.PaymentGateWay;
 import io.fusion.water.order.domainLayer.models.EchoData;
 import io.fusion.water.order.domainLayer.models.EchoResponseData;
 import io.fusion.water.order.domainLayer.models.PaymentDetails;
@@ -43,7 +43,7 @@ public class PaymentServiceImpl implements PaymentService {
 	private ServiceConfiguration serviceConfig;
 	
 	@Autowired
-	private PaymentGateWay paymentGateWay;
+	private ExternalGateWay externalGateWay;
 	
 	public PaymentServiceImpl() {
 	}
@@ -52,8 +52,8 @@ public class PaymentServiceImpl implements PaymentService {
 	 * 
 	 * @param _gw
 	 */
-	public PaymentServiceImpl(PaymentGateWay _gw) {
-		paymentGateWay = _gw;
+	public PaymentServiceImpl(ExternalGateWay _gw) {
+		externalGateWay = _gw;
 	}
 	
 	/**
@@ -69,14 +69,14 @@ public class PaymentServiceImpl implements PaymentService {
 	 * @return
 	 */
 	public EchoResponseData remoteEcho(EchoData _word) {
-		return paymentGateWay.remoteEcho(_word);
+		return externalGateWay.remoteEcho(_word);
 	}
 	
 	/**
 	 * Returns the Echo from the Remote Server
 	 */
 	public EchoResponseData remoteEcho(String _word) {
-		return paymentGateWay.remoteEcho(_word);
+		return externalGateWay.remoteEcho(_word);
 	}
 	
 	/**
@@ -97,7 +97,7 @@ public class PaymentServiceImpl implements PaymentService {
 	 * @return
 	 */
 	public PaymentStatus processPaymentsExternal(PaymentDetails _paymentDetails) {
-		return paymentGateWay.processPayments(_paymentDetails);
+		return externalGateWay.processPayments(_paymentDetails);
 	}
 
 

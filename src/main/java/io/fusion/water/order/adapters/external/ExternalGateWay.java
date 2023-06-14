@@ -15,30 +15,18 @@
  */
 package io.fusion.water.order.adapters.external;
 
-import static java.util.Arrays.asList;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import io.fusion.water.order.domainLayer.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import io.fusion.water.order.domainLayer.models.EchoData;
-import io.fusion.water.order.domainLayer.models.EchoResponseData;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
 import io.fusion.water.order.server.ServiceConfiguration;
 import io.fusion.water.order.utils.Utils;
 
@@ -48,17 +36,20 @@ import io.fusion.water.order.utils.Utils;
  *
  */
 @Service
-public class PaymentGateWay {
+public class ExternalGateWay {
 
 	@Autowired
 	private ServiceConfiguration serviceConfig;
 	
 	private String payments 	= "/payments";
 	private String remoteEcho 	= "/remoteEcho";
+	private String order 	= "/order";
+
 
 	private String gwBaseURL;
 	private String paymentURL;
 	private String echoURL;
+	private String orderURL;
 
 	private boolean urlsSet = false;
 	
@@ -68,15 +59,15 @@ public class PaymentGateWay {
 	/**
 	 * Only for Testing outside SpringBoot Context
 	 */
-	public PaymentGateWay() {
+	public ExternalGateWay() {
 	}
 	
 	/**
 	 * Only for Testing outside SpringBoot Context
 	 * Set the Payment GateWay
 	 */
-	public PaymentGateWay(String _host, int _port) {
-		System.out.println(LocalDateTime.now()+"|PaymentGW Constructor(host,port) ...");
+	public ExternalGateWay(String _host, int _port) {
+		System.out.println(LocalDateTime.now()+"|GateWay Constructor(host,port) ...");
 		serviceConfig = new ServiceConfiguration(_host, _port);
 		restClient = new RestClientService();
 		setURLs();
@@ -97,10 +88,13 @@ public class PaymentGateWay {
 			}
 			paymentURL = gwBaseURL + payments;
 			echoURL = gwBaseURL + remoteEcho;
+			orderURL = gwBaseURL + order;
 			urlsSet = true;
-			System.out.println("INIT    |> PaymentGateway Service Initialize.");
+			System.out.println("INIT    |> Gateway Service Initialize.");
 			System.out.println("REMOTE  |> "+paymentURL+"/");
 			System.out.println("REMOTE  |> "+echoURL+"/");
+			System.out.println("REMOTE  |> "+orderURL+"/");
+
 		}
 	}
 
@@ -125,13 +119,9 @@ public class PaymentGateWay {
 	    headers.put(HttpHeaders.COOKIE, cookies);
 	    
 		HttpEntity<EchoData> request = new HttpEntity<EchoData>(_word, headers);
-
 		System.out.println("REQUEST |> "+Utils.toJsonString(request));
-		
 		// Call Remote Service > POST
-		EchoResponseData erd = restClient.postForObject(echoURL, request, 
-										EchoResponseData.class);
-		
+		EchoResponseData erd = restClient.postForObject(echoURL, request, EchoResponseData.class);
 		System.out.println("RESPONSE|> "+Utils.toJsonString(erd));
 		
 		return erd;
@@ -146,16 +136,14 @@ public class PaymentGateWay {
 	public EchoResponseData remoteEcho(String _word) {
 		setURLs();
 		System.out.println("REQUEST |> "+Utils.toJsonString(_word));
-		
-		EchoResponseData erd = restClient.getForObject(
-					echoURL +"/"+ _word,  EchoResponseData.class);
-
+		EchoResponseData erd = restClient.getForObject(echoURL +"/"+ _word,  EchoResponseData.class);
 		System.out.println("RESPONSE|> "+Utils.toJsonString(erd));
 		return erd;
 	}
 
 	
 	/**
+	 * ONLY FOR TEST DEMO - PACT / WIREMOCK
 	 * Process Payments
 	 * 
 	 * @param _paymentDetails
@@ -169,26 +157,37 @@ public class PaymentGateWay {
 	    headers.setContentType(MediaType.APPLICATION_JSON);
 	    headers.add("sessionId", UUID.randomUUID().toString());
 	    headers.add("app", "bigBasket");
-	    /**
-	    List<String> cookies = new ArrayList<>();
-	    cookies.add("token="+UUID.randomUUID().toString());
-	    cookies.add("domain=arafkarsh.com");
-	    headers.put(HttpHeaders.COOKIE, cookies);
 
-	   	HttpEntity<PaymentDetails> request = new HttpEntity<PaymentDetails>
-											(_paymentDetails, null);
-	    */
-		HttpEntity<PaymentDetails> request = new HttpEntity<PaymentDetails>
-												(_paymentDetails, headers);
-	
+		HttpEntity<PaymentDetails> request = new HttpEntity<PaymentDetails>(_paymentDetails, headers);
 		System.out.println("REQUEST |> "+Utils.toJsonString(request));
-
 		// Call Remote Service > POST
-		PaymentStatus ps = restClient.postForObject(paymentURL, request, 
-											PaymentStatus.class);
-
+		PaymentStatus ps = restClient.postForObject(paymentURL, request, PaymentStatus.class);
 		System.out.println("RESPONSE|> "+Utils.toJsonString(ps));
 		
+		return ps;
+	}
+
+	/**
+	 * ONLY FOR TEST DEMO - PACT / WIREMOCK
+	 * Save Order
+	 * @param _order
+	 * @return
+	 */
+	public OrderEntity saveOrder(OrderEntity _order) {
+		setURLs();
+		System.out.println("REQUEST |> "+Utils.toJsonString(_order));
+		// Set Headers
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.add("sessionId", UUID.randomUUID().toString());
+		headers.add("app", "bigBasket");
+
+		HttpEntity<OrderEntity> request = new HttpEntity<OrderEntity>(_order, headers);
+		System.out.println("REQUEST |> "+Utils.toJsonString(request));
+		// Call Remote Service > POST
+		OrderEntity ps = restClient.postForObject(orderURL, request, OrderEntity.class);
+		System.out.println("RESPONSE|> "+Utils.toJsonString(ps));
+
 		return ps;
 	}
 }

@@ -19,24 +19,22 @@ package test.fusion.water.order.wiremock2.tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import io.fusion.water.order.adapters.external.ExternalGateWay;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Value;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
-import io.fusion.water.order.adapters.external.PaymentGateWay;
 import io.fusion.water.order.adapters.service.PaymentServiceImpl;
 import io.fusion.water.order.domainLayer.models.EchoData;
 import io.fusion.water.order.domainLayer.models.EchoResponseData;
@@ -91,7 +89,7 @@ public class PaymentGateWayMockTest {
     @BeforeEach
     public void setup() {
         // Initialize Payment Service with Payment Gateway
-        PaymentGateWay gw = new PaymentGateWay(host, port);
+        ExternalGateWay gw = new ExternalGateWay(host, port);
         paymentService = new PaymentServiceImpl(gw);
 
     }

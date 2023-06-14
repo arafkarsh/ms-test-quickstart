@@ -24,9 +24,7 @@ import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
 import io.fusion.water.order.OrderApplication;
 import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domainLayer.services.OrderService;
 import io.fusion.water.order.utils.Utils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -41,12 +39,7 @@ import test.fusion.water.order.junit5.extensions.TestTimeExtension;
 import test.fusion.water.order.restassured.utils.OrderMockObjects;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
@@ -67,7 +60,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(classes={OrderApplication.class})
 public class OrderContractTest {
 
-    
+    @Autowired
+	private OrderService orderService;
+
 	/**
 	 * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 	 * is available then the method need not be static
@@ -87,15 +82,15 @@ public class OrderContractTest {
 		System.out.println("creating Pact for Order Contract /order/");
 		OrderEntity order = OrderMockObjects.mockGetOrderById("1234");
 		RequestResponsePact rrp = builder
-				.given("A request to save a shopping cart")
-					.uponReceiving("A request to save a shopping cart")
+				.given("A request to save an Order")
+				.uponReceiving("A request to save an Order")
 					.path("/order/")
 					.method("POST")
 					.headers("Content-Type", MediaType.APPLICATION_JSON_VALUE)
 					.body(Utils.toJson(order))
 				.willRespondWith()
 					.status(200)
-					.body("Successfully saved Order")
+					.body(Utils.toJson(order))
 				.toPact();
 
 		System.out.println("PACT="+rrp);
@@ -108,9 +103,20 @@ public class OrderContractTest {
 	@Test
 	@DisplayName("1. Pact > Order Service: Save Order")
 	@Order(1)
-	@PactTestFor(pactMethod = "saveOrder", port="8080")
+	@PactTestFor(pactMethod = "createPact", port="8080")
 	public void saveOrder(MockServer mockServer) throws IOException {
 		System.out.println("PACT    |> MockServer|"+mockServer.getUrl());
+		OrderEntity order = null;
+		try {
+			order = orderService.saveOrderExternal(order);
+		} catch(Exception e) {
+			System.out.println("ERROR: "+e.getMessage());
+			e.printStackTrace();
+		}
+		System.out.println("Pass 2");
+		assertNotNull(order);
+		// assertEquals("Accepted", paymentStatus.getPaymentStatus());
+		System.out.println("Pass 3");
 	}
 	
     @AfterEach

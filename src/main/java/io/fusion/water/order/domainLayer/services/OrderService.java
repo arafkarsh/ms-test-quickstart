@@ -35,7 +35,15 @@ public interface OrderService {
 	 * @return
 	 */
 	public OrderEntity getOrderById(String _id);
-	
+
+
+	/**
+	 * ONLY FOR PACT DEMO
+	 * @param _order
+	 * @return
+	 */
+	public OrderEntity saveOrderExternal(OrderEntity _order);
+
 	/**
 	 * Save Order
 	 * 

@@ -25,7 +25,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -104,8 +103,13 @@ public class OrderPaymentContractTest {
 	    ps = SampleData.getPaymentStatusAccepted(
 	    		pd.getTransactionId(), pd.getTransactionDate());
     }
-    
-    @Pact(consumer = "OrderApplication")
+
+	/**
+	 * PACT = Remote Echo
+	 * @param builder
+	 * @return
+	 */
+	@Pact(consumer = "OrderApplication")
     public RequestResponsePact remoteEcho(PactDslWithProvider builder) {
 		System.out.println("creating Pact for /remoteEchoGet/");
 		
@@ -127,33 +131,12 @@ public class OrderPaymentContractTest {
 		}
 		return rrp;
     }
-    
-    @Pact(consumer = "OrderApplication")
-    @Disabled
-    public RequestResponsePact processPayments(PactDslWithProvider builder) {
-		HashMap<String, String> headers = new HashMap<String,String>();
-		headers.put("Content-Type", "application/json");
-		// headers.put("sessionId", "");
-		headers.put("app", "bigBasket");
-		
-		RequestResponsePact rrp = builder
-			.given("Payment Process")
-				.uponReceiving("Payment Details")
-				.path("/payments")
-				.method("POST")
-				.headers(headers)
-				.body(Utils.toJsonString(pd))
-			.willRespondWith()
-				.status(200)
-				.body(Utils.toJsonString(ps))
-			.toPact();
-		System.out.println("PACT="+rrp);
-		for(RequestResponseInteraction rri : rrp.getInteractions()) {
-			System.out.println(rri);
-		}
-		return rrp;
-    }
-	
+
+	/**
+	 * Consumer Test = Remote Echo
+	 * @param mockServer
+	 * @throws IOException
+	 */
 	@Test
 	@DisplayName("1. Pact > Payment Service > Remote Echo > GET")
 	@Order(1)
@@ -173,9 +156,45 @@ public class OrderPaymentContractTest {
         assertThat(expectedResult.getWordData(), 
         		org.hamcrest.CoreMatchers.equalTo(result.getWordData()));        
 	}
-	
-	// @Test
-	@DisplayName("2. Pact > Payment Service > Remote Echo > POST")
+
+	/**
+	 * PACT = Process Payments
+	 * @param builder
+	 * @return
+	 */
+	@Pact(consumer = "OrderApplication")
+	// @Disabled
+	public RequestResponsePact processPayments(PactDslWithProvider builder) {
+		HashMap<String, String> headers = new HashMap<String,String>();
+		headers.put("Content-Type", "application/json");
+		// headers.put("sessionId", "");
+		headers.put("app", "bigBasket");
+
+		RequestResponsePact rrp = builder
+			.given("Payment Process")
+			.uponReceiving("Payment Details")
+				.path("/payments/")
+				.method("POST")
+				.headers(headers)
+				.body(Utils.toJsonString(pd))
+			.willRespondWith()
+				.status(200)
+				.body(Utils.toJsonString(ps))
+			.toPact();
+		System.out.println("PACT="+rrp);
+		for(RequestResponseInteraction rri : rrp.getInteractions()) {
+			System.out.println(rri);
+		}
+		return rrp;
+	}
+
+	/**
+	 * Consumer = Process Payments
+	 * @param mockServer
+	 * @throws IOException
+	 */
+	@Test
+	@DisplayName("2. Pact > Payment Service > Process Payments")
 	@Order(2)
 	@PactTestFor(pactMethod = "processPayments", port="8080")
 	public void processPaymentsPost(MockServer mockServer) throws IOException {

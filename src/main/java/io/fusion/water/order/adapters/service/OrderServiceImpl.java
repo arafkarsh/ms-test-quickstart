@@ -16,6 +16,7 @@
 
 package io.fusion.water.order.adapters.service;
 
+import io.fusion.water.order.adapters.external.ExternalGateWay;
 import io.fusion.water.order.domainLayer.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,15 +35,28 @@ import io.fusion.water.order.domainLayer.services.PaymentService;
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
-	OrderRepository orderRepo;
+	private OrderRepository orderRepo;
 
 	@Autowired
-	PaymentService paymentService;
+	private PaymentService paymentService;
+
+	// THIS IS ONLY TO DO THE DEMO OF PACT
+	@Autowired
+	private ExternalGateWay externalGateWay;
 
 	@Override
 	public OrderEntity getOrderById(String _id) {
 		// return orderRepo.getOrderById(_id);
 		return mockGetOrderById(_id);
+	}
+
+	/**
+	 * This is Only for PACT DEMO
+	 * @param _order
+	 * @return
+	 */
+	public OrderEntity saveOrderExternal(OrderEntity _order) {
+		return externalGateWay.saveOrder(_order);
 	}
 
 	@Override
