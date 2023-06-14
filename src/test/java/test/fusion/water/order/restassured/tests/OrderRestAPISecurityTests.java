@@ -95,7 +95,7 @@ public class OrderRestAPISecurityTests {
 
     @DisplayName("1. Order Create - Security Tests")
     @Nested
-    class createSecurityTests {
+    class securityTests1 {
         @DisplayName("1.1 Check Content Type")
         @Test
         @Order(1)
@@ -253,7 +253,7 @@ public class OrderRestAPISecurityTests {
 
     @DisplayName("2. Order Retrieve - Security Tests")
     @Nested
-    class getSecurityTests {
+    class securityTests2 {
         /**
          * Content Type
          */
@@ -367,6 +367,60 @@ public class OrderRestAPISecurityTests {
                                     +" img-src 'self'; media-src 'self'; frame-src 'self'; font-src 'self'; connect-src 'self'"))
             ;
         }
+    }
+
+    @DisplayName("3. Order Retrieve - Auth Tests")
+    @Nested
+    class authTests {
+        @DisplayName("3.1 JWT Token Test")
+        @Test
+        @Order(1)
+        public void testJWT() {
+            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+            given()
+                    .header("Authorization", "Bearer: jwt-1")
+                    .header("Refresh-Token", "Bearer: jwt-2")
+                    .pathParam("orderId", "1234")
+            .when()
+                    .get("/order/{orderId}/")
+            .then()
+                    .assertThat()
+                    .statusCode(200);
+        }
+
+        @DisplayName("3.2 OAuth 1 Test")
+        @Test
+        @Order(2)
+        public void testOAuth() {
+            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+            given()
+                    .auth()
+                    .oauth("consumerKey", "consumerSecret", "accessToken", "secretToken")
+                    .pathParam("orderId", "1234")
+            .when()
+                    .get("/order/{orderId}/")
+            .then()
+                    .assertThat()
+                    .statusCode(200);
+        }
+
+        @DisplayName("3.3 OAuth 2 Test")
+        @Test
+        @Order(3)
+        public void testOAuth2() {
+            String accessToken = "OAuth2-Access-Token";
+            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+            given()
+                    .auth()
+                    .oauth2(accessToken)
+                    .pathParam("orderId", "1234")
+            .when()
+                    .get("/order/{orderId}/")
+            .then()
+                    .assertThat()
+                    .statusCode(200);
+        }
+
     }
 
 }

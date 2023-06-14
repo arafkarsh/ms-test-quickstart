@@ -192,6 +192,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-apis</artifactId>
+			<version>8.3.3</version> <!-- Replace with the latest version -->
+		</dependency>
+
 		<!--
 		<dependency>
 			<groupId>io.rest-assured</groupId>
