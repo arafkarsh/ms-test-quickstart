@@ -23,7 +23,7 @@ import io.fusion.water.order.domainLayer.services.OrderRepository;
 
 /**
  * Order Repository Service
- * 
+ *
  * @author arafkarsh
  *
  */
@@ -32,32 +32,32 @@ public class OrderRepositoryImpl implements OrderRepository {
 
 	@Override
 	public OrderEntity getOrderById(String _id) {
-		// TODO Auto-generated method stub
+		// Mock API
 		return null;
 	}
 
 	@Override
 	public OrderEntity saveOrder(OrderEntity _order) {
-		// TODO Auto-generated method stub
-		return null;
+		// Mock API
+		return _order;
 	}
 
 	@Override
 	public OrderEntity cancelOrder(OrderEntity _order) {
-		// TODO Auto-generated method stub
-		return null;
+		// Mock API
+		return _order;
 	}
 
 	@Override
 	public OrderEntity cancelOrder(String _id) {
-		// TODO Auto-generated method stub
+		// Mock API
 		return null;
 	}
 
 	@Override
 	public OrderEntity prepareOrder(OrderEntity _order) {
-		// TODO Auto-generated method stub
-		return null;
+		// Mock API
+		return _order;
 	}
 
 }

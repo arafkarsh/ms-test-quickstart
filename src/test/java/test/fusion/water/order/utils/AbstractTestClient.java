@@ -16,12 +16,6 @@
 package test.fusion.water.order.utils;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.reactive.server.WebTestClient.RequestBodySpec;
-import org.springframework.test.web.reactive.server.WebTestClient.UriSpec;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClient.RequestBodyUriSpec;
 
 /**
  * Test Client to Send Requests to Mock Server
@@ -31,7 +25,7 @@ import org.springframework.web.reactive.function.client.WebClient.RequestBodyUri
  */
 public abstract class AbstractTestClient {
 	
-	private WebClient client = null; 
+	// private WebClient client = null;
 	
 	@Value("${remote.host}")
 	private String host = "localhost";
@@ -45,13 +39,14 @@ public abstract class AbstractTestClient {
 	 * Reset the Web Client
 	 */
 	public void resetClient() {
-		client = null;
+		// client = null;
 	}
 	
 	/**
 	 * Return Web Client
 	 * @return
 	 */
+	/**
 	public WebClient getClient() {
 		if(client == null) {
 			baseURL = "http://" + host + ":" + port;
@@ -65,10 +60,13 @@ public abstract class AbstractTestClient {
 		}
 		return client;
 	}
-	
+	 */
+
+	/**
 	public UriSpec<RequestBodySpec> post() {
 		return (UriSpec<RequestBodySpec>) getClient().post();
 	}
+	 */
 	
 	/**
 	public WebClient getClient(int timeouts)  {

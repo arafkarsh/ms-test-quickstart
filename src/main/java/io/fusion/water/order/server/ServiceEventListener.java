@@ -62,7 +62,7 @@ public class ServiceEventListener {
 	public void showLogo() {
 		String version = (serviceConfig != null) 
 				? serviceConfig.getServerVersion() : "v0.0.0";
-		log.info("Order Service is ready! ....... ..." 
+		log.info("MS Test Quickstart: Order Service is ready! ....... ..."
 				+ ServiceHelp.LOGO
 				+ " (v" + version + ") " + ServiceHelp.NL
 				+"============================================================================" + ServiceHelp.NL
@@ -71,5 +71,8 @@ public class ServiceEventListener {
 				+ " :: Restart = "+ServiceHelp.getCounter()
 				+ ServiceHelp.NL + ServiceHelp.DL
 				);
+		log.info(ServiceHelp.NL + "API URL : " + serviceConfig.apiURL()
+				+ ServiceHelp.NL + ServiceHelp.DL
+		);
 	}
 }

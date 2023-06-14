@@ -27,40 +27,40 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * Order Entity
- * 
+ *
  * @author arafkarsh
  *
  */
 public class OrderEntity {
 
 	private String orderId;
-	
+
 	@JsonSerialize(using = DateJsonSerializer.class)
 	private LocalDateTime orderDate;
-	
+
 	@NotNull
 	private Customer customer;
-	
+
 	@NotNull
 	private ArrayList<OrderItem> orderItems;
-	
+
 	@NotNull
 	private ShippingAddress shippingAddress;
-	
+
 	private PaymentType paymentType;
 	private OrderStatus orderStatus;
-	
+
 	@NotNull
 	private PaymentDetails paymentDetails;
 	private PaymentStatus paymentStatus;
-	
+
 	/**
 	 * Create Order
 	 */
 	public OrderEntity() {
 		orderItems = new ArrayList<OrderItem>();
 	}
-	
+
 	/**
 	 * Adds the Customer
 	 * @param _customer
@@ -69,7 +69,7 @@ public class OrderEntity {
 		customer = _customer;
 		customer.validate();
 	}
-	
+
 	/**
 	 * Add Order Item
 	 * @param _item
@@ -79,7 +79,7 @@ public class OrderEntity {
 			orderItems.add(_item);
 		}
 	}
-	
+
 	/**
 	 * Add Shipping Address
 	 * @param _address
@@ -87,21 +87,21 @@ public class OrderEntity {
 	protected void addShippingAddress(ShippingAddress _address) {
 		shippingAddress = _address;
 	}
-	
+
 	/**
 	 * Add Card Details
 	 * @param _cardDetails
 	 */
 	protected void addCardDetails(CardDetails _cardDetails) {
 		paymentDetails = new PaymentDetails(
-				getOrderId(), 
-				getOrderDate(), 
-				getTotalValue(), 
+				getOrderId(),
+				getOrderDate(),
+				getTotalValue(),
 				getPaymentType(),
 				_cardDetails
 		);
 	}
-	
+
 	/**
 	 * Add Payment Type
 	 * @param _pType
@@ -117,7 +117,7 @@ public class OrderEntity {
 	public boolean isCustomerAvailable()  {
 		return (customer != null) ? true : false;
 	}
-	
+
 	/**
 	 * @return the customer
 	 */
@@ -131,7 +131,7 @@ public class OrderEntity {
 	public ArrayList<OrderItem> getOrderItems() {
 		return orderItems;
 	}
-	
+
 	/**
 	 * Returns the Total Items in the Order
 	 * @return
@@ -139,7 +139,7 @@ public class OrderEntity {
 	public int getTotalItems() {
 		return orderItems.size();
 	}
-	
+
 	/**
 	 * Calculate the Total Order Value
 	 * @return
@@ -159,7 +159,7 @@ public class OrderEntity {
 	public boolean isShippingAddressAvailable()  {
 		return (shippingAddress != null) ? true : false;
 	}
-	
+
 	/**
 	 * @return the shippingAddress
 	 */
@@ -173,14 +173,14 @@ public class OrderEntity {
 	public PaymentType getPaymentType() {
 		return paymentType;
 	}
-	
+
 	/**
 	 * Build Order
 	 */
 	public static class Builder {
-		
+
 		OrderEntity order = new OrderEntity();
-		
+
 		/**
 		 * Add Customer
 		 * @param _customer
@@ -193,7 +193,19 @@ public class OrderEntity {
 			order.addCustomer(_customer);
 			return this;
 		}
-		
+
+		/**
+		 * THIS IS ONLY FROM TESTING PERSPECTIVE
+		 * Set the Order ID
+		 *
+		 * @param _orderId
+		 * @return
+		 */
+		public Builder setOrderId(String _orderId) {
+			order.orderId = _orderId;
+			return this;
+		}
+
 		/**
 		 * Add Order Item
 		 * @param _item
@@ -203,7 +215,7 @@ public class OrderEntity {
 			order.addOrderItem(_item);
 			return this;
 		}
-		
+
 		/**
 		 * Add a List of Order Items
 		 * @param _items
@@ -215,7 +227,7 @@ public class OrderEntity {
 			}
 			return this;
 		}
-		
+
 		/**
 		 * Add Shipping Address
 		 * @param _address
@@ -225,7 +237,7 @@ public class OrderEntity {
 			order.addShippingAddress(_address);
 			return this;
 		}
-		
+
 		/**
 		 * Add Card Details
 		 * @param _cardDetails
@@ -235,7 +247,7 @@ public class OrderEntity {
 			order.addCardDetails(_cardDetails);
 			return this;
 		}
-		
+
 		/**
 		 * Add Payment Type
 		 * @param _pType
@@ -245,7 +257,7 @@ public class OrderEntity {
 			order.addPaymentType(_pType);
 			return this;
 		}
-		
+
 		/**
 		 * Set Order Status to Waiting for Payment
 		 * @return
@@ -254,7 +266,58 @@ public class OrderEntity {
 			order.orderStatus = OrderStatus.PAYMENT_EXPECTED;
 			return this;
 		}
-		
+		// ------------------------------------------------------------------------------------
+		// Following Methods ADDED ONLY FOR TESTING purpose
+		// ------------------------------------------------------------------------------------
+		/**
+		 * Order Status = PAYMENT EXPECTED
+		 */
+		public Builder orderWaitingForPayment() {
+			order.orderStatus = OrderStatus.PAYMENT_EXPECTED;
+			return this;
+		}
+		/**
+		 * Order Status = PREPARING
+		 */
+		public Builder orderIsGettingPrepared() {
+			order.orderStatus = OrderStatus.PREPARING;
+			return this;
+		}
+
+		/**
+		 * Order Status = READY_FOR_SHIPMENT
+		 */
+		public Builder orderReadyForShipment() {
+			order.orderStatus = OrderStatus.READY_FOR_SHIPMENT;
+			return this;
+		}
+
+		/**
+		 * Order Status = IN_TRANSIT
+		 */
+		public Builder orderInTransit() {
+			order.orderStatus = OrderStatus.IN_TRANSIT;
+			return this;
+		}
+
+		/**
+		 * Order Status = DELIVERED
+		 */
+		public Builder orderDelivered() {
+			order.orderStatus = OrderStatus.DELIVERED;
+			return this;
+		}
+
+		/**
+		 * Order Status = RETURNED
+		 */
+		public Builder orderReturned() {
+			order.orderStatus = OrderStatus.RETURNED;
+			return this;
+		}
+
+		// END OF METHODS FOR TESTING --------------------------------------------------------------
+
 		/**
 		 * Build the Order
 		 * @return
@@ -277,14 +340,14 @@ public class OrderEntity {
 	public LocalDateTime getOrderDate() {
 		return orderDate;
 	}
-	
+
 	/**
 	 * @return the orderStatus
 	 */
 	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
-	
+
 	/**
 	 * Order Status = PAYMENT EXPECTED
 	 */
@@ -297,35 +360,35 @@ public class OrderEntity {
 	public void orderIsGettingPrepared() {
 		orderStatus = OrderStatus.PREPARING;
 	}
-	
+
 	/**
 	 * Order Status = READY_FOR_SHIPMENT
 	 */
 	public void orderReadyForShipment() {
 		orderStatus = OrderStatus.READY_FOR_SHIPMENT;
 	}
-	
+
 	/**
 	 * Order Status = IN_TRANSIT
 	 */
 	public void orderInTransit() {
 		orderStatus = OrderStatus.IN_TRANSIT;
 	}
-	
+
 	/**
 	 * Order Status = DELIVERED
 	 */
 	public void orderDelivered() {
 		orderStatus = OrderStatus.DELIVERED;
 	}
-	
+
 	/**
 	 * Order Status = RETURNED
 	 */
 	public void orderReturned() {
 		orderStatus = OrderStatus.RETURNED;
 	}
-	
+
 	/**
 	 * @param paymentStatus the paymentStatus to set
 	 */
@@ -341,7 +404,7 @@ public class OrderEntity {
 			orderStatus = OrderStatus.PAYMENT_DECLINED;
 		}
 	}
-	
+
 	/**
 	 * @return the paymentDetails
 	 */
@@ -355,12 +418,12 @@ public class OrderEntity {
 	public PaymentStatus getPaymentStatus() {
 		return paymentStatus;
 	}
-	
+
 	/**
 	 * Shows Order ID + Order Status
 	 */
 	public String toString() {
 		return orderId +"|" + orderStatus;
 	}
-	
+
 }

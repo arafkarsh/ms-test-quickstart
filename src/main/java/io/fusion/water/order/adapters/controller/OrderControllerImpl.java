@@ -48,7 +48,7 @@ import io.fusion.water.order.domainLayer.services.OrderController;
 
 /**
  * Order Web Service
- * 
+ *
  * @author arafkarsh
  *
  */
@@ -57,32 +57,32 @@ import io.fusion.water.order.domainLayer.services.OrderController;
 @RequestScope
 @Tag(name = "Order", description = "Order Service")
 public class OrderControllerImpl implements OrderController {
-	
+
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());
 
 	@Autowired
-	OrderService orderBusinessService;
-	
+	OrderService orderService;
+
 	/**
 	 * Get Order - Follows REST Guidelines for URI
 	 * By Order ID
 	 */
-    @Operation(summary = "Fetch Order based on Order ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-            description = "Fetch Order details based on Order ID",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-            description = "Order ID NOT Available",
-            content = @Content)
-    })
+	@Operation(summary = "Fetch Order based on Order ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200",
+					description = "Fetch Order details based on Order ID",
+					content = {@Content(mediaType = "application/json")}),
+			@ApiResponse(responseCode = "404",
+					description = "Order ID NOT Available",
+					content = @Content)
+	})
 	@Override
 	@GetMapping("/{orderId}/")
 	public ResponseEntity<OrderEntity> getOrderById(@PathVariable("orderId") String _id) {
-    	OrderEntity orderEntity = null;
+		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.getOrderById(_id);
+			orderEntity = orderService.getOrderById(_id);
 		} catch (Exception e) {
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
 		}
@@ -93,22 +93,22 @@ public class OrderControllerImpl implements OrderController {
 	 * Create Order - REST Guidelines says No Verbs to be used in the URI
 	 * "/api/order/create" is part of the POST URI for ease of use.
 	 */
-    @Operation(summary = "Create Order")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-            description = "Create Order with Order Items and shipping address.",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "500",
-            description = "Unable to save Order",
-            content = @Content)
-    })
+	@Operation(summary = "Create Order")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200",
+					description = "Create Order with Order Items and shipping address.",
+					content = {@Content(mediaType = "application/json")}),
+			@ApiResponse(responseCode = "500",
+					description = "Unable to save Order",
+					content = @Content)
+	})
 	@Override
-	@PostMapping("/create")
+	@PostMapping("/")
 	public ResponseEntity<OrderEntity> saveOrder(@RequestBody OrderEntity _order) {
 		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_order));
-    	OrderEntity orderEntity = null;
+		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.processOrder(_order);
+			orderEntity = orderService.processOrder(_order);
 		} catch (Exception e) {
 			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
@@ -122,22 +122,22 @@ public class OrderControllerImpl implements OrderController {
 	 * By Order
 	 * "/api/order/cancel" is part of the PUT URI for ease of use.
 	 */
-    @Operation(summary = "Cancel Order based on Order")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-            description = "Cancel Order based on Order Details",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "500",
-            description = "Unable to cancel Order",
-            content = @Content)
-    })
+	@Operation(summary = "Cancel Order based on Order")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200",
+					description = "Cancel Order based on Order Details",
+					content = {@Content(mediaType = "application/json")}),
+			@ApiResponse(responseCode = "500",
+					description = "Unable to cancel Order",
+					content = @Content)
+	})
 	@Override
 	@DeleteMapping("/cancel")
 	public ResponseEntity<OrderEntity> cancelOrder(@RequestBody  OrderEntity _order) {
 		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_order));
-    	OrderEntity orderEntity = null;
+		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.cancelOrder(_order);
+			orderEntity = orderService.cancelOrder(_order);
 		} catch (Exception e) {
 			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
@@ -151,15 +151,15 @@ public class OrderControllerImpl implements OrderController {
 	 * By Order ID
 	 * "/api/order/cancel/{orderId}/" is part of the PUT URI for ease of use.
 	 */
-    @Operation(summary = "Cancel Order based on Order Id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-            description = "Cancel Order based on Order Id.",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "500",
-            description = "Unable to cancel Order",
-            content = @Content)
-    })
+	@Operation(summary = "Cancel Order based on Order Id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200",
+					description = "Cancel Order based on Order Id.",
+					content = {@Content(mediaType = "application/json")}),
+			@ApiResponse(responseCode = "500",
+					description = "Unable to cancel Order",
+					content = @Content)
+	})
 	@Override
 	@DeleteMapping("/cancel/{orderId}/")
 	public ResponseEntity<OrderEntity> cancelOrder(
@@ -167,7 +167,7 @@ public class OrderControllerImpl implements OrderController {
 		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_id));
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.cancelOrder(_id);
+			orderEntity = orderService.cancelOrder(_id);
 		} catch (Exception e) {
 			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
@@ -175,30 +175,30 @@ public class OrderControllerImpl implements OrderController {
 		System.out.println(LocalDateTime.now()+"|Order Cancelled.");
 		return ResponseEntity.ok(orderEntity);
 	}
-    
-    /**
-     * Update Order Status
-     * 
-     * @param _order
-     * @return
-     */
-    @Operation(summary = "Update Order Status based on Order Id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-            description = "Update Order Status based on Order Id.",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "500",
-            description = "Unable to Update Order Status",
-            content = @Content)
-    })
-	@PutMapping("/status/{orderId}/{status}/")
-	public ResponseEntity<OrderEntity> updateOrdeStatus(
-			@PathVariable("orderId") String _id, 
-			@PathVariable("orderId") String _status) {
+
+	/**
+	 * Update Order Status
+	 *
+	 * @param _order
+	 * @return
+	 */
+	@Operation(summary = "Update Order Status based on Order Id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200",
+					description = "Update Order Status based on Order Id.",
+					content = {@Content(mediaType = "application/json")}),
+			@ApiResponse(responseCode = "500",
+					description = "Unable to Update Order Status",
+					content = @Content)
+	})
+	@PutMapping("/{orderId}/status/{statusId}/")
+	public ResponseEntity<OrderEntity> updateOrderStatus(
+			@PathVariable("orderId") String _id,
+			@PathVariable("statusId") String _status) {
 		System.out.println(LocalDateTime.now()+"|Order="+_id+"|Status="+_status);
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderBusinessService.updateOrderStatus(_id, _status);
+			orderEntity = orderService.updateOrderStatus(_id, _status);
 		} catch (Exception e) {
 			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
@@ -206,4 +206,5 @@ public class OrderControllerImpl implements OrderController {
 		System.out.println(LocalDateTime.now()+"|Order Updated.");
 		return ResponseEntity.ok(orderEntity);
 	}
+
 }

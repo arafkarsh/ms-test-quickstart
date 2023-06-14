@@ -16,13 +16,20 @@
 package io.fusion.water.order;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.HttpServletRequest;
 
 import io.fusion.water.order.server.ServiceConfiguration;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 
 import org.springframework.boot.CommandLineRunner;
@@ -36,6 +43,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.unit.DataSize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -70,13 +78,17 @@ public class OrderApplication {
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());
 	
-	private final String title = "<h1>Welcome to Order Service<h1/>"
-								+"<h3>Copyright (c) MetaArivu Pvt Ltd, 2021</h3>";
+	private final String title = "<h1>Welcome to (Ms-Test-Quickstart) Order Service<h1/>"
+								+"<h3>Copyright (c) Araf Karsh Hamid, 2023</h3>";
 	
 	private static ConfigurableApplicationContext context;
 
 	@Autowired
 	private ServiceConfiguration serviceConfig;
+
+	// Get the Service Name from the properties file
+	@Value("${service.name:NameNotDefined}")
+	private String serviceName = "Unknown";
 	
 	/**
 	 * Start the Order Service
@@ -84,9 +96,9 @@ public class OrderApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
 		// Start the Server
 		start(args);
+		// API URL : http://localhost:9081/test-service/api/v1/swagger-ui.html
 	}
 	
 	/**
@@ -94,14 +106,10 @@ public class OrderApplication {
 	 * @param args
 	 */
 	public static void start(String[] args) {
-		log.info("Booting Order Service ..... ..");
-		System.out.println("Booting Order Service ..... ..");
-
+		log.info("Booting (MS-Test-QuickStart) Order Service ..... ..");
 		try {
 			context = SpringApplication.run(OrderApplication.class, args);
-			log.info("Booting Order Service ..... ...Startup completed!");
-			System.out.println(LocalDateTime.now()+"|Booting Order Service ..... ...Startup completed!");
-
+			log.info("Booting (MS-Test-QuickStart) Order Service ..... ...Startup completed!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -111,7 +119,6 @@ public class OrderApplication {
 	 * Restart the Server
 	 */
     public static void restart() {
-    	
 		log.info("Restarting Order Service ..... .. 1");
         ApplicationArguments args = context.getBean(ApplicationArguments.class);
 		log.info("Restarting Order Service ..... .. 2");
@@ -132,17 +139,45 @@ public class OrderApplication {
 	@PostConstruct
 	public void configure() {
 	}
-	
+
 	/**
-	 * Order Service - Home Page
+	 * Micro Service - Home Page
 	 * @return
 	 */
-	// @GetMapping("/")
-	public String home() {
-		System.out.println(LocalDateTime.now()+"|Request to Home Page of Order Service... ");
-		return this.title;
+	@GetMapping("/root")
+	public String home(HttpServletRequest request) {
+		log.info("Request to Home Page of Service... " + printRequestURI(request));
+		return (serviceConfig == null) ? this.title :
+				this.title.replaceAll("MICRO", serviceConfig.getServiceName())
+						.replaceAll("COMPANY", serviceConfig.getServiceOrg())
+						.replaceAll("BN", "" + serviceConfig.getBuildNumber())
+						.replaceAll("BD", serviceConfig.getBuildDate());
 	}
 
+	/**
+	 * Print the Request
+	 *
+	 * @param request
+	 * @return
+	 */
+	public static String printRequestURI(final HttpServletRequest request) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("URI: ").append(request.getRequestURI());
+		String[] req = request.getRequestURI().split("/");
+		sb.append("Params Size = "+req.length+" : ");
+		for(int x=0; x < req.length; x++) {
+			sb.append(req[x]).append("|");
+		}
+		sb.append("\n");
+		log.info("HttpServletRequest: ["+sb.toString()+"]");
+		return sb.toString();
+	}
+
+	/**
+	 * CommandLineRunner Prints all the Beans defined ...
+	 * @param ctx
+	 * @return
+	 */
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
@@ -157,13 +192,14 @@ public class OrderApplication {
 	
 	/**
 	 * Open API v3 Docs - All
+	 * Reference: https://springdoc.org/faq.html
 	 * @return
 	 */
 	@Bean
 	public GroupedOpenApi allPublicApi() {
 		return GroupedOpenApi.builder()
-			.group("ms-order-service")
-			.pathsToMatch("/api/**")
+				.group(serviceConfig.getServiceName()+"-service")
+				.pathsToMatch(serviceConfig.getServiceApiPath()+"/**")
 			.build();
 	}
 	
@@ -174,36 +210,86 @@ public class OrderApplication {
 	@Bean
 	public GroupedOpenApi orderPublicApi() {
 		return GroupedOpenApi.builder()
-			.group("ms-order-service-order")
-			.pathsToMatch("/api/v1/order/**")
-			.build();
+				.group(serviceConfig.getServiceName()+"-service-core")
+				.pathsToMatch(serviceConfig.getServiceApiPath()+"/**")
+				.pathsToExclude(serviceConfig.getServiceApiPath()+"/service/**", serviceConfig.getServiceApiPath()+"/config/**")
+				.build();
 	}
-	
+
 	/**
 	 * Open API v3 Docs - Core Service
+	 * Reference: https://springdoc.org/faq.html
+	 * Change the Resource Mapping in HealthController
+	 *
+	 * @see HealthController
+	 */
+	@Bean
+	public GroupedOpenApi configPublicApi() {
+		// System.out.println;
+		return GroupedOpenApi.builder()
+				.group(serviceConfig.getServiceName()+"-service-config")
+				.pathsToMatch(serviceConfig.getServiceApiPath()+"/config/**")
+				.build();
+	}
+
+	@Bean
+	public GroupedOpenApi systemPublicApi() {
+		return GroupedOpenApi.builder()
+				.group(serviceConfig.getServiceName()+"-service-health")
+				.pathsToMatch(serviceConfig.getServiceApiPath()+"/service/**")
+				.build();
+	}
+
+	/**
+	 * Open API v3
+	 * Reference: https://springdoc.org/faq.html
 	 * @return
 	 */
 	@Bean
-	public GroupedOpenApi servicePublicApi() {
-		return GroupedOpenApi.builder()
-			.group("ms-order-service-core")
-			.pathsToMatch("/api/v1/order/service/**")
-			.build();
-	}
-	
-	@Bean
-	public OpenAPI orderOpenAPI() {
+	public OpenAPI buildOpenAPI() {
 		return new OpenAPI()
-			.info(new Info()
-				.title("Order Microservice")
-				.description("Microservices Testing Strategies - Guide")
-				.version(getServerVersion())
-				.license(new License().name("License: Apache 2.0")
-					.url("http://www.metarivu.com"))
+				.servers(getServers())
+				.info(new Info()
+						.title(serviceConfig.getServiceName()+" Service")
+						.description(serviceConfig.getServiceDetails())
+						.version(serviceConfig.getServerVersion())
+						.license(new License().name("License: "+serviceConfig.getServiceLicense())
+								.url(serviceConfig.getServiceUrl()))
 				)
-			.externalDocs(new ExternalDocumentation()
-				.description("Order Service Source Code")
-				.url("https://github.com/MetaArivu/ms-order-service"));
+				.externalDocs(new ExternalDocumentation()
+						.description(serviceConfig.getServiceName()+" Service Source Code")
+						.url(serviceConfig.getServiceApiRepository())
+				)
+				.components(new Components().addSecuritySchemes("bearer-key",
+						new SecurityScheme()
+								.type(SecurityScheme.Type.HTTP)
+								.scheme("bearer")
+								.bearerFormat("JWT"))
+				);
+	}
+
+	/**
+	 * Get the List of Servers for Open API Docs - Swagger
+	 * @return
+	 */
+	private List<Server> getServers() {
+		List<Server> serverList = new ArrayList<Server>();
+
+		Server dev = new Server();
+		dev.setUrl(serviceConfig.getServerHostDev());
+		dev.setDescription(serviceConfig.getServerHostDevDesc());
+		Server uat = new Server();
+		uat.setUrl(serviceConfig.getServerHostUat());
+		uat.setDescription(serviceConfig.getServerHostUatDesc());
+		Server prod = new Server();
+		prod.setUrl(serviceConfig.getServerHostProd());
+		prod.setDescription(serviceConfig.getServerHostProdDesc());
+
+		serverList.add(dev);
+		serverList.add(uat);
+		serverList.add(prod);
+
+		return serverList;
 	}
 
 	private String getServerVersion() {
