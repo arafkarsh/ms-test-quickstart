@@ -65,9 +65,9 @@ public class OrderRestAPITests {
     public void setup() {
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
 
-        RestAssured.baseURI = "http://localhost:9080/api/v1";
+        RestAssured.baseURI = "http://localhost:9081/api/v1";
         // RestAssured.baseURI = "http://localhost";
-        // RestAssured.port = 9080;
+        // RestAssured.port = 9081;
         // RestAssured.rootPath = "/api/v1";
 
     }

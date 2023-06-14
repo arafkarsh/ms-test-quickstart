@@ -16,13 +16,8 @@
         "status": 200,
         "body": {
           "wordData": "Jane",
-<<<<<<< Updated upstream
-          "responseTime": "2023-06-13T18:32:50.469",
-          "dayOftheYear": 164,
-=======
-          "responseTime": "2023-06-14T08:25:41.937",
+          "responseTime": "2023-06-14T11:54:38.255",
           "dayOftheYear": 165,
->>>>>>> Stashed changes
           "greetings": "Good Morning Jane"
         }
       },
@@ -45,13 +40,8 @@
         "status": 200,
         "body": {
           "wordData": "Jane",
-<<<<<<< Updated upstream
-          "responseTime": "2023-06-13T18:32:51.355",
-          "dayOftheYear": 164,
-=======
           "responseTime": "2023-06-14T08:26:09.795",
           "dayOftheYear": 165,
->>>>>>> Stashed changes
           "greetings": "Good Morning Jane"
         }
       },
