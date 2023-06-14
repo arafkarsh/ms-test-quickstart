@@ -16,7 +16,7 @@
         "status": 200,
         "body": {
           "wordData": "Jane",
-          "responseTime": "2023-06-14T11:54:38.255",
+          "responseTime": "2023-06-14T20:48:41.912",
           "dayOftheYear": 165,
           "greetings": "Good Morning Jane"
         }
@@ -31,6 +31,47 @@
       ]
     },
     {
+      "description": "Payment Details",
+      "request": {
+        "method": "POST",
+        "path": "/payments",
+        "headers": {
+          "app": "bigBasket",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "transactionId": "0c6485eb-8913-496e-8448-417909431015",
+          "transactionDate": "2023-06-14T20:34:03.177",
+          "orderValue": 230.0,
+          "paymentType": "CREDIT_CARD",
+          "cardDetails": {
+            "cardNumber": "2987-1955-5333-7131",
+            "holderName": "Sam Doe",
+            "expiryMonth": 10,
+            "expiryYear": 2032,
+            "cardCode": 931,
+            "cardType": "MASTER"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "transactionId": "0c6485eb-8913-496e-8448-417909431015",
+          "transactionDate": "2023-06-14T20:34:03.177",
+          "paymentStatus": "Accepted",
+          "paymentReference": "61f479af-5bd6-482f-8bd7-73721971abbc",
+          "paymentDate": "2023-06-14T20:34:03.180",
+          "paymentType": "CREDIT_CARD"
+        }
+      },
+      "providerStates": [
+        {
+          "name": "Payment Process"
+        }
+      ]
+    },
+    {
       "description": "The word Jane, the service returns a greeting.",
       "request": {
         "method": "GET",
@@ -40,7 +81,7 @@
         "status": 200,
         "body": {
           "wordData": "Jane",
-          "responseTime": "2023-06-14T08:26:09.795",
+          "responseTime": "2023-06-14T20:37:24.761",
           "dayOftheYear": 165,
           "greetings": "Good Morning Jane"
         }

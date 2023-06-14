@@ -1,0 +1,103 @@
+{
+  "consumer": {
+    "name": "OrderService"
+  },
+  "provider": {
+    "name": "EcommerceService"
+  },
+  "interactions": [
+    {
+      "description": "A request to save an Order",
+      "request": {
+        "method": "POST",
+        "path": "/order",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "orderId": "1234",
+          "orderDate": "2023-06-14T22:32:26.958",
+          "customer": {
+            "customerId": "UUID",
+            "firstName": "John",
+            "lastName": "Doe",
+            "phoneNumber": "0123456789",
+            "phoneList": [
+              "0123456789"
+            ]
+          },
+          "orderItems": [
+            {
+              "itemId": "uuid1",
+              "itemName": "iPhone 12",
+              "itemValue": 799,
+              "itemCurrency": "USD",
+              "quantity": 1
+            },
+            {
+              "itemId": "uuid2",
+              "itemName": "iPhone 12 Pro",
+              "itemValue": 999,
+              "itemCurrency": "USD",
+              "quantity": 1
+            },
+            {
+              "itemId": "uuid3",
+              "itemName": "Apple Watch Series 6",
+              "itemValue": 450,
+              "itemCurrency": "USD",
+              "quantity": 2
+            }
+          ],
+          "shippingAddress": {
+            "streetName": "321 Cobblestone Ln,",
+            "addressLine2": "",
+            "city": "Edison",
+            "state": "NJ",
+            "landMark": "",
+            "country": "USA",
+            "zipCode": "08820"
+          },
+          "paymentType": "CREDIT_CARD",
+          "orderStatus": "INITIATED",
+          "paymentDetails": {
+            "transactionId": "1234",
+            "transactionDate": "2023-06-14T22:32:26.958",
+            "orderValue": 2248.0,
+            "paymentType": "CREDIT_CARD",
+            "cardDetails": {
+              "cardNumber": "XXXX XXXX XXXX 5432",
+              "holderName": "John Doe",
+              "expiryMonth": 7,
+              "expiryYear": 2025,
+              "cardCode": 0,
+              "cardType": "MASTER"
+            }
+          },
+          "paymentStatus": null,
+          "shippingAddressAvailable": true,
+          "customerAvailable": true,
+          "totalItems": 3,
+          "totalValue": 2248.0
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "Successfully saved order"
+      },
+      "providerStates": [
+        {
+          "name": "A request to save the Order"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  }
+}

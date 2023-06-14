@@ -78,7 +78,7 @@ import test.fusion.water.order.utils.SampleData;
 @ExtendWith(PactConsumerTestExt.class)
 @PactTestFor(providerName = "PaymentService")
 @SpringBootTest(classes={OrderApplication.class})
-public class PactContractTest {
+public class OrderPaymentContractTest {
 	
 	@Autowired
 	private PaymentService paymentService;
@@ -182,7 +182,7 @@ public class PactContractTest {
 		System.out.println("PACT    |> MockServer|"+mockServer.getUrl());
 		PaymentStatus paymentStatus = null;
 		try {
-			paymentStatus = paymentService.processPayments(pd);
+			paymentStatus = paymentService.processPaymentsExternal(pd);
 		} catch(Exception e) {
 			System.out.println("ERROR: "+e.getMessage());
 			e.printStackTrace();
