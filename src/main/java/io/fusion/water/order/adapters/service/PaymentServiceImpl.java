@@ -80,16 +80,27 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 	
 	/**
-	 * 
+	 *  Process Payments (used by Rest Assured)
+	 *
 	 * @param _paymentDetails
 	 * @return
 	 */
 	public PaymentStatus processPayments(PaymentDetails _paymentDetails) {
-		// return paymentGateWay.processPayments(_paymentDetails);
 		// For Testing Purpose ONLY
 		return processPaymentsDefault(_paymentDetails);
 	}
-	
+
+	/**
+	 * Process Payments External (used by WireMock)
+	 *
+	 * @param _paymentDetails
+	 * @return
+	 */
+	public PaymentStatus processPaymentsExternal(PaymentDetails _paymentDetails) {
+		return paymentGateWay.processPayments(_paymentDetails);
+	}
+
+
 	/**
 	 * Default 
 	 * @param _paymentDetails

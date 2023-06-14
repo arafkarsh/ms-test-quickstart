@@ -172,7 +172,7 @@ public class PaymentGatewaySpringBootTest {
 		    .willReturn(okJson(Utils.toJsonString(ps))));
 
 	    // When
-	    PaymentStatus payStatus = paymentService.processPayments(pd);
+	    PaymentStatus payStatus = paymentService.processPaymentsExternal(pd);
 
 	    // Then
 	    assertNotNull(payStatus);
@@ -201,7 +201,7 @@ public class PaymentGatewaySpringBootTest {
 		    .willReturn(okJson(Utils.toJsonString(ps))));
 
 	    // When
-	    PaymentStatus payStatus = paymentService.processPayments(pd);
+	    PaymentStatus payStatus = paymentService.processPaymentsExternal(pd);
 
 	    // Then
 	    assertNotNull(payStatus);

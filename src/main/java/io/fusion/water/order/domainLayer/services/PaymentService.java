@@ -38,14 +38,20 @@ public interface PaymentService {
 	 * 
 	 */
 	/**
-	 * Process Payments
+	 * Process Payments (used by Rest Assured)
 	 * 
 	 * @param _paymentDetails
 	 * @return
 	 */
 	public PaymentStatus processPayments(PaymentDetails _paymentDetails);
-	
-	
+
+	/**
+	 * Process Payments External (used by WireMock)
+	 * @param _paymentDetails
+	 * @return
+	 */
+	public PaymentStatus processPaymentsExternal(PaymentDetails _paymentDetails);
+
 	/**
 	 * Returns the word with a greeting from Local 
 	 * 

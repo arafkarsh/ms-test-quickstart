@@ -85,8 +85,7 @@ public class PaymentGateWayMockTest {
         wireMockServer.start(); 
         WireMock.configureFor(host, port);
 
-        System.out.println(counter+"] WireMock Server Started.. on "
-        					+wireMockServer.baseUrl());
+        System.out.println(counter+"] WireMock Server Started.. on " +wireMockServer.baseUrl());
     }
     
     @BeforeEach
@@ -138,7 +137,7 @@ public class PaymentGateWayMockTest {
 		    .willReturn(okJson(Utils.toJsonString(ps))));
 
 	    // When
-	    PaymentStatus payStatus = paymentService.processPayments(pd);
+	    PaymentStatus payStatus = paymentService.processPaymentsExternal(pd);
 
 	    // Then
 	    assertNotNull(payStatus);
@@ -166,7 +165,7 @@ public class PaymentGateWayMockTest {
 		    .willReturn(okJson(Utils.toJsonString(ps))));
 
 	    // When
-	    PaymentStatus payStatus = paymentService.processPayments(pd);
+	    PaymentStatus payStatus = paymentService.processPaymentsExternal(pd);
 
 	    // Then
 	    assertNotNull(payStatus);
