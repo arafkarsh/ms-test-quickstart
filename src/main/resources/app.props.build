@@ -1,5 +1,10 @@
 # =======================================================================
 # Order Service Properties
 # =======================================================================
+<<<<<<< Updated upstream
 build.number=13
 build.date=Tue Jun 13 18:32:26 IST 2023
+=======
+build.number=18
+build.date=Wed Jun 14 08:22:35 IST 2023
+>>>>>>> Stashed changes

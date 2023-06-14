@@ -1,4 +1,9 @@
 # =======================================================================
+# Order Service Properties
+# =======================================================================
+build.number=18
+build.date=Wed Jun 14 08:06:06 IST 2023
+# =======================================================================
 # Service Name & API Details -  Version, Path
 # =======================================================================
 service.org=orgname
@@ -19,7 +24,7 @@ service.license=Apache 2 License
 # Order Server Properties
 # =======================================================================
 server.port=9080
-server.version=0.9.3
+server.version=0.9.4
 server.restart=true
 server.resources.url=${service.url}${service.api.path}
 # ------------------------------------------------------------------------

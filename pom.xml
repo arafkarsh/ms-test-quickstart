@@ -47,9 +47,16 @@
 		<restassured.version>5.3.0</restassured.version>
 		<pact.version>4.0.10</pact.version>
 		<assertj.version>3.20.2</assertj.version>
-		
+
+		<!-- Spring Security / JWT / Bean Validation -->
+		<javax.bean.validation.version>2.0.1.Final</javax.bean.validation.version>
+		<jwt.api.version>0.11.5</jwt.api.version>
+		<google.gson.version>2.9.0</google.gson.version>
+		<bouncycastle.version>1.46</bouncycastle.version>
+		<spring.security.version>5.7.2</spring.security.version>
+
 		<!-- Spring Boot -->
-		<spring.boot.version>2.5.3</spring.boot.version>
+		<spring.boot.version>2.7.2</spring.boot.version>
 	</properties>
 	
 	<!-- ================================================================= -->
@@ -68,7 +75,6 @@
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
 			<url>https://repo.spring.io/milestone</url>
-
 		</repository>
 		<repository>
 			<id>public</id>
@@ -506,25 +512,66 @@
         <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
 		<dependency>
 		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt</artifactId>
-		    <version>0.9.1</version>
+		    <artifactId>jjwt-api</artifactId>
+			<version>${jwt.api.version}</version>
 		</dependency>
-		
-		<!-- 
-		This enables a default Auth Page for the Spring Boot App.
-		Default loginId: user
-		Password: will be printed in the console.
-		-->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-		<!--
+
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-security</artifactId>
-		    <version>${spring.boot.version}</version>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jwt.api.version}</version>
+			<scope>runtime</scope>
 		</dependency>
-		-->
-		
-        
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jwt.api.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk16 -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>${bouncycastle.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+
+		<!--
+           This enables a default Auth Page for the Spring Boot App.
+           Default loginId: user
+           Password: will be printed in the console.
+           -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+		<!-- -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+
         <!-- ================================================================= -->
 		<!-- API Docs - Open API v3.0 (Swagger 3) -->
 		<!-- ================================================================= -->
@@ -534,6 +581,25 @@
 	      <artifactId>springdoc-openapi-ui</artifactId>
 	      <version>${openapi.version}</version>
 	   	</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-webflux-ui -->
+		<!--
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-webflux-ui</artifactId>
+			<version>${openapi.version}</version>
+		</dependency>
+		-->
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-data-rest -->
+		<!--
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-data-rest</artifactId>
+			<version>${openapi.version}</version>
+		</dependency>
+		-->
+
+		<!-- End of Dependency Definitions -->
 
 	</dependencies>   
 	
@@ -644,7 +710,7 @@
 					SpringBoot (Runs SpringBoot Test Cases)
 				-->	
                 <configuration>
-                    <groups>Pact</groups>
+                    <groups>none</groups>
                     <excludedGroups></excludedGroups>
                     <!-- to be used with Pact and JUnit 5 -->
                     <useSystemClassLoader>false</useSystemClassLoader>
