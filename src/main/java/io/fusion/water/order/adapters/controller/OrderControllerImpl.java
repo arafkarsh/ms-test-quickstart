@@ -24,6 +24,7 @@ import java.time.LocalDateTime;
 import org.slf4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -107,6 +108,12 @@ public class OrderControllerImpl implements OrderController {
 	public ResponseEntity<OrderEntity> saveOrder(@RequestBody OrderEntity _order) {
 		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_order));
 		OrderEntity orderEntity = null;
+		// Create HttpHeaders object and add a custom header
+		// HttpHeaders are used like this to Demo a RestAssured test case.
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", "jwt-1");
+		headers.add("X-CSRF-TOKEN", "csrf-token");
+		// The above headers are not meant for production usage.
 		try  {
 			orderEntity = orderService.processOrder(_order);
 		} catch (Exception e) {
@@ -114,7 +121,7 @@ public class OrderControllerImpl implements OrderController {
 			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
 		}
 		System.out.println(LocalDateTime.now()+"|Order Saved.");
-		return ResponseEntity.ok(orderEntity);
+		return new ResponseEntity<OrderEntity>(orderEntity, headers, HttpStatus.OK);
 	}
 
 	/**

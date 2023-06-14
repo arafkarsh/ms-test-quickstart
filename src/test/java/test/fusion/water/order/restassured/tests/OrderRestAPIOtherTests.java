@@ -18,10 +18,12 @@ package test.fusion.water.order.restassured.tests;
 // JUnit 5
 
 import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domainLayer.models.OrderStatus;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.http.Cookie;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
@@ -59,7 +61,12 @@ public class OrderRestAPIOtherTests {
 
     private Response response = null;
 
-    private static RequestSpecification requestSpec;
+    private RequestSpecification requestSpec1;
+    private RequestSpecification requestSpec2;
+
+    private Cookie cookie1;
+    private Cookie cookie2;
+
 
     @BeforeAll
     public void setup() {
@@ -80,7 +87,14 @@ public class OrderRestAPIOtherTests {
         builder.addHeader("Content-Type", "application/json");  // Content Type
         builder.addHeader("Authorization", "jwt1");             // Security Tokens
         builder.addHeader("Refresh-Token", "jwt2");             // Security Tokens
-        requestSpec = builder.build();
+        requestSpec1 = builder.build();
+
+        cookie1 = new Cookie.Builder("cookie1", "crunchyCookie").build();
+        cookie2 = new Cookie.Builder("cookie2", "sweetCookie").build();
+
+        builder.addCookie(cookie1);
+        builder.addCookie(cookie2);
+        requestSpec2 = builder.build();
     }
 
     @DisplayName("1. Order Create - Other Tests")
@@ -92,7 +106,7 @@ public class OrderRestAPIOtherTests {
         public void testContentType() {
             OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
-                    .spec(requestSpec)
+                    .spec(requestSpec1)
                     .body(orderEntity)
             .when()
                     .post("/order/")
@@ -103,13 +117,13 @@ public class OrderRestAPIOtherTests {
             ;
         }
 
-        @DisplayName("1.2. Compare Order Value and Payment Amount")
+        @DisplayName("1.2. Headers thru Specs")
         @Test
         @Order(2)
         public void getOrderById() {
             response =
                     given()
-                            .spec(requestSpec)
+                            .spec(requestSpec1)
                             .pathParam("orderId", "1234")
                     .when()
                             .get("/order/{orderId}/")
@@ -122,7 +136,50 @@ public class OrderRestAPIOtherTests {
 
             assertEquals(orderValue, totalValue, 0.01f);  // comparing two values
         }
+
+        /**
+         * Update the Order ID = 1234  with Status = PAYMENT EXPECTED
+         */
+        @DisplayName("1.3. Cookies thru Specs")
+        @Test
+        @Order(3)
+        public void testHeaders() {
+            String orderId = "1234";  // Replace with actual order ID
+            String statusId = OrderStatus.PAYMENT_EXPECTED.name();  // Replace with actual status ID
+
+            given()
+                    .spec(requestSpec2)
+                    .pathParam("orderId", orderId)
+                    .pathParam("statusId", statusId)
+            .when()
+                    .put("/order/{orderId}/status/{statusId}/")
+            .then()
+                    .assertThat()
+                    .statusCode(200)
+                    .body("orderStatus", equalTo(statusId));
+        }
+
+        /**
+         * Update the Order ID = 1234  with Status = PAYMENT EXPECTED
+         */
+        @DisplayName("1.4. Direct Cookies")
+        @Test
+        @Order(4)
+        public void testCookies() {
+            String orderId = "1234";  // Replace with actual order ID
+            String statusId = OrderStatus.PAYMENT_EXPECTED.name();  // Replace with actual status ID
+
+            given()
+                    .cookie(cookie1)
+                    .cookie(cookie2)
+                    .pathParam("orderId", orderId)
+                    .pathParam("statusId", statusId)
+            .when()
+                    .put("/order/{orderId}/status/{statusId}/")
+            .then()
+                    .assertThat()
+                    .statusCode(200)
+                    .body("orderStatus", equalTo(statusId));
+        }
     }
-
-
 }
