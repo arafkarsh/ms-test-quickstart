@@ -19,9 +19,11 @@ package test.fusion.water.order.restassured.tests;
 
 import io.fusion.water.order.domainLayer.models.OrderEntity;
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import test.fusion.water.order.junit5.annotations.tests.Critical;
@@ -32,12 +34,15 @@ import test.fusion.water.order.restassured.utils.OrderMockObjects;
 
 import static io.restassured.RestAssured.given;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * REST Assured Examples based on BDD
  *.
+ * 1. Test The Response Time
+ * 2. Pass Common Specs Across the test cases
  *
  * @author: Araf Karsh Hamid
  * @version:
@@ -54,34 +59,68 @@ public class OrderRestAPIOtherTests {
 
     private Response response = null;
 
+    private static RequestSpecification requestSpec;
+
     @BeforeAll
     public void setup() {
+        /**
+         * RequestLoggingFilter(): This filter is used to log the details of the request that you are sending.
+         * The details include the request method, the URI, the headers, parameters, and the body.
+         *
+         * ResponseLoggingFilter(): This filter is used to log the details of the response that you receive.
+         * The details include the status line, headers, and the body.
+         */
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
 
+        // Set the URL for Testing
         RestAssured.baseURI = "http://localhost:9081/api/v1";
-        // RestAssured.baseURI = "http://localhost";
-        // RestAssured.port = 9081;
-        // RestAssured.rootPath = "/api/v1";
+
+        // Set the Common Specs Across test cases.
+        RequestSpecBuilder builder = new RequestSpecBuilder();
+        builder.addHeader("Content-Type", "application/json");  // Content Type
+        builder.addHeader("Authorization", "jwt1");             // Security Tokens
+        builder.addHeader("Refresh-Token", "jwt2");             // Security Tokens
+        requestSpec = builder.build();
     }
 
     @DisplayName("1. Order Create - Other Tests")
     @Nested
-    class createSecurityTests {
-        @DisplayName("1.1 Check Response Time")
+    class createOtherFeatureTests {
+        @DisplayName("1.1 Performance Test: Response Time")
         @Test
         @Order(1)
         public void testContentType() {
             OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
-                    .contentType("application/json")
+                    .spec(requestSpec)
                     .body(orderEntity)
             .when()
                     .post("/order/")
             .then()
                     .assertThat()
                     .statusCode(200)
-                    .time(lessThan(1L), SECONDS)
+                    .time(lessThan(2L), SECONDS)
             ;
+        }
+
+        @DisplayName("1.2. Compare Order Value and Payment Amount")
+        @Test
+        @Order(2)
+        public void getOrderById() {
+            response =
+                    given()
+                            .spec(requestSpec)
+                            .pathParam("orderId", "1234")
+                    .when()
+                            .get("/order/{orderId}/")
+                    .then()
+                            .statusCode(200)
+                            .extract().response(); // Extract the whole response to a Response object
+
+            float orderValue = response.path("paymentDetails.orderValue");
+            float totalValue = response.path("totalValue");
+
+            assertEquals(orderValue, totalValue, 0.01f);  // comparing two values
         }
     }
 

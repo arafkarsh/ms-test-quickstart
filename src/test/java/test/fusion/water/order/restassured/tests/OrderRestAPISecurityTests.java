@@ -80,12 +80,17 @@ public class OrderRestAPISecurityTests {
 
     @BeforeAll
     public void setup() {
+        /**
+         * RequestLoggingFilter(): This filter is used to log the details of the request that you are sending.
+         * The details include the request method, the URI, the headers, parameters, and the body.
+         *
+         * ResponseLoggingFilter(): This filter is used to log the details of the response that you receive.
+         * The details include the status line, headers, and the body.
+         */
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
 
+        // Set the URL for Testing
         RestAssured.baseURI = "http://localhost:9081/api/v1";
-        // RestAssured.baseURI = "http://localhost";
-        // RestAssured.port = 9081;
-        // RestAssured.rootPath = "/api/v1";
     }
 
     @DisplayName("1. Order Create - Security Tests")
