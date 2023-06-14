@@ -1,4 +1,19 @@
-# Order Microservice
+# MS Test QuickStart - Order Microservice
+
+## Framework Versions
+
+- SpringBootTest 2 (2.7.2)
+- JUnit 5 (5.7.2)
+- Hamcrest 2 (2.2)
+- Mockito 3 (3.11.2)
+- WireMock 2 ((2.29.1)
+- Cucumber 6 (6.10.4)
+- Selenium 4 (4.0.0)
+- Pact 4 (4.0.10)
+- AssertJ 3 (3.20.2)
+
+## Other Tools 
+- Open API (1.5.10)
 
 Order Microservice is part of an eCommerce Application. The objective of selecting this Microservice is to demonstrate various testing frameworks. As Order is a complex service with internal (Ex. Inventory, Warhouse, Shipping etc) and external (Payment) service integration and it has all the requirements to use various testing frameworks. The objective is to demonstrate various testing frameworks. 
 
@@ -37,18 +52,18 @@ All the tests will be fully automated as part of your CI/CD pipeline.
 
 ## Dependencies
 
-- Spring Boot 2 (2.5.3)
-- Maven SureFire Plugin 2 (2.22.1)
+- Spring Boot 2 (2.7.2)
+- Maven SureFire Plugin 2 (3.0.0-M7)
 
 ## Testing Frameworks
 
 ![Microservices Testing Frameworks](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Tools.jpg)
 
-- SpringBootTest 2 (2.5.3)
+- SpringBootTest 2 (2.7.2)
 - JUnit 5 (5.7.2)
 - Hamcrest 2 (2.2)
 - Mockito 3 (3.11.2)
-- WireMock 2 ((2.29.0)
+- WireMock 2 ((2.29.1)
 - Cucumber 6 (6.10.4)
 - Selenium 4 (4.0.0)
 - Pact 4 (4.0.10)
