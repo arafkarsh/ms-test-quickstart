@@ -54,7 +54,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         // http.requiresChannel().anyRequest().requiresSecure();
         String apiPath = serviceConfig.getApiDocPath();
         http.authorizeRequests()
-                .antMatchers(apiPath + "/**")
+                .antMatchers(apiPath + "/**", "/swagger-ui.html")
                 .permitAll()
                 .and()
                 // This configures exception handling, specifically specifying that when a user tries to access a page
