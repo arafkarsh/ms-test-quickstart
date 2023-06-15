@@ -1,0 +1,1322 @@
+{
+	"info": {
+		"_postman_id": "dcc12fab-7d49-4db1-a89a-3c8d62a9e79a",
+		"name": "MS-Test-Quickstart Service",
+		"description": "<b>MS-Test-Quickstart Service </b><br>Build No:<b> 15</b>, Build Date:<b> Wed Jun 14 11:16:22 IST 2023</b> ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4414585",
+		"_collection_link": "https://fusion-amexio.postman.co/workspace/Fusion-Workspace~72c2b47e-5c3b-4d72-b39b-15a0ac062747/collection/4414585-dcc12fab-7d49-4db1-a89a-3c8d62a9e79a?action=share&creator=4414585&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "root",
+			"item": [
+				{
+					"name": "home",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/root",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"root"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/root",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"root"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "<string>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "order",
+							"item": [
+								{
+									"name": "{orderId}",
+									"item": [
+										{
+											"name": "status",
+											"item": [
+												{
+													"name": "{statusId}",
+													"item": [
+														{
+															"name": "Update Order Status based on Order Id",
+															"request": {
+																"method": "PUT",
+																"header": [
+																	{
+																		"key": "Accept",
+																		"value": "application/json"
+																	}
+																],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/:orderId/status/:statusId/",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		":orderId",
+																		"status",
+																		":statusId",
+																		""
+																	],
+																	"variable": [
+																		{
+																			"key": "orderId",
+																			"value": "<string>"
+																		},
+																		{
+																			"key": "statusId",
+																			"value": "<string>"
+																		}
+																	]
+																}
+															},
+															"response": [
+																{
+																	"name": "Update Order Status based on Order Id.",
+																	"originalRequest": {
+																		"method": "PUT",
+																		"header": [
+																			{
+																				"key": "Accept",
+																				"value": "application/json"
+																			}
+																		],
+																		"url": {
+																			"raw": "{{baseUrl}}/api/v1/order/:orderId/status/:statusId/",
+																			"host": [
+																				"{{baseUrl}}"
+																			],
+																			"path": [
+																				"api",
+																				"v1",
+																				"order",
+																				":orderId",
+																				"status",
+																				":statusId",
+																				""
+																			],
+																			"variable": [
+																				{
+																					"key": "orderId"
+																				},
+																				{
+																					"key": "statusId"
+																				}
+																			]
+																		}
+																	},
+																	"status": "OK",
+																	"code": 200,
+																	"_postman_previewlanguage": "json",
+																	"header": [
+																		{
+																			"key": "Content-Type",
+																			"value": "application/json"
+																		}
+																	],
+																	"cookie": [],
+																	"body": ""
+																},
+																{
+																	"name": "Unable to Update Order Status",
+																	"originalRequest": {
+																		"method": "PUT",
+																		"header": [],
+																		"url": {
+																			"raw": "{{baseUrl}}/api/v1/order/:orderId/status/:statusId/",
+																			"host": [
+																				"{{baseUrl}}"
+																			],
+																			"path": [
+																				"api",
+																				"v1",
+																				"order",
+																				":orderId",
+																				"status",
+																				":statusId",
+																				""
+																			],
+																			"variable": [
+																				{
+																					"key": "orderId"
+																				},
+																				{
+																					"key": "statusId"
+																				}
+																			]
+																		}
+																	},
+																	"status": "Internal Server Error",
+																	"code": 500,
+																	"_postman_previewlanguage": "text",
+																	"header": [],
+																	"cookie": [],
+																	"body": ""
+																}
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "Fetch Order based on Order ID",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/order/:orderId/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"order",
+														":orderId",
+														""
+													],
+													"variable": [
+														{
+															"key": "orderId",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Fetch Order details based on Order ID",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/:orderId/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																":orderId",
+																""
+															],
+															"variable": [
+																{
+																	"key": "orderId"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Order ID NOT Available",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/:orderId/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																":orderId",
+																""
+															],
+															"variable": [
+																{
+																	"key": "orderId"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "service",
+									"item": [
+										{
+											"name": "restart",
+											"item": [
+												{
+													"name": "Order Service ReStart",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/service/restart",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																"service",
+																"restart"
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "Order Service ReStart",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Accept",
+																		"value": "application/json"
+																	}
+																],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/restart",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"restart"
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																}
+															],
+															"cookie": [],
+															"body": ""
+														},
+														{
+															"name": "Order Service is not ready.",
+															"originalRequest": {
+																"method": "POST",
+																"header": [],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/restart",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"restart"
+																	]
+																}
+															},
+															"status": "Not Found",
+															"code": 404,
+															"_postman_previewlanguage": "text",
+															"header": [],
+															"cookie": [],
+															"body": ""
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "remoteEcho",
+											"item": [
+												{
+													"name": "Order Service Remote Echo",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"word\": \"<string>\",\n  \"day\": \"<integer>\",\n  \"requestTime\": \"<dateTime>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/service/remoteEcho",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																"service",
+																"remoteEcho"
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "Order Service Remote Echo",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	},
+																	{
+																		"key": "Accept",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"word\": \"<string>\",\n  \"day\": \"<integer>\",\n  \"requestTime\": \"<dateTime>\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/remoteEcho",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"remoteEcho"
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																}
+															],
+															"cookie": [],
+															"body": ""
+														},
+														{
+															"name": "Order Service is not ready.",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"word\": \"<string>\",\n  \"day\": \"<integer>\",\n  \"requestTime\": \"<dateTime>\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/remoteEcho",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"remoteEcho"
+																	]
+																}
+															},
+															"status": "Not Found",
+															"code": 404,
+															"_postman_previewlanguage": "text",
+															"header": [],
+															"cookie": [],
+															"body": ""
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "ready",
+											"item": [
+												{
+													"name": "Order Service Readiness Check",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/service/ready",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																"service",
+																"ready"
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "Order Service Readiness Check",
+															"originalRequest": {
+																"method": "GET",
+																"header": [
+																	{
+																		"key": "Accept",
+																		"value": "application/json"
+																	}
+																],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/ready",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"ready"
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																}
+															],
+															"cookie": [],
+															"body": ""
+														},
+														{
+															"name": "Order Service is not ready.",
+															"originalRequest": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/ready",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"ready"
+																	]
+																}
+															},
+															"status": "Not Found",
+															"code": 404,
+															"_postman_previewlanguage": "text",
+															"header": [],
+															"cookie": [],
+															"body": ""
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "log",
+											"item": [
+												{
+													"name": "Order Service Log Levels",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/service/log",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																"service",
+																"log"
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "Order Service Log Level Check",
+															"originalRequest": {
+																"method": "GET",
+																"header": [
+																	{
+																		"key": "Accept",
+																		"value": "application/json"
+																	}
+																],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/log",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"log"
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																}
+															],
+															"cookie": [],
+															"body": ""
+														},
+														{
+															"name": "Order Service is not ready.",
+															"originalRequest": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/log",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"log"
+																	]
+																}
+															},
+															"status": "Not Found",
+															"code": 404,
+															"_postman_previewlanguage": "text",
+															"header": [],
+															"cookie": [],
+															"body": ""
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "home",
+											"item": [
+												{
+													"name": "Order Service Home",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/service/home",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																"service",
+																"home"
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "Order Service Home",
+															"originalRequest": {
+																"method": "GET",
+																"header": [
+																	{
+																		"key": "Accept",
+																		"value": "application/json"
+																	}
+																],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/home",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"home"
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																}
+															],
+															"cookie": [],
+															"body": ""
+														},
+														{
+															"name": "Order Service is not ready.",
+															"originalRequest": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/home",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"home"
+																	]
+																}
+															},
+															"status": "Not Found",
+															"code": 404,
+															"_postman_previewlanguage": "text",
+															"header": [],
+															"cookie": [],
+															"body": ""
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "health",
+											"item": [
+												{
+													"name": "Health Check of Order Service",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/service/health",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																"service",
+																"health"
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "Health Check OK",
+															"originalRequest": {
+																"method": "GET",
+																"header": [
+																	{
+																		"key": "Accept",
+																		"value": "application/json"
+																	}
+																],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/health",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"health"
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																}
+															],
+															"cookie": [],
+															"body": ""
+														},
+														{
+															"name": "Order Service is in bad health.",
+															"originalRequest": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/service/health",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"service",
+																		"health"
+																	]
+																}
+															},
+															"status": "Not Found",
+															"code": 404,
+															"_postman_previewlanguage": "text",
+															"header": [],
+															"cookie": [],
+															"body": ""
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "cancel",
+									"item": [
+										{
+											"name": "{orderId}",
+											"item": [
+												{
+													"name": "Cancel Order based on Order Id",
+													"request": {
+														"method": "DELETE",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/cancel/:orderId/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																"cancel",
+																":orderId",
+																""
+															],
+															"variable": [
+																{
+																	"key": "orderId",
+																	"value": "<string>"
+																}
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "Cancel Order based on Order Id.",
+															"originalRequest": {
+																"method": "DELETE",
+																"header": [
+																	{
+																		"key": "Accept",
+																		"value": "application/json"
+																	}
+																],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/cancel/:orderId/",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"cancel",
+																		":orderId",
+																		""
+																	],
+																	"variable": [
+																		{
+																			"key": "orderId"
+																		}
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																}
+															],
+															"cookie": [],
+															"body": ""
+														},
+														{
+															"name": "Unable to cancel Order",
+															"originalRequest": {
+																"method": "DELETE",
+																"header": [],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/order/cancel/:orderId/",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"order",
+																		"cancel",
+																		":orderId",
+																		""
+																	],
+																	"variable": [
+																		{
+																			"key": "orderId"
+																		}
+																	]
+																}
+															},
+															"status": "Internal Server Error",
+															"code": 500,
+															"_postman_previewlanguage": "text",
+															"header": [],
+															"cookie": [],
+															"body": ""
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "Cancel Order based on Order",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customer\": {\n    \"customerId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"phoneList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"orderItems\": [\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"paymentDetails\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"orderValue\": \"<double>\",\n    \"paymentType\": \"UPI\",\n    \"cardDetails\": {\n      \"cardNumber\": \"<string>\",\n      \"holderName\": \"<string>\",\n      \"expiryMonth\": \"<integer>\",\n      \"expiryYear\": \"<integer>\",\n      \"cardCode\": \"<integer>\",\n      \"cardType\": \"AMERICAN_EXPRESS\"\n    }\n  },\n  \"shippingAddress\": {\n    \"streetName\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"landMark\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"orderId\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"paymentType\": \"NET_BANKING\",\n  \"orderStatus\": \"PAYMENT_DECLINED\",\n  \"paymentStatus\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"paymentStatus\": \"<string>\",\n    \"paymentReference\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"paymentType\": \"DEBIT_CARD\"\n  },\n  \"customerAvailable\": \"<boolean>\",\n  \"totalItems\": \"<integer>\",\n  \"shippingAddressAvailable\": \"<boolean>\",\n  \"totalValue\": \"<double>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/order/cancel",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"order",
+														"cancel"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Cancel Order based on Order Details",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"customer\": {\n    \"customerId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"phoneList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"orderItems\": [\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"paymentDetails\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"orderValue\": \"<double>\",\n    \"paymentType\": \"UPI\",\n    \"cardDetails\": {\n      \"cardNumber\": \"<string>\",\n      \"holderName\": \"<string>\",\n      \"expiryMonth\": \"<integer>\",\n      \"expiryYear\": \"<integer>\",\n      \"cardCode\": \"<integer>\",\n      \"cardType\": \"AMERICAN_EXPRESS\"\n    }\n  },\n  \"shippingAddress\": {\n    \"streetName\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"landMark\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"orderId\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"paymentType\": \"NET_BANKING\",\n  \"orderStatus\": \"PAYMENT_DECLINED\",\n  \"paymentStatus\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"paymentStatus\": \"<string>\",\n    \"paymentReference\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"paymentType\": \"DEBIT_CARD\"\n  },\n  \"customerAvailable\": \"<boolean>\",\n  \"totalItems\": \"<integer>\",\n  \"shippingAddressAvailable\": \"<boolean>\",\n  \"totalValue\": \"<double>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/cancel",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																"cancel"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Unable to cancel Order",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"customer\": {\n    \"customerId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"phoneList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"orderItems\": [\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"paymentDetails\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"orderValue\": \"<double>\",\n    \"paymentType\": \"UPI\",\n    \"cardDetails\": {\n      \"cardNumber\": \"<string>\",\n      \"holderName\": \"<string>\",\n      \"expiryMonth\": \"<integer>\",\n      \"expiryYear\": \"<integer>\",\n      \"cardCode\": \"<integer>\",\n      \"cardType\": \"AMERICAN_EXPRESS\"\n    }\n  },\n  \"shippingAddress\": {\n    \"streetName\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"landMark\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"orderId\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"paymentType\": \"NET_BANKING\",\n  \"orderStatus\": \"PAYMENT_DECLINED\",\n  \"paymentStatus\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"paymentStatus\": \"<string>\",\n    \"paymentReference\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"paymentType\": \"DEBIT_CARD\"\n  },\n  \"customerAvailable\": \"<boolean>\",\n  \"totalItems\": \"<integer>\",\n  \"shippingAddressAvailable\": \"<boolean>\",\n  \"totalValue\": \"<double>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/order/cancel",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"order",
+																"cancel"
+															]
+														}
+													},
+													"status": "Internal Server Error",
+													"code": 500,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Create Order",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"customer\": {\n    \"customerId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"phoneList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"orderItems\": [\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"paymentDetails\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"orderValue\": \"<double>\",\n    \"paymentType\": \"UPI\",\n    \"cardDetails\": {\n      \"cardNumber\": \"<string>\",\n      \"holderName\": \"<string>\",\n      \"expiryMonth\": \"<integer>\",\n      \"expiryYear\": \"<integer>\",\n      \"cardCode\": \"<integer>\",\n      \"cardType\": \"AMERICAN_EXPRESS\"\n    }\n  },\n  \"shippingAddress\": {\n    \"streetName\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"landMark\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"orderId\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"paymentType\": \"NET_BANKING\",\n  \"orderStatus\": \"PAYMENT_DECLINED\",\n  \"paymentStatus\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"paymentStatus\": \"<string>\",\n    \"paymentReference\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"paymentType\": \"DEBIT_CARD\"\n  },\n  \"customerAvailable\": \"<boolean>\",\n  \"totalItems\": \"<integer>\",\n  \"shippingAddressAvailable\": \"<boolean>\",\n  \"totalValue\": \"<double>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/order/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"order",
+												""
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Create Order with Order Items and shipping address.",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customer\": {\n    \"customerId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"phoneList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"orderItems\": [\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"paymentDetails\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"orderValue\": \"<double>\",\n    \"paymentType\": \"UPI\",\n    \"cardDetails\": {\n      \"cardNumber\": \"<string>\",\n      \"holderName\": \"<string>\",\n      \"expiryMonth\": \"<integer>\",\n      \"expiryYear\": \"<integer>\",\n      \"cardCode\": \"<integer>\",\n      \"cardType\": \"AMERICAN_EXPRESS\"\n    }\n  },\n  \"shippingAddress\": {\n    \"streetName\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"landMark\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"orderId\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"paymentType\": \"NET_BANKING\",\n  \"orderStatus\": \"PAYMENT_DECLINED\",\n  \"paymentStatus\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"paymentStatus\": \"<string>\",\n    \"paymentReference\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"paymentType\": \"DEBIT_CARD\"\n  },\n  \"customerAvailable\": \"<boolean>\",\n  \"totalItems\": \"<integer>\",\n  \"shippingAddressAvailable\": \"<boolean>\",\n  \"totalValue\": \"<double>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/order/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"order",
+														""
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unable to save Order",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customer\": {\n    \"customerId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"phoneList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"orderItems\": [\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"itemName\": \"<string>\",\n      \"itemValue\": \"<integer>\",\n      \"itemCurrency\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"paymentDetails\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"orderValue\": \"<double>\",\n    \"paymentType\": \"UPI\",\n    \"cardDetails\": {\n      \"cardNumber\": \"<string>\",\n      \"holderName\": \"<string>\",\n      \"expiryMonth\": \"<integer>\",\n      \"expiryYear\": \"<integer>\",\n      \"cardCode\": \"<integer>\",\n      \"cardType\": \"AMERICAN_EXPRESS\"\n    }\n  },\n  \"shippingAddress\": {\n    \"streetName\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"landMark\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zipCode\": \"<string>\"\n  },\n  \"orderId\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"paymentType\": \"NET_BANKING\",\n  \"orderStatus\": \"PAYMENT_DECLINED\",\n  \"paymentStatus\": {\n    \"transactionId\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"paymentStatus\": \"<string>\",\n    \"paymentReference\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"paymentType\": \"DEBIT_CARD\"\n  },\n  \"customerAvailable\": \"<boolean>\",\n  \"totalItems\": \"<integer>\",\n  \"shippingAddressAvailable\": \"<boolean>\",\n  \"totalValue\": \"<double>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/order/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"order",
+														""
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:9081"
+		}
+	]
+}
