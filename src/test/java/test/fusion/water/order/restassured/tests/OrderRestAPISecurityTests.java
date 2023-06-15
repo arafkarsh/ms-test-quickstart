@@ -27,6 +27,8 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import test.fusion.water.order.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit5.annotations.tests.Functional;
+import test.fusion.water.order.junit5.annotations.tests.NonFunctional;
+import test.fusion.water.order.junit5.annotations.tests.Security;
 import test.fusion.water.order.junit5.annotations.tools.RestAssured5;
 import test.fusion.water.order.junit5.extensions.TestTimeExtension;
 import test.fusion.water.order.restassured.utils.OrderMockObjects;
@@ -70,7 +72,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestAssured5()
 @Critical()
-@Functional()
+@NonFunctional
+@Security
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
