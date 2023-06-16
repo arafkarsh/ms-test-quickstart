@@ -24,6 +24,9 @@
 ### 3. TestNG (7.4))
 
 - 3.1 TestNG 7 (7.4)
+- 3.2 Hamcrest 2 (2.2)
+- 3.3 RestAssured 5 (5.3.0)
+- 3.4 Mockito 3 (3.11.2)
 
 
 
