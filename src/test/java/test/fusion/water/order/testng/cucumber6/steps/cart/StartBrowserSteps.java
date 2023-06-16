@@ -1,5 +1,5 @@
 /**
- * (C) Copyright 2021 Araf Karsh Hamid
+ * (C) Copyright 2023 Araf Karsh Hamid
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.fusion.water.order.junit.cucumber6.steps.cart;
+package test.fusion.water.order.testng.cucumber6.steps.cart;
 
-import static org.junit.Assert.assertEquals;
-
+import io.cucumber.java8.En;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.containsString;
-
-import io.cucumber.java8.En;
 import test.fusion.water.order.junit.selenium4.driver.BrowserState;
 import test.fusion.water.order.webdriver.WebDriverChrome;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * 

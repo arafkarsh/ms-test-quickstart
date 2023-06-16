@@ -24,7 +24,10 @@
 - 3.2 RestAssured 5 (5.3.0)
 - 3.3 Mockito 3 (3.11.2)
 - 3.4 WireMock 2 ((2.29.1)
+- 3.5 Cucumber 6 (6.10.4)
 - 3.6 Selenium 4 (4.0.0)
+- 3.7 Pact (Not Support for TestNG - Use JUnit 5)
+
 
 ### Support Libraries
 - 4.1 Hamcrest 2 (2.2)

@@ -130,7 +130,7 @@ public class PaymentGateWayMockTest {
 	    		pd.getTransactionId(), pd.getTransactionDate());
 		
 	    // Given
-	    stubFor(post("/payments")
+	    stubFor(post("/payment")
 		    .withRequestBody(equalToJson(Utils.toJsonString(pd)))
 		    .willReturn(okJson(Utils.toJsonString(ps))));
 
@@ -142,7 +142,7 @@ public class PaymentGateWayMockTest {
 	    assertEquals("Accepted", payStatus.getPaymentStatus());
 
 	    // Verify
-	    verify(postRequestedFor(urlPathEqualTo("/payments"))
+	    verify(postRequestedFor(urlPathEqualTo("/payment"))
 		        .withRequestBody(equalToJson(Utils.toJsonString(pd)))
 		        .withHeader("Content-Type", equalTo("application/json")));
 
@@ -158,7 +158,7 @@ public class PaymentGateWayMockTest {
 	    		pd.getTransactionId(), pd.getTransactionDate());
 		
 	    // Given
-	    stubFor(post("/payments")
+	    stubFor(post("/payment")
 		    .withRequestBody(equalToJson(Utils.toJsonString(pd)))
 		    .willReturn(okJson(Utils.toJsonString(ps))));
 
@@ -170,7 +170,7 @@ public class PaymentGateWayMockTest {
 	    assertEquals("Declined", payStatus.getPaymentStatus());
 
 	    // Verify
-	    verify(postRequestedFor(urlPathEqualTo("/payments"))
+	    verify(postRequestedFor(urlPathEqualTo("/payment"))
 		        .withRequestBody(equalToJson(Utils.toJsonString(pd)))
 		        .withHeader("Content-Type", equalTo("application/json")));
 	}

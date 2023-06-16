@@ -41,7 +41,7 @@ public class ExternalGateWay {
 	@Autowired
 	private ServiceConfiguration serviceConfig;
 	
-	private String payments 	= "/payments";
+	private String payments 	= "/payment";
 	private String remoteEcho 	= "/remoteEcho";
 	private String order 	= "/order";
 

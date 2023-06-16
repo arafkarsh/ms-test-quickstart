@@ -167,7 +167,7 @@ public class PaymentGatewaySpringBootTest {
 	    		pd.getTransactionId(), pd.getTransactionDate());
 		
 	    // Given
-	    stubFor(post("/payments")
+	    stubFor(post("/payment")
 		    .withRequestBody(equalToJson(Utils.toJsonString(pd)))
 		    .willReturn(okJson(Utils.toJsonString(ps))));
 
@@ -179,7 +179,7 @@ public class PaymentGatewaySpringBootTest {
 	    assertEquals("Accepted", payStatus.getPaymentStatus());
 
 	    // Verify
-	    verify(postRequestedFor(urlPathEqualTo("/payments"))
+	    verify(postRequestedFor(urlPathEqualTo("/payment"))
 		        .withRequestBody(equalToJson(Utils.toJsonString(pd)))
 		        .withHeader("Content-Type", 
 		        WireMock.equalTo("application/json")));
@@ -196,7 +196,7 @@ public class PaymentGatewaySpringBootTest {
 	    		pd.getTransactionId(), pd.getTransactionDate());
 		
 	    // Given
-	    stubFor(post("/payments")
+	    stubFor(post("/payment")
 		    .withRequestBody(equalToJson(Utils.toJsonString(pd)))
 		    .willReturn(okJson(Utils.toJsonString(ps))));
 
@@ -208,7 +208,7 @@ public class PaymentGatewaySpringBootTest {
 	    assertEquals("Declined", payStatus.getPaymentStatus());
 
 	    // Verify
-	    verify(postRequestedFor(urlPathEqualTo("/payments"))
+	    verify(postRequestedFor(urlPathEqualTo("/payment"))
 		        .withRequestBody(equalToJson(Utils.toJsonString(pd)))
 		        .withHeader("Content-Type", 
 		        		WireMock.equalTo("application/json")));

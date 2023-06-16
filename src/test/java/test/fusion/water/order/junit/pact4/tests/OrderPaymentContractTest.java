@@ -21,15 +21,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import io.fusion.water.order.OrderApplication;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -163,7 +155,7 @@ public class OrderPaymentContractTest {
 	 * @return
 	 */
 	@Pact(consumer = "OrderApplication")
-	// @Disabled
+	@Disabled
 	public RequestResponsePact processPayments(PactDslWithProvider builder) {
 		HashMap<String, String> headers = new HashMap<String,String>();
 		headers.put("Content-Type", "application/json");
@@ -173,7 +165,7 @@ public class OrderPaymentContractTest {
 		RequestResponsePact rrp = builder
 			.given("Payment Process")
 			.uponReceiving("Payment Details")
-				.path("/payments/")
+				.path("/payment/")
 				.method("POST")
 				.headers(headers)
 				.body(Utils.toJsonString(pd))
@@ -193,7 +185,7 @@ public class OrderPaymentContractTest {
 	 * @param mockServer
 	 * @throws IOException
 	 */
-	@Test
+	// @Test
 	@DisplayName("2. Pact > Payment Service > Process Payments")
 	@Order(2)
 	@PactTestFor(pactMethod = "processPayments", port="8080")

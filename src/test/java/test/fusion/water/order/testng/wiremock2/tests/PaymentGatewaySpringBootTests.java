@@ -35,6 +35,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.testng.Assert.*;
 
 /**
+ *
  * @author: Araf Karsh Hamid
  * @version:
  * @date:
@@ -66,6 +67,7 @@ public class PaymentGatewaySpringBootTests extends AbstractTestNGSpringContextTe
     public void setup() {
         System.out.println("@BeforeMethod: Payment Service is autowired using SpringBoot!");
     }
+
 
     @Test(priority = 1)
     public void paymentServiceLocalEcho() {
@@ -101,7 +103,7 @@ public class PaymentGatewaySpringBootTests extends AbstractTestNGSpringContextTe
         PaymentStatus ps = SampleData.getPaymentStatusAccepted(
                 pd.getTransactionId(), pd.getTransactionDate());
 
-        stubFor(post("/payments")
+        stubFor(post("/payment")
                 .withRequestBody(equalToJson(Utils.toJsonString(pd)))
                 .willReturn(okJson(Utils.toJsonString(ps))));
 
@@ -110,7 +112,7 @@ public class PaymentGatewaySpringBootTests extends AbstractTestNGSpringContextTe
         assertNotNull(payStatus);
         assertEquals("Accepted", payStatus.getPaymentStatus());
 
-        verify(postRequestedFor(urlPathEqualTo("/payments"))
+        verify(postRequestedFor(urlPathEqualTo("/payment"))
                 .withRequestBody(equalToJson(Utils.toJsonString(pd)))
                 .withHeader("Content-Type", WireMock.equalTo("application/json")));
     }
@@ -121,7 +123,7 @@ public class PaymentGatewaySpringBootTests extends AbstractTestNGSpringContextTe
         PaymentStatus ps = SampleData.getPaymentStatusDeclined(
                 pd.getTransactionId(), pd.getTransactionDate());
 
-        stubFor(post("/payments")
+        stubFor(post("/payment")
                 .withRequestBody(equalToJson(Utils.toJsonString(pd)))
                 .willReturn(okJson(Utils.toJsonString(ps))));
 
@@ -130,7 +132,7 @@ public class PaymentGatewaySpringBootTests extends AbstractTestNGSpringContextTe
         assertNotNull(payStatus);
         assertEquals("Declined", payStatus.getPaymentStatus());
 
-        verify(postRequestedFor(urlPathEqualTo("/payments"))
+        verify(postRequestedFor(urlPathEqualTo("/payment"))
                 .withRequestBody(equalToJson(Utils.toJsonString(pd)))
                 .withHeader("Content-Type", WireMock.equalTo("application/json")));
     }
