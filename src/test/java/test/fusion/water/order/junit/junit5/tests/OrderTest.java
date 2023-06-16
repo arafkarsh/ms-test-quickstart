@@ -198,7 +198,8 @@ public class OrderTest {
     @DisplayName("7. Test Order Creation on Developer Machine")
     @Order(7)
     public void shouldTestOrderCreationOnDEV() {
-    	System.out.println("Property = "+System.getProperty("ENV"));
+        System.setProperty("ENV", "DEV");
+        System.out.println("Property = "+System.getProperty("ENV"));
         Assumptions.assumeTrue("DEV".equals(System.getProperty("ENV")));
     	order = new OrderEntity.Builder()
     			.addCustomer(
@@ -285,11 +286,8 @@ public class OrderTest {
     @ParameterizedTest
     @ArgumentsSource(CustomerArgumentProvider.class)
     @Order(13)
-    public void testWithArgumentsSource(
-    		String uuid, 
-    		String fn, String ln, String phone) {
-        log.debug(">>> Parameterized test with (String) {} and (int) {} ", 
-        		uuid, fn, ln, phone);
+    public void testWithArgumentsSource(String uuid, String fn, String ln, String phone) {
+        log.debug(">>> Parameterized test with (String) {} and (int) {} ", uuid, fn, ln, phone);
 
         assertNotNull(uuid);
         assertNotNull(fn);
