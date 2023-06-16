@@ -5,6 +5,7 @@
 - SpringBootTest 2 (2.7.2)
 
 ### 1. Junit
+
 1.1 JUnit 5 (5.7.2)
 1.2 Hamcrest 2 (2.2)
 1.3 RestAssured 5 (5.3.0)
@@ -16,10 +17,12 @@
 1.9 AssertJ 3 (3.20.2)
 
 ### 2. Spring Spock
+
 2.1 Spock 2 (2.4))
 
 ### 3. Test NG
-2.2 TestNG 7 (7.4)
+
+3.1 TestNG 7 (7.4)
 
 
 ## Other Tools 
