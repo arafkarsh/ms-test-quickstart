@@ -38,8 +38,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Staticially Import Classes from the following packages
  *
- * io.restassured.RestAssured.*
- * io.restassured.matcher.RestAssuredMatchers.*
+ * io.restassured5.RestAssured.*
+ * io.restassured5.matcher.RestAssuredMatchers.*
  * org.hamcrest.Matchers.*
  */
 
