@@ -62,7 +62,7 @@ class OrderSpec extends Specification {
 
         when: "Adding customer to the order"
         order = new OrderEntity.Builder()
-                // .addCustomer(c)
+                .addCustomer(c)
                 .build()
 
         then: "Customer should be available in order"
@@ -73,7 +73,8 @@ class OrderSpec extends Specification {
     def "shouldThrowRuntimeExceptionWhenFirstNameIsNull"() {
         when: "Adding customer with null first name"
         order = new OrderEntity.Builder()
-                .addCustomer(new Customer("UUID", null, "Doe", "0123456789"))
+                .addCustomer(
+                        new Customer("UUID", null, "Doe", "0123456789"))
                 .build()
 
         then: "An exception is thrown"
