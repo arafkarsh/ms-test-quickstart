@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.fusion.water.order.junit.restassured.tests;
+package test.fusion.water.order.junit.restassured5.tests;
 
 // JUnit 5
 
+import io.fusion.water.order.OrderApplication;
 import io.fusion.water.order.domainLayer.models.OrderEntity;
 import io.fusion.water.order.domainLayer.models.OrderStatus;
 import io.restassured.RestAssured;
@@ -25,26 +26,22 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.RestAssured5;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
-import test.fusion.water.order.junit.restassured.utils.OrderMockObjects;
+import test.fusion.water.order.junit.restassured5.utils.OrderMockObjects;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Staticially Import Classes from the following packages
- *
- * io.restassured5.RestAssured.*
- * io.restassured5.matcher.RestAssuredMatchers.*
- * org.hamcrest.Matchers.*
- */
-
-/**
  * REST Assured Examples based on BDD
+ *
+ * These tests runs against the SpringBoot App Running in an embedded mode,
  *
  * @author: Araf Karsh Hamid
  * @version:
@@ -57,7 +54,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
-public class OrderRestAPITests {
+@SpringBootTest(classes={OrderApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class EmbeddedServerTests {
+
+    @LocalServerPort
+    private int port;
 
     private Response response = null;
 
@@ -73,12 +74,7 @@ public class OrderRestAPITests {
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
 
         // Set the URL for Testing
-        RestAssured.baseURI = "http://localhost:9081/api/v1";
-
-        // RestAssured.baseURI = "http://localhost";
-        // RestAssured.port = 9081;
-        // RestAssured.rootPath = "/api/v1";
-
+        RestAssured.baseURI = "http://localhost:" + port + "/api/v1";
     }
 
     /**

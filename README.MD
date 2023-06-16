@@ -27,6 +27,9 @@
 - 3.2 Hamcrest 2 (2.2)
 - 3.3 RestAssured 5 (5.3.0)
 - 3.4 Mockito 3 (3.11.2)
+- 3.5 WireMock 2 ((2.29.1)
+- 3.7 Selenium 4 (4.0.0)
+- 3.9 AssertJ 3 (3.20.2)
 
 
 

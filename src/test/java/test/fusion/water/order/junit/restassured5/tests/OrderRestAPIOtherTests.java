@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.fusion.water.order.junit.restassured.tests;
+package test.fusion.water.order.junit.restassured5.tests;
 
 // JUnit 5
 
@@ -32,7 +32,7 @@ import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.RestAssured5;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
-import test.fusion.water.order.junit.restassured.utils.OrderMockObjects;
+import test.fusion.water.order.junit.restassured5.utils.OrderMockObjects;
 
 import static io.restassured.RestAssured.given;
 import static java.util.concurrent.TimeUnit.SECONDS;

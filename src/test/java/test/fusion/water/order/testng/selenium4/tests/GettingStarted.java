@@ -1,5 +1,5 @@
 /**
- * (C) Copyright 2021 Araf Karsh Hamid
+ * (C) Copyright 2023 Araf Karsh Hamid
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.fusion.water.order.junit.selenium4.tests;
+package test.fusion.water.order.testng.selenium4.tests;
 
 // Selenium
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
-// JUnit 5
-import org.junit.jupiter.api.Test;
+// TestNG
+import org.testng.annotations.Test;
 
 /**
  * @author: Araf Karsh Hamid
@@ -31,7 +32,7 @@ import org.junit.jupiter.api.Test;
  */
 public class GettingStarted {
 
-    @Test
+    @Test(priority = 1, description = "Getting Started with Selenium and Web Driver")
     public void testGoogleSearch() throws InterruptedException {
 
         // Optional. If not specified, WebDriver searches the PATH for chromedriver.

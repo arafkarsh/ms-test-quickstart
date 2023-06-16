@@ -1,16 +1,33 @@
-package test.fusion.water.order.junit.selenium4.tests;
+/**
+ * (C) Copyright 2023 Araf Karsh Hamid
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package test.fusion.water.order.testng.selenium4.tests;
 
-import java.util.Set;
-
+// Selenium
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
-import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
-import test.fusion.water.order.junit.junit5.annotations.tools.Selenium4;
+// TestNG
+import org.testng.annotations.Test;
+
+// Web Driver
 import test.fusion.water.order.webdriver.WebDriverChrome;
+
+import java.util.Set;
 
 /**
  * Selenium Testing
@@ -25,12 +42,11 @@ import test.fusion.water.order.webdriver.WebDriverChrome;
  * @author arafkarsh
  *
  */
-@Selenium4()
-@Critical()
-@Functional()
-public class WebBrowserTesting {
 
-	public static void main(String[] args) throws InterruptedException {
+public class WebBrowserTests {
+
+	@Test(priority = 1, description = "Search, Find and Add Product to Cart")
+	public void searchFindAddProductToCart() throws InterruptedException {
 
 		WebDriverChrome.initialize();
 		WebDriver browser = WebDriverChrome.getChromeDriver(false, 60);
