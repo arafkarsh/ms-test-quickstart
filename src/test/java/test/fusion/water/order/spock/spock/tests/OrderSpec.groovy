@@ -55,6 +55,20 @@ class OrderSpec extends Specification {
         order.isCustomerAvailable()
     }
 
+    @Unroll("Should Fail if Customer is Not in order")
+    def "shouldFailToCreateCustomer"() {
+        given: "A new customer"
+        Customer c = new Customer("UUID", "John", "Doe", "0123456789")
+
+        when: "Adding customer to the order"
+        order = new OrderEntity.Builder()
+                // .addCustomer(c)
+                .build()
+
+        then: "Customer should be available in order"
+        order.isCustomerAvailable()
+    }
+
     @Unroll("Should Not Create Customer When First Name is Null")
     def "shouldThrowRuntimeExceptionWhenFirstNameIsNull"() {
         when: "Adding customer with null first name"
