@@ -1,9 +1,10 @@
 # MS Test QuickStart - Order Microservice
 
-## Framework Versions
+## Spring Framework Versions
 
+- SpringBoot 2 (2.7.2)
 - SpringBootTest 2 (2.7.2)
-- 
+
 ### 1. Junit (5.7.2)
 
 - 1.1 JUnit 5 (5.7.2)
@@ -18,9 +19,9 @@
 
 - 2.1 Spock 2 (2.4))
 
-### 3. TestNG (7.4))
+### 3. TestNG (7.4.0)
 
-- 3.1 TestNG 7 (7.4)
+- 3.1 TestNG 7 (7.4.0)
 - 3.2 RestAssured 5 (5.3.0)
 - 3.3 Mockito 3 (3.11.2)
 - 3.4 WireMock 2 ((2.29.1)
@@ -28,12 +29,11 @@
 - 3.6 Selenium 4 (4.0.0)
 - 3.7 Pact (Not Support for TestNG - Use JUnit 5)
 
-
-### Support Libraries
+### 4. Support Libraries
 - 4.1 Hamcrest 2 (2.2)
 - 4.2 AssertJ 3 (3.20.2)
 
-## Other Tools 
+## 5. Other Tools 
 - Open API (1.5.10)
 
 Order Microservice is part of an eCommerce Application. The objective of selecting this Microservice is to demonstrate various testing frameworks. As Order is a complex service with internal (Ex. Inventory, Warhouse, Shipping etc) and external (Payment) service integration and it has all the requirements to use various testing frameworks. The objective is to demonstrate various testing frameworks. 
