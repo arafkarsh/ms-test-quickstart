@@ -16,7 +16,6 @@
 package test.fusion.water.order.spock.spock.tests
 
 import spock.lang.Specification
-import spock.lang.Unroll
 
 import io.fusion.water.order.domainLayer.models.OrderEntity
 import io.fusion.water.order.domainLayer.models.Customer
@@ -41,8 +40,7 @@ class OrderSpec extends Specification {
         order = new OrderEntity()
     }
 
-    @Unroll("Should Create Customer in order")
-    def "shouldCreateCustomer"() {
+    def "1. Should Create Customer"() {
         given: "A new customer"
         Customer c = new Customer("UUID", "John", "Doe", "0123456789")
 
@@ -55,8 +53,7 @@ class OrderSpec extends Specification {
         order.isCustomerAvailable()
     }
 
-    @Unroll("Should Fail if Customer is Not in order")
-    def "shouldFailToCreateCustomer"() {
+    def "2. Should Fail To Create Customer"() {
         given: "A new customer"
         Customer c = new Customer("UUID", "John", "Doe", "0123456789")
 
@@ -69,8 +66,7 @@ class OrderSpec extends Specification {
         order.isCustomerAvailable()
     }
 
-    @Unroll("Should Not Create Customer When First Name is Null")
-    def "shouldThrowRuntimeExceptionWhenFirstNameIsNull"() {
+    def "3. Should Not Create Customer When First Name is Null"() {
         when: "Adding customer with null first name"
         order = new OrderEntity.Builder()
                 .addCustomer(
@@ -80,8 +76,6 @@ class OrderSpec extends Specification {
         then: "An exception is thrown"
         thrown(RuntimeException)
     }
-
-    // Similarly, other test cases can be written...
 
     def cleanup() {
         println("${counter}. Should Execute After Each Test")
