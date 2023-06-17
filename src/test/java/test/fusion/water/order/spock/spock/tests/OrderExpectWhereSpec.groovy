@@ -52,7 +52,7 @@ class OrderExpectWhereSpec extends Specification {
      * you will see the test being reported as executed three times, once for each phone number. This can be beneficial
      * for isolating failures to a specific iteration of the test.
      */
-    def "1.1 Value Source : String Array - 1"() {
+    def "1. Value Source : String Array - 1"() {
         expect:
             def order = new OrderEntity.Builder()
                     .addCustomer(new Customer("UUID", "John", "Doe", phoneNumber))
@@ -71,7 +71,7 @@ class OrderExpectWhereSpec extends Specification {
      *
      * NOT RECOMMENDED
      */
-    def "1.2. Value Source - String Array - 2"() {
+    def "2. Value Source - String Array - 2"() {
         expect:
         ["0123456777", "0123456888", "0123456999"]
                 .each { phoneNumber ->
@@ -84,42 +84,42 @@ class OrderExpectWhereSpec extends Specification {
                 }
     }
 
-    def "1.3 Value Source - Number Array"() {
+    def "3. Value Source - Number Array"() {
         expect:
             Utils.Numbers.isOdd(number)
         where:
             number << [1, 3, 5, -3, 15, Integer.MAX_VALUE]
     }
 
-    def "1.4 Value Source - Null Source"() {
+    def "4. Value Source - Null Source"() {
         expect:
             Utils.Strings.isBlank(input)
         where:
             input << [null]
     }
 
-    def "1.5 Value Source - Empty Source"() {
+    def "5. Value Source - Empty Source"() {
         expect:
             Utils.Strings.isBlank(input)
         where:
             input << [""]
     }
 
-    def "1.6 Value Source - Null & Empty Source"() {
+    def "6. Value Source - Null & Empty Source"() {
         expect:
             Utils.Strings.isBlank(input)
         where:
             input << [null, ""]
     }
 
-    def "1.7 Value Source - Null & Empty Source & White spaces"() {
+    def "7. Value Source - Null & Empty Source & White spaces"() {
         expect:
             Utils.Strings.isBlank(input)
         where:
             input << [null, "", "  ", "\t", "\n"]
     }
 
-    def "2.1 Enum Source - 12 Months"() {
+    def "8. Enum Source - 12 Months"() {
         expect:
             monthNumber > 0 && monthNumber < 13
         where:
@@ -127,7 +127,7 @@ class OrderExpectWhereSpec extends Specification {
             monthNumber = month.getValue()
     }
 
-    def "2.2 Enum Source - 4 Months"() {
+    def "9. Enum Source - 4 Months"() {
         expect:
             month.length(isALeapYear) == 30
         where:
@@ -135,7 +135,7 @@ class OrderExpectWhereSpec extends Specification {
             isALeapYear = false
     }
 
-    def "2.3 Method Source - Phone No. should match the Format"() {
+    def "10. Method Source - Phone No. should match the Format"() {
         expect:
             def order = new OrderEntity.Builder()
                     .addCustomer(new Customer("UUID", "John", "Doe", phoneNumber))
@@ -146,7 +146,7 @@ class OrderExpectWhereSpec extends Specification {
             phoneNumber << phoneNumberList()
     }
 
-    def "2.4. Should Test Order Creation Repeatedly - 3 Times"() {
+    def "11. Should Test Order Creation Repeatedly - 3 Times"() {
         expect:
         3.times {
             order = new OrderEntity.Builder()

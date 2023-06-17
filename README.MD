@@ -6,8 +6,8 @@
 
 ### 1. Junit (5.7.2)
 
-- 1.1 JUnit 5 (5.7.2)
-- 1.2 SpringBootTest 2 (2.7.2)
+- 1.1 JUnit 5 (5.7.2) - Test Cases = 42
+- 1.2 SpringBootTest 2 (2.7.2) - Test Cases = 1
 - 1.3 RestAssured 5 (5.3.0)
 - 1.4 Mockito 3 (3.11.2)
 - 1.5 WireMock 2 ((2.29.1)
@@ -17,8 +17,8 @@
 
 ### 2. Spring Spock (2.4)
 
-- 2.1 Spock 2 (2.4))
-- 2.2 SpringBootTest 2 (2.7.2)
+- 2.1 Spock 2 (2.4)) - Test Cases = 17
+- 2.2 SpringBootTest 2 (2.7.2) - 2 Test Cases
 
 ### 3. TestNG (7.4.0)
 
