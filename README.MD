@@ -7,7 +7,7 @@
 ### 1. Junit (5.7.2)
 
 ----+-------------------+---------+-----------------
-#   | Testing Framework | Version | # Test Cases
+    | Testing Framework | Version | # Test Cases
 ----+-------------------+---------+-----------------
 1.1 | JUnit 5           | 5.7.2   | 42
 1.2 | SpringBootTest 2  | 2.7.2   | 01
