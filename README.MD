@@ -6,26 +6,16 @@
 
 ### 1. Junit (5.7.2)
 
-----+-------------------+---------+-----------------
-    | Testing Framework | Version | # Test Cases
-----+-------------------+---------+-----------------
-1.1 | JUnit 5           | 5.7.2   | 42
-1.2 | SpringBootTest 2  | 2.7.2   | 01
-1.3 | RestAssured 5     | 5.3.0   |
-1.4 | Mockito 3         | 3.11.2  |
-1.5 | WireMock 2        | 2.29.1  |
-1.6 | Cucumber 6        | 6.10.4  |
-1.7 | Selenium 4        | 4.0.0   |
-1.8 | Pact 4            | 4.0.10  |
-
-- 1.1 JUnit 5 (5.7.2) - Test Cases = 42
-- 1.2 SpringBootTest 2 (2.7.2) - Test Cases = 1
-- 1.3 RestAssured 5 (5.3.0)
-- 1.4 Mockito 3 (3.11.2)
-- 1.5 WireMock 2 ((2.29.1)
-- 1.6 Cucumber 6 (6.10.4)
-- 1.7 Selenium 4 (4.0.0)
-- 1.8 Pact 4 (4.0.10)
+|     | Testing Framework | Version | # Test Cases |
+|-----|-------------------|---------|--------------|
+| 1.1 | JUnit 5           | 5.7.2   | 42           |
+| 1.2 | SpringBootTest 2  | 2.7.2   | 01           |
+| 1.3 | RestAssured 5     | 5.3.0   |              |
+| 1.4 | Mockito 3         | 3.11.2  |              |
+| 1.5 | WireMock 2        | 2.29.1  |              |
+| 1.6 | Cucumber 6        | 6.10.4  |              |
+| 1.7 | Selenium 4        | 4.0.0   |              |
+| 1.8 | Pact 4            | 4.0.10  |              |
 
 ### 2. Spring Spock (2.4)
 
