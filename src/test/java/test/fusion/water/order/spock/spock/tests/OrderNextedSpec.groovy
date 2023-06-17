@@ -46,42 +46,45 @@ class OrderNextedSpec extends Specification {
 
     def "shouldThrowRuntimeExceptionWhenLastNameIsNull"() {
         when:
-        order = new OrderEntity.Builder()
+            order = new OrderEntity.Builder()
                 .addCustomer(new Customer("UUID", "John", null, "0123456789"))
                 .build()
 
         then:
-        thrown RuntimeException
+            thrown RuntimeException
     }
 
     def "shouldThrowRuntimeExceptionWhenPhoneNumberIsNull"() {
         when:
-        order = new OrderEntity.Builder()
+            order = new OrderEntity.Builder()
                 .addCustomer(new Customer("UUID", "John", "Doe", null))
                 .build()
 
         then:
-        thrown RuntimeException
+            thrown RuntimeException
     }
 
     def "shouldTestOrderCreationRepeatedly"() {
         expect:
-        3.times {
-            order = new OrderEntity.Builder()
-                    .addCustomer(new Customer("UUID", "John", "Doe", "0123456789"))
+            3.times {
+                order = new OrderEntity.Builder()
+                    .addCustomer(
+                            new Customer("UUID", "John", "Doe", "0123456789"))
                     .build()
-            order.isCustomerAvailable() == true
-        }
+                order.isCustomerAvailable() == true
+            }
     }
 
     def "shouldTestPhoneNumberFormatUsingValueSource"() {
         expect:
-        ["0123456777", "0123456888", "0123456999"].each { phoneNumber ->
-            order = new OrderEntity.Builder()
-                    .addCustomer(new Customer("UUID", "John", "Doe", phoneNumber))
-                    .build()
-            order.isCustomerAvailable() == true
-            order.getCustomer().getPhoneList().size() == 1
+            ["0123456777", "0123456888", "0123456999"]
+                .each { phoneNumber ->
+                    order = new OrderEntity.Builder()
+                        .addCustomer(
+                                new Customer("UUID", "John", "Doe", phoneNumber))
+                        .build()
+                    order.isCustomerAvailable() == true
+                    order.getCustomer().getPhoneList().size() == 1
         }
     }
 
