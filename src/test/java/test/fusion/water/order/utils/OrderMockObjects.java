@@ -1,4 +1,4 @@
-package test.fusion.water.order.junit.restassured5.utils;
+package test.fusion.water.order.utils;
 
 import io.fusion.water.order.domainLayer.models.*;
 

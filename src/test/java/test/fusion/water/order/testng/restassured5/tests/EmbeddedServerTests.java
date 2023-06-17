@@ -38,7 +38,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static org.testng.Assert.assertEquals;
 
-import test.fusion.water.order.junit.restassured5.utils.OrderMockObjects;
+import test.fusion.water.order.utils.OrderMockObjects;
 
 @SpringBootTest(classes={OrderApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EmbeddedServerTests extends AbstractTestNGSpringContextTests {

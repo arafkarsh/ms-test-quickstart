@@ -36,7 +36,7 @@ import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.Pact4;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
-import test.fusion.water.order.junit.restassured5.utils.OrderMockObjects;
+import test.fusion.water.order.utils.OrderMockObjects;
 
 import java.io.IOException;
 
