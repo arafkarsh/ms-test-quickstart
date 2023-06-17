@@ -39,8 +39,12 @@
 
 
 ### 4. Support Libraries
-- 4.1 Hamcrest 2 (2.2)
-- 4.2 AssertJ 3 (3.20.2)
+
+| 4   | Testing Framework | Version | Test Cases |
+|-----|-------------------|---------|------------|
+| 4.1 | Hamcrest 2        | 2.2.0   | -          |
+| 4.2 | AssertJ 3         | 3.20.2  | -          |
+
 
 ## 5. Other Tools 
 - Open API (1.5.10)
