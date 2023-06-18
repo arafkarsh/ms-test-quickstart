@@ -15,8 +15,13 @@
  */
 package test.fusion.water.order.spock.spock.tests
 
+import spock.lang.Ignore
+import spock.lang.IgnoreIf
+import spock.lang.Requires
 import spock.lang.Specification
 import spock.lang.Stepwise
+import spock.lang.Unroll
+
 import java.time.Month
 
 import io.fusion.water.order.domainLayer.models.OrderEntity
@@ -155,6 +160,36 @@ class OrderExpectWhereSpec extends Specification {
                     .build()
             order.isCustomerAvailable() == true
         }
+    }
+
+    @Requires({ System.getProperty('os.name').contains('Mac') })
+    def "12. Runs only on Mac"() {
+        expect:
+        2 + 2 == 4
+    }
+
+    @IgnoreIf({ System.getProperty('os.name').contains('Windows') })
+    def "13. Ignored on Windows"() {
+        expect:
+        2 + 2 == 4
+    }
+
+    @Ignore
+    def "14. Ignored test method"() {
+        expect:
+        2 + 2 == 4
+    }
+
+    @Unroll
+    def "15. Check #x + #y == #expectedSum"() {
+        expect:
+        x + y == expectedSum
+
+        where:
+        x | y || expectedSum
+        1 | 2 || 3
+        3 | 4 || 7
+        5 | 5 || 10
     }
 
     private static List<String> phoneNumberList() {
