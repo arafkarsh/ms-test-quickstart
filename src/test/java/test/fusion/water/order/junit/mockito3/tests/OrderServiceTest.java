@@ -100,7 +100,7 @@ public class OrderServiceTest {
     }
     
 	@Test
-	@DisplayName("Test for Payment Accepted")
+	@DisplayName("1. Test for Payment Accepted")
 	public void testValidatePaymentAccepted() {
 		// Given Order is Ready
 		when(orderRepo.saveOrder(order))
@@ -121,7 +121,7 @@ public class OrderServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Test for Payment Declined")
+	@DisplayName("2. Test for Payment Declined")
 	public void testValidatePaymentDeclined() {
 		// Given Order is Ready
 		when(orderRepo.saveOrder(order))
