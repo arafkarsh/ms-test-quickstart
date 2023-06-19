@@ -16,9 +16,6 @@
 package test.fusion.water.order.spock.springboot2.tests
 
 import io.fusion.water.order.OrderApplication
-import io.fusion.water.order.domainLayer.models.Customer
-import io.fusion.water.order.domainLayer.models.EchoData
-import io.fusion.water.order.domainLayer.models.EchoResponseData
 import io.fusion.water.order.domainLayer.models.OrderEntity
 import io.fusion.water.order.domainLayer.models.PaymentStatus
 
@@ -29,7 +26,6 @@ import io.fusion.water.order.domainLayer.services.PaymentService
 // SpringBoot
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 
 // Spock
 import spock.lang.Specification
@@ -44,7 +40,7 @@ import test.fusion.water.order.utils.OrderMockObjects
  */
 @Stepwise
 @SpringBootTest(classes = OrderApplication.class)
-class SpocSpringBootSpecification extends Specification {
+class SpockSpringBootSpec extends Specification {
 
     @Autowired
     PaymentService paymentService;
