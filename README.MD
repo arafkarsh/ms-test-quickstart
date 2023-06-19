@@ -24,6 +24,7 @@
 | 2.1 | Spock 2           | 2.4.0   | 21         |
 | 2.2 | SpringBootTest 2  | 2.7.2   | 02         |
 | 2.3 | RestAssured 5     | 5.3.0   | 08         |
+| 2.4 | Mockito 3         | 3.11.2  | 02         |
 
 
 ### 3. TestNG (7.4.0)
