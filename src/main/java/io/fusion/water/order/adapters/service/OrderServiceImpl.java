@@ -40,6 +40,16 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private PaymentService paymentService;
 
+	/**
+	 * For Auto wiring the service with Order Repo and Payment Service
+	 * @param _orderRepo
+	 * @param _paymentService
+	 */
+	public OrderServiceImpl(OrderRepository _orderRepo, PaymentService _paymentService) {
+		orderRepo = _orderRepo;
+		paymentService = _paymentService;
+	}
+
 	// THIS IS ONLY TO DO THE DEMO OF PACT
 	@Autowired
 	private ExternalGateWay externalGateWay;
