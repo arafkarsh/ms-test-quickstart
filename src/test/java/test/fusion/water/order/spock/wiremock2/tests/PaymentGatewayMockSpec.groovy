@@ -23,7 +23,7 @@ import io.fusion.water.order.adapters.external.ExternalGateWay;
  * @author arafkarsh
  *
  */
-class PaymentGateWayMockSpec extends Specification {
+class PaymentGatewayMockSpec extends Specification {
 
     @Shared
     WireMockServer wireMockServer
