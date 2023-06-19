@@ -63,36 +63,36 @@ class OrderServiceSpec extends Specification {
         paymentDeclined = createPaymentStatusDeclined(order.paymentDetails)
     }
 
+    /**
+     * Process Order and Check the Payment Status PAID
+     * @return
+     */
     def "1. Test for Payment Accepted"() {
         given: "Order is Ready"
-        orderRepo.saveOrder(order) >> order
-        paymentService.processPayments(order.paymentDetails) >> paymentAccepted
+            orderRepo.saveOrder(order) >> order
+            paymentService.processPayments(order.paymentDetails) >> paymentAccepted
 
         when: "Order is Processed for Payment"
-        def processedOrder = orderService.processOrder(order)
+            def processedOrder = orderService.processOrder(order)
 
         then: "Check the Payment Status as Accepted"
-        processedOrder.orderStatus == OrderStatus.PAID
-
-        cleanup:
-        println("${counter}. Should Execute After Each Test")
-        counter++
+            processedOrder.orderStatus == OrderStatus.PAID
     }
 
+    /**
+     * Process the Order and Check the Payment Status DECLINED
+     * @return
+     */
     def "2. Test for Payment Declined"() {
         given: "Order is Ready"
-        orderRepo.saveOrder(order) >> order
-        paymentService.processPayments(order.paymentDetails) >> paymentDeclined
+            orderRepo.saveOrder(order) >> order
+            paymentService.processPayments(order.paymentDetails) >> paymentDeclined
 
         when: "Order is Processed for Payment"
-        def processedOrder = orderService.processOrder(order)
+            def processedOrder = orderService.processOrder(order)
 
         then: "Check the Payment Status as Declined"
-        processedOrder.orderStatus == OrderStatus.PAYMENT_DECLINED
-
-        cleanup:
-        println("${counter}. Should Execute After Each Test")
-        counter++
+            processedOrder.orderStatus == OrderStatus.PAYMENT_DECLINED
     }
 
     /**

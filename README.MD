@@ -4,7 +4,7 @@
 
 - SpringBoot 2 (2.7.2)
 
-### 1. Junit (5.7.2)
+### 1. Junit (5.7.2) - 105 Test Cases
 
 | 1   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
@@ -17,7 +17,7 @@
 | 1.7 | Selenium 4        | 4.0.0   | 02         |
 | 1.8 | Pact 4            | 4.0.10  | 03         |
 
-### 2. Spring Spock (2.4)
+### 2. Spring Spock (2.4.0) - 45 Test Cases
 
 | 2   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
@@ -30,7 +30,7 @@
 | 2.7 | Selenium 4        | 4.0.0   | 02         |
 
 
-### 3. TestNG (7.4.0)
+### 3. TestNG (7.4.0) - 35 Test Cases
 
 | 3   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
