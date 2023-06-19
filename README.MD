@@ -2,16 +2,16 @@
 
 ## Testing Categories for Microservices
 
-|     | Testing Category             | Tools                          |
-|-----|------------------------------|--------------------------------|
-| 1   | Unit Testing                 | Junit, Spock, TestNG           |
-| 2   | Component Testing            | Cucumber, RestAssured, Mockito |
-| 3   | Contract Testing             | Cucumber, RestAssured, Mockito |
-| 4   | Integration Testing          | WireMock                       |
-| 5   | Integration Contract Testing | Mockito, WireMock, Pact        |
-| 6   | UI Testing / E2E Testing     | Selenium + Cucumber            |
-
 ![Microservices Testing Categories](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Strategies-2.jpg)
+
+|     | Testing Category             | Tools                                      |
+|-----|------------------------------|--------------------------------------------|
+| 0   | Testing Platforms            | Junit, Spock, TestNG                       |
+| 1   | Unit Testing                 | Junit, Spock, TestNG                       |
+| 2   | Component Testing            | SpringBoot, Cucumber, RestAssured, Mockito |
+| 3   | Integration Contract Testing | SpringBoot, Mockito, WireMock, Pact        |
+| 4   | Integration Testing          | SpringBoot, WireMock                       |
+| 5   | UI Testing / E2E Testing     | Selenium + Cucumber                        |
 
 ## Spring Framework Versions
 
