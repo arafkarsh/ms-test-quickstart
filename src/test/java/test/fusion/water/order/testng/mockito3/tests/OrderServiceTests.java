@@ -53,7 +53,7 @@ public class OrderServiceTests {
 
     }
 
-    @Test(description = "Test for Payment Accepted")
+    @Test(description = "1. Test for Payment Accepted")
     public void testValidatePaymentAccepted() {
         // Given Order is Ready
         when(orderRepo.saveOrder(order))
@@ -68,7 +68,7 @@ public class OrderServiceTests {
         assertEquals(OrderStatus.PAID, processedOrder.getOrderStatus());
     }
 
-    @Test(description = "Test for Payment Declined")
+    @Test(description = "2. Test for Payment Declined")
     public void testValidatePaymentDeclined() {
         // Given Order is Ready
         when(orderRepo.saveOrder(order))

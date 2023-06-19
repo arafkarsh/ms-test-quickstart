@@ -28,13 +28,13 @@
 
 | 3   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
-| 3.1 | TestNG 7          | 7.4.0   |            |
-| 3.2 | SpringBootTest 2  | 2.7.2   |            |
-| 3.3 | RestAssured 5     | 5.3.0   |            |
-| 3.4 | Mockito 3         | 3.11.2  |            |
-| 3.5 | WireMock 2        | 2.29.1  |            |
-| 3.6 | Cucumber 6        | 6.10.4  |            |
-| 3.7 | Selenium 4        | 4.0.0   |            |
+| 3.1 | TestNG 7          | 7.4.0   | 18         |
+| 3.2 | SpringBootTest 2  | 2.7.2   | 02         |
+| 3.3 | RestAssured 5     | 5.3.0   | 05         |
+| 3.4 | Mockito 3         | 3.11.2  | 02         |
+| 3.5 | WireMock 2        | 2.29.1  | 03         |
+| 3.6 | Cucumber 6        | 6.10.4  | 03         |
+| 3.7 | Selenium 4        | 4.0.0   | 02         |
 | 3.8 | Pact              | NA      | No Support |
 
 
