@@ -182,4 +182,22 @@ public class OrderRestAPIOtherTests {
                     .body("orderStatus", equalTo(statusId));
         }
     }
+
+    /**
+     * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+     * is available then the method need not be static
+     */
+    @AfterEach
+    public void tearDown() {
+        System.out.println("== Should Execute After Each Test");
+    }
+
+    /**
+     * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+     * is available then the method need not be static
+     */
+    @AfterAll
+    public void tearDownAll() {
+        System.out.println("== Order tests Suite Execution Completed...");
+    }
 }
