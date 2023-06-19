@@ -380,6 +380,10 @@ public class OrderTest {
         throw new RuntimeException("Test Should Not be executed");
     }
 
+    /**
+     * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+     * is available then the method need not be static
+     */
     @AfterEach
     public void tearDown() {
         System.out.println(counter+". Should Execute After Each Test");

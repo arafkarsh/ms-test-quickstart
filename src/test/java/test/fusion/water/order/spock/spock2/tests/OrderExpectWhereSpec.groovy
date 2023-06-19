@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.fusion.water.order.spock.spock.tests
+package test.fusion.water.order.spock.spock2.tests
 
 import spock.lang.Ignore
 import spock.lang.IgnoreIf

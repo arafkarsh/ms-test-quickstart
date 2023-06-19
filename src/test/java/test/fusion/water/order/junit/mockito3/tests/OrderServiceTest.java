@@ -26,12 +26,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import io.fusion.water.order.domainLayer.models.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -192,6 +187,25 @@ public class OrderServiceTest {
 				UUID.randomUUID().toString(), 
 				LocalDateTime.now(), 
 				PaymentType.CREDIT_CARD);
+	}
+
+	/**
+	 * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+	 * is available then the method need not be static
+	 */
+	@AfterEach
+	public void tearDown() {
+		System.out.println(counter+". Should Execute After Each Test");
+		counter++;
+	}
+
+	/**
+	 * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+	 * is available then the method need not be static
+	 */
+	@AfterAll
+	public void tearDownAll() {
+		System.out.println("== Order tests Suite Execution Completed...");
 	}
 	
 }
