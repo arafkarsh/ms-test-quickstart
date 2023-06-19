@@ -62,7 +62,7 @@ import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 import test.fusion.water.order.utils.SampleData;
 
 /**
- * Spring Boot 2.5.2 / JUnit 5 WireMock 2 Integration
+ * Spring Boot 2.7.2 / JUnit 5 / WireMock 2 Integration
  * 
  * The following Application Class is defined as the package structure
  * for the Application and package structure for test packages are 

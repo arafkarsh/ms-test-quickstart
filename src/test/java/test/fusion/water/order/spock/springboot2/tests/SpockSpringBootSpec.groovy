@@ -15,13 +15,13 @@
  */
 package test.fusion.water.order.spock.springboot2.tests
 
+// Custom
 import io.fusion.water.order.OrderApplication
 import io.fusion.water.order.domainLayer.models.OrderEntity
 import io.fusion.water.order.domainLayer.models.PaymentStatus
-
-// Custom
 import io.fusion.water.order.domainLayer.services.OrderService
 import io.fusion.water.order.domainLayer.services.PaymentService
+import test.fusion.water.order.utils.OrderMockObjects
 
 // SpringBoot
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,7 +30,7 @@ import org.springframework.boot.test.context.SpringBootTest
 // Spock
 import spock.lang.Specification
 import spock.lang.Stepwise
-import test.fusion.water.order.utils.OrderMockObjects
+
 
 /**
  * Spock - SpringBoot Auto wiring example
@@ -72,7 +72,7 @@ class SpockSpringBootSpec extends Specification {
         when: "The Order is processed for payment"
             OrderEntity result = orderService.prepareOrder(order)
             order = result;
-            System.out.print(result.getOrderStatus())
+            System.out.println("Result = "+result.getOrderStatus())
 
         then:
             result.getOrderStatus().toString() == "INITIATED"
