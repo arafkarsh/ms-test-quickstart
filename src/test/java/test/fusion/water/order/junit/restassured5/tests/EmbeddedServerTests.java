@@ -20,14 +20,18 @@ package test.fusion.water.order.junit.restassured5.tests;
 import io.fusion.water.order.OrderApplication;
 import io.fusion.water.order.domainLayer.models.OrderEntity;
 import io.fusion.water.order.domainLayer.models.OrderStatus;
+
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.Response;
+
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.RestAssured5;
