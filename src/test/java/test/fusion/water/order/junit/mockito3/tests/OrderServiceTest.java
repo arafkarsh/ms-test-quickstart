@@ -75,7 +75,10 @@ public class OrderServiceTest {
 	
 	@Mock
 	PaymentService paymentService;
-	
+
+	// Order Service needs OrderRepository and PaymentService
+	// 1. Mocks are created for these two (OrderRepository, PaymentService) services
+	// 2. Inject these mocks into OrderServiceImpl
 	@InjectMocks
 	OrderServiceImpl orderService;
 	

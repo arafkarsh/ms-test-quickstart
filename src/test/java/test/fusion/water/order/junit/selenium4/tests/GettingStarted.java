@@ -36,6 +36,7 @@ public class GettingStarted {
 
         // Optional. If not specified, WebDriver searches the PATH for chromedriver.
         // System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+        // System.setProperty("webdriver.chrome.driver", "/Users/arafkarsh/ChromeDriver/mac-m1/chromedriver");
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");

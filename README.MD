@@ -18,7 +18,7 @@
 - SpringBoot 2 (2.7.2)
 - Java 17+
 
-### 1. Junit (5.7.2) - 105 Test Cases
+### 1. Junit (5.10.2) - 105 Test Cases
 
 | 1   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
@@ -45,7 +45,7 @@
 | 2.8 | Pact 4            | 4.0.10  | 00         |
 
 
-### 3. TestNG (7.4.0) - 35 Test Cases
+### 3. TestNG (7.10.2) - 35 Test Cases
 
 | 3   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
