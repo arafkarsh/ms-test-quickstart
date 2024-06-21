@@ -17,7 +17,6 @@ package io.fusion.water.order.server;
 
 import javax.servlet.http.HttpServletRequest;
 
-import io.cucumber.messages.internal.com.google.protobuf.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -79,7 +78,6 @@ public class ServiceHealthController {
 	 * Get Method Call to Check the Health of the App
 	 * 
 	 * @return
-	 * @throws ServiceException
 	 */
     @Operation(summary = "Health Check of Order Service")
     @ApiResponses(value = {

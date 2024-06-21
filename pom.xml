@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.fusion.water.order</groupId>
 	<artifactId>ms-order-service</artifactId>
-	<version>0.9.5</version>
+	<version>0.9.6</version>
 	<packaging>jar</packaging>
 	<name>msOrderService</name>
 	<description>Order Microservice With Test Case Automation</description>
@@ -12,7 +12,7 @@
 	<!-- ================================================================= -->
 	<properties>
 		<!-- Java Version ================================================== -->
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 
 		<!-- Maven ========================================================= -->
 		<maven.compiler.target>${java.version}</maven.compiler.target>
@@ -38,15 +38,19 @@
 		<apache.commons.version>3.12.0</apache.commons.version>
 		<fasterxml.version>2.13.3</fasterxml.version>
 
+		<!-- Testing Platforms ============================================= -->
+		<junit.jupiter.version>5.10.2</junit.jupiter.version>
+		<testng.version>7.10.2</testng.version>
+		<spock.version>2.4-M1-groovy-4.0</spock.version>
+
 		<!-- Testing Frameworks =========================================== -->
-		<junit.jupiter.version>5.7.2</junit.jupiter.version>
 		<hamcrest.version>2.2</hamcrest.version>
 		<truth.version>1.0.1</truth.version>
-		<mockito.version>3.11.2</mockito.version>
-		<wiremock.version>2.29.1</wiremock.version>
-		<cucumber.version>6.10.4</cucumber.version>		
-		<selenium.version>4.0.0-beta-4</selenium.version>
-		<restassured.version>5.3.0</restassured.version>
+		<mockito.version>5.12.0</mockito.version>
+		<wiremock.version>3.6.0</wiremock.version>
+		<cucumber.version>7.18.0</cucumber.version>
+		<selenium.version>4.12.0</selenium.version>
+		<restassured.version>5.4.0</restassured.version>
 		<pact.version>4.0.10</pact.version>
 		<assertj.version>3.20.2</assertj.version>
 
@@ -70,6 +74,13 @@
 	<!-- ================================================================= -->
 	<repositories>
 		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
+	</repositories>
+	<!--
+	<repositories>
+		<repository>
 			<id>spring-snapshots</id>
 			<name>Spring Snapshots</name>
 			<url>https://repo.spring.io/snapshot</url>
@@ -87,7 +98,7 @@
 			<url>http://maven.nuxeo.org/nexus/content/repositories/public/</url>
 		</repository>
 	</repositories>
-	
+	-->
 	<dependencies>
 		<!-- ================================================================= -->
 		<!-- Log Framework -->
@@ -314,6 +325,7 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java8 -->
+
 		<dependency>
 		    <groupId>io.cucumber</groupId>
 		    <artifactId>cucumber-java8</artifactId>
@@ -420,12 +432,22 @@
 		<!-- ================================================================= -->
 		
 		<!-- https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock-jre8 -->
+		<!--
 		<dependency>
 		    <groupId>com.github.tomakehurst</groupId>
-		    <artifactId>wiremock-jre8</artifactId>
-		    <version>${wiremock.version}</version>
+		   <artifactId>wiremock-jre8</artifactId>
+			<version>${wiremock.version}</version>
 		    <scope>test</scope>
 		</dependency>
+		-->
+		<!-- https://mvnrepository.com/artifact/org.wiremock/wiremock -->
+		<dependency>
+			<groupId>org.wiremock</groupId>
+			<artifactId>wiremock</artifactId>
+			<version>${wiremock.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 
 		<!-- ================================================================= -->
 		<!-- Pact Framework -->
@@ -549,20 +571,18 @@
 		<dependency>
 			<groupId>org.spockframework</groupId>
 			<artifactId>spock-core</artifactId>
-			<version>2.4-M1-groovy-4.0</version>
+			<version>${spock.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 
 		<!-- Spock Spring Integration -->
 		<!-- https://mvnrepository.com/artifact/org.spockframework/spock-spring -->
 		<dependency>
 			<groupId>org.spockframework</groupId>
 			<artifactId>spock-spring</artifactId>
-			<version>2.4-M1-groovy-4.0</version>
+			<version>${spock.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 
 		<!-- Groovy language -->
 		<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy -->
@@ -570,10 +590,10 @@
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
 			<version>3.0.17</version>
+			<!-- <version>3.0.21</version> -->
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.groovy/groovy-all -->
-		<!--
 		<dependency>
 			<groupId>org.apache.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
@@ -581,7 +601,6 @@
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
-		-->
 
 		<!-- ================================================================= -->
 		<!-- TestNG Framework -->
@@ -589,7 +608,7 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>7.4.0</version>
+			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -604,23 +623,7 @@
 		    <version>1.4.200</version>
 		    <scope>test</scope>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-mongodb</artifactId>
-		    <version>${spring.boot.version}</version>
-		</dependency>
-     
-		<dependency>
-            <groupId>com.github.cloudyrock.mongock</groupId>
-            <artifactId>mongock-spring-v5</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.cloudyrock.mongock</groupId>
-            <artifactId>mongodb-springdata-v3-driver</artifactId>
-        </dependency>
-        
+
         <!-- ================================================================= -->
 		<!-- Security - Spring Security / JWT -->
 		<!-- ================================================================= -->

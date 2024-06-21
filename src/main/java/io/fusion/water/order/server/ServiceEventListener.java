@@ -52,7 +52,7 @@ public class ServiceEventListener {
 		log.info("Order Service is getting ready...... ");
 	    log.info(CPU.printCpuStats());
 	    System.out.println(LocalDateTime.now()+"|Order Service is getting ready...... ");
-	    System.out.println(LocalDateTime.now()+"|"+CPU.printCpuStats());
+	    // System.out.println(LocalDateTime.now()+"|"+CPU.printCpuStats());
 		showLogo();
 	}
 	

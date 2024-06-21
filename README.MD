@@ -16,18 +16,19 @@
 ## Spring Framework Versions
 
 - SpringBoot 2 (2.7.2)
+- Java 17+
 
 ### 1. Junit (5.7.2) - 105 Test Cases
 
 | 1   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
-| 1.1 | JUnit 5           | 5.7.2   | 42         |
+| 1.1 | JUnit 5           | 5.10.2  | 42         |
 | 1.2 | SpringBootTest 2  | 2.7.2   | 01         |
-| 1.3 | RestAssured 5     | 5.3.0   | 29         |
-| 1.4 | Mockito 3         | 3.11.2  | 18         |
-| 1.5 | WireMock 2        | 2.29.1  | 07         |
-| 1.6 | Cucumber 6        | 6.10.4  | 03         |
-| 1.7 | Selenium 4        | 4.0.0   | 02         |
+| 1.3 | RestAssured 5     | 5.4.0   | 29         |
+| 1.4 | Mockito 5         | 5.12.0  | 18         |
+| 1.5 | WireMock 3        | 3.6.0   | 07         |
+| 1.6 | Cucumber 7        | 7.18.0  | 03         |
+| 1.7 | Selenium 4        | 4.12.0  | 02         |
 | 1.8 | Pact 4            | 4.0.10  | 03         |
 
 ### 2. Spring Spock (2.4.0) - 45 Test Cases
@@ -36,11 +37,11 @@
 |-----|-------------------|---------|------------|
 | 2.1 | Spock 2           | 2.4.0   | 21         |
 | 2.2 | SpringBootTest 2  | 2.7.2   | 02         |
-| 2.3 | RestAssured 5     | 5.3.0   | 08         |
-| 2.4 | Mockito 3         | 3.11.2  | 02         |
-| 2.5 | WireMock 2        | 2.29.1  | 07         |
-| 2.6 | Cucumber 6        | 6.10.4  | 03         |
-| 2.7 | Selenium 4        | 4.0.0   | 02         |
+| 2.3 | RestAssured 5     | 5.4.0   | 08         |
+| 2.4 | Mockito 5         | 5.12.0  | 02         |
+| 2.5 | WireMock 3        | 3.6.0   | 07         |
+| 2.6 | Cucumber 7        | 7.18.0  | 03         |
+| 2.7 | Selenium 4        | 4.12.0  | 02         |
 | 2.8 | Pact 4            | 4.0.10  | 00         |
 
 
@@ -48,13 +49,13 @@
 
 | 3   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
-| 3.1 | TestNG 7          | 7.4.0   | 18         |
+| 3.1 | TestNG 7          | 7.10.2  | 18         |
 | 3.2 | SpringBootTest 2  | 2.7.2   | 02         |
-| 3.3 | RestAssured 5     | 5.3.0   | 05         |
-| 3.4 | Mockito 3         | 3.11.2  | 02         |
-| 3.5 | WireMock 2        | 2.29.1  | 03         |
-| 3.6 | Cucumber 6        | 6.10.4  | 03         |
-| 3.7 | Selenium 4        | 4.0.0   | 02         |
+| 3.3 | RestAssured 5     | 5.4.0   | 05         |
+| 3.4 | Mockito 5         | 5.12.0  | 02         |
+| 3.5 | WireMock 3        | 3.6.0   | 03         |
+| 3.6 | Cucumber 7        | 7.18.0  | 03         |
+| 3.7 | Selenium 4        | 4.12.0  | 02         |
 | 3.8 | Pact              | NA      | No Support |
 
 
@@ -113,5 +114,5 @@ All the tests will be fully automated as part of your CI/CD pipeline.
 ![Microservices Testing Frameworks](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Tools.jpg)
 
 
-Copyright (c) 2021-23, Apache 2.0 License, Author: Araf Karsh Hamid
+Copyright (c) 2021-24, Apache 2.0 License, Author: Araf Karsh Hamid
 

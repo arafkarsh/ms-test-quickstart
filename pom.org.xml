@@ -17,11 +17,15 @@
 		<!-- Maven ========================================================= -->
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
-		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+
+		<maven-compiler-plugin>3.8.1</maven-compiler-plugin>
+		<maven-dependency-plugin>3.3.0</maven-dependency-plugin>
+		<maven-jar-plugin>3.2.2</maven-jar-plugin>
+		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
 		<!--
+		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 		<maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 		 -->
-
 		<!-- Encoding ====================================================== -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -35,7 +39,7 @@
 		<fasterxml.version>2.13.3</fasterxml.version>
 
 		<!-- Testing Frameworks =========================================== -->
-		<junit.jupiter.version>5.7.2</junit.jupiter.version>
+		<junit.jupiter.version>5.10.2</junit.jupiter.version>
 		<hamcrest.version>2.2</hamcrest.version>
 		<truth.version>1.0.1</truth.version>
 		<mockito.version>3.11.2</mockito.version>
@@ -48,7 +52,9 @@
 
 		<!-- Spring Boot ================================================= -->
 		<spring.boot.version>2.7.2</spring.boot.version>
-		
+		<spring.cloud.sleuth.version>3.1.3</spring.cloud.sleuth.version>
+		<spring.cloud.version>2021.0.3</spring.cloud.version>
+
 		<!-- Spring Security / JWT / Bean Validation ====================== -->
 		<javax.bean.validation.version>2.0.1.Final</javax.bean.validation.version>
 		<jwt.api.version>0.11.5</jwt.api.version>
@@ -56,12 +62,19 @@
 		<spring.security.version>5.7.2</spring.security.version>
 
 		<!-- Open API v3 - Swagger UI ==================================== -->
-		<openapi.version>1.6.9</openapi.version>
+		<openapi.version>1.5.10</openapi.version>
 	</properties>
 	
 	<!-- ================================================================= -->
 	<!-- Repositories -->
 	<!-- ================================================================= -->
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
+	</repositories>
+	<!--
 	<repositories>
 		<repository>
 			<id>spring-snapshots</id>
@@ -81,7 +94,7 @@
 			<url>http://maven.nuxeo.org/nexus/content/repositories/public/</url>
 		</repository>
 	</repositories>
-	
+	-->
 	<dependencies>
 		<!-- ================================================================= -->
 		<!-- Log Framework -->
@@ -112,6 +125,13 @@
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava</artifactId>
 		    <version>${google.guava.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents.client5</groupId>
+			<artifactId>httpclient5</artifactId>
+			<version>5.2-beta1</version>
 		</dependency>
 		
         <!-- Used for StringUtils helper -->
@@ -155,6 +175,13 @@
 		    <version>${fasterxml.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${javax.bean.validation.version}</version>
+		</dependency>
+
 		<!-- ================================================================= -->
 		<!--
 		    1. You should place rest-assured before the JUnit dependency declaration in your pom.xml / build.gradle
@@ -170,6 +197,12 @@
 			<artifactId>rest-assured</artifactId>
 			<version>${restassured.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-apis</artifactId>
+			<version>8.3.3</version> <!-- Replace with the latest version -->
 		</dependency>
 
 		<!--
@@ -308,6 +341,13 @@
             <version>${cucumber.version}</version>
 		    <scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
         	
         <!-- ================================================================= -->
 		<!-- Selenium Framework -->
@@ -443,7 +483,14 @@
 		    <version>${spring.boot.version}</version>
 		    <type>pom</type>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot -->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
@@ -471,10 +518,86 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux -->
+		<!--
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-webflux</artifactId>
 		  	<version>${spring.boot.version}</version>
+		</dependency>
+		-->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+		<!--
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+		-->
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-sleuth -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<version>${spring.cloud.sleuth.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+
+		<!-- ================================================================= -->
+		<!-- Spring Spock Framework -->
+		<!-- ================================================================= -->
+
+		<!-- Spock Framework -->
+		<!-- https://mvnrepository.com/artifact/org.spockframework/spock-core -->
+		<dependency>
+			<groupId>org.spockframework</groupId>
+			<artifactId>spock-core</artifactId>
+			<version>2.4-M1-groovy-4.0</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- Spock Spring Integration -->
+		<!-- https://mvnrepository.com/artifact/org.spockframework/spock-spring -->
+		<dependency>
+			<groupId>org.spockframework</groupId>
+			<artifactId>spock-spring</artifactId>
+			<version>2.4-M1-groovy-4.0</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- Groovy language -->
+		<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy -->
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy</artifactId>
+			<version>3.0.17</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.groovy/groovy-all -->
+		<!--
+		<dependency>
+			<groupId>org.apache.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>4.0.12</version>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+		-->
+
+		<!-- ================================================================= -->
+		<!-- TestNG Framework -->
+		<!-- ================================================================= -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.4.0</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- ================================================================= -->
@@ -575,7 +698,7 @@
         <!-- ================================================================= -->
 		<!-- API Docs - Open API v3.0 (Swagger 3) -->
 		<!-- ================================================================= -->
-		
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
 		<dependency>
 	      <groupId>org.springdoc</groupId>
 	      <artifactId>springdoc-openapi-ui</artifactId>
@@ -591,16 +714,12 @@
 		</dependency>
 		-->
 		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-data-rest -->
-		<!--
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-data-rest</artifactId>
 			<version>${openapi.version}</version>
 		</dependency>
-		-->
-
 		<!-- End of Dependency Definitions -->
-
 	</dependencies>   
 	
 	<!-- ================================================================= -->
@@ -628,7 +747,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+				<version>${maven-compiler-plugin}</version>
                 <configuration>
                     <!--Use this only when using Java 9+
                     <release>15</release>
@@ -681,6 +800,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin}</version>
 				<configuration>
 					<archive>
 						<manifest>
@@ -688,10 +808,14 @@
 							<classpathPrefix>libs/</classpathPrefix>
 							<mainClass>io.fusion.water.order.OrderApplication</mainClass>
 						</manifest>
+						<manifestEntries>
+							<Add-Exports>java.management/com.sun.management</Add-Exports>
+						</manifestEntries>
 					</archive>
 				</configuration>
 			</plugin>
-            <plugin>
+			<!-- FILTER TEST CASES ================================================= -->
+			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
@@ -718,9 +842,21 @@
 						<pact.rootDir>pacts</pact.rootDir>
 					</systemPropertyVariables>
                 </configuration>
-								
             </plugin>
-
+			<!-- SPOCK GROOVY COMPILER ================================================= -->
+			<plugin>
+				<groupId>org.codehaus.gmavenplus</groupId>
+				<artifactId>gmavenplus-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compileTests</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- SPOCK GROOVY COMPILER ================================================= -->
         </plugins>
     </build>
 </project>
