@@ -23,13 +23,13 @@ echo "Git Commit Count = "`git rev-list HEAD --count`
 echo "---------------------------------------------------------------------------------------"
 generateBuildNumber
 # -------------------------------------------------------------------------------------------
-echo "Build the Order Microservice : mvn -e package"
+echo "Build the Test (Order) Microservice : mvn -e package"
 echo "---------------------------------------------------------------------------------------"
 mvn -e package
 # -------------------------------------------------------------------------------------------
-echo cp target/ms-order-service-*.jar lib/
-echo "---------------------------------------------------------------------------------------"
-cp target/ms-order-service-*.jar lib/
+# echo cp target/ms-test-service-*.jar lib/
+# echo "---------------------------------------------------------------------------------------"
+# cp target/ms-test-service-*.jar lib/
 echo "Copy the application.properties File to the Docker Directory (src/docker)"
 cp src/main/resources/application.properties .
 # -------------------------------------------------------------------------------------------
