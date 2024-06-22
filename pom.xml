@@ -186,22 +186,6 @@
 			<version>8.3.3</version> <!-- Replace with the latest version -->
 		</dependency>
 
-		<!--
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>json-schema-validator</artifactId>
-			<version>${restassured5.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>spring-mock-mvc</artifactId>
-			<version>${restassured5.version}</version>
-			<scope>test</scope>
-		</dependency>
-		-->
-
 		<!-- UNIT TESTING ==================================================== -->
 		
  		<!-- ================================================================= -->
@@ -275,7 +259,6 @@
 		</dependency>
 
 		<!-- COMPONENT / CONTRACT TESTING ==================================== -->
-		     		
 		<!-- ================================================================= -->       
         <!-- Cucumber Framework -->
 		<!-- ================================================================= -->
@@ -302,7 +285,6 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java8 -->
-
 		<dependency>
 		    <groupId>io.cucumber</groupId>
 		    <artifactId>cucumber-java8</artifactId>
@@ -407,16 +389,6 @@
 		<!-- ================================================================= -->       
         <!-- WireMock Framework -->
 		<!-- ================================================================= -->
-		
-		<!-- https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock-jre8 -->
-		<!--
-		<dependency>
-		    <groupId>com.github.tomakehurst</groupId>
-		   <artifactId>wiremock-jre8</artifactId>
-			<version>${wiremock.version}</version>
-		    <scope>test</scope>
-		</dependency>
-		-->
 		<!-- https://mvnrepository.com/artifact/org.wiremock/wiremock -->
 		<dependency>
 			<groupId>org.wiremock</groupId>
@@ -425,24 +397,20 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<!-- ================================================================= -->
 		<!-- Pact Framework -->
 		<!-- ================================================================= -->
-		
 		<dependency>
 		    <groupId>au.com.dius</groupId>
 		    <artifactId>pact-jvm-provider-junit5</artifactId>
 		    <version>${pact.version}</version>
 		    <scope>test</scope>
 		</dependency>
-		
 		<dependency>
 		    <groupId>au.com.dius</groupId>
 		    <artifactId>pact-jvm-consumer-junit5</artifactId>
 		    <version>${pact.version}</version>
 		</dependency>
-		
 		<!-- https://mvnrepository.com/artifact/au.com.dius/pact-jvm-provider -->
 		<dependency>
 		    <groupId>au.com.dius</groupId>
@@ -515,15 +483,6 @@
 		    <artifactId>spring-boot-starter-webflux</artifactId>
 		  	<version>${spring.boot.version}</version>
 		</dependency>
-		<!-- -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
-		<!--
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-			<version>${spring.boot.version}</version>
-		</dependency>
-		-->
 		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-sleuth -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -589,7 +548,7 @@
 		</dependency>
 
 		<!-- ================================================================= -->
-		<!-- Database Framework: H2 / MongoDB -->
+		<!-- Database Framework: H2  -->
 		<!-- ================================================================= -->
 		
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
@@ -652,7 +611,6 @@
            Password: will be printed in the console.
            -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -748,27 +706,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- Maven Jar Pluggin with dependencies in libs folder -->
-			<!--
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>
-								${project.build.directory}/libs
-							</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
