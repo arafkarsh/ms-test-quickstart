@@ -32,6 +32,8 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.slf4j.Logger;
 import static org.slf4j.LoggerFactory.getLogger;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+
 import static java.lang.invoke.MethodHandles.lookup;
 // Custom
 import io.fusion.water.order.OrderApplication;
@@ -86,8 +88,7 @@ public class ServiceHealthController {
             content = @Content)
     })
 	@GetMapping("/health")
-	@ResponseBody
-	public ResponseEntity<String> getHealth( 
+	public ResponseEntity<HashMap<String, String>> getHealth(
 			HttpServletRequest request) throws Exception {
 		System.out.println(LocalDateTime.now()+"|Request to Health of Service... ");
 		if(serviceConfig == null) {
@@ -95,7 +96,10 @@ public class ServiceHealthController {
 		} else {
 			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
 		}
-		return ResponseEntity.ok("200:Service-Health-OK");	
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("Service-Health", "OK");
+		data.put("Code", "200");
+		return ResponseEntity.ok(data);
 	}
     
     
@@ -109,16 +113,18 @@ public class ServiceHealthController {
             content = @Content)
     })
 	@GetMapping("/ready")
-	@ResponseBody
-	public ResponseEntity<String> isReady( 
+	public ResponseEntity<HashMap<String, String>> isReady(
 			HttpServletRequest request) throws Exception {
-		System.out.println(LocalDateTime.now()+"|Request to Ready Check.. ");
+		System.out.println(LocalDateTime.now()+"|Request to Readiness Check.. ");
 		if(serviceConfig == null) {
 			System.out.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
 		} else {
 			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
 		}
-		return ResponseEntity.ok("200:Service-Ready");	
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("Status", "Ready");
+		data.put("Code", "200");
+		return ResponseEntity.ok(data);
 	}
 
 	private String getServerVersion() {
@@ -133,7 +139,7 @@ public class ServiceHealthController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
             description = "Order Service Log Level Check",
-            content = {@Content(mediaType = "application/json")}),
+            content = {@Content(mediaType = "application/text")}),
             @ApiResponse(responseCode = "404",
             description = "Order Service is not ready.",
             content = @Content)
@@ -156,7 +162,7 @@ public class ServiceHealthController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
             description = "Order Service ReStart",
-            content = {@Content(mediaType = "application/json")}),
+            content = {@Content(mediaType = "application/text")}),
             @ApiResponse(responseCode = "404",
             description = "Order Service is not ready.",
             content = @Content)
@@ -215,13 +221,12 @@ public class ServiceHealthController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
             description = "Order Service Home",
-            content = {@Content(mediaType = "application/json")}),
+            content = {@Content(mediaType = "application/text")}),
             @ApiResponse(responseCode = "404",
             description = "Order Service is not ready.",
             content = @Content)
     })
 	@GetMapping("/home")
-	@ResponseBody
 	public String apiHome(HttpServletRequest request) {
 		System.out.println(LocalDateTime.now()+"|Request to /home/ path... ");
 		StringBuilder sb = new StringBuilder();
