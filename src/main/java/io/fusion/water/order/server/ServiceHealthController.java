@@ -55,7 +55,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  */
 @Configuration
 @RestController
-@RequestMapping("/api/v1/order/service")
+@RequestMapping("/api/v1/order/core")
 @RequestScope
 @Tag(name = "Core", description = "Order Core Service (Health, Readiness, ReStart.. etc)")
 public class ServiceHealthController {
@@ -139,20 +139,20 @@ public class ServiceHealthController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
             description = "Order Service Log Level Check",
-            content = {@Content(mediaType = "application/text")}),
+            content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "404",
             description = "Order Service is not ready.",
             content = @Content)
     })
-	@GetMapping("/log")
-    public String log() {
+	@GetMapping(value = "/log", produces = "application/json")
+    public ResponseEntity<String> log() {
 		System.out.println(LocalDateTime.now()+"|Request to Log Level.. ");
     	log.trace("OrderApplication|This is TRACE level message");
         log.debug("OrderApplication|This is a DEBUG level message");
         log.info("OrderApplication|This is an INFO level message");
         log.warn("OrderApplication|This is a WARN level message");
         log.error("OrderApplication|This is an ERROR level message");
-        return "OrderApplication|See the log for details";
+        return ResponseEntity.ok("OrderApplication|See the log for details");
     }
 	
 	/**
