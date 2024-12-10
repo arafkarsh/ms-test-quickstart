@@ -144,8 +144,9 @@ public class ServiceHealthController {
             description = "Order Service is not ready.",
             content = @Content)
     })
-	@GetMapping(value = "/log", produces = "application/json")
-    public ResponseEntity<String> log() {
+	// @GetMapping(value = "/log", produces = "application/json")
+	@GetMapping(value = "/log")
+	public ResponseEntity<String> log() {
 		System.out.println(LocalDateTime.now()+"|Request to Log Level.. ");
     	log.trace("OrderApplication|This is TRACE level message");
         log.debug("OrderApplication|This is a DEBUG level message");

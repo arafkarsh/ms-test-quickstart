@@ -54,9 +54,26 @@ public class ServiceHelp {
 	
 	public static final String DL = "----------------------------------------------------------------------------";
 
-	public static final String LOGO = "" +NL
+	public static final String LOGO1 = "" +NL
 	+"============================================================================" + NL
 	+":: Order Service :: ";
+
+
+	public static final String VERSION = "0.1.0";
+
+	public static final String LOGO = "" +NL+NL
+			+"888b     d888 d8b                           .d8888b.                            d8b" + NL
+			+"8888b   d8888 Y8P                          d88P  Y88b                           Y8P " + NL
+			+"88888b.d88888                              Y88b. " + NL
+			+"888Y88888P888 888  .d8888b 888d888 .d88b.   \"Y888b.    .d88b.  888d888 888  888 888  .d8888b .d88b." + NL
+			+"888 Y888P 888 888 d88P\"    888P\"  d88\"\"88b     \"Y88b. d8P  Y8b 888P\"   888  888 888 d88P\"   d8P  Y8b" + NL
+			+"888  Y8P  888 888 888      888    888  888      \"888  88888888 888     Y88  88P 888 888     88888888" + NL
+			+"888   \"   888 888 Y88b.    888    Y88..88P Y88b  d88P Y8b.     888      Y8bd8P  888 Y88b.   Y8b." + NL
+			+"888       888 888  \"Y8888P 888     \"Y88P\"   \"Y8888P\"   \"Y8888  888       Y88P   888  \"Y8888P \"Y8888" + NL + NL
+			+"=======================================================================================================" + NL
+			+":: :: SIGMA Service. (MSVERSION)  :: Java Version (JAVAVERSION) :: SpringBoot Version (SPRINGBOOTVERSION) :: ::" + NL
+			+"=======================================================================================================" + NL;
+
 
 	public ServiceHelp() {
 		counter++;

@@ -15,7 +15,9 @@
  */
 package io.fusion.water.order.server;
  
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
@@ -55,11 +57,42 @@ public class ServiceEventListener {
 	    // System.out.println(LocalDateTime.now()+"|"+CPU.printCpuStats());
 		showLogo();
 	}
-	
+
+	/**
+	 * Shows the Service Logo and Version Details.
+	 */
+	public void showLogo() {
+		String version="v0.9.0", name="NoName", javaVersion="21", sbVersion="3.3.4";
+
+		if(serviceConfig != null) {
+			version = serviceConfig.getServerVersion();
+			name =serviceConfig.getServiceName();
+			javaVersion = System.getProperty("java.version");
+			sbVersion = SpringBootVersion.getVersion();
+		}
+		MDC.put("Service", name);
+		String logo =ServiceHelp.LOGO
+				.replaceAll("SIGMA", name)
+				.replaceAll("MSVERSION", version)
+				.replaceAll("JAVAVERSION", javaVersion)
+				.replaceAll("SPRINGBOOTVERSION", sbVersion);
+		log.info(name+" Service is ready! ... .."
+				+ logo
+				+ "Build No. = "+serviceConfig.getBuildNumber()
+				+ " :: Build Date = "+serviceConfig.getBuildDate()
+				+ " :: Mode = Testing"
+				+ " :: Restart = "+ServiceHelp.getCounter()
+				+ ServiceHelp.NL + ServiceHelp.DL);
+		// if(getDevMode() ) {
+		log.info(ServiceHelp.NL + "API URL : " + serviceConfig.apiURL() + ServiceHelp.NL + ServiceHelp.DL
+		);
+		//}
+	}
+
 	/**
 	 * Shows the Service Logo and Version Details. 
 	 */
-	public void showLogo() {
+	public void showLogoOld() {
 		String version = (serviceConfig != null) 
 				? serviceConfig.getServerVersion() : "v0.0.0";
 		log.info("MS Test Quickstart: Order Service is ready! ....... ..."
