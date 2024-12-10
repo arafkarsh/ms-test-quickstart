@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="120 seconds">
+	<property name="LOG_PATH" value="/tmp/logs/ms-test-service"/>
+	<property name="LOG_FILE" value="ms-test-service.log"/>
+	<property name="LOG_FILE_PATTERN" value="ms-test-service.%d{yyyy-MM-dd}.%i.log"/>
+	<property name="LOG_FILE_MAX_SIZE" value="10MB"/>
+	<property name="LOG_FILE_MAX_HISTORY" value="30"/>
+	<property name="LOG_FILE_SIZE_CAP" value="1GB"/>
+	<!-- if the Spring Context is available -->
+	<springProperty scope="context" name="LOG_PATH" source="logging.path"/>
+	<springProperty scope="context" name="LOG_FILE" source="logging.file.name"/>
+	<springProperty scope="context" name="LOG_FILE_PATTERN" source="logging.pattern.rolling-file-name"/>
+	<springProperty scope="context" name="LOG_FILE_MAX_SIZE" source="logging.file.max-size"/>
+	<springProperty scope="context" name="LOG_FILE_MAX_HISTORY" source="logging.file.max-history"/>
+	<springProperty scope="context" name="LOG_FILE_SIZE_CAP" source="logging.file.total-size-cap"/>
+
 	<!-- Define the Standard Output - Console Loggin -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
@@ -8,18 +22,16 @@
 	</appender>
 
 	<!-- Define the File Logging -->
-	<appender name="APPLOGFILE"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/tmp/ms-service-server.log</file>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/tmp/MS-Cache-server.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy
-				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>10MB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
+	<appender name="APPLOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/${LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<maxFileSize>${LOG_FILE_MAX_SIZE}</maxFileSize>
+			<fileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd, aux}/${LOG_FILE_PATTERN}</fileNamePattern>
+			<maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+			<totalSizeCap>${LOG_FILE_SIZE_CAP}</totalSizeCap>
 		</rollingPolicy>
 		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} |Service=%X{Service} |%-5level| %logger{36}:%L |IP=%X{IP}:%X{Port}| Proto=%X{Protocol}| URI=%X{URI}| User=%X{user}| ReqID=%X{ReqId}| %msg%n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} |%-5level| %logger{36}:%L |IP=%X{IP}:%X{Port} |User=%X{user}| |ReqID=%X{ReqId} |%msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -41,5 +53,4 @@
 		<appender-ref ref="APPLOGFILE" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-
 </configuration>

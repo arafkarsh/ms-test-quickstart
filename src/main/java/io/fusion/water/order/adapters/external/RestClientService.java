@@ -19,15 +19,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static java.lang.invoke.MethodHandles.lookup;
 import static java.util.Arrays.asList;
-
+import static org.slf4j.LoggerFactory.getLogger;
+import org.slf4j.Logger;
+// Spring
 import org.springframework.http.MediaType;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
+// Faster XML
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -40,6 +43,9 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
  */
 @Service
 public class RestClientService  extends RestTemplate {
+
+    // Set Logger -> Lookup will automatically determine the class name.
+    private static final Logger log = getLogger(lookup().lookupClass());
 	
     public RestClientService() {
     	// Set Object Mapper For Serialization
@@ -70,7 +76,7 @@ public class RestClientService  extends RestTemplate {
     public List<HttpMessageConverter<?>> getDataConverters2() {
     	return asList(
     			new MappingJackson2HttpMessageConverter(
-				getObjectMapper())
+				    getObjectMapper())
     		);
     }
     
@@ -80,8 +86,8 @@ public class RestClientService  extends RestTemplate {
      */
     public ObjectMapper getObjectMapper() {
         return new ObjectMapper()
-        .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true)
-        .findAndRegisterModules();
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true)
+            .findAndRegisterModules();
     }
     
     /**
@@ -89,11 +95,13 @@ public class RestClientService  extends RestTemplate {
      * @return
      */
     public HttpComponentsClientHttpRequestFactory getHttpFactory() {
-        HttpComponentsClientHttpRequestFactory factory 
-    		= new HttpComponentsClientHttpRequestFactory();
-
-	    factory.setConnectTimeout(10000);
-	    factory.setReadTimeout(10000);
-	    return factory;
+        log.debug("Initialized RestClientService.... setRequestFactory()... 2");
+        HttpComponentsClientHttpRequestFactory factory
+                = new HttpComponentsClientHttpRequestFactory();
+        log.debug("Initialized RestClientService.... setRequestFactory()... 3");
+        factory.setConnectTimeout(10000);
+        // factory.setReadTimeout(10000);
+        log.debug("Initialized RestClientService.... setRequestFactory()... 4");
+        return factory;
     }
 }

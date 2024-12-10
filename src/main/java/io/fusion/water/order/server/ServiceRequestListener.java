@@ -17,9 +17,9 @@ package io.fusion.water.order.server;
 
 import java.util.UUID;
 
-import javax.servlet.ServletRequestEvent;
-import javax.servlet.ServletRequestListener;
-import javax.servlet.annotation.WebListener;
+import jakarta.servlet.ServletRequestEvent;
+import jakarta.servlet.ServletRequestListener;
+import jakarta.servlet.annotation.WebListener;
 
 import org.slf4j.MDC;
 

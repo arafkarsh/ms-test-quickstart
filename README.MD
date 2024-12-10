@@ -1,5 +1,20 @@
 # MS Test QuickStart - Order Microservice
 
+Cloud-Native testing strategies are critical to ensure the reliability and performance of applications 
+built on microservices architecture. A comprehensive approach includes unit testing, integration testing, 
+contract testing, and end-to-end testing. Unit testing focuses on individual components, ensuring they 
+function as expected. Integration testing validates the interaction between different services. 
+
+Contract testing, facilitated by tools like Pact, ensures that services adhere to the agreed-upon 
+API contracts. End-to-end testing verifies the complete workflow of the application. Open source 
+tools such as JUnit, TestNG for unit testing, WireMock for mocking APIs, and Selenium for end-to-end 
+testing play a crucial role in these strategies. Additionally, tools like Kubernetes for container 
+orchestration and Istio for service mesh can help in creating realistic test environments, making 
+the testing process more robust and reliable
+
+![Microservices Testing Frameworks](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Tools.jpg)
+
+
 ## Testing Categories for Microservices
 
 ![Microservices Testing Categories](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Strategies-2.jpg)
@@ -15,7 +30,8 @@
 
 ## Spring Framework Versions
 
-- SpringBoot 2 (2.7.2)
+- SpringBoot 3 (3.3.4)
+- Jakarta EE 10
 - Java 17+
 
 ### 1. Junit (5.10.2) - 105 Test Cases
@@ -64,20 +80,29 @@
 | 4   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
 | 4.1 | Hamcrest 2        | 2.2.0   | -          |
-| 4.2 | AssertJ 3         | 3.20.2  | -          |
+| 4.2 | AssertJ 3         | 3.26.3  | -          |
 
 ### 5. Other Utilities
 
-| 5   | Other Libraries | Version     |
-|-----|-----------------|-------------|
-| 5.1 | Apache Commons  | 3.10.0      | 
-| 5.2 | Google GSON     | 2.8.7       |
-| 5.3 | Google Guava    | 30.1.1-jre  |
-| 5.4 | Faster XML      | 2.13.0-rc1  |
+| 5   | Other Libraries | Version  |
+|-----|-----------------|----------|
+| 5.1 | Apache Commons  | 3.17.0   | 
+| 5.2| Apache Http Client | 5.4.1    |
+| 5.3 | Apache Http Core | 5.3.1    |
+| 5.2 | Google GSON     | 2.8.7    |
+| 5.3 | Google Guava    | 33.3.1.1-jre |
+| 5.4 | Faster XML      | 2.18.0   |
 
+### Logging Framework
+| 6 | Logging Libraries | Version  |
+|---|-------------------|----------|
+| 6.1 SL4J | 2.0.16 |
+| 6.2 | Logback | 1.5.8| 
+| 6.3 | Log stash | 8.0 |
 
-## 6. Other Tools 
-- Open API (1.5.10)
+### 6. Other Tools 
+- Open API webmvc (2.6.0)
+- Open API common (1.8.0)
 
 Order Microservice is part of an eCommerce Application. The objective of selecting this Microservice is to demonstrate various testing frameworks. As Order is a complex service with internal (Ex. Inventory, Warhouse, Shipping etc) and external (Payment) service integration and it has all the requirements to use various testing frameworks. The objective is to demonstrate various testing frameworks. 
 
@@ -106,7 +131,7 @@ All the tests will be fully automated as part of your CI/CD pipeline.
 
 ## Dependencies
 
-- Spring Boot 2 (2.7.2)
+- Spring Boot 3 (3.3.4)
 - Maven SureFire Plugin 2 (3.0.0-M7)
 
 ## Testing Frameworks

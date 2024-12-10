@@ -7,7 +7,6 @@
 	<springProperty scope="context" name="LOG_FILE_MAX_HISTORY" source="logging.file.max-history"/>
 	<springProperty scope="context" name="LOG_FILE_SIZE_CAP" source="logging.file.total-size-cap"/>
 
-
 	<!-- Define the Standard Output - Console Loggin -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
@@ -16,13 +15,11 @@
 	</appender>
 
 	<!-- Define the File Logging -->
-	<appender name="APPLOGFILE"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="APPLOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_PATH}/${LOG_FILE}</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<maxFileSize>${LOG_FILE_MAX_SIZE}</maxFileSize>
 			<fileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd, aux}/${LOG_FILE_PATTERN}</fileNamePattern>
-			<!-- keep X days' worth of history capped at 3GB total size -->
 			<maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
 			<totalSizeCap>${LOG_FILE_SIZE_CAP}</totalSizeCap>
 		</rollingPolicy>
@@ -49,5 +46,4 @@
 		<appender-ref ref="APPLOGFILE" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-
 </configuration>

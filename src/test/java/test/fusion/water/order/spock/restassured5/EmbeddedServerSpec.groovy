@@ -24,7 +24,7 @@ import test.fusion.water.order.utils.OrderMockObjects;
 // Spring
 
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.web.server.LocalServerPort
+import org.springframework.boot.test.web.server.LocalServerPort
 // Spock
 import spock.lang.*
 // REST Assured

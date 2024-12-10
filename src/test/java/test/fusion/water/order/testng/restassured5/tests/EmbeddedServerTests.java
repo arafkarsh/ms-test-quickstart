@@ -26,7 +26,8 @@ import io.fusion.water.order.domainLayer.models.OrderStatus;
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-import org.springframework.boot.web.server.LocalServerPort;
+// import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 

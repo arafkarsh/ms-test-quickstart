@@ -16,72 +16,163 @@
 package io.fusion.water.order.adapters.security;
 
 import io.fusion.water.order.server.ServiceConfiguration;
-
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.security.web.csrf.CsrfToken;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
 import java.io.IOException;
-
+import java.util.Arrays;
 
 /**
+ *
  * @author: Araf Karsh Hamid
  * @version:
  * @date:
  */
+@Configuration
 @EnableWebSecurity
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+public class WebSecurityConfiguration {
     @Autowired
     private ServiceConfiguration serviceConfig;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    /**
+     * Configures the security filter chain for HTTP requests, applying various security measures
+     * such as request authorization, CSRF protection, and content security policies.
+     *
+     * @param http the {@link HttpSecurity} object to configure HTTP security for the application
+     * @return the constructed {@link SecurityFilterChain}
+     * @throws Exception if there is a problem during configuration
+     */
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // Forces All Request to be Secured (HTTPS)
         // http.requiresChannel().anyRequest().requiresSecure();
+        authorizeRequests(http);              // Set Authorization Policies
+        // authorizeRequestsNew(http);         // Set Authorization Policies
+        csrfProtection(http);                   // Set CSRF Protection
+        xFrameProtection(http);               // Set X-Frame Protection
+        contentSecurityPolicy(http);          // Set Content Security Policy
+        return http.build();                     // Build Security Filter Chain
+    }
+
+    /**
+     * Configures HTTP security to authorize requests based on the API documentation path.
+     * It permits all requests matching the API documentation path and redirects unauthorized
+     * access attempts to a custom access denied page.
+     *
+     * @param http the {@link HttpSecurity} object to configure HTTP security for the application
+     * @throws Exception if there is a problem during configuration
+     */
+    private void authorizeRequests(HttpSecurity http) throws Exception {
         String apiPath = serviceConfig.getApiDocPath();
         http.authorizeRequests()
-                .antMatchers(apiPath + "/**", "/swagger-ui.html")
+                .requestMatchers(apiPath + "/**")
                 .permitAll()
                 .and()
                 // This configures exception handling, specifically specifying that when a user tries to access a page
                 // they're not authorized to view, they're redirected to "/403" (typically an "Access Denied" page).
-                .exceptionHandling().accessDeniedPage("/403");
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/403"))
+                // Make sure to add stateless session management since it's a microservice
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+    }
+
+    /**
+     * Configures HTTP security to authorize requests based on the API documentation path.
+     * It permits all requests matching the API documentation path and redirects unauthorized
+     * access attempts to a custom access denied page.
+     *
+     * @param http the {@link HttpSecurity} object to configure HTTP security for the application
+     * @throws Exception if there is a problem during configuration
+     */
+    private void authorizeRequestsNew(HttpSecurity http) throws Exception {
+        String apiPath = serviceConfig.getApiDocPath();
+        http.authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(apiPath + "/**")
+                        .permitAll()
+                        // Require authentication for any other requests
+                        // .anyRequest().authenticated()
+                )
+                // This configures exception handling, specifically specifying that when a user tries to access a page
+                // they're not authorized to view, they're redirected to "/403" (typically an "Access Denied" page).
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/403"))
+                // Make sure to add stateless session management since it's a microservice
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+    }
+
+    /**
+     * Configures Cross-Site Request Forgery (CSRF) protection for HTTP security. This method typically
+     * enables CSRF protection using a cookie-based CSRF token repository, making CSRF tokens accessible
+     * to client-side scripting. Note that CSRF protection is disabled for local testing within this method.
+     *
+     * @param http the {@link HttpSecurity} object to configure HTTP security for the application
+     * @throws Exception if there is a problem during configuration
+     */
+    private void csrfProtection(HttpSecurity http) throws Exception {
         // Enable CSRF Protection
         // This line configures the Cross-Site Request Forgery (CSRF) protection, using a Cookie-based CSRF token
         // repository. This means that CSRF tokens will be stored in cookies. The withHttpOnlyFalse() method makes
         // these cookies accessible to client-side scripting, which is typically necessary for applications that use
         // a JavaScript-based frontend.
-       /**
-        http
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                // Add the above Only for testing in Swagger
-                .and()
-                .addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
-        */
-        // Disabled for Local Testing
-        http.csrf().disable();
+        /**
+         http
+         .csrf()
+         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+         // Add the above Only for testing in Swagger
+         .and()
+         .addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
+         */
+        // Disable for Local Testing
+        http.csrf(CsrfConfigurer::disable);
+    }
+
+    /**
+     * Configures HTTP security to protect against "clickjacking" attacks by setting the "X-Frame-Options" header
+     * and adding a content security policy.
+     *
+     * @param http the {@link HttpSecurity} object to configure HTTP security for the application
+     * @throws Exception if there is a problem during configuration
+     */
+    private void xFrameProtection(HttpSecurity http) throws Exception {
         // X-Frame-Options is a security header that is intended to protect your website against "clickjacking" attacks.
         // Clickjacking is a malicious technique of tricking web users into revealing confidential information or taking
         // control of their interaction with the website, by loading your website in an iframe of another website and
         // then overlaying it with additional content.
-        http.headers().frameOptions().deny();
-        // Only for Local Testing
-        // http.headers().frameOptions().disable();
+        http.headers(headers -> headers
+                .frameOptions(frameOptions -> frameOptions.deny())
+                .contentSecurityPolicy(csp -> csp
+                        .policyDirectives("default-src 'self'; frame-ancestors 'none'")
+                )
+        );
+    }
+
+    /**
+     * Configures the Content Security Policy (CSP) for HTTP security.
+     * The CSP is a security measure that helps prevent a range of attacks,
+     * including Cross-Site Scripting (XSS) and data injection attacks.
+     * It specifies which domains the browser should consider to be valid sources of executable scripts
+     * and other resources.
+     *
+     * @param http the {@link HttpSecurity} object to configure HTTP security for the application
+     * @throws Exception if there is a problem during configuration
+     */
+    private void contentSecurityPolicy(HttpSecurity http) throws Exception {
         String hostName = serviceConfig.getServerHost();
         // Content Security Policy
         // The last part sets the Content Security Policy (CSP). This is a security measure that helps prevent a range
@@ -89,25 +180,29 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         // domains the browser should consider to be valid sources of executable scripts. In this case, scripts
         // (script-src) and objects (object-src) are only allowed from the same origin ('self') or from a subdomain of
         // the specified host name.
-        http.headers()
-                .contentSecurityPolicy(
-                        "default-src 'self'; "
-                        +"script-src 'self' *."+hostName+"; "
-                        +"object-src 'self' *."+hostName+"; "
-                        +"img-src 'self'; media-src 'self'; frame-src 'self'; font-src 'self'; connect-src 'self'");
+        http.headers(headers -> headers
+                .contentSecurityPolicy(csp -> csp
+                        .policyDirectives("default-src 'self'; " +
+                                "script-src 'self' *." + hostName + "; " +
+                                "object-src 'self' *." + hostName + "; " +
+                                "img-src 'self'; " +
+                                "media-src 'self'; " +
+                                "frame-src 'self'; " +
+                                "font-src 'self'; " +
+                                "connect-src 'self'")
+                )
+        );
     }
 
     /**
-     * The web.ignoring().antMatchers(...) part of the code tells Spring Security to ignore the specified patterns and
-     * not apply security to requests matching those. This is useful for static resources like CSS files, JavaScript
-     * files, and images, which don't need to be secured.
-     * @param web
-     * @throws Exception
+     * Customizes web security to ignore security checks for specified static resource paths.
+     *
+     * @return a configured {@link WebSecurityCustomizer} that ignores security for "/images/**",
+     * "/js/**", and "/webjars/**" paths.
      */
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(
-                "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**");
     }
 
     /**
