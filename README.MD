@@ -1,21 +1,18 @@
 # MS Test QuickStart - Order Microservice
 
-Comprehensive automation in testing strategies is vital for ensuring the reliability and peak 
-performance of cloud-native applications, especially those designed with a microservices architecture.
+Thorough automation in application testing is crucial for guaranteeing the dependability and optimal 
+performance of cloud-native applications, particularly when prioritizing a rapid time-to-market 
+approach through Continuous Deployment.
 
-A comprehensive approach includes unit testing, integration testing, contract testing, and end-to-end 
-testing.
+The approach includes unit testing, integration testing, contract testing, and end-to-end testing.
 
-- Unit testing focuses on individual components, ensuring they function as expected.
-- Integration testing validates the interaction between different services.
-- Contract testing, facilitated by tools like Pact, ensures that services adhere to the agreed-upon 
-API contracts.
-- End-to-end testing verifies the complete workflow of the application. Open-source tools such as 
-JUnit, TestNG for unit testing, WireMock for mocking APIs, and Selenium for end-to-end testing 
-play a crucial role in these strategies.
+- Unit testing: A unit test exercises the smallest piece of testable software in the application to determine whether it behaves as expected.
+- Component Testing: A component test limits the scope of the exercised software to a portion of the system under test, manipulating the system through internal code interfaces and using test doubles to isolate the code under test from other components.
+- Contract testing, facilitated by tools like Pact, ensures that services adhere to the agreed-upon API contracts.
+- Integration testing: An Integration Contract test is a test at the boundary of an external service verifying that it meets the contract expected by a consuming service.
+- End-to-end testing: An end-to-end test verifies that a system meets external requirements and achieves its goals, testing the entire system from end to end.
 
 ![Microservices Testing Frameworks](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Tools.jpg)
-
 
 ## Testing Categories for Microservices
 
