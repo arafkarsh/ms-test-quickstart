@@ -52,7 +52,7 @@ the testing process more robust and reliable
 | 2   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
 | 2.1 | Spock 2           | 2.4.0   | 21         |
-| 2.2 | SpringBootTest 2  | 2.7.2   | 02         |
+| 2.2 | SpringBootTest 3  |3.3.4   | 02         |
 | 2.3 | RestAssured 5     | 5.4.0   | 08         |
 | 2.4 | Mockito 5         | 5.12.0  | 02         |
 | 2.5 | WireMock 3        | 3.6.0   | 07         |
@@ -66,7 +66,7 @@ the testing process more robust and reliable
 | 3   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
 | 3.1 | TestNG 7          | 7.10.2  | 18         |
-| 3.2 | SpringBootTest 2  | 2.7.2   | 02         |
+| 3.2 | SpringBootTest 3  | 3.3.4   | 02         |
 | 3.3 | RestAssured 5     | 5.4.0   | 05         |
 | 3.4 | Mockito 5         | 5.12.0  | 02         |
 | 3.5 | WireMock 3        | 3.6.0   | 03         |
