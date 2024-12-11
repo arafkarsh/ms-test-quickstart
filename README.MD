@@ -1,16 +1,18 @@
 # MS Test QuickStart - Order Microservice
 
-Cloud-Native testing strategies are critical to ensure the reliability and performance of applications 
-built on microservices architecture. A comprehensive approach includes unit testing, integration testing, 
-contract testing, and end-to-end testing. Unit testing focuses on individual components, ensuring they 
-function as expected. Integration testing validates the interaction between different services. 
+Comprehensive automation in testing strategies is vital for ensuring the reliability and peak 
+performance of cloud-native applications, especially those designed with a microservices architecture.
 
-Contract testing, facilitated by tools like Pact, ensures that services adhere to the agreed-upon 
-API contracts. End-to-end testing verifies the complete workflow of the application. Open source 
-tools such as JUnit, TestNG for unit testing, WireMock for mocking APIs, and Selenium for end-to-end 
-testing play a crucial role in these strategies. Additionally, tools like Kubernetes for container 
-orchestration and Istio for service mesh can help in creating realistic test environments, making 
-the testing process more robust and reliable
+A comprehensive approach includes unit testing, integration testing, contract testing, and end-to-end 
+testing.
+
+- Unit testing focuses on individual components, ensuring they function as expected.
+- Integration testing validates the interaction between different services.
+- Contract testing, facilitated by tools like Pact, ensures that services adhere to the agreed-upon 
+API contracts.
+- End-to-end testing verifies the complete workflow of the application. Open-source tools such as 
+JUnit, TestNG for unit testing, WireMock for mocking APIs, and Selenium for end-to-end testing 
+play a crucial role in these strategies.
 
 ![Microservices Testing Frameworks](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Tools.jpg)
 
