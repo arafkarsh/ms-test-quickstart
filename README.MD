@@ -114,7 +114,7 @@ Warhouse, Shipping etc) and external (Payment) service integration and it has al
 to use various testing frameworks. The objective is to demonstrate various testing frameworks. 
 
 Order Service REST Endpoints are documented using Open API v3. 
-You can access the API's using http://localhost:9080/swagger-ui.html
+You can access the API's using http://localhost:9081/test-service/api/v1/swagger-ui/index.html#/
 
 ![Order Service API based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Order-OpenAPI-Order.jpg)
 
