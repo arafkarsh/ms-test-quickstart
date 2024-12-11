@@ -39,7 +39,7 @@ the testing process more robust and reliable
 | 1   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
 | 1.1 | JUnit 5           | 5.10.2  | 42         |
-| 1.2 | SpringBootTest 2  | 2.7.2   | 01         |
+| 1.2 | SpringBootTest 3  | 3.3.4   | 01         |
 | 1.3 | RestAssured 5     | 5.4.0   | 29         |
 | 1.4 | Mockito 5         | 5.12.0  | 18         |
 | 1.5 | WireMock 3        | 3.6.0   | 07         |

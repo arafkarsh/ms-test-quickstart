@@ -115,15 +115,37 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepo.saveOrder(order);
 	}
 
+	/**
+	 * Adding a New Method to test DiffBlue Cover
+	 * Ship Order
+	 * @param _id
+	 * @return
+	 */
+	public OrderEntity shipOrder(String _id) {
+		// Fetch Order based on Order Id
+		OrderEntity order =  mockGetOrderById(_id);
+		order.orderReadyForShipment();
+		return order;
+	}
+
 	@Override
 	public PaymentStatus processPayments(PaymentDetails _paymentDetails) {
 		return paymentService.processPayments(_paymentDetails);
 	}
 
+	/**
+	 * This is a MOCK API for testing Only.
+	 * In a real world scenario you will be retrieving the data from a database based on
+	 * the input _orderId
+	 *
+	 * @param _orderId
+	 * @return
+	 */
 	private OrderEntity mockGetOrderById(String _orderId) {
 		return new OrderEntity.Builder()
 				.addCustomer(new Customer
 						("UUID", "John", "Doe", "0123456789"))
+				// Set Order ID
 				.setOrderId(_orderId)
 				.addOrderItem(new OrderItem
 						("uuid1", "iPhone 12", 799, "USD", 1))
