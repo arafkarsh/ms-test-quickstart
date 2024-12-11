@@ -95,18 +95,23 @@ play a crucial role in these strategies.
 | 5.3 | Google Guava    | 33.3.1.1-jre |
 | 5.4 | Faster XML      | 2.18.0   |
 
-### Logging Framework
+### 6. Logging Framework
 | 6 | Logging Libraries | Version  |
 |---|-------------------|----------|
-| 6.1 SL4J | 2.0.16 |
-| 6.2 | Logback | 1.5.8| 
-| 6.3 | Log stash | 8.0 |
+| 6.1 | SL4J              | 2.0.16 |
+| 6.2 | Logback           | 1.5.8| 
+| 6.3 | Log stash         | 8.0 |
 
-### 6. Other Tools 
-- Open API webmvc (2.6.0)
-- Open API common (1.8.0)
+### 7. Swagger Documentation
+| 7   | Open API Libraries | Version |
+|-----|--------------------|---------|
+| 7.1 | Open API Webmvc    | 2.6.0   |
+| 7.2 | Open API Common | 1.8.0   |
 
-Order Microservice is part of an eCommerce Application. The objective of selecting this Microservice is to demonstrate various testing frameworks. As Order is a complex service with internal (Ex. Inventory, Warhouse, Shipping etc) and external (Payment) service integration and it has all the requirements to use various testing frameworks. The objective is to demonstrate various testing frameworks. 
+Order Microservice is part of an eCommerce Application. The objective of selecting this Microservice 
+is to demonstrate various testing frameworks. As Order is a complex service with internal (Ex. Inventory, 
+Warhouse, Shipping etc) and external (Payment) service integration and it has all the requirements 
+to use various testing frameworks. The objective is to demonstrate various testing frameworks. 
 
 Order Service REST Endpoints are documented using Open API v3. 
 You can access the API's using http://localhost:9080/swagger-ui.html
@@ -128,7 +133,9 @@ Now let us focus on Microservices Testing Strategies.
 
 ![Microservice Testing Strategies](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Strategies-1.jpg)
 
-The following Test Categories helps you to automate the testing for Microservices based development resulting in ZERO End-2-End Testing.
+The following Test Categories helps you to automate the testing for Microservices based development 
+resulting in ZERO End-2-End Testing.
+
 All the tests will be fully automated as part of your CI/CD pipeline.
 
 ## Dependencies
