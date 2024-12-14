@@ -2,7 +2,7 @@
 # Order Service Properties
 # =======================================================================
 build.number=95
-build.date=Sat Dec 14 21:03:26 IST 2024
+build.date=Sat Dec 14 18:11:14 IST 2024
 # =======================================================================
 # Service Name & API Details -  Version, Path
 # =======================================================================
@@ -92,6 +92,7 @@ db.vendor=H2
 spring.datasource.url=jdbc:h2:${db.server}:${db.name};DB_CLOSE_ON_EXIT=FALSE
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
+#spring.datasource.password=password
 spring.datasource.password=ENC(nVbJiaCKFpu9jrA6loumjQ==)
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 # =======================================================================

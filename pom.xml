@@ -78,8 +78,8 @@
 		<!-- Spring Security / JWT / ===================================== -->
 		<jwt.api.version>0.11.5</jwt.api.version>
 		<bouncycastle.version>1.46</bouncycastle.version>
-		<spring.security.version>5.7.2</spring.security.version>
-		<jasypt.version>3.0.5</jasypt.version>
+		<jasypt.springboot.version>3.0.5</jasypt.springboot.version>
+		<jasypt.version>1.9.3</jasypt.version>
 
 		<!-- Spring Boot ================================================= -->
 		<spring.boot.version>3.3.4</spring.boot.version>
@@ -680,14 +680,15 @@
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
 			<artifactId>jasypt-spring-boot-starter</artifactId>
-			<version>${jasypt.version}</version>
+			<version>${jasypt.springboot.version}</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.jasypt/jasypt -->
+		<!-- This is ONLY require to generate the Encrypted Passwords -->
 		<dependency>
 			<groupId>org.jasypt</groupId>
 			<artifactId>jasypt</artifactId>
-			<version>1.9.3</version>
+			<version>${jasypt.version}</version>
 		</dependency>
 
 

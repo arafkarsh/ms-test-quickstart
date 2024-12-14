@@ -89,7 +89,7 @@ public class SecurityController {
 			String decryptedText = textEncryptor.decrypt(encryptedText);
 			System.out.println("Decrypted Text: " + decryptedText);
 			HashMap<String, String> data = new HashMap<String, String>();
-			data.put("test", _text);
+			data.put("text", _text);
 			data.put("encrypted", encryptedText);
 			return ResponseEntity.ok(data);
 		}

@@ -37,6 +37,12 @@ $ source encrypt your-db-password your-encrypton-key
 ```
 ![Passowrd-Gen](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Password-Gen.jpg)
 
+Your encryption key will be set in the following Environment variable. SpringBoot Will automatically
+pickup the encryption key from this environment variable.
+```
+JASYPT_ENCRYPTOR_PASSWORD=your-encrypton-key
+```
+
 Update the property file in the local file
 ```
 spring.datasource.password=ENC(nVbJiaCKFpu9jrA6loumjQ==)
