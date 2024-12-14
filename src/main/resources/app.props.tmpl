@@ -65,6 +65,16 @@ logging.file.max-size=30MB
 logging.file.max-history=100
 logging.file.total-size-cap=3GB
 # =======================================================================
+# Text Encryption
+# =======================================================================
+# Ensure this matches your environment variable
+jasypt.encryptor.password=${JASYPT_ENCRYPTOR_PASSWORD}
+# Match the algorithm
+jasypt.encryptor.algorithm=PBEWithMD5AndDES
+# Match salt generator (No IV for ZeroSaltGenerator)
+jasypt.encryptor.iv-generator-classname=org.jasypt.iv.NoIvGenerator
+jasypt.encryptor.salt-generator-classname=org.jasypt.salt.ZeroSaltGenerator
+# =======================================================================
 # H2 DB Properties
 # =======================================================================
 db.server=mem
@@ -77,7 +87,8 @@ db.vendor=H2
 spring.datasource.url=jdbc:h2:${db.server}:${db.name};DB_CLOSE_ON_EXIT=FALSE
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
-spring.datasource.password=password
+#spring.datasource.password=password
+spring.datasource.password=ENC(nVbJiaCKFpu9jrA6loumjQ==)
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 # =======================================================================
 # PostgreSQL DB Properties -

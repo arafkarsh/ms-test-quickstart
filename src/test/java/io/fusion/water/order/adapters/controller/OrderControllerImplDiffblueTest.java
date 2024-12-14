@@ -56,13 +56,10 @@ class OrderControllerImplDiffblueTest {
     @Test
     @DisplayName("Test getOrderById(String)")
     void testGetOrderById() {
-        //   Diffblue Cover was unable to create a Spring-specific test for this Spring method.
-        //   Run dcover create --keep-partial-tests to gain insights into why
-        //   a non-Spring test was created.
-
+        System.out.println("Arrange & Act: Getting Order By ID");
         // Arrange and Act
         ResponseEntity<OrderEntity> actualOrderById = (new OrderControllerImpl()).getOrderById(" id");
-
+        System.out.println("Assert: Checking the Order Entity Returned =  "+actualOrderById);
         // Assert
         HttpStatusCode statusCode = actualOrderById.getStatusCode();
         assertTrue(statusCode instanceof HttpStatus);
@@ -71,6 +68,7 @@ class OrderControllerImplDiffblueTest {
         assertEquals(HttpStatus.BAD_REQUEST, statusCode);
         assertFalse(actualOrderById.hasBody());
         assertTrue(actualOrderById.getHeaders().isEmpty());
+        // System.out.println("Test Result: Passed: Order ID = "+actualOrderById.getBody().getOrderId());
     }
 
     /**

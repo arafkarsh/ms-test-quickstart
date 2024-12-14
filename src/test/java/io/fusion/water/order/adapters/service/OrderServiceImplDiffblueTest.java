@@ -69,11 +69,11 @@ class OrderServiceImplDiffblueTest {
     void testGetOrderById() {
         System.out.println("Arrange & Act: Get Order By ID... ");
         // Arrange and Act
-        OrderEntity actualOrderById = orderServiceImpl.getOrderById(" id");
+        OrderEntity actualOrderById = orderServiceImpl.getOrderById("1234");
 
-        System.out.println("Assert: Check All the Critical Fields");
+        System.out.println("Assert: Check All the Critical Fields = "+actualOrderById);
         // Assert
-        assertEquals(" id", actualOrderById.getOrderId());
+        assertEquals("1234", actualOrderById.getOrderId());
         assertNull(actualOrderById.getPaymentStatus());
         assertEquals(2248.0d, actualOrderById.getTotalValue());
         assertEquals(3, actualOrderById.getTotalItems());
@@ -94,27 +94,27 @@ class OrderServiceImplDiffblueTest {
     @DisplayName("Test saveOrderExternal(OrderEntity)")
     void testSaveOrderExternal() {
         // Arrange
-        OrderEntity buildResult = (new OrderEntity.Builder()).build();
+        OrderEntity buildResult = orderServiceImpl.getOrderById("1234");
         when(externalGateWay.saveOrder(Mockito.<OrderEntity>any())).thenReturn(buildResult);
+        System.out.println("Arrange: Get OrderEntity "+buildResult);
 
         // Act
         OrderEntity actualSaveOrderExternalResult = orderServiceImpl.saveOrderExternal(new OrderEntity());
+        System.out.println("Act: save OrderEntity "+actualSaveOrderExternalResult);
 
         // Assert
         verify(externalGateWay).saveOrder(isA(OrderEntity.class));
-        assertNull(actualSaveOrderExternalResult.getCustomer());
-        assertNull(actualSaveOrderExternalResult.getOrderStatus());
-        assertNull(actualSaveOrderExternalResult.getPaymentDetails());
+        assertEquals("1234", actualSaveOrderExternalResult.getOrderId());
         assertNull(actualSaveOrderExternalResult.getPaymentStatus());
-        assertNull(actualSaveOrderExternalResult.getPaymentType());
-        assertNull(actualSaveOrderExternalResult.getShippingAddress());
-        assertNull(actualSaveOrderExternalResult.getOrderId());
-        assertNull(actualSaveOrderExternalResult.getOrderDate());
-        assertEquals(0, actualSaveOrderExternalResult.getTotalItems());
-        assertEquals(0.0d, actualSaveOrderExternalResult.getTotalValue());
-        assertFalse(actualSaveOrderExternalResult.isCustomerAvailable());
-        assertFalse(actualSaveOrderExternalResult.isShippingAddressAvailable());
-        assertTrue(actualSaveOrderExternalResult.getOrderItems().isEmpty());
+        assertEquals(2248.0d, actualSaveOrderExternalResult.getTotalValue());
+        assertEquals(3, actualSaveOrderExternalResult.getTotalItems());
+        assertEquals(3, actualSaveOrderExternalResult.getOrderItems().size());
+        assertEquals(OrderStatus.INITIATED, actualSaveOrderExternalResult.getOrderStatus());
+        assertEquals(PaymentType.CREDIT_CARD, actualSaveOrderExternalResult.getPaymentType());
+        assertTrue(actualSaveOrderExternalResult.isCustomerAvailable());
+        assertTrue(actualSaveOrderExternalResult.isShippingAddressAvailable());
+        System.out.println("Assert: Check All the Critical Fields = "+actualSaveOrderExternalResult);
+
         System.out.println("Test Completed... Success... ");
     }
 

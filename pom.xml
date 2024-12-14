@@ -79,6 +79,7 @@
 		<jwt.api.version>0.11.5</jwt.api.version>
 		<bouncycastle.version>1.46</bouncycastle.version>
 		<spring.security.version>5.7.2</spring.security.version>
+		<jasypt.version>3.0.5</jasypt.version>
 
 		<!-- Spring Boot ================================================= -->
 		<spring.boot.version>3.3.4</spring.boot.version>
@@ -346,7 +347,6 @@
 		    <groupId>io.cucumber</groupId>
 		    <artifactId>cucumber-junit</artifactId>
 		    <version>${cucumber.version}</version>
-		   <!--  <scope>test</scope> -->
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
@@ -675,6 +675,22 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 			<version>${spring.boot.version}</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter -->
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>${jasypt.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.jasypt/jasypt -->
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>1.9.3</version>
+		</dependency>
+
+
 		<!-- -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat -->
 		<dependency>
