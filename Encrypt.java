@@ -29,6 +29,9 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.salt.ZeroSaltGenerator;
 /**
  * Text Encryptor for Encrypting Sensitive Data
+ * This code requires Java 23+
+ * It's a preview feature in Java 23
+ * Usage: java --enable-preview Encrypt.java <password_to_encrypt> <encryption_key>
  *
  * @author arafkarsh
  * @version 1.0
@@ -39,7 +42,7 @@ void main(String... args) {
     println("-------------------------------------------------------");
     var argsLength = args.length;
     if (argsLength != 2) {
-        // println("Usage: java --enable-preview Encryptor.java <password_to_encrypt> <encryption_key>");
+        // println("Usage: java --enable-preview Encrypt.java <password_to_encrypt> <encryption_key>");
         println("Usage: source encrypt password_to_encrypt encryption_key");
         System.exit(1);
     }
