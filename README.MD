@@ -27,6 +27,26 @@ The approach includes unit testing, integration testing, contract testing, and e
 | 4   | Integration Testing          | SpringBoot, WireMock                       |
 | 5   | UI Testing / E2E Testing     | Selenium + Cucumber                        |
 
+## To Run the SpringBoot Application
+
+### Setup the Env Variable for Decrypting the Password Key
+
+Run the follwing command line option
+```
+$ source encrypt your-db-password your-encrypton-key
+```
+![Passowrd-Gen](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Password-Gen.jpg)
+
+Update the property file in the local file
+```
+spring.datasource.password=ENC(nVbJiaCKFpu9jrA6loumjQ==)
+```
+AND 
+the property template in src/main/resources/app.props.tmpl
+```
+spring.datasource.password=ENC(nVbJiaCKFpu9jrA6loumjQ==)
+```
+
 ## Spring Framework Versions
 
 - SpringBoot 3 (3.3.4)
