@@ -1,4 +1,9 @@
 # =======================================================================
+# Order Service Properties
+# =======================================================================
+build.number=97
+build.date=Sun Dec 15 08:53:17 IST 2024
+# =======================================================================
 # Service Name & API Details -  Version, Path
 # =======================================================================
 service.org=orgname
@@ -70,9 +75,14 @@ logging.file.total-size-cap=3GB
 # Ensure this matches your environment variable
 jasypt.encryptor.password=${JASYPT_ENCRYPTOR_PASSWORD}
 # Match the algorithm
-jasypt.encryptor.algorithm=PBEWithHmacSHA512AndAES_256
+jasypt.encryptor.algorithm=PBEWithHmacSHA256AndAES_256
 jasypt.encryptor.iv-generator-classname=org.jasypt.iv.RandomIvGenerator
 jasypt.encryptor.salt-generator-classname=org.jasypt.salt.RandomSaltGenerator
+# Following jasypt lines are deprecated
+#jasypt.encryptor.algorithm=PBEWithMD5AndDES
+# Match salt generator (No IV for ZeroSaltGenerator)
+#jasypt.encryptor.iv-generator-classname=org.jasypt.iv.NoIvGenerator
+#jasypt.encryptor.salt-generator-classname=org.jasypt.salt.ZeroSaltGenerator
 # =======================================================================
 # H2 DB Properties
 # =======================================================================
@@ -86,6 +96,7 @@ db.vendor=H2
 spring.datasource.url=jdbc:h2:${db.server}:${db.name};DB_CLOSE_ON_EXIT=FALSE
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
+#spring.datasource.password=ENC(nVbJiaCKFpu9jrA6loumjQ==)
 spring.datasource.password=ENC(lA6JCEpK7+wuHDpB1A41DOUfn6L74DQxaazXLTjyQHY5/X6CONfUEyDt6erWifrN)
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 # =======================================================================

@@ -30,16 +30,11 @@ package io.fusion.water.order.security;
 // Jasypt
 // import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.iv.FixedIvGenerator;
-import org.jasypt.iv.IvGenerator;
-import org.jasypt.iv.NoIvGenerator;
 import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.salt.RandomSaltGenerator;
 import org.jasypt.salt.ZeroSaltGenerator;
-import org.jasypt.util.text.AES256TextEncryptor;
-
+// Java
 import java.security.Security;
-
 import static java.lang.System.out;
 
 /**
@@ -50,46 +45,64 @@ import static java.lang.System.out;
  * @date: 2024-12-14T11:27
  */
 public class Encrypt17 {
+
     public static void main(String[] args) {
         out.println("Text Encryptor using Jasypt Encryption Library (v1.9.3)");
         out.println("-------------------------------------------------------");
-        var argsLength = args.length;
-        if (argsLength != 2) {
-            // println("Usage: java io.fusion.water.order.security.Encrypt17 <password_to_encrypt> <encryption_key>");
-            out.println("Usage: source encrypt password_to_encrypt encryption_key");
-            System.exit(1);
-            // args = new String[2];
-            // args[0] = "tmpDataForEncryption";
-            // args[1] = "tmpEncryptionKey";
-        }
+        doEncryptionAES(args);
+    }
 
+    /**
+     * Do Encryption with Standard PBEWithMD5AndDES Algorithm
+     * @param args
+     */
+    private static void doEncryption(String[] args) {
+        if(!validateInputs(args)) {
+            return;
+        }
         var textToEncrypt = args[0];    // Input text to encrypt
         var masterPassword = args[1];  // Master password for encryption
 
         // Create and configure the encryptor
-        // var encryptor = new AES256TextEncryptor();
         var encryptor = new StandardPBEStringEncryptor();
         encryptor.setPassword(masterPassword);
-
-        // Security.addProvider(new BouncyCastleProvider());
-        // encryptor.setProviderName("BC");
-
+        // Set the Algo and Zero Salt
         String algo = "PBEWithMD5AndDES";
         encryptor.setAlgorithm(algo);
         encryptor.setSaltGenerator(new ZeroSaltGenerator()); // Fixed salt for consistent output
+        out.println("Algorithm Used : "+algo);
+        // Encrypt the text
+        var encryptedText = encryptor.encrypt(textToEncrypt);
+        out.println("Text to Encrypt: "+ textToEncrypt);
+        out.println("Encrypted Text : "+ encryptedText);
+        // Decrypt the text
+        var decryptedText = encryptor.decrypt(encryptedText);
+        out.println("Decrypted Text : "+ decryptedText);
+        out.println("-------------------------------------------------------");
+    }
+
+    /**
+     * Do Encryption using AES Algorithm - PBEWithHmacSHA512AndAES_256
+     * @param args
+     */
+    private static void doEncryptionAES(String[] args) {
+        if(!validateInputs(args)) {
+            return;
+        }
+        var textToEncrypt = args[0];    // Input text to encrypt
+        var masterPassword = args[1];  // Master password for encryption
+
+        // Create and configure the encryptor
+        var encryptor = new StandardPBEStringEncryptor();
+        encryptor.setPassword(masterPassword);
 
         // Use an AES-based PBE algorithm.
         // Note: 'PBEWithHmacSHA512AndAES_256' is a common AES-based PBE algorithm supported by Jasypt.
-        // String algo = "PBEWithHmacSHA512AndAES_256";
-        // encryptor.setAlgorithm(algo);
+        String algo = "PBEWithHmacSHA512AndAES_256";
+        encryptor.setAlgorithm(algo);
         // Remove randomness: no IV and zero salt
-        // encryptor.setIvGenerator(new NoIvGenerator());
-        // encryptor.setSaltGenerator(new ZeroSaltGenerator());
-       // encryptor.setIvGenerator(new RandomIvGenerator());
-       // encryptor.setSaltGenerator(new RandomSaltGenerator());
-        // byte[] fixedIv = new byte[16]; // all zeros
-        // encryptor.setIvGenerator(new MyFixedIvGenerator(fixedIv));
-        // encryptor.setSaltGenerator(new RandomSaltGenerator());
+        encryptor.setIvGenerator(new RandomIvGenerator());
+        encryptor.setSaltGenerator(new RandomSaltGenerator());
 
         out.println("Algorithm Used : "+algo);
         // Encrypt the text
@@ -101,34 +114,13 @@ public class Encrypt17 {
         out.println("Decrypted Text : "+ decryptedText);
         out.println("-------------------------------------------------------");
     }
-}
 
-class MyFixedIvGenerator implements IvGenerator {
-    private final byte[] fixedIv;
-
-    public MyFixedIvGenerator(byte[] fixedIv) {
-        this.fixedIv = fixedIv.clone();
-    }
-
-    // @Override
-    public void generateIv(byte[] bytes) {
-        System.arraycopy(fixedIv, 0, bytes, 0, fixedIv.length);
-    }
-
-    // @Override
-    public int getIvLength() {
-        return fixedIv.length;
-    }
-
-    @Override
-    public byte[] generateIv(int i) {
-        return new byte[0];
-    }
-
-    @Override
-    public boolean includePlainIvInEncryptionResults() {
-        // If false, IV won't be stored along with the ciphertext.
-        // Set this to false for deterministic encryption.
-        return false;
+    private static boolean validateInputs(String[] args) {
+        if (args.length != 2) {
+            // println("Usage: java io.fusion.water.order.security.Encrypt17 <text_to_encrypt> <encryption_key>");
+            out.println("Usage: source encrypt text_to_encrypt encryption_key");
+            return false;
+        }
+        return true;
     }
 }
