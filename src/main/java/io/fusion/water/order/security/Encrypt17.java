@@ -33,7 +33,6 @@ import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.salt.RandomSaltGenerator;
 import org.jasypt.salt.ZeroSaltGenerator;
 // Java
-import java.security.Security;
 import static java.lang.System.out;
 
 /**
@@ -122,7 +121,7 @@ public class Encrypt17 {
      */
     private static boolean validateInputs(String[] args) {
         if (args.length != 2) {
-            // out.println("Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Encrypt17.java <text_to_encrypt> <encryption_key>");
+            // "Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Encrypt17.java <text_to_encrypt> <encryption_key>");
             out.println("Usage: source encrypt text_to_encrypt encryption_key");
             return false;
         }

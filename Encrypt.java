@@ -44,7 +44,7 @@ void main(String... args) {
     println("-------------------------------------------------------");
     var argsLength = args.length;
     if (argsLength != 2) {
-        // println("Usage: java --enable-preview -cp libs/jasypt-1.9.3.jar Encrypt.java <text_to_encrypt> <encryption_key>");
+        // "Usage: java --enable-preview -cp libs/jasypt-1.9.3.jar Encrypt.java <text_to_encrypt> <encryption_key>";
         println("Usage: source encrypt text_to_encrypt encryption_key");
         System.exit(1);
     }

@@ -86,7 +86,7 @@ public class Decrypt17 {
      */
     private static boolean validateInputs(String[] args) {
         if (args.length != 1) {
-            // out.println("Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Decrypt17.java <encrypted_text>");
+            // "Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Decrypt17.java <encrypted_text>");
             out.println("Usage: source decrypt encrypted_text");
             return false;
         }

@@ -44,7 +44,7 @@ void main(String... args) {
     println("-------------------------------------------------------");
     var argsLength = args.length;
     if (argsLength != 1) {
-        // println("Usage: java --enable-preview java -cp libs/jasypt-1.9.3.jar Decrypt.java <encrypted_text>");
+        // "Usage: java --enable-preview java -cp libs/jasypt-1.9.3.jar Decrypt.java <encrypted_text>";
         println("Usage: source decrypt encrypted_text");
         System.exit(1);
     }
