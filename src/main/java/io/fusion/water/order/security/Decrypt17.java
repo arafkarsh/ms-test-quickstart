@@ -34,7 +34,9 @@ import org.jasypt.salt.RandomSaltGenerator;
 import static java.lang.System.out;
 
 /**
- * ms-test-quickstart / Decrypt17 
+ * Text Decryptor for Decrypting Sensitive Data
+ * This code requires Java 17+
+ * Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Decrypt17.java <encrypted_text>
  *
  * @author: Araf Karsh Hamid
  * @version: 0.1
@@ -53,31 +55,39 @@ public class Decrypt17 {
             return;
         }
         var testToDecrypt = args[0];    // Input text to Decrypt
-        var masterPassword = args[1];  // Master password for Decryption
+        // Master password for Decryption
+        var masterPassword = System.getenv("JASYPT_ENCRYPTOR_PASSWORD");
+        if(masterPassword == null) {
+            out.println("Encryption Key is missing in Env var > JASYPT_ENCRYPTOR_PASSWORD!");
+            return;
+        }
 
         // Create and configure the decryptor
         var decryptor = new StandardPBEStringEncryptor();
         decryptor.setPassword(masterPassword);
-
-        // Use an AES-based PBE algorithm.
-        // Note: 'PBEWithHmacSHA512AndAES_256' is a common AES-based PBE algorithm supported by Jasypt.
+        // Use an AES-based PBE algorithm - PBEWithHmacSHA512AndAES_256
         String algo = "PBEWithHmacSHA512AndAES_256";
         decryptor.setAlgorithm(algo);
         out.println("Algorithm Used : "+algo);
-
         // Add Randomness to the Decryption
         decryptor.setIvGenerator(new RandomIvGenerator());
         decryptor.setSaltGenerator(new RandomSaltGenerator());
-
+        // Decrypt Text
+        out.println("Encrypted Text : "+ testToDecrypt);
         var decryptedText = decryptor.decrypt(testToDecrypt);
         out.println("Decrypted Text : "+ decryptedText);
         out.println("-------------------------------------------------------");
     }
 
+    /**
+     * Validate the Inputs
+     * @param args
+     * @return
+     */
     private static boolean validateInputs(String[] args) {
-        if (args.length != 2) {
-            // println("Usage: java io.fusion.water.order.security.Encrypt17 <password_to_encrypt> <encryption_key>");
-            out.println("Usage: source decrypt encrypted_text encryption_key");
+        if (args.length != 1) {
+            // out.println("Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Decrypt17.java <encrypted_text>");
+            out.println("Usage: source decrypt encrypted_text");
             return false;
         }
         return true;

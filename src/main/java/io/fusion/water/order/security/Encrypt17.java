@@ -28,7 +28,6 @@
 package io.fusion.water.order.security;
 
 // Jasypt
-// import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.salt.RandomSaltGenerator;
@@ -38,7 +37,9 @@ import java.security.Security;
 import static java.lang.System.out;
 
 /**
- * ms-test-quickstart / Encrypt
+ * Text Encryptor for Encrypting Sensitive Data
+ * This code requires Java 17+
+ * Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Encrypt17.jav <text_to_encrypt> <encryption_key>
  *
  * @author: Araf Karsh Hamid
  * @version: 0.1
@@ -96,11 +97,10 @@ public class Encrypt17 {
         var encryptor = new StandardPBEStringEncryptor();
         encryptor.setPassword(masterPassword);
 
-        // Use an AES-based PBE algorithm.
-        // Note: 'PBEWithHmacSHA512AndAES_256' is a common AES-based PBE algorithm supported by Jasypt.
+        // Use an AES-based PBE algorithm - PBEWithHmacSHA512AndAES_256
         String algo = "PBEWithHmacSHA512AndAES_256";
         encryptor.setAlgorithm(algo);
-        // Remove randomness: no IV and zero salt
+        //  Add Random IV and Salt
         encryptor.setIvGenerator(new RandomIvGenerator());
         encryptor.setSaltGenerator(new RandomSaltGenerator());
 
@@ -115,9 +115,14 @@ public class Encrypt17 {
         out.println("-------------------------------------------------------");
     }
 
+    /**
+     * Validate the Inputs
+     * @param args
+     * @return
+     */
     private static boolean validateInputs(String[] args) {
         if (args.length != 2) {
-            // println("Usage: java io.fusion.water.order.security.Encrypt17 <text_to_encrypt> <encryption_key>");
+            // out.println("Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Encrypt17.java <text_to_encrypt> <encryption_key>");
             out.println("Usage: source encrypt text_to_encrypt encryption_key");
             return false;
         }
