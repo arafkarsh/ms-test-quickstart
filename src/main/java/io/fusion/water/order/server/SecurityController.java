@@ -22,6 +22,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 // Spring
+import org.jasypt.iv.RandomIvGenerator;
+import org.jasypt.salt.RandomSaltGenerator;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 // import org.springframework.security.crypto.encrypt.TextEncryptor;
@@ -30,7 +32,11 @@ import org.springframework.web.context.annotation.RequestScope;
 // Java
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 import org.slf4j.Logger;
+
+import static java.lang.System.out;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 // Security
@@ -75,20 +81,22 @@ public class SecurityController {
 		if(masterPassword != null) {
 			// Create a StandardPBEStringEncryptor instance
 			StandardPBEStringEncryptor textEncryptor = new StandardPBEStringEncryptor();
-
 			// Set encryption configurations
 			textEncryptor.setPassword(masterPassword); // Master password
-			textEncryptor.setAlgorithm("PBEWithMD5AndDES");
-			textEncryptor.setSaltGenerator(new ZeroSaltGenerator()); // Use zero salt for consistent output
-
-			// BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
-			// textEncryptor.setPassword(masterPassword);
+			// Use an AES-based PBE algorithm - PBEWithHmacSHA512AndAES_256
+			String algo = "PBEWithHmacSHA512AndAES_256";
+			textEncryptor.setAlgorithm(algo);
+			//  Add Random IV and Salt
+			textEncryptor.setIvGenerator(new RandomIvGenerator());
+			textEncryptor.setSaltGenerator(new RandomSaltGenerator());
+			out.println("Algorithm Used: "+algo);
 			String encryptedText = textEncryptor.encrypt(_text); // String to encrypt
-			System.out.println("Encrypted Text: ENC(" + encryptedText + ")");
+			out.println("Encrypted Text: ENC(" + encryptedText + ")");
 			// Decrypt the text
 			String decryptedText = textEncryptor.decrypt(encryptedText);
-			System.out.println("Decrypted Text: " + decryptedText);
-			HashMap<String, String> data = new HashMap<String, String>();
+			out.println("Decrypted Text: " + decryptedText);
+			HashMap<String, String> data = new LinkedHashMap<String, String>();
+			data.put("algo", algo);
 			data.put("text", _text);
 			data.put("encrypted", encryptedText);
 			return ResponseEntity.ok(data);
