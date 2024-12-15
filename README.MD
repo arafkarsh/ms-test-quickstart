@@ -45,12 +45,12 @@ JASYPT_ENCRYPTOR_PASSWORD=your-encrypton-key
 
 Update the property file in the local file
 ```
-spring.datasource.password=ENC(nVbJiaCKFpu9jrA6loumjQ==)
+spring.datasource.password=ENC(kkthRIyJ7ogLJP8PThfXjqko33snTUa9lY1GkyFpzr7KFRVhRVXLOMwNSIzr4EjFGAOWLhWTH5cAWzRzAfs33g==)
 ```
 AND 
 the property template in src/main/resources/app.props.tmpl
 ```
-spring.datasource.password=ENC(nVbJiaCKFpu9jrA6loumjQ==)
+spring.datasource.password=ENC(kkthRIyJ7ogLJP8PThfXjqko33snTUa9lY1GkyFpzr7KFRVhRVXLOMwNSIzr4EjFGAOWLhWTH5cAWzRzAfs33g==)
 ```
 You can use the following REST Endpoint to encrypt the sensitive data. This will work only after setting 
 the environment variable JASYPT_ENCRYPTOR_PASSWORD and creating the first DB password
