@@ -52,6 +52,10 @@ the property template in src/main/resources/app.props.tmpl
 ```
 spring.datasource.password=ENC(nVbJiaCKFpu9jrA6loumjQ==)
 ```
+You can use the following REST Endpoint to encrypt the sensitive data. This will work only after setting 
+the environment variable JASYPT_ENCRYPTOR_PASSWORD and creating the first DB password
+using the command line options.
+![Passowrd-REST](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/ms-test-encrypt.jpg)
 
 ## Spring Framework Versions
 
