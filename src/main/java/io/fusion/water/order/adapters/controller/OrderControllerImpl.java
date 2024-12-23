@@ -42,6 +42,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.fusion.water.order.domainLayer.services.OrderController;
+import org.springframework.web.util.HtmlUtils;
 
 /**
  * Order Web Service
@@ -180,10 +181,11 @@ public class OrderControllerImpl implements OrderController {
 	@DeleteMapping("/cancel/{orderId}/")
 	public ResponseEntity<OrderEntity> cancelOrder(
 			@PathVariable("orderId") String id) {
-		log.info("|Order ID = {}", id);
+		String safeOrderId = HtmlUtils.htmlEscape(id);
+		log.info("|Order ID = {}", safeOrderId);
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderService.cancelOrder(id);
+			orderEntity = orderService.cancelOrder(safeOrderId);
 		} catch (Exception e) {
 			log.info(ERROR+" {} ",e.getMessage());
 			return new ResponseEntity<>(orderEntity, HttpStatus.BAD_REQUEST);
@@ -210,10 +212,12 @@ public class OrderControllerImpl implements OrderController {
 	public ResponseEntity<OrderEntity> updateOrderStatus(
 			@PathVariable("orderId") String id,
 			@PathVariable("statusId") String status) {
-		log.info("|Order ID = {}, Status = {} ", id, status );
+		String safeOrderId = HtmlUtils.htmlEscape(id);
+		String safeStatus = HtmlUtils.htmlEscape(status);
+		log.info("|Order ID = {}, Status = {} ", safeOrderId, safeStatus );
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderService.updateOrderStatus(id, status);
+			orderEntity = orderService.updateOrderStatus(safeOrderId, safeStatus);
 		} catch (Exception e) {
 			log.info(ERROR+" {} ",e.getMessage());
 			return new ResponseEntity<>(orderEntity, HttpStatus.BAD_REQUEST);
