@@ -1,5 +1,10 @@
 # MS Test QuickStart - Order Microservice
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=arafkarsh_ms-test-quickstart&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=arafkarsh_ms-test-quickstart)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=arafkarsh_ms-test-quickstart&metric=bugs)](https://sonarcloud.io/summary/new_code?id=arafkarsh_ms-test-quickstart)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=arafkarsh_ms-test-quickstart&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=arafkarsh_ms-test-quickstart)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=arafkarsh_ms-test-quickstart&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=arafkarsh_ms-test-quickstart)
+
 Thorough automation in application testing is crucial for guaranteeing the dependability and optimal 
 performance of cloud-native applications, particularly when prioritizing a rapid time-to-market 
 approach through Continuous Deployment.
