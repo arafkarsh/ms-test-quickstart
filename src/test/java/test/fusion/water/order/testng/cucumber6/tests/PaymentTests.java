@@ -41,5 +41,6 @@ public class PaymentTests extends AbstractTestNGCucumberTests {
 
 	@BeforeClass
 	public static void setupAll() {
+		// setup
 	}
 }

@@ -26,7 +26,6 @@ import io.fusion.water.order.domain.models.OrderStatus;
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-// import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -82,9 +81,9 @@ public class EmbeddedServerTests extends AbstractTestNGSpringContextTests {
                         .body("orderItems.size()", greaterThan(0))
                         .body("customer", notNullValue())
                         .root("customer")
-                        .body("customerId", notNullValue())
-                        .body("firstName", notNullValue())
-                        .body("lastName", notNullValue())
+                            .body("customerId", notNullValue())
+                            .body("firstName", notNullValue())
+                            .body("lastName", notNullValue())
                         .rootPath("") // Clear root
                         .body("shippingAddress", notNullValue())
                         .root("shippingAddress")

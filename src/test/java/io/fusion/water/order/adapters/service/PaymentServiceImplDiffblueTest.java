@@ -121,7 +121,6 @@ class PaymentServiceImplDiffblueTest {
         //   See https://diff.blue/R033 to resolve this issue.
 
         // Arrange
-        // TODO: Populate arranged inputs
         PaymentDetails paymentDetails = null;
 
         // Act
@@ -129,7 +128,6 @@ class PaymentServiceImplDiffblueTest {
                 .processPaymentsExternal(paymentDetails);
 
         // Assert
-        // TODO: Add assertions on result
         assertThat(actualProcessPaymentsExternalResult).isNotNull();
     }
 

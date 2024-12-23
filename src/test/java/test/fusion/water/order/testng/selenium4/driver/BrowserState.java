@@ -12,12 +12,6 @@ public class BrowserState {
 	public WebDriver chromeDriver;
 
 	/**
-	 * Create Browser State
-	 */
-	public BrowserState() {
-	}
-	
-	/**
 	 * Returns Chrome Driver
 	 * @return
 	 */
@@ -27,9 +21,9 @@ public class BrowserState {
 	
 	/**
 	 * Returns Chrome Driver
-	 * @param _webDriver
+	 * @param webDriver
 	 */
-	public void setWebDriver(WebDriver _webDriver) {
-		chromeDriver = _webDriver;
+	public void setWebDriver(WebDriver webDriver) {
+		chromeDriver = webDriver;
 	}
 }
