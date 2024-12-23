@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.services.PackingService;
+import io.fusion.water.order.domain.models.OrderEntity;
+import io.fusion.water.order.domain.services.PackingService;
 
 /**
  * Packing Service

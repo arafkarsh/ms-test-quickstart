@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 import java.time.LocalDateTime;
 

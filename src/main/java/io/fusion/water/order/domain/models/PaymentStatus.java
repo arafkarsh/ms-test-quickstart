@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 import java.time.LocalDateTime;
 
@@ -33,7 +33,7 @@ public class PaymentStatus {
 	@JsonSerialize(using = DateJsonSerializer.class)
 	private LocalDateTime transactionDate;
 	
-	private String paymentStatus;
+	private String payStatus;
 	private String paymentReference;
 	
 	@JsonSerialize(using = DateJsonSerializer.class)
@@ -48,23 +48,23 @@ public class PaymentStatus {
 	/**
 	 * Payment Status
 	 * 
-	 * @param _txId
-	 * @param _txDate
-	 * @param _payStatus
-	 * @param _payRef
-	 * @param _payDate
-	 * @param _payType
+	 * @param txId
+	 * @param txDate
+	 * @param payStatus
+	 * @param payRef
+	 * @param payDate
+	 * @param payType
 	 */
-	public PaymentStatus(String _txId, LocalDateTime _txDate, String _payStatus,
-			String _payRef, LocalDateTime _payDate, PaymentType _payType) {
+	public PaymentStatus(String txId, LocalDateTime txDate, String payStatus,
+			String payRef, LocalDateTime payDate, PaymentType payType) {
 		
-		transactionId		= _txId;
-		transactionDate		= _txDate;
-		paymentStatus		= _payStatus;
+		transactionId		= txId;
+		transactionDate		= txDate;
+		this.payStatus = payStatus;
 		
-		paymentReference	= _payRef;
-		paymentDate			= _payDate;
-		paymentType			= _payType;
+		paymentReference	= payRef;
+		paymentDate		= payDate;
+		paymentType		= payType;
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public class PaymentStatus {
 	 * @return the paymentStatus
 	 */
 	public String getPaymentStatus() {
-		return paymentStatus;
+		return payStatus;
 	}
 	/**
 	 * @return the paymentReference
@@ -108,7 +108,7 @@ public class PaymentStatus {
 	 * Returns Transaction ID | Payment Status | Payment Reference
 	 */
 	public String toString() {
-		return transactionId + "|" + paymentStatus + "|" + paymentReference;
+		return transactionId + "|" + payStatus + "|" + paymentReference;
 	}
 	
 	/**
@@ -116,5 +116,15 @@ public class PaymentStatus {
 	 */
 	public int hashCode() {
 		return transactionId.hashCode();
+	}
+
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		}
+		if(o instanceof PaymentStatus item) {
+			return transactionId.equals(item.getTransactionId());
+		}
+		return false;
 	}
 }

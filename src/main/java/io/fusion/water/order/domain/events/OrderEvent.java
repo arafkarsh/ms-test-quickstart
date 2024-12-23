@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.events;
+package io.fusion.water.order.domain.events;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import io.fusion.water.order.domainLayer.models.Customer;
-import io.fusion.water.order.domainLayer.models.OrderItem;
-import io.fusion.water.order.domainLayer.models.PaymentType;
-import io.fusion.water.order.domainLayer.models.ShippingAddress;
+import io.fusion.water.order.domain.models.Customer;
+import io.fusion.water.order.domain.models.OrderItem;
+import io.fusion.water.order.domain.models.PaymentType;
+import io.fusion.water.order.domain.models.ShippingAddress;
 
 /**
  * Order Event
@@ -40,42 +41,42 @@ public class OrderEvent {
 	 * Create Order
 	 */
 	public OrderEvent() {
-		orderItems = new ArrayList<OrderItem>();
+		orderItems = new ArrayList<>();
 	}
 	
 	/**
 	 * Adds the Customer
-	 * @param _customer
+	 * @param customer
 	 */
-	protected void addCustomer(Customer _customer) {
-		customer = _customer;
-		customer.validate();
+	protected void addCustomer(Customer customer) {
+		this.customer = customer;
+		this.customer.validate();
 	}
 	
 	/**
 	 * Add Order Item
-	 * @param _item
+	 * @param item
 	 */
-	protected void addOrderItem(OrderItem _item) {
-		if(_item != null) {
-			orderItems.add(_item);
+	protected void addOrderItem(OrderItem item) {
+		if(item != null) {
+			orderItems.add(item);
 		}
 	}
 	
 	/**
 	 * Add Shipping Address
-	 * @param _address
+	 * @param address
 	 */
-	protected void addShippingAddress(ShippingAddress _address) {
-		shippingAddress = _address;
+	protected void addShippingAddress(ShippingAddress address) {
+		shippingAddress = address;
 	}
 	
 	/**
 	 * Add Payment Type
-	 * @param _pType
+	 * @param pType
 	 */
-	protected void addPaymentType(PaymentType _pType) {
-		paymentType = _pType;
+	protected void addPaymentType(PaymentType pType) {
+		paymentType = pType;
 	}
 
 	/**
@@ -83,7 +84,7 @@ public class OrderEvent {
 	 * @return
 	 */
 	public boolean isCustomerAvailable()  {
-		return (customer != null) ? true : false;
+		return (customer != null);
 	}
 	
 	/**
@@ -96,7 +97,7 @@ public class OrderEvent {
 	/**
 	 * @return the orderItems
 	 */
-	public ArrayList<OrderItem> getOrderItems() {
+	public List<OrderItem> getOrderItems() {
 		return orderItems;
 	}
 
@@ -105,7 +106,7 @@ public class OrderEvent {
 	 * @return
 	 */
 	public boolean isShippingAddressAvailable()  {
-		return (shippingAddress != null) ? true : false;
+		return (shippingAddress != null);
 	}
 	
 	/**
@@ -131,41 +132,41 @@ public class OrderEvent {
 		
 		/**
 		 * Add Custmer
-		 * @param _customer
+		 * @param customer
 		 * @return
 		 */
-		public Builder addCustomer(Customer _customer) {
-			order.addCustomer(_customer);
+		public Builder addCustomer(Customer customer) {
+			order.addCustomer(customer);
 			return this;
 		}
 		
 		/**
 		 * Add Order Item
-		 * @param _item
+		 * @param item
 		 * @return
 		 */
-		public Builder addOrderItem(OrderItem _item) {
-			order.addOrderItem(_item);
+		public Builder addOrderItem(OrderItem item) {
+			order.addOrderItem(item);
 			return this;
 		}
 		
 		/**
 		 * Add Shipping Address
-		 * @param _address
+		 * @param address
 		 * @return
 		 */
-		public Builder addShippingAddress(ShippingAddress _address) {
-			order.addShippingAddress(_address);
+		public Builder addShippingAddress(ShippingAddress address) {
+			order.addShippingAddress(address);
 			return this;
 		}
 		
 		/**
 		 * Add Payment Type
-		 * @param _pType
+		 * @param pType
 		 * @return
 		 */
-		public Builder addPaymentType(PaymentType _pType) {
-			order.addPaymentType(_pType);
+		public Builder addPaymentType(PaymentType pType) {
+			order.addPaymentType(pType);
 			return this;
 		}
 		
@@ -176,18 +177,5 @@ public class OrderEvent {
 		public OrderEvent build() {
 			return order;
 		}
-	}
-	
-	/**
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		OrderEvent o = new OrderEvent.Builder()
-					.addCustomer(null)
-					.addOrderItem(null)
-					.addShippingAddress(null)
-					.addPaymentType(null)
-					.build();
 	}
 }

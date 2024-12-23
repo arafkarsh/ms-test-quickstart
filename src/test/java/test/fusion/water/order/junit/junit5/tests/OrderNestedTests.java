@@ -25,8 +25,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.fusion.water.order.domainLayer.models.Customer;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domain.models.Customer;
+import io.fusion.water.order.domain.models.OrderEntity;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.Junit5;
 

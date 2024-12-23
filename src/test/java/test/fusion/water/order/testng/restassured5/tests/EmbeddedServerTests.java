@@ -21,8 +21,8 @@ package test.fusion.water.order.testng.restassured5.tests;
  * @date:
  */
 import io.fusion.water.order.OrderApplication;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.models.OrderStatus;
+import io.fusion.water.order.domain.models.OrderEntity;
+import io.fusion.water.order.domain.models.OrderStatus;
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;

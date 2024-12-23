@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 /**
  * Shipping Address
@@ -39,24 +39,24 @@ public class ShippingAddress {
 	
 	/**
 	 * Create Shipping address
-	 * @param _sn
-	 * @param _aline2
-	 * @param _city
-	 * @param _state
-	 * @param _lm
-	 * @param _country
-	 * @param _zCode
+	 * @param sn
+	 * @param aline2
+	 * @param city
+	 * @param state
+	 * @param lm
+	 * @param country
+	 * @param zCode
 	 */
-	public ShippingAddress(String _sn, String _aline2, String _city,
-			String _state, String _lm, String _country, String _zCode) {
+	public ShippingAddress(String sn, String aline2, String city,
+			String state, String lm, String country, String zCode) {
 		
-		streetName 		= _sn;
-		addressLine2	= _aline2;
-		city			= _city;
-		state			= _state;
-		landMark		= _lm;
-		country			= _country;
-		zipCode			= _zCode;
+		streetName 		= sn;
+		addressLine2	= aline2;
+		this.city = city;
+		this.state = state;
+		landMark		= lm;
+		this.country = country;
+		zipCode			= zCode;
 	}
 	
 	/**

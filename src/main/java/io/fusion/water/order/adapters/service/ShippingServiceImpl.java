@@ -23,10 +23,10 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import io.fusion.water.order.domainLayer.models.DeliveryCity;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.services.DeliveryCityService;
-import io.fusion.water.order.domainLayer.services.ShippingService;
+import io.fusion.water.order.domain.models.DeliveryCity;
+import io.fusion.water.order.domain.models.OrderEntity;
+import io.fusion.water.order.domain.services.DeliveryCityService;
+import io.fusion.water.order.domain.services.ShippingService;
 
 /**
  * @author arafkarsh

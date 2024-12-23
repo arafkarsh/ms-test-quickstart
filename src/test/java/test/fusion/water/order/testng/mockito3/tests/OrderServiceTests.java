@@ -1,9 +1,9 @@
 package test.fusion.water.order.testng.mockito3.tests;
 
 import io.fusion.water.order.adapters.service.OrderServiceImpl;
-import io.fusion.water.order.domainLayer.models.*;
-import io.fusion.water.order.domainLayer.services.OrderRepository;
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domain.models.*;
+import io.fusion.water.order.domain.services.OrderRepository;
+import io.fusion.water.order.domain.services.PaymentService;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;

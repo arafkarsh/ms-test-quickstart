@@ -1,6 +1,6 @@
 package io.fusion.water.order.adapters.service;
 
-import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domain.models.OrderEntity;
 
 import java.util.ArrayList;
 

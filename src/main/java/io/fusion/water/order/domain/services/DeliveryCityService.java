@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.services;
+package io.fusion.water.order.domain.services;
 
 import java.util.Collection;
 
-import io.fusion.water.order.domainLayer.models.DeliveryCity;
+import io.fusion.water.order.domain.models.DeliveryCity;
 
 /**
  * 

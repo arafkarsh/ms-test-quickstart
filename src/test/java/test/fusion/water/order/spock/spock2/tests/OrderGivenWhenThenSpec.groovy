@@ -17,8 +17,8 @@ package test.fusion.water.order.spock.spock2.tests
 
 import spock.lang.Specification
 
-import io.fusion.water.order.domainLayer.models.OrderEntity
-import io.fusion.water.order.domainLayer.models.Customer
+import io.fusion.water.order.domain.models.OrderEntity
+import io.fusion.water.order.domain.models.Customer
 import spock.lang.Stepwise
 
 /**

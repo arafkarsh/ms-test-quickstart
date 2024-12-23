@@ -17,7 +17,7 @@ package test.fusion.water.order.junit.restassured5.tests;
 
 // JUnit 5
 
-import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domain.models.OrderEntity;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;

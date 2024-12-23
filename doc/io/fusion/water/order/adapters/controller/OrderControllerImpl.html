@@ -81,7 +81,7 @@ loadScripts(document, 'script');</script>
 <section class="description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domainLayer.services">OrderController</a></code></dd>
+<dd><code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domain.services">OrderController</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="annotations">@RestController
@@ -89,7 +89,7 @@ loadScripts(document, 'script');</script>
 @RequestScope
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">OrderControllerImpl</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domainLayer.services">OrderController</a></span></div>
+implements <a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domain.services">OrderController</a></span></div>
 <div class="block">Order Web Service</div>
 <dl class="notes">
 <dt>Author:</dt>
@@ -107,7 +107,7 @@ implements <a href="../../domainLayer/services/OrderController.html" title="inte
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>(package private) <a href="../../domainLayer/services/OrderService.html" title="interface in io.fusion.water.order.domainLayer.services">OrderService</a></code></div>
+<div class="col-first even-row-color"><code>(package private) <a href="../../domainLayer/services/OrderService.html" title="interface in io.fusion.water.order.domain.services">OrderService</a></code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#orderBusinessService">orderBusinessService</a></span></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
@@ -137,28 +137,28 @@ implements <a href="../../domainLayer/services/OrderController.html" title="inte
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#cancelOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">cancelOrder</a></span>&#8203;(<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&nbsp;_order)</code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#cancelOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">cancelOrder</a></span>&#8203;(<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&nbsp;_order)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Cancel Order - REST Guidelines says No Verbs to be used in the URI
  By Order
  "/api/order/cancel" is part of the PUT URI for ease of use.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#cancelOrder(java.lang.String)">cancelOrder</a></span>&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;_id)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Cancel Order - REST Guidelines says No Verbs to be used in the URI
  By Order ID
  "/api/order/cancel/{orderId}/" is part of the PUT URI for ease of use.</div>
 </div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getOrderById(java.lang.String)">getOrderById</a></span>&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;_id)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Get Order - Follows REST Guidelines for URI
  By Order ID</div>
 </div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#saveOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">saveOrder</a></span>&#8203;(<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&nbsp;_order)</code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#saveOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">saveOrder</a></span>&#8203;(<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&nbsp;_order)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Create Order - REST Guidelines says No Verbs to be used in the URI
  "/api/order/create" is part of the POST URI for ease of use.</div>
@@ -184,7 +184,7 @@ implements <a href="../../domainLayer/services/OrderController.html" title="inte
 <section class="detail" id="orderBusinessService">
 <h3>orderBusinessService</h3>
 <div class="member-signature"><span class="annotations">@Autowired
-</span><span class="return-type"><a href="../../domainLayer/services/OrderService.html" title="interface in io.fusion.water.order.domainLayer.services">OrderService</a></span>&nbsp;<span class="element-name">orderBusinessService</span></div>
+</span><span class="return-type"><a href="../../domainLayer/services/OrderService.html" title="interface in io.fusion.water.order.domain.services">OrderService</a></span>&nbsp;<span class="element-name">orderBusinessService</span></div>
 </section>
 </li>
 </ul>
@@ -213,13 +213,13 @@ implements <a href="../../domainLayer/services/OrderController.html" title="inte
 <section class="detail" id="getOrderById(java.lang.String)">
 <h3>getOrderById</h3>
 <div class="member-signature"><span class="annotations">@GetMapping("/{orderId}/")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&gt;</span>&nbsp;<span class="element-name">getOrderById</span>&#8203;<span class="parameters">(@PathVariable("orderId")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&gt;</span>&nbsp;<span class="element-name">getOrderById</span>&#8203;<span class="parameters">(@PathVariable("orderId")
  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;_id)</span></div>
 <div class="block">Get Order - Follows REST Guidelines for URI
  By Order ID</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../../domainLayer/services/OrderController.html#getOrderById(java.lang.String)">getOrderById</a></code>&nbsp;in interface&nbsp;<code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domainLayer.services">OrderController</a></code></dd>
+<dd><code><a href="../../domainLayer/services/OrderController.html#getOrderById(java.lang.String)">getOrderById</a></code>&nbsp;in interface&nbsp;<code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domain.services">OrderController</a></code></dd>
 <dt>Returns:</dt>
 </dl>
 </section>
@@ -228,13 +228,13 @@ implements <a href="../../domainLayer/services/OrderController.html" title="inte
 <section class="detail" id="saveOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">
 <h3>saveOrder</h3>
 <div class="member-signature"><span class="annotations">@PostMapping("/create")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&gt;</span>&nbsp;<span class="element-name">saveOrder</span>&#8203;<span class="parameters">(@RequestBody
- <a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&nbsp;_order)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&gt;</span>&nbsp;<span class="element-name">saveOrder</span>&#8203;<span class="parameters">(@RequestBody
+ <a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&nbsp;_order)</span></div>
 <div class="block">Create Order - REST Guidelines says No Verbs to be used in the URI
  "/api/order/create" is part of the POST URI for ease of use.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../../domainLayer/services/OrderController.html#saveOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">saveOrder</a></code>&nbsp;in interface&nbsp;<code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domainLayer.services">OrderController</a></code></dd>
+<dd><code><a href="../../domainLayer/services/OrderController.html#saveOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">saveOrder</a></code>&nbsp;in interface&nbsp;<code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domain.services">OrderController</a></code></dd>
 <dt>Returns:</dt>
 </dl>
 </section>
@@ -243,14 +243,14 @@ implements <a href="../../domainLayer/services/OrderController.html" title="inte
 <section class="detail" id="cancelOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">
 <h3>cancelOrder</h3>
 <div class="member-signature"><span class="annotations">@PutMapping("/cancel")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&gt;</span>&nbsp;<span class="element-name">cancelOrder</span>&#8203;<span class="parameters">(@RequestBody
- <a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&nbsp;_order)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&gt;</span>&nbsp;<span class="element-name">cancelOrder</span>&#8203;<span class="parameters">(@RequestBody
+ <a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&nbsp;_order)</span></div>
 <div class="block">Cancel Order - REST Guidelines says No Verbs to be used in the URI
  By Order
  "/api/order/cancel" is part of the PUT URI for ease of use.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../../domainLayer/services/OrderController.html#cancelOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">cancelOrder</a></code>&nbsp;in interface&nbsp;<code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domainLayer.services">OrderController</a></code></dd>
+<dd><code><a href="../../domainLayer/services/OrderController.html#cancelOrder(io.fusion.water.order.domainLayer.models.OrderEntity)">cancelOrder</a></code>&nbsp;in interface&nbsp;<code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domain.services">OrderController</a></code></dd>
 <dt>Returns:</dt>
 </dl>
 </section>
@@ -259,14 +259,14 @@ implements <a href="../../domainLayer/services/OrderController.html" title="inte
 <section class="detail" id="cancelOrder(java.lang.String)">
 <h3>cancelOrder</h3>
 <div class="member-signature"><span class="annotations">@PutMapping("/cancel/{orderId}/")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity</a>&gt;</span>&nbsp;<span class="element-name">cancelOrder</span>&#8203;<span class="parameters">(@PathVariable("orderId")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../domainLayer/models/OrderEntity.html" title="class in io.fusion.water.order.domain.models">OrderEntity</a>&gt;</span>&nbsp;<span class="element-name">cancelOrder</span>&#8203;<span class="parameters">(@PathVariable("orderId")
  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;_id)</span></div>
 <div class="block">Cancel Order - REST Guidelines says No Verbs to be used in the URI
  By Order ID
  "/api/order/cancel/{orderId}/" is part of the PUT URI for ease of use.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../../domainLayer/services/OrderController.html#cancelOrder(java.lang.String)">cancelOrder</a></code>&nbsp;in interface&nbsp;<code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domainLayer.services">OrderController</a></code></dd>
+<dd><code><a href="../../domainLayer/services/OrderController.html#cancelOrder(java.lang.String)">cancelOrder</a></code>&nbsp;in interface&nbsp;<code><a href="../../domainLayer/services/OrderController.html" title="interface in io.fusion.water.order.domain.services">OrderController</a></code></dd>
 <dt>Returns:</dt>
 </dl>
 </section>

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 /**
  * Order Item
@@ -35,20 +35,20 @@ public class OrderItem {
 	/**
 	 * Create an Order Item
 	 * 
-	 * @param _itemId
-	 * @param _iName
-	 * @param _value
-	 * @param _currency
-	 * @param _qty
+	 * @param itemId
+	 * @param iName
+	 * @param value
+	 * @param currency
+	 * @param qty
 	 */
-	public OrderItem(String _itemId, String _iName,
-			int _value, String _currency, int _qty) {
+	public OrderItem(String itemId, String iName,
+			int value, String currency, int qty) {
 		
-		itemId			= _itemId;
-		itemName		= _iName;
-		itemValue		= _value;
-		itemCurrency	= _currency;
-		quantity		= _qty;
+		this.itemId = itemId;
+		itemName		= iName;
+		itemValue		= value;
+		itemCurrency	= currency;
+		quantity		= qty;
 		
 	}
 	/**
@@ -94,5 +94,15 @@ public class OrderItem {
 	 */
 	public String toString() {
 		return itemName;
+	}
+
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		}
+		if(o instanceof OrderItem oi) {
+			return oi.getItemId().equals(itemId);
+		}
+		return false;
 	}
 }

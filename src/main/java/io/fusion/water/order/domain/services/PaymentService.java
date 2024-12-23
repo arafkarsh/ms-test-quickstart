@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.services;
+package io.fusion.water.order.domain.services;
 
-import io.fusion.water.order.domainLayer.models.EchoData;
-import io.fusion.water.order.domainLayer.models.EchoResponseData;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
+import io.fusion.water.order.domain.models.EchoData;
+import io.fusion.water.order.domain.models.EchoResponseData;
+import io.fusion.water.order.domain.models.PaymentDetails;
+import io.fusion.water.order.domain.models.PaymentStatus;
 
 /**
  * Order Payment Service

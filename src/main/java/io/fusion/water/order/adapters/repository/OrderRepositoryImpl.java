@@ -18,8 +18,8 @@ package io.fusion.water.order.adapters.repository;
 
 import org.springframework.stereotype.Service;
 
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.services.OrderRepository;
+import io.fusion.water.order.domain.models.OrderEntity;
+import io.fusion.water.order.domain.services.OrderRepository;
 
 /**
  * Order Repository Service

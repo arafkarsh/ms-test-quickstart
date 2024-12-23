@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2021-07-31">
-<meta name="description" content="declaration: package: io.fusion.water.order.domainLayer.models, class: OrderEntity">
+<meta name="description" content="declaration: package: io.fusion.water.order.domain.models, class: OrderEntity">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -72,11 +72,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">io.fusion.water.order.domainLayer.models</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">io.fusion.water.order.domain.models</a></div>
 <h1 title="Class OrderEntity" class="title">Class OrderEntity</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">io.fusion.water.order.domainLayer.models.OrderEntity</div>
+<div class="inheritance">io.fusion.water.order.domain.models.OrderEntity</div>
 </div>
 <section class="description">
 <hr>
@@ -100,7 +100,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Class</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static class&nbsp;</code></div>
-<div class="col-second even-row-color"><code><span class="member-name-link"><a href="OrderEntity.Builder.html" title="class in io.fusion.water.order.domainLayer.models">OrderEntity.Builder</a></span></code></div>
+<div class="col-second even-row-color"><code><span class="member-name-link"><a href="OrderEntity.Builder.html" title="class in io.fusion.water.order.domain.models">OrderEntity.Builder</a></span></code></div>
 <div class="col-last even-row-color">
 <div class="block">Build Order</div>
 </div>
@@ -116,7 +116,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>private <a href="Customer.html" title="class in io.fusion.water.order.domainLayer.models">Customer</a></code></div>
+<div class="col-first even-row-color"><code>private <a href="Customer.html" title="class in io.fusion.water.order.domain.models">Customer</a></code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#customer">customer</a></span></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html" title="class or interface in java.time" class="external-link">LocalDateTime</a></code></div>
@@ -125,22 +125,22 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>private <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#orderId">orderId</a></span></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="OrderItem.html" title="class in io.fusion.water.order.domainLayer.models">OrderItem</a>&gt;</code></div>
+<div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="OrderItem.html" title="class in io.fusion.water.order.domain.models">OrderItem</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#orderItems">orderItems</a></span></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private <a href="OrderStatus.html" title="enum in io.fusion.water.order.domainLayer.models">OrderStatus</a></code></div>
+<div class="col-first even-row-color"><code>private <a href="OrderStatus.html" title="enum in io.fusion.water.order.domain.models">OrderStatus</a></code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#orderStatus">orderStatus</a></span></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private <a href="PaymentDetails.html" title="class in io.fusion.water.order.domainLayer.models">PaymentDetails</a></code></div>
+<div class="col-first odd-row-color"><code>private <a href="PaymentDetails.html" title="class in io.fusion.water.order.domain.models">PaymentDetails</a></code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#paymentDetails">paymentDetails</a></span></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private <a href="PaymentStatus.html" title="class in io.fusion.water.order.domainLayer.models">PaymentStatus</a></code></div>
+<div class="col-first even-row-color"><code>private <a href="PaymentStatus.html" title="class in io.fusion.water.order.domain.models">PaymentStatus</a></code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#paymentStatus">paymentStatus</a></span></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>private <a href="PaymentType.html" title="enum in io.fusion.water.order.domainLayer.models">PaymentType</a></code></div>
+<div class="col-first odd-row-color"><code>private <a href="PaymentType.html" title="enum in io.fusion.water.order.domain.models">PaymentType</a></code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#paymentType">paymentType</a></span></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>private <a href="ShippingAddress.html" title="class in io.fusion.water.order.domainLayer.models">ShippingAddress</a></code></div>
+<div class="col-first even-row-color"><code>private <a href="ShippingAddress.html" title="class in io.fusion.water.order.domain.models">ShippingAddress</a></code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#shippingAddress">shippingAddress</a></span></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
@@ -173,26 +173,26 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addCustomer(io.fusion.water.order.domainLayer.models.Customer)">addCustomer</a></span>&#8203;(<a href="Customer.html" title="class in io.fusion.water.order.domainLayer.models">Customer</a>&nbsp;_customer)</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addCustomer(io.fusion.water.order.domainLayer.models.Customer)">addCustomer</a></span>&#8203;(<a href="Customer.html" title="class in io.fusion.water.order.domain.models">Customer</a>&nbsp;_customer)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Adds the Customer</div>
 </div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addOrderItem(io.fusion.water.order.domainLayer.models.OrderItem)">addOrderItem</a></span>&#8203;(<a href="OrderItem.html" title="class in io.fusion.water.order.domainLayer.models">OrderItem</a>&nbsp;_item)</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addOrderItem(io.fusion.water.order.domainLayer.models.OrderItem)">addOrderItem</a></span>&#8203;(<a href="OrderItem.html" title="class in io.fusion.water.order.domain.models">OrderItem</a>&nbsp;_item)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Add Order Item</div>
 </div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addPaymentType(io.fusion.water.order.domainLayer.models.PaymentType)">addPaymentType</a></span>&#8203;(<a href="PaymentType.html" title="enum in io.fusion.water.order.domainLayer.models">PaymentType</a>&nbsp;_pType)</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addPaymentType(io.fusion.water.order.domainLayer.models.PaymentType)">addPaymentType</a></span>&#8203;(<a href="PaymentType.html" title="enum in io.fusion.water.order.domain.models">PaymentType</a>&nbsp;_pType)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Add Payment Type</div>
 </div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addShippingAddress(io.fusion.water.order.domainLayer.models.ShippingAddress)">addShippingAddress</a></span>&#8203;(<a href="ShippingAddress.html" title="class in io.fusion.water.order.domainLayer.models">ShippingAddress</a>&nbsp;_address)</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addShippingAddress(io.fusion.water.order.domainLayer.models.ShippingAddress)">addShippingAddress</a></span>&#8203;(<a href="ShippingAddress.html" title="class in io.fusion.water.order.domain.models">ShippingAddress</a>&nbsp;_address)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Add Shipping Address</div>
 </div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="Customer.html" title="class in io.fusion.water.order.domainLayer.models">Customer</a></code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="Customer.html" title="class in io.fusion.water.order.domain.models">Customer</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getCustomer()">getCustomer</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html" title="class or interface in java.time" class="external-link">LocalDateTime</a></code></div>
@@ -201,22 +201,22 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getOrderId()">getOrderId</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="OrderItem.html" title="class in io.fusion.water.order.domainLayer.models">OrderItem</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="OrderItem.html" title="class in io.fusion.water.order.domain.models">OrderItem</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getOrderItems()">getOrderItems</a></span>()</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="OrderStatus.html" title="enum in io.fusion.water.order.domainLayer.models">OrderStatus</a></code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="OrderStatus.html" title="enum in io.fusion.water.order.domain.models">OrderStatus</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getOrderStatus()">getOrderStatus</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="PaymentDetails.html" title="class in io.fusion.water.order.domainLayer.models">PaymentDetails</a></code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="PaymentDetails.html" title="class in io.fusion.water.order.domain.models">PaymentDetails</a></code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getPaymentDetails()">getPaymentDetails</a></span>()</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="PaymentStatus.html" title="class in io.fusion.water.order.domainLayer.models">PaymentStatus</a></code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="PaymentStatus.html" title="class in io.fusion.water.order.domain.models">PaymentStatus</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getPaymentStatus()">getPaymentStatus</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="PaymentType.html" title="enum in io.fusion.water.order.domainLayer.models">PaymentType</a></code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="PaymentType.html" title="enum in io.fusion.water.order.domain.models">PaymentType</a></code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getPaymentType()">getPaymentType</a></span>()</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="ShippingAddress.html" title="class in io.fusion.water.order.domainLayer.models">ShippingAddress</a></code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="ShippingAddress.html" title="class in io.fusion.water.order.domain.models">ShippingAddress</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getShippingAddress()">getShippingAddress</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>int</code></div>
@@ -270,7 +270,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Order Status = PAYMENT EXPECTED</div>
 </div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#setPaymentStatus(io.fusion.water.order.domainLayer.models.PaymentStatus)">setPaymentStatus</a></span>&#8203;(<a href="PaymentStatus.html" title="class in io.fusion.water.order.domainLayer.models">PaymentStatus</a>&nbsp;_paymentStatus)</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#setPaymentStatus(io.fusion.water.order.domainLayer.models.PaymentStatus)">setPaymentStatus</a></span>&#8203;(<a href="PaymentStatus.html" title="class in io.fusion.water.order.domain.models">PaymentStatus</a>&nbsp;_paymentStatus)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#toString()">toString</a></span>()</code></div>
@@ -309,43 +309,43 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="customer">
 <h3>customer</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Customer.html" title="class in io.fusion.water.order.domainLayer.models">Customer</a></span>&nbsp;<span class="element-name">customer</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Customer.html" title="class in io.fusion.water.order.domain.models">Customer</a></span>&nbsp;<span class="element-name">customer</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="orderItems">
 <h3>orderItems</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="OrderItem.html" title="class in io.fusion.water.order.domainLayer.models">OrderItem</a>&gt;</span>&nbsp;<span class="element-name">orderItems</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="OrderItem.html" title="class in io.fusion.water.order.domain.models">OrderItem</a>&gt;</span>&nbsp;<span class="element-name">orderItems</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="shippingAddress">
 <h3>shippingAddress</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="ShippingAddress.html" title="class in io.fusion.water.order.domainLayer.models">ShippingAddress</a></span>&nbsp;<span class="element-name">shippingAddress</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="ShippingAddress.html" title="class in io.fusion.water.order.domain.models">ShippingAddress</a></span>&nbsp;<span class="element-name">shippingAddress</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="paymentType">
 <h3>paymentType</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="PaymentType.html" title="enum in io.fusion.water.order.domainLayer.models">PaymentType</a></span>&nbsp;<span class="element-name">paymentType</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="PaymentType.html" title="enum in io.fusion.water.order.domain.models">PaymentType</a></span>&nbsp;<span class="element-name">paymentType</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="orderStatus">
 <h3>orderStatus</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum in io.fusion.water.order.domainLayer.models">OrderStatus</a></span>&nbsp;<span class="element-name">orderStatus</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum in io.fusion.water.order.domain.models">OrderStatus</a></span>&nbsp;<span class="element-name">orderStatus</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="paymentDetails">
 <h3>paymentDetails</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="PaymentDetails.html" title="class in io.fusion.water.order.domainLayer.models">PaymentDetails</a></span>&nbsp;<span class="element-name">paymentDetails</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="PaymentDetails.html" title="class in io.fusion.water.order.domain.models">PaymentDetails</a></span>&nbsp;<span class="element-name">paymentDetails</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="paymentStatus">
 <h3>paymentStatus</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="PaymentStatus.html" title="class in io.fusion.water.order.domainLayer.models">PaymentStatus</a></span>&nbsp;<span class="element-name">paymentStatus</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="PaymentStatus.html" title="class in io.fusion.water.order.domain.models">PaymentStatus</a></span>&nbsp;<span class="element-name">paymentStatus</span></div>
 </section>
 </li>
 </ul>
@@ -374,7 +374,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="addCustomer(io.fusion.water.order.domainLayer.models.Customer)">
 <h3>addCustomer</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addCustomer</span>&#8203;<span class="parameters">(<a href="Customer.html" title="class in io.fusion.water.order.domainLayer.models">Customer</a>&nbsp;_customer)</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addCustomer</span>&#8203;<span class="parameters">(<a href="Customer.html" title="class in io.fusion.water.order.domain.models">Customer</a>&nbsp;_customer)</span></div>
 <div class="block">Adds the Customer</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -385,7 +385,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="addOrderItem(io.fusion.water.order.domainLayer.models.OrderItem)">
 <h3>addOrderItem</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addOrderItem</span>&#8203;<span class="parameters">(<a href="OrderItem.html" title="class in io.fusion.water.order.domainLayer.models">OrderItem</a>&nbsp;_item)</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addOrderItem</span>&#8203;<span class="parameters">(<a href="OrderItem.html" title="class in io.fusion.water.order.domain.models">OrderItem</a>&nbsp;_item)</span></div>
 <div class="block">Add Order Item</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -396,7 +396,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="addShippingAddress(io.fusion.water.order.domainLayer.models.ShippingAddress)">
 <h3>addShippingAddress</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addShippingAddress</span>&#8203;<span class="parameters">(<a href="ShippingAddress.html" title="class in io.fusion.water.order.domainLayer.models">ShippingAddress</a>&nbsp;_address)</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addShippingAddress</span>&#8203;<span class="parameters">(<a href="ShippingAddress.html" title="class in io.fusion.water.order.domain.models">ShippingAddress</a>&nbsp;_address)</span></div>
 <div class="block">Add Shipping Address</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -407,7 +407,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="addPaymentType(io.fusion.water.order.domainLayer.models.PaymentType)">
 <h3>addPaymentType</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addPaymentType</span>&#8203;<span class="parameters">(<a href="PaymentType.html" title="enum in io.fusion.water.order.domainLayer.models">PaymentType</a>&nbsp;_pType)</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addPaymentType</span>&#8203;<span class="parameters">(<a href="PaymentType.html" title="enum in io.fusion.water.order.domain.models">PaymentType</a>&nbsp;_pType)</span></div>
 <div class="block">Add Payment Type</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -428,7 +428,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getCustomer()">
 <h3>getCustomer</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Customer.html" title="class in io.fusion.water.order.domainLayer.models">Customer</a></span>&nbsp;<span class="element-name">getCustomer</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Customer.html" title="class in io.fusion.water.order.domain.models">Customer</a></span>&nbsp;<span class="element-name">getCustomer</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the customer</dd>
@@ -438,7 +438,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getOrderItems()">
 <h3>getOrderItems</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="OrderItem.html" title="class in io.fusion.water.order.domainLayer.models">OrderItem</a>&gt;</span>&nbsp;<span class="element-name">getOrderItems</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="OrderItem.html" title="class in io.fusion.water.order.domain.models">OrderItem</a>&gt;</span>&nbsp;<span class="element-name">getOrderItems</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the orderItems</dd>
@@ -478,7 +478,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getShippingAddress()">
 <h3>getShippingAddress</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ShippingAddress.html" title="class in io.fusion.water.order.domainLayer.models">ShippingAddress</a></span>&nbsp;<span class="element-name">getShippingAddress</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ShippingAddress.html" title="class in io.fusion.water.order.domain.models">ShippingAddress</a></span>&nbsp;<span class="element-name">getShippingAddress</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the shippingAddress</dd>
@@ -488,7 +488,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getPaymentType()">
 <h3>getPaymentType</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PaymentType.html" title="enum in io.fusion.water.order.domainLayer.models">PaymentType</a></span>&nbsp;<span class="element-name">getPaymentType</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PaymentType.html" title="enum in io.fusion.water.order.domain.models">PaymentType</a></span>&nbsp;<span class="element-name">getPaymentType</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the paymentType</dd>
@@ -518,7 +518,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getOrderStatus()">
 <h3>getOrderStatus</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum in io.fusion.water.order.domainLayer.models">OrderStatus</a></span>&nbsp;<span class="element-name">getOrderStatus</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum in io.fusion.water.order.domain.models">OrderStatus</a></span>&nbsp;<span class="element-name">getOrderStatus</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the orderStatus</dd>
@@ -570,7 +570,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="setPaymentStatus(io.fusion.water.order.domainLayer.models.PaymentStatus)">
 <h3>setPaymentStatus</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPaymentStatus</span>&#8203;<span class="parameters">(<a href="PaymentStatus.html" title="class in io.fusion.water.order.domainLayer.models">PaymentStatus</a>&nbsp;_paymentStatus)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPaymentStatus</span>&#8203;<span class="parameters">(<a href="PaymentStatus.html" title="class in io.fusion.water.order.domain.models">PaymentStatus</a>&nbsp;_paymentStatus)</span></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>paymentStatus</code> - the paymentStatus to set</dd>
@@ -580,7 +580,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getPaymentDetails()">
 <h3>getPaymentDetails</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PaymentDetails.html" title="class in io.fusion.water.order.domainLayer.models">PaymentDetails</a></span>&nbsp;<span class="element-name">getPaymentDetails</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PaymentDetails.html" title="class in io.fusion.water.order.domain.models">PaymentDetails</a></span>&nbsp;<span class="element-name">getPaymentDetails</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the paymentDetails</dd>
@@ -590,7 +590,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getPaymentStatus()">
 <h3>getPaymentStatus</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PaymentStatus.html" title="class in io.fusion.water.order.domainLayer.models">PaymentStatus</a></span>&nbsp;<span class="element-name">getPaymentStatus</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PaymentStatus.html" title="class in io.fusion.water.order.domain.models">PaymentStatus</a></span>&nbsp;<span class="element-name">getPaymentStatus</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the paymentStatus</dd>

@@ -22,12 +22,12 @@ import io.fusion.water.order.adapters.external.ExternalGateWay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.fusion.water.order.domainLayer.models.EchoData;
-import io.fusion.water.order.domainLayer.models.EchoResponseData;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
-import io.fusion.water.order.domainLayer.models.PaymentType;
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domain.models.EchoData;
+import io.fusion.water.order.domain.models.EchoResponseData;
+import io.fusion.water.order.domain.models.PaymentDetails;
+import io.fusion.water.order.domain.models.PaymentStatus;
+import io.fusion.water.order.domain.models.PaymentType;
+import io.fusion.water.order.domain.services.PaymentService;
 
 /**
  * Order Payment Service
@@ -52,7 +52,7 @@ public class PaymentServiceImpl implements PaymentService {
 	public PaymentServiceImpl(ExternalGateWay externalGateWay) {
 		this.externalGateWay = externalGateWay;
 	}
-	
+
 	/**
 	 * Echo Returns the word with a Greeting
 	 * @return

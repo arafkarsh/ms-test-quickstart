@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 import java.time.LocalDateTime;
 
@@ -49,33 +49,32 @@ public class PaymentDetails {
 	/**
 	 * Payment Details
 	 * 
-	 * @param _txId
-	 * @param _txDate
-	 * @param _orderValue
-	 * @param _payType
+	 * @param txId
+	 * @param txDate
+	 * @param orderValue
+	 * @param payType
 	 */
-	public PaymentDetails(String _txId, LocalDateTime _txDate,
-			double _orderValue, PaymentType _payType) {
-		this( _txId,  _txDate, _orderValue,  _payType,  null); 
+	public PaymentDetails(String txId, LocalDateTime txDate,
+			double orderValue, PaymentType payType) {
+		this( txId,  txDate, orderValue,  payType,  null);
 	}
 	
 	/**
 	 * Payment Details with Card Details
 	 * 
-	 * @param _txId
-	 * @param _txDate
-	 * @param _orderValue
-	 * @param _payType
-	 * @param _card
+	 * @param txId
+	 * @param localDateTime
+	 * @param orderValue
+	 * @param payType
+	 * @param cardDetails
 	 */
-	public PaymentDetails(String _txId, LocalDateTime _txDate,
-			double _orderValue, PaymentType _payType, CardDetails _card) {
-		
-		transactionId		= _txId;
-		transactionDate		= _txDate;
-		orderValue			= _orderValue;
-		paymentType			= _payType;
-		cardDetails			= _card;
+	public PaymentDetails(String txId, LocalDateTime localDateTime,
+			double orderValue, PaymentType payType, CardDetails cardDetails) {
+		transactionId		= txId;
+		transactionDate		= localDateTime;
+		this.orderValue 		= orderValue;
+		paymentType		= payType;
+		this.cardDetails 	= cardDetails;
 	}
 	
 	/**

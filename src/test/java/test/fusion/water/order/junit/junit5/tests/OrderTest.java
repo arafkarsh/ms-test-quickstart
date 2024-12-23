@@ -52,8 +52,8 @@ import static java.time.Duration.ofMillis;
 import static java.time.Duration.ofMinutes;
 
 
-import io.fusion.water.order.domainLayer.models.Customer;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domain.models.Customer;
+import io.fusion.water.order.domain.models.OrderEntity;
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tools.Junit5;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;

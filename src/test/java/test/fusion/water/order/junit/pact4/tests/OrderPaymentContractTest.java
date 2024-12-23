@@ -42,10 +42,10 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import io.fusion.water.order.domainLayer.models.EchoResponseData;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domain.models.EchoResponseData;
+import io.fusion.water.order.domain.models.PaymentDetails;
+import io.fusion.water.order.domain.models.PaymentStatus;
+import io.fusion.water.order.domain.services.PaymentService;
 import io.fusion.water.order.utils.Utils;
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;

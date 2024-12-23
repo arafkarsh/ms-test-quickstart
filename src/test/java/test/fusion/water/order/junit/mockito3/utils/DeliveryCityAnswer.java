@@ -22,7 +22,7 @@ import java.util.HashMap;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import io.fusion.water.order.domainLayer.models.DeliveryCity;
+import io.fusion.water.order.domain.models.DeliveryCity;
 /**
  * 
  * @author arafkarsh

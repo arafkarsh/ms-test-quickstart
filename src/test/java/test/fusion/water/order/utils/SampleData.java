@@ -18,16 +18,16 @@ package test.fusion.water.order.utils;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import io.fusion.water.order.domainLayer.models.CardDetails;
-import io.fusion.water.order.domainLayer.models.CardType;
-import io.fusion.water.order.domainLayer.models.Customer;
-import io.fusion.water.order.domainLayer.models.EchoResponseData;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.models.OrderItem;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
-import io.fusion.water.order.domainLayer.models.PaymentType;
-import io.fusion.water.order.domainLayer.models.ShippingAddress;
+import io.fusion.water.order.domain.models.CardDetails;
+import io.fusion.water.order.domain.models.CardType;
+import io.fusion.water.order.domain.models.Customer;
+import io.fusion.water.order.domain.models.EchoResponseData;
+import io.fusion.water.order.domain.models.OrderEntity;
+import io.fusion.water.order.domain.models.OrderItem;
+import io.fusion.water.order.domain.models.PaymentDetails;
+import io.fusion.water.order.domain.models.PaymentStatus;
+import io.fusion.water.order.domain.models.PaymentType;
+import io.fusion.water.order.domain.models.ShippingAddress;
 import io.fusion.water.order.utils.Utils;
 
 /**

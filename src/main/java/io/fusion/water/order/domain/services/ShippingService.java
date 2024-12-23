@@ -14,26 +14,44 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.services;
+package io.fusion.water.order.domain.services;
 
 import java.util.ArrayList;
 
-import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domain.models.DeliveryCity;
+import io.fusion.water.order.domain.models.OrderEntity;
 
 /**
  * 
  * @author arafkarsh
  *
  */
-public interface PackingService {
+public interface ShippingService {
 	
 	
 	/**
-	 * Pack Orders and ready for Shipment
+	 * Ship Order and Set Order Status to IN_TRANSIT
 	 * 
-	 * @param _orderList
+	 * @param _order
 	 * @return
 	 */
-	public ArrayList<OrderEntity> packOrders(ArrayList<OrderEntity>  _orderList);
+	public ArrayList<OrderEntity> shipOrder(ArrayList<OrderEntity>  _orderList);
+	
+	/**
+	 * Return a List of Delivery Cities
+	 * 
+	 * @param cities
+	 * @return
+	 */
+	public ArrayList<DeliveryCity> getCities(ArrayList<String> cities, String state, String country);
+	
+	
+	/**
+	 * Return Delivery City
+	 * 
+	 * @param city
+	 * @return
+	 */
+	public DeliveryCity getCity(String city, String State, String country);
 
 }

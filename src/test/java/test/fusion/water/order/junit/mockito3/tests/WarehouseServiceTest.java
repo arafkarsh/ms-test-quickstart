@@ -27,7 +27,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import io.fusion.water.order.domainLayer.models.*;
+import io.fusion.water.order.domain.models.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -51,13 +51,13 @@ import org.slf4j.Logger;
 import io.fusion.water.order.adapters.service.OrderServiceImpl;
 import io.fusion.water.order.adapters.service.PackingServiceImpl;
 import io.fusion.water.order.adapters.service.WarehouseServiceImpl;
-import io.fusion.water.order.domainLayer.services.PaymentService;
-import io.fusion.water.order.domainLayer.services.ShippingService;
+import io.fusion.water.order.domain.services.PaymentService;
+import io.fusion.water.order.domain.services.ShippingService;
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.Mockito3;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
-import io.fusion.water.order.domainLayer.services.OrderRepository;
+import io.fusion.water.order.domain.services.OrderRepository;
 
 /**
  * Warehouse Service Test

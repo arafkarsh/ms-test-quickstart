@@ -30,7 +30,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domain.services.PaymentService;
 import test.fusion.water.order.junit.junit5.annotations.tests.NonFunctional;
 import test.fusion.water.order.junit.junit5.annotations.tools.SpringTest2;
 

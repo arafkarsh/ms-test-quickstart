@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 
@@ -35,16 +36,16 @@ public class OrderItemGroup {
 	/**
 	 * Create Order Item Group
 	 * 
-	 * @param _grp
-	 * @param _items
-	 * @param _dt
+	 * @param grp
+	 * @param orderItems
+	 * @param date
 	 */
-	public OrderItemGroup(String _grp, ArrayList<OrderItem> _items, Date _dt) {
-		itemGroupName 	= (_grp != null) 	? _grp 	: "Default-Group";
-		orderItems		= (_items != null) 	? _items: new ArrayList<OrderItem>();
-		deliveryDate	= (_dt != null) 	? _dt 	: new Date();
+	public OrderItemGroup(String grp, List<OrderItem> orderItems, Date date) {
+		itemGroupName 	= (grp != null) 	? grp 	: "Default-Group";
+		this.orderItems = (orderItems != null) 	? (ArrayList)orderItems: new ArrayList<>();
+		deliveryDate	= (date != null) 	? date 	: new Date();
 		
-		orderItems.forEach(item -> totalValue += item.getItemValue());
+		this.orderItems.forEach(item -> totalValue += item.getItemValue());
 	}
 
 	/**
@@ -57,7 +58,7 @@ public class OrderItemGroup {
 	/**
 	 * @return the orderItems
 	 */
-	public ArrayList<OrderItem> getOrderItems() {
+	public List<OrderItem> getOrderItems() {
 		return orderItems;
 	}
 
@@ -87,6 +88,16 @@ public class OrderItemGroup {
 	 */
 	public int hashCode() {
 		return itemGroupName.hashCode();
+	}
+
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		}
+		if(o instanceof OrderItemGroup item) {
+			return itemGroupName.equals(item.getItemGroupName());
+		}
+		return false;
 	}
 
 }

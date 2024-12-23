@@ -39,9 +39,9 @@ import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.Mockito3;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 
-import io.fusion.water.order.domainLayer.models.*;
-import io.fusion.water.order.domainLayer.services.OrderRepository;
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domain.models.*;
+import io.fusion.water.order.domain.services.OrderRepository;
+import io.fusion.water.order.domain.services.PaymentService;
 import io.fusion.water.order.adapters.service.OrderServiceImpl;
 
 

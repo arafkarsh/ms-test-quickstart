@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 /**
  * 
@@ -33,16 +33,16 @@ public class DeliveryCity {
 	/**
 	 * Create Delivery City
 	 * 
-	 * @param _city
-	 * @param _state
-	 * @param _country
-	 * @param _zip
+	 * @param city
+	 * @param state
+	 * @param country
+	 * @param zip
 	 */
-	public DeliveryCity(String _city, String _state, String _country, String _zip) {
-		this.cityName		= (_city 		== null) ? "" : _city;
-		this.stateName 		= (_state 		== null) ? "" : _state;
-		this.countryName 	= (_country 	== null) ? "" : _country;
-		this.zipCode		= (_zip 		== null) ? "" : _zip;
+	public DeliveryCity(String city, String state, String country, String zip) {
+		this.cityName		= (city 		== null) ? "" : city;
+		this.stateName 		= (state 		== null) ? "" : state;
+		this.countryName 	= (country 	== null) ? "" : country;
+		this.zipCode		= (zip 		== null) ? "" : zip;
 		
 		this.cityKey		= createCityKey( cityName,  stateName,  countryName);
 	}
@@ -113,5 +113,21 @@ public class DeliveryCity {
 				.append(state).append("|")
 				.append(country).append("|")
 				.toString();
+	}
+
+	/**
+	 * Returns True if the City Key is equal
+	 *
+	 * @param o
+	 * @return
+	 */
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		}
+		if(  this.getClass() != o.getClass() ) {
+			return false;
+		}
+		return (this.getCityKey().equals(((DeliveryCity) o).getCityKey()));
 	}
 }

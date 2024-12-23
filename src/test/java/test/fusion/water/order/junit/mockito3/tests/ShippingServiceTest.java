@@ -57,7 +57,7 @@ import org.slf4j.Logger;
 
 import io.fusion.water.order.adapters.service.DeliveryCityServiceImpl;
 import io.fusion.water.order.adapters.service.ShippingServiceImpl;
-import io.fusion.water.order.domainLayer.models.DeliveryCity;
+import io.fusion.water.order.domain.models.DeliveryCity;
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.Mockito3;

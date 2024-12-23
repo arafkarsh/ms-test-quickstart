@@ -1,12 +1,13 @@
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-public class DateJsonSerializer<LocalDateTime> extends StdSerializer<LocalDateTime>{
+public class DateJsonSerializer extends StdSerializer<LocalDateTime>{
 
 	public DateJsonSerializer() {
 		this(null, false);

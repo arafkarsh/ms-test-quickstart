@@ -15,7 +15,7 @@
  */
 package test.fusion.water.order.spock.selenium4.tests
 
-import io.fusion.water.order.domainLayer.models.OrderEntity
+
 import spock.lang.*
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver

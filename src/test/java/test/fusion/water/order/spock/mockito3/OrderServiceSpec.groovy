@@ -21,9 +21,9 @@ import spock.lang.*
 import org.springframework.boot.test.context.SpringBootTest
 // Custom
 import io.fusion.water.order.OrderApplication
-import io.fusion.water.order.domainLayer.models.*;
-import io.fusion.water.order.domainLayer.services.OrderRepository;
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domain.models.*;
+import io.fusion.water.order.domain.services.OrderRepository;
+import io.fusion.water.order.domain.services.PaymentService;
 import io.fusion.water.order.adapters.service.OrderServiceImpl
 
 import java.time.LocalDateTime;

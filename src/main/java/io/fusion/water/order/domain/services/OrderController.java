@@ -14,44 +14,50 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.services;
+package io.fusion.water.order.domain.services;
 
-import java.util.ArrayList;
+import org.springframework.http.ResponseEntity;
 
-import io.fusion.water.order.domainLayer.models.DeliveryCity;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domain.models.OrderEntity;
 
 /**
+ * Order Web Service (REST)
  * 
  * @author arafkarsh
  *
  */
-public interface ShippingService {
-	
+public interface OrderController {
+
+	/**
+	 * Returns Order By Order ID
+	 * 
+	 * @param _id
+	 * @return
+	 */
+	public ResponseEntity<OrderEntity> getOrderById(String _id);
 	
 	/**
-	 * Ship Order and Set Order Status to IN_TRANSIT
+	 * Save Order
 	 * 
 	 * @param _order
 	 * @return
 	 */
-	public ArrayList<OrderEntity> shipOrder(ArrayList<OrderEntity>  _orderList);
+	public ResponseEntity<OrderEntity> saveOrder(OrderEntity _order);
 	
 	/**
-	 * Return a List of Delivery Cities
+	 * Cancel Order
 	 * 
-	 * @param cities
+	 * @param _order
 	 * @return
 	 */
-	public ArrayList<DeliveryCity> getCities(ArrayList<String> cities, String state, String country);
-	
+	public ResponseEntity<OrderEntity> cancelOrder(OrderEntity _order);
 	
 	/**
-	 * Return Delivery City
+	 * Cancel Order by Id
 	 * 
-	 * @param city
+	 * @param _id
 	 * @return
 	 */
-	public DeliveryCity getCity(String city, String State, String country);
+	public ResponseEntity<OrderEntity> cancelOrder(String _id);
 
 }

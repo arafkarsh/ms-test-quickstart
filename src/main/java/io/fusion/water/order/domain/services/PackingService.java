@@ -14,64 +14,26 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.services;
+
+import java.util.ArrayList;
+
+import io.fusion.water.order.domain.models.OrderEntity;
 
 /**
- * Order Status
  * 
  * @author arafkarsh
  *
  */
-public enum OrderStatus {
-
-	/**
-	 * Order Initiated
-	 */
-	INITIATED,
+public interface PackingService {
+	
 	
 	/**
-	 * Placed, but not payed yet. Still changeable.
+	 * Pack Orders and ready for Shipment
+	 * 
+	 * @param _orderList
+	 * @return
 	 */
-	PAYMENT_EXPECTED,
-	
-	/**
-	 * Order is Cancelled
-	 */
-	CANCELLED,
-	
-	/**
-	 * Payment Done. No changes allowed.
-	 */
-	PAID,
-	
-	/**
-	 * Payment didn't go thru
-	 */
-	PAYMENT_DECLINED,
-	
-	/**
-	 * Payment Done, Order is getting prepared for Shipping
-	 */
-	PREPARING,
-
-	/**
-	 * Order is ready for Shipment.
-	 */
-	READY_FOR_SHIPMENT,
-
-	/**
-	 * Order in Transit > To Customer
-	 */
-	IN_TRANSIT,
-	
-	/**
-	 * Order Delivered
-	 */
-	DELIVERED,
-	
-	/**
-	 * Order Returned
-	 */
-	RETURNED;
+	public ArrayList<OrderEntity> packOrders(ArrayList<OrderEntity>  _orderList);
 
 }

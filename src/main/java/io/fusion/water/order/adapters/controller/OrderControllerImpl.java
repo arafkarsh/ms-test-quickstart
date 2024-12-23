@@ -33,15 +33,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.RequestScope;
 
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.services.OrderService;
+import io.fusion.water.order.domain.models.OrderEntity;
+import io.fusion.water.order.domain.services.OrderService;
 import io.fusion.water.order.utils.Utils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.fusion.water.order.domainLayer.services.OrderController;
+import io.fusion.water.order.domain.services.OrderController;
 import org.springframework.web.util.HtmlUtils;
 
 /**

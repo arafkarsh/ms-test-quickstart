@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import io.fusion.water.order.domainLayer.models.*;
+import io.fusion.water.order.domain.models.*;
 import io.fusion.water.order.utils.Std;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

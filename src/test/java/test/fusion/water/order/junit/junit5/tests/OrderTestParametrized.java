@@ -49,8 +49,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Order;
 
 
-import io.fusion.water.order.domainLayer.models.Customer;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domain.models.Customer;
+import io.fusion.water.order.domain.models.OrderEntity;
 import io.fusion.water.order.utils.Utils;
 import test.fusion.water.order.junit.junit5.annotations.tests.VariableSource;
 import test.fusion.water.order.junit.junit5.annotations.tools.Junit5;

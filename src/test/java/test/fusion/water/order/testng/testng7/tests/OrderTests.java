@@ -20,8 +20,8 @@ package test.fusion.water.order.testng.testng7.tests;
  * @version:
  * @date:
  */
-import io.fusion.water.order.domainLayer.models.Customer;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domain.models.Customer;
+import io.fusion.water.order.domain.models.OrderEntity;
 import org.junit.Assume;
 import org.testng.Assert;
 import org.testng.annotations.*;

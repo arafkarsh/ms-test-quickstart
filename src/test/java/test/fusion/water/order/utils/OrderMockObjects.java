@@ -1,6 +1,6 @@
 package test.fusion.water.order.utils;
 
-import io.fusion.water.order.domainLayer.models.*;
+import io.fusion.water.order.domain.models.*;
 
 /**
  * @author: Araf Karsh Hamid

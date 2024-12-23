@@ -17,7 +17,7 @@ package test.fusion.water.order.spock.restassured5
 
 // Custom
 import io.fusion.water.order.OrderApplication;
-import io.fusion.water.order.domainLayer.models.OrderStatus;
+import io.fusion.water.order.domain.models.OrderStatus;
 import test.fusion.water.order.utils.OrderMockObjects;
 
 

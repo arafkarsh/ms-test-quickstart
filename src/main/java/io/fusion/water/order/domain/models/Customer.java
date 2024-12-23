@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 import java.util.ArrayList;
 
@@ -38,36 +38,36 @@ public class Customer {
 	/**
 	 * Create Customer Contact Info
 	 * 
-	 * @param _customerId
-	 * @param _firstName
-	 * @param _lastName
-	 * @param _phoneNumber
+	 * @param customerId
+	 * @param firstName
+	 * @param lastName
+	 * @param phoneNumber
 	 */
-    public Customer(String _customerId, String _firstName, 
-    		String _lastName, String _phoneNumber) {
-        customerId	= _customerId;
-    	firstName 	= _firstName;
-        lastName 	= _lastName;
-        phoneNumber = _phoneNumber;
+    public Customer(String customerId, String firstName,
+    		String lastName, String phoneNumber) {
+        this.customerId = customerId;
+    	this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         phoneList	= new ArrayList<String>();
-        addPhoneNumber(_phoneNumber);
+        addPhoneNumber(phoneNumber);
         // validate();
     }
     
     /**
      * Add Multiple Phones
-     * @param _phoneNumber
+     * @param phoneNumber
      */
-    private void addPhoneNumber(String _phoneNumber) {
-    	if(_phoneNumber == null) {
+    private void addPhoneNumber(String phoneNumber) {
+    	if(phoneNumber == null) {
     		return;
     	}
-    	String[] phones = _phoneNumber.split(",");
+    	String[] phones = phoneNumber.split(",");
     	for(int x=0; x<phones.length; x++) {
     		phoneList.add(phones[x]);
     	}
     	if(phoneList.size() == 0) {
-    		phoneList.add(_phoneNumber);
+    		phoneList.add(phoneNumber);
     	}
     }
     
@@ -168,7 +168,6 @@ public class Customer {
     public void validateFirstName() {
         if (isBlank(firstName)) {
         	System.out.println("First Name Cannot be null or empty");
-            throw new RuntimeException("First Name Cannot be null or empty");
         }
     }
 
@@ -178,7 +177,6 @@ public class Customer {
     public void validateLastName() {
         if (isBlank(lastName)) {
         	System.out.println("Last Name Cannot be null or empty");
-            throw new RuntimeException("Last Name Cannot be null or empty");
         }
     }
 
@@ -196,8 +194,8 @@ public class Customer {
     /**
      * Validate Phone No.
      */
-    public void validatePhoneNumber(String _phoneNumber) {
-        if (isBlank(_phoneNumber)) {
+    public void validatePhoneNumber(String phoneNumber) {
+        if (isBlank(phoneNumber)) {
         	System.out.println("Phone No. Cannot be null or empty");
             throw new RuntimeException("Phone Name Cannot be null or empty");
         }

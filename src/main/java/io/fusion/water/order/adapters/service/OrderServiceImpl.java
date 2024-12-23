@@ -17,13 +17,13 @@
 package io.fusion.water.order.adapters.service;
 
 import io.fusion.water.order.adapters.external.ExternalGateWay;
-import io.fusion.water.order.domainLayer.models.*;
+import io.fusion.water.order.domain.models.*;
 import jakarta.resource.ResourceException;
 import org.springframework.stereotype.Service;
 
-import io.fusion.water.order.domainLayer.services.OrderRepository;
-import io.fusion.water.order.domainLayer.services.OrderService;
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domain.services.OrderRepository;
+import io.fusion.water.order.domain.services.OrderService;
+import io.fusion.water.order.domain.services.PaymentService;
 
 /**
  * Order Service

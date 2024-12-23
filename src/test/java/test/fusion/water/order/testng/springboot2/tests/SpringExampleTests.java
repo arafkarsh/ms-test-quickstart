@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 import io.fusion.water.order.OrderApplication;
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domain.services.PaymentService;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;

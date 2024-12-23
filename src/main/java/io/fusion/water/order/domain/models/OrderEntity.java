@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
@@ -58,56 +59,56 @@ public class OrderEntity {
 	 * Create Order
 	 */
 	public OrderEntity() {
-		orderItems = new ArrayList<OrderItem>();
+		orderItems = new ArrayList<>();
 	}
 
 	/**
 	 * Adds the Customer
-	 * @param _customer
+	 * @param customer
 	 */
-	protected void addCustomer(Customer _customer) {
-		customer = _customer;
-		customer.validate();
+	protected void addCustomer(Customer customer) {
+		this.customer = customer;
+		this.customer.validate();
 	}
 
 	/**
 	 * Add Order Item
-	 * @param _item
+	 * @param orderItem
 	 */
-	protected void addOrderItem(OrderItem _item) {
-		if(_item != null) {
-			orderItems.add(_item);
+	protected void addOrderItem(OrderItem orderItem) {
+		if(orderItem != null) {
+			orderItems.add(orderItem);
 		}
 	}
 
 	/**
 	 * Add Shipping Address
-	 * @param _address
+	 * @param address
 	 */
-	protected void addShippingAddress(ShippingAddress _address) {
-		shippingAddress = _address;
+	protected void addShippingAddress(ShippingAddress address) {
+		shippingAddress = address;
 	}
 
 	/**
 	 * Add Card Details
-	 * @param _cardDetails
+	 * @param carddetails
 	 */
-	protected void addCardDetails(CardDetails _cardDetails) {
+	protected void addCardDetails(CardDetails carddetails) {
 		paymentDetails = new PaymentDetails(
 				getOrderId(),
 				getOrderDate(),
 				getTotalValue(),
 				getPaymentType(),
-				_cardDetails
+				carddetails
 		);
 	}
 
 	/**
 	 * Add Payment Type
-	 * @param _pType
+	 * @param pType
 	 */
-	protected void addPaymentType(PaymentType _pType) {
-		paymentType = _pType;
+	protected void addPaymentType(PaymentType pType) {
+		paymentType = pType;
 	}
 
 	/**
@@ -115,7 +116,7 @@ public class OrderEntity {
 	 * @return
 	 */
 	public boolean isCustomerAvailable()  {
-		return (customer != null) ? true : false;
+		return (customer != null);
 	}
 
 	/**
@@ -128,7 +129,7 @@ public class OrderEntity {
 	/**
 	 * @return the orderItems
 	 */
-	public ArrayList<OrderItem> getOrderItems() {
+	public List<OrderItem> getOrderItems() {
 		return orderItems;
 	}
 
@@ -157,7 +158,7 @@ public class OrderEntity {
 	 * @return
 	 */
 	public boolean isShippingAddressAvailable()  {
-		return (shippingAddress != null) ? true : false;
+		return (shippingAddress != null) ;
 	}
 
 	/**
@@ -183,14 +184,14 @@ public class OrderEntity {
 
 		/**
 		 * Add Customer
-		 * @param _customer
+		 * @param customer
 		 * @return
 		 */
-		public Builder addCustomer(Customer _customer) {
+		public Builder addCustomer(Customer customer) {
 			order.orderId = UUID.randomUUID().toString();
 			order.orderDate = LocalDateTime.now();
 			order.orderStatus = OrderStatus.INITIATED;
-			order.addCustomer(_customer);
+			order.addCustomer(customer);
 			return this;
 		}
 
@@ -198,63 +199,63 @@ public class OrderEntity {
 		 * THIS IS ONLY FROM TESTING PERSPECTIVE
 		 * Set the Order ID
 		 *
-		 * @param _orderId
+		 * @param orderId
 		 * @return
 		 */
-		public Builder setOrderId(String _orderId) {
-			order.orderId = _orderId;
+		public Builder setOrderId(String orderId) {
+			order.orderId = orderId;
 			return this;
 		}
 
 		/**
 		 * Add Order Item
-		 * @param _item
+		 * @param orderItem
 		 * @return
 		 */
-		public Builder addOrderItem(OrderItem _item) {
-			order.addOrderItem(_item);
+		public Builder addOrderItem(OrderItem orderItem) {
+			order.addOrderItem(orderItem);
 			return this;
 		}
 
 		/**
 		 * Add a List of Order Items
-		 * @param _items
+		 * @param orderItems
 		 * @return
 		 */
-		public Builder addOrderItems(ArrayList<OrderItem> _items) {
-			if(_items != null && _items.size() > 0) {
-				order.getOrderItems().addAll(_items);
+		public Builder addOrderItems(List<OrderItem> orderItems) {
+			if(orderItems != null && orderItems.isEmpty()) {
+				order.getOrderItems().addAll(orderItems);
 			}
 			return this;
 		}
 
 		/**
 		 * Add Shipping Address
-		 * @param _address
+		 * @param address
 		 * @return
 		 */
-		public Builder addShippingAddress(ShippingAddress _address) {
-			order.addShippingAddress(_address);
+		public Builder addShippingAddress(ShippingAddress address) {
+			order.addShippingAddress(address);
 			return this;
 		}
 
 		/**
 		 * Add Card Details
-		 * @param _cardDetails
+		 * @param cardDetails
 		 * @return
 		 */
-		public Builder addCardDetails(CardDetails _cardDetails) {
-			order.addCardDetails(_cardDetails);
+		public Builder addCardDetails(CardDetails cardDetails) {
+			order.addCardDetails(cardDetails);
 			return this;
 		}
 
 		/**
 		 * Add Payment Type
-		 * @param _pType
+		 * @param pType
 		 * @return
 		 */
-		public Builder addPaymentType(PaymentType _pType) {
-			order.addPaymentType(_pType);
+		public Builder addPaymentType(PaymentType pType) {
+			order.addPaymentType(pType);
 			return this;
 		}
 
@@ -272,7 +273,7 @@ public class OrderEntity {
 		/**
 		 * Order Status = PAYMENT EXPECTED
 		 */
-		public Builder orderWaitingForPayment() {
+		public Builder orderPaymentExpected() {
 			order.orderStatus = OrderStatus.PAYMENT_EXPECTED;
 			return this;
 		}
@@ -397,15 +398,15 @@ public class OrderEntity {
 	}
 
 	/**
-	 * @param _paymentStatus the paymentStatus to set
+	 * @param paymentStatus the paymentStatus to set
 	 */
-	public void setPaymentStatus(PaymentStatus _paymentStatus) {
-		if(_paymentStatus == null) {
+	public void setPaymentStatus(PaymentStatus paymentStatus) {
+		if(paymentStatus == null) {
 			orderStatus = OrderStatus.PAYMENT_EXPECTED;
 			return;
 		}
-		paymentStatus = _paymentStatus;
-		if(paymentStatus.getPaymentStatus().equalsIgnoreCase("Accepted")) {
+		this.paymentStatus = paymentStatus;
+		if(this.paymentStatus.getPaymentStatus().equalsIgnoreCase("Accepted")) {
 			orderStatus = OrderStatus.PAID;
 		} else {
 			orderStatus = OrderStatus.PAYMENT_DECLINED;

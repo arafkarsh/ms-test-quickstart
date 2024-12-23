@@ -41,8 +41,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 
-import io.fusion.water.order.domainLayer.models.Customer;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
+import io.fusion.water.order.domain.models.Customer;
+import io.fusion.water.order.domain.models.OrderEntity;
 import test.fusion.water.order.junit.junit5.annotations.tools.Junit5;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 

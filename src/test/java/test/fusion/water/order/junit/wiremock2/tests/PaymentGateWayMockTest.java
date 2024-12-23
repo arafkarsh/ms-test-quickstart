@@ -36,10 +36,10 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
 import io.fusion.water.order.adapters.service.PaymentServiceImpl;
-import io.fusion.water.order.domainLayer.models.EchoData;
-import io.fusion.water.order.domainLayer.models.EchoResponseData;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
+import io.fusion.water.order.domain.models.EchoData;
+import io.fusion.water.order.domain.models.EchoResponseData;
+import io.fusion.water.order.domain.models.PaymentDetails;
+import io.fusion.water.order.domain.models.PaymentStatus;
 import io.fusion.water.order.utils.Utils;
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;

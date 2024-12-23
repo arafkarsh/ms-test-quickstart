@@ -13,37 +13,65 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.fusion.water.order.domainLayer.models;
+
+package io.fusion.water.order.domain.models;
 
 /**
+ * Order Status
  * 
  * @author arafkarsh
  *
  */
-public enum PaymentType {
+public enum OrderStatus {
+
+	/**
+	 * Order Initiated
+	 */
+	INITIATED,
 	
 	/**
-	 * Credit Card Payment
+	 * Placed, but not payed yet. Still changeable.
 	 */
-	CREDIT_CARD,
+	PAYMENT_EXPECTED,
+	
 	/**
-	 * Debit Card Payment
+	 * Order is Cancelled
 	 */
-	DEBIT_CARD,
+	CANCELLED,
+	
 	/**
-	 * NetBanking Payment
+	 * Payment Done. No changes allowed.
 	 */
-	NET_BANKING,
+	PAID,
+	
 	/**
-	 * UPI Payment
+	 * Payment didn't go thru
 	 */
-	UPI,
+	PAYMENT_DECLINED,
+	
 	/**
-	 * Paytm Payment
+	 * Payment Done, Order is getting prepared for Shipping
 	 */
-	PAYTM,
+	PREPARING,
+
 	/**
-	 * Google Pay
+	 * Order is ready for Shipment.
 	 */
-	GOOGLE_PAY;
+	READY_FOR_SHIPMENT,
+
+	/**
+	 * Order in Transit > To Customer
+	 */
+	IN_TRANSIT,
+	
+	/**
+	 * Order Delivered
+	 */
+	DELIVERED,
+	
+	/**
+	 * Order Returned
+	 */
+	RETURNED;
+
 }

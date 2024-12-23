@@ -24,8 +24,8 @@ import spock.lang.Unroll
 
 import java.time.Month
 
-import io.fusion.water.order.domainLayer.models.OrderEntity
-import io.fusion.water.order.domainLayer.models.Customer
+import io.fusion.water.order.domain.models.OrderEntity
+import io.fusion.water.order.domain.models.Customer
 import io.fusion.water.order.utils.Utils;
 
 /**

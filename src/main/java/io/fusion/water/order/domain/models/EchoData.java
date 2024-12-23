@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.fusion.water.order.domainLayer.models;
+package io.fusion.water.order.domain.models;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -38,10 +38,9 @@ public class EchoData {
 	private LocalDateTime requestTime;
 	
 	/**
-	 * @param word
 	 */
-	public EchoData(String _wordData) {
-		this.word = _wordData;
+	public EchoData(String wordData) {
+		this.word = wordData;
 		requestTime = LocalDateTime.now();
 		day = requestTime.getDayOfYear();
 	}
@@ -90,10 +89,4 @@ public class EchoData {
 	public LocalDateTime getRequestTime() {
 		return requestTime;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("Serialize "
-		+Utils.toJsonString(new EchoData("John")));
-	}
-
 }

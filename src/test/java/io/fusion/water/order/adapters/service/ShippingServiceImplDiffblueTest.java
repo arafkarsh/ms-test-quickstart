@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.fusion.water.order.domainLayer.models.DeliveryCity;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.services.DeliveryCityService;
+import io.fusion.water.order.domain.models.DeliveryCity;
+import io.fusion.water.order.domain.models.OrderEntity;
+import io.fusion.water.order.domain.services.DeliveryCityService;
 
 import java.util.ArrayList;
 

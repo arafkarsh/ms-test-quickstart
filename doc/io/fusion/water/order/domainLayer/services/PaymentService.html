@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2021-07-31">
-<meta name="description" content="declaration: package: io.fusion.water.order.domainLayer.services, interface: PaymentService">
+<meta name="description" content="declaration: package: io.fusion.water.order.domain.services, interface: PaymentService">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -72,7 +72,7 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">io.fusion.water.order.domainLayer.services</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">io.fusion.water.order.domain.services</a></div>
 <h1 title="Interface PaymentService" class="title">Interface PaymentService</h1>
 </div>
 <section class="description">
@@ -106,17 +106,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
 <div class="block">Returns the word with a greeting from Local</div>
 </div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="../models/PaymentStatus.html" title="class in io.fusion.water.order.domainLayer.models">PaymentStatus</a></code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#processPayments(io.fusion.water.order.domainLayer.models.PaymentDetails)">processPayments</a></span>&#8203;(<a href="../models/PaymentDetails.html" title="class in io.fusion.water.order.domainLayer.models">PaymentDetails</a>&nbsp;_paymentDetails)</code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="../models/PaymentStatus.html" title="class in io.fusion.water.order.domain.models">PaymentStatus</a></code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#processPayments(io.fusion.water.order.domainLayer.models.PaymentDetails)">processPayments</a></span>&#8203;(<a href="../models/PaymentDetails.html" title="class in io.fusion.water.order.domain.models">PaymentDetails</a>&nbsp;_paymentDetails)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
 <div class="block">Process Payments</div>
 </div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="../models/EchoResponseData.html" title="class in io.fusion.water.order.domainLayer.models">EchoResponseData</a></code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#remoteEcho(io.fusion.water.order.domainLayer.models.EchoData)">remoteEcho</a></span>&#8203;(<a href="../models/EchoData.html" title="class in io.fusion.water.order.domainLayer.models">EchoData</a>&nbsp;_word)</code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="../models/EchoResponseData.html" title="class in io.fusion.water.order.domain.models">EchoResponseData</a></code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#remoteEcho(io.fusion.water.order.domainLayer.models.EchoData)">remoteEcho</a></span>&#8203;(<a href="../models/EchoData.html" title="class in io.fusion.water.order.domain.models">EchoData</a>&nbsp;_word)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
 <div class="block">Returns the Echo from Remote Server</div>
 </div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="../models/EchoResponseData.html" title="class in io.fusion.water.order.domainLayer.models">EchoResponseData</a></code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="../models/EchoResponseData.html" title="class in io.fusion.water.order.domain.models">EchoResponseData</a></code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#remoteEcho(java.lang.String)">remoteEcho</a></span>&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;_word)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
 <div class="block">Returns the Echo from Remote Server</div>
@@ -138,7 +138,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="processPayments(io.fusion.water.order.domainLayer.models.PaymentDetails)">
 <h3>processPayments</h3>
-<div class="member-signature"><span class="return-type"><a href="../models/PaymentStatus.html" title="class in io.fusion.water.order.domainLayer.models">PaymentStatus</a></span>&nbsp;<span class="element-name">processPayments</span>&#8203;<span class="parameters">(<a href="../models/PaymentDetails.html" title="class in io.fusion.water.order.domainLayer.models">PaymentDetails</a>&nbsp;_paymentDetails)</span></div>
+<div class="member-signature"><span class="return-type"><a href="../models/PaymentStatus.html" title="class in io.fusion.water.order.domain.models">PaymentStatus</a></span>&nbsp;<span class="element-name">processPayments</span>&#8203;<span class="parameters">(<a href="../models/PaymentDetails.html" title="class in io.fusion.water.order.domain.models">PaymentDetails</a>&nbsp;_paymentDetails)</span></div>
 <div class="block">Process Payments</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -160,7 +160,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="remoteEcho(io.fusion.water.order.domainLayer.models.EchoData)">
 <h3>remoteEcho</h3>
-<div class="member-signature"><span class="return-type"><a href="../models/EchoResponseData.html" title="class in io.fusion.water.order.domainLayer.models">EchoResponseData</a></span>&nbsp;<span class="element-name">remoteEcho</span>&#8203;<span class="parameters">(<a href="../models/EchoData.html" title="class in io.fusion.water.order.domainLayer.models">EchoData</a>&nbsp;_word)</span></div>
+<div class="member-signature"><span class="return-type"><a href="../models/EchoResponseData.html" title="class in io.fusion.water.order.domain.models">EchoResponseData</a></span>&nbsp;<span class="element-name">remoteEcho</span>&#8203;<span class="parameters">(<a href="../models/EchoData.html" title="class in io.fusion.water.order.domain.models">EchoData</a>&nbsp;_word)</span></div>
 <div class="block">Returns the Echo from Remote Server</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -172,7 +172,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="remoteEcho(java.lang.String)">
 <h3>remoteEcho</h3>
-<div class="member-signature"><span class="return-type"><a href="../models/EchoResponseData.html" title="class in io.fusion.water.order.domainLayer.models">EchoResponseData</a></span>&nbsp;<span class="element-name">remoteEcho</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;_word)</span></div>
+<div class="member-signature"><span class="return-type"><a href="../models/EchoResponseData.html" title="class in io.fusion.water.order.domain.models">EchoResponseData</a></span>&nbsp;<span class="element-name">remoteEcho</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;_word)</span></div>
 <div class="block">Returns the Echo from Remote Server</div>
 <dl class="notes">
 <dt>Parameters:</dt>

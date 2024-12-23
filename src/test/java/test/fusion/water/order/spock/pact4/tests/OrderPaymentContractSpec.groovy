@@ -32,10 +32,10 @@ import au.com.dius.pact.core.model.annotations.Pact
 import au.com.dius.pact.core.model.annotations.PactFolder
 
 // Custom
-import io.fusion.water.order.domainLayer.models.EchoResponseData;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
-import io.fusion.water.order.domainLayer.services.PaymentService;
+import io.fusion.water.order.domain.models.EchoResponseData;
+import io.fusion.water.order.domain.models.PaymentDetails;
+import io.fusion.water.order.domain.models.PaymentStatus;
+import io.fusion.water.order.domain.services.PaymentService;
 import io.fusion.water.order.utils.Utils;
 import test.fusion.water.order.utils.SampleData;
 import io.fusion.water.order.OrderApplication;

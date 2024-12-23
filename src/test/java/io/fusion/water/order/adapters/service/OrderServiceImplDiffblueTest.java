@@ -12,14 +12,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import io.fusion.water.order.adapters.external.ExternalGateWay;
-import io.fusion.water.order.domainLayer.models.OrderEntity;
-import io.fusion.water.order.domainLayer.models.OrderStatus;
-import io.fusion.water.order.domainLayer.models.PaymentDetails;
-import io.fusion.water.order.domainLayer.models.PaymentStatus;
-import io.fusion.water.order.domainLayer.models.PaymentType;
-import io.fusion.water.order.domainLayer.services.OrderRepository;
-import io.fusion.water.order.domainLayer.services.PaymentService;
-import jakarta.resource.ResourceException;
+import io.fusion.water.order.domain.models.OrderEntity;
+import io.fusion.water.order.domain.models.OrderStatus;
+import io.fusion.water.order.domain.models.PaymentDetails;
+import io.fusion.water.order.domain.models.PaymentStatus;
+import io.fusion.water.order.domain.models.PaymentType;
+import io.fusion.water.order.domain.services.OrderRepository;
+import io.fusion.water.order.domain.services.PaymentService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -118,8 +117,8 @@ class OrderServiceImplDiffblueTest {
         //   Reason: No inputs found that don't throw a trivial exception.
         //   Diffblue Cover tried to run the arrange/act section, but the method under
         //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "io.fusion.water.order.domainLayer.models.PaymentStatus.getPaymentStatus()" is null
-        //       at io.fusion.water.order.domainLayer.models.OrderEntity.setPaymentStatus(OrderEntity.java:401)
+        //   java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "io.fusion.water.order.domain.models.PaymentStatus.getPaymentStatus()" is null
+        //       at io.fusion.water.order.domain.models.OrderEntity.setPaymentStatus(OrderEntity.java:401)
         //       at io.fusion.water.order.adapters.service.OrderServiceImpl.processOrder(OrderServiceImpl.java:81)
         //   See https://diff.blue/R013 to resolve this issue.
 
