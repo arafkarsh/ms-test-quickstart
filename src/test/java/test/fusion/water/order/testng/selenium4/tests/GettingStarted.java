@@ -43,12 +43,13 @@ public class GettingStarted {
         WebDriver driver = new ChromeDriver(options);
         driver.get("http://www.google.com/");
 
+        // Simulate artificial delay
         Thread.sleep(5000);  // Let the user actually see something!
 
         WebElement searchBox = driver.findElement(By.name("q"));
         searchBox.sendKeys("Araf Karsh");
         searchBox.submit();
-
+        // Simulate artificial delay
         Thread.sleep(31000);  // Let the user actually see something!
         driver.quit();
 

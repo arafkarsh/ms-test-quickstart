@@ -193,7 +193,7 @@ public class OrderTests {
 
     @Test(priority = 13, description = "13. Argument Source - Customer Object", dataProvider = "customerArgumentProvider")
     public void testWithArgumentsSource(String uuid, String fn, String ln, String phone) {
-        log.debug(">>> Parameterized test with (String) {} and (int) {} ", uuid, fn, ln, phone);
+        log.debug("Parameterized test with (String) {} and (int) {} {} {}", uuid, fn, ln, phone);
         Assert.assertNotNull(uuid);
         Assert.assertNotNull(fn);
         Assert.assertNotNull(ln);
@@ -259,7 +259,7 @@ public class OrderTests {
      * Result to Test AssertTimeout
      * @return
      */
-    private static String timeOutResult() throws InterruptedException  {
+    private static String timeOutResult()  throws InterruptedException {
         return "Hello Order Microservice!";
     }
 
