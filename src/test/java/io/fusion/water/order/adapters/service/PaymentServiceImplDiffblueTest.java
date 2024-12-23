@@ -1,5 +1,6 @@
 package io.fusion.water.order.adapters.service;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -48,14 +49,13 @@ class PaymentServiceImplDiffblueTest {
         //   See https://diff.blue/R033 to resolve this issue.
 
         // Arrange
-        // TODO: Populate arranged inputs
-        EchoData _word = null;
+        EchoData word = new EchoData("Hello World!");
 
         // Act
-        EchoResponseData actualRemoteEchoResult = this.paymentServiceImpl.remoteEcho(_word);
+        EchoResponseData actualRemoteEchoResult = this.paymentServiceImpl.remoteEcho(word);
 
         // Assert
-        // TODO: Add assertions on result
+        assertThat(actualRemoteEchoResult).isNotNull();
     }
 
     /**
@@ -74,14 +74,13 @@ class PaymentServiceImplDiffblueTest {
         //   See https://diff.blue/R033 to resolve this issue.
 
         // Arrange
-        // TODO: Populate arranged inputs
-        String _word = "";
+        String word = "Hello world!";
 
         // Act
-        EchoResponseData actualRemoteEchoResult = this.paymentServiceImpl.remoteEcho(_word);
+        EchoResponseData actualRemoteEchoResult = this.paymentServiceImpl.remoteEcho(word);
 
         // Assert
-        // TODO: Add assertions on result
+        assertThat(actualRemoteEchoResult).isNotNull();
     }
 
     /**
@@ -92,10 +91,10 @@ class PaymentServiceImplDiffblueTest {
         //   Diffblue Cover was unable to create a Spring-specific test for this Spring method.
 
         // Arrange
-        PaymentServiceImpl paymentServiceImpl = new PaymentServiceImpl();
+        PaymentServiceImpl paymentService = new PaymentServiceImpl();
 
         // Act
-        PaymentStatus actualProcessPaymentsResult = paymentServiceImpl.processPayments(new PaymentDetails());
+        PaymentStatus actualProcessPaymentsResult = paymentService.processPayments(new PaymentDetails());
 
         // Assert
         assertEquals("Accepted", actualProcessPaymentsResult.getPaymentStatus());
@@ -123,14 +122,15 @@ class PaymentServiceImplDiffblueTest {
 
         // Arrange
         // TODO: Populate arranged inputs
-        PaymentDetails _paymentDetails = null;
+        PaymentDetails paymentDetails = null;
 
         // Act
         PaymentStatus actualProcessPaymentsExternalResult = this.paymentServiceImpl
-                .processPaymentsExternal(_paymentDetails);
+                .processPaymentsExternal(paymentDetails);
 
         // Assert
         // TODO: Add assertions on result
+        assertThat(actualProcessPaymentsExternalResult).isNotNull();
     }
 
     /**
@@ -142,10 +142,10 @@ class PaymentServiceImplDiffblueTest {
         //   Diffblue Cover was unable to create a Spring-specific test for this Spring method.
 
         // Arrange
-        PaymentServiceImpl paymentServiceImpl = new PaymentServiceImpl();
+        PaymentServiceImpl paymentService = new PaymentServiceImpl();
 
         // Act
-        PaymentStatus actualProcessPaymentsDefaultResult = paymentServiceImpl.processPaymentsDefault(new PaymentDetails());
+        PaymentStatus actualProcessPaymentsDefaultResult = paymentService.processPaymentsDefault(new PaymentDetails());
 
         // Assert
         assertEquals("Accepted", actualProcessPaymentsDefaultResult.getPaymentStatus());

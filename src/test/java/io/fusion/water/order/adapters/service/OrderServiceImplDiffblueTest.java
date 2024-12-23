@@ -1,5 +1,6 @@
 package io.fusion.water.order.adapters.service;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -29,6 +30,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import test.fusion.water.order.utils.OrderMockObjects;
 
 @ContextConfiguration(classes = {OrderServiceImpl.class})
 @ExtendWith(SpringExtension.class)
@@ -123,12 +125,16 @@ class OrderServiceImplDiffblueTest {
         //   See https://diff.blue/R013 to resolve this issue.
 
         // Arrange
-        OrderEntity buildResult = (new OrderEntity.Builder()).build();
+        OrderEntity buildResult = OrderMockObjects.mockGetOrderById("1234");
+
         when(orderRepository.saveOrder(Mockito.<OrderEntity>any())).thenReturn(buildResult);
         when(paymentService.processPayments(Mockito.<PaymentDetails>any())).thenReturn(new PaymentStatus());
 
         // Act
-        orderServiceImpl.processOrder(new OrderEntity());
+        orderServiceImpl.processOrder(buildResult);
+
+        // Assert
+        assertThat(buildResult).isNotNull();
     }
 
     /**

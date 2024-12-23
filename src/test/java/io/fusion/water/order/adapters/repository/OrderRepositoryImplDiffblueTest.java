@@ -7,6 +7,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import test.fusion.water.order.utils.OrderMockObjects;
+
+import static com.google.common.truth.Truth.assertThat;
 
 @ContextConfiguration(classes = {OrderRepositoryImpl.class})
 @ExtendWith(SpringExtension.class)
@@ -23,14 +26,13 @@ class OrderRepositoryImplDiffblueTest {
     @DisplayName("Test getOrderById(String)")
     void testGetOrderById() {
         // Arrange
-        // TODO: Populate arranged inputs
-        String _id = "";
+        String id = "1234";
 
         // Act
-        OrderEntity actualOrderById = this.orderRepositoryImpl.getOrderById(_id);
+        OrderEntity actualOrderById = this.orderRepositoryImpl.getOrderById(id);
 
         // Assert
-        // TODO: Add assertions on result
+        assertThat(actualOrderById).isNotNull();
     }
 
     /**
@@ -42,14 +44,13 @@ class OrderRepositoryImplDiffblueTest {
     @DisplayName("Test saveOrder(OrderEntity)")
     void testSaveOrder() {
         // Arrange
-        // TODO: Populate arranged inputs
-        OrderEntity _order = null;
+        OrderEntity order = OrderMockObjects.mockGetOrderById("1234");
 
         // Act
-        OrderEntity actualSaveOrderResult = this.orderRepositoryImpl.saveOrder(_order);
+        OrderEntity actualSaveOrderResult = this.orderRepositoryImpl.saveOrder(order);
 
         // Assert
-        // TODO: Add assertions on result
+        assertThat(actualSaveOrderResult).isNotNull();
     }
 
     /**
@@ -61,14 +62,13 @@ class OrderRepositoryImplDiffblueTest {
     @DisplayName("Test cancelOrder(String) with '_id'")
     void testCancelOrderWithId() {
         // Arrange
-        // TODO: Populate arranged inputs
-        String _id = "";
+        String id = "1234";
 
         // Act
-        OrderEntity actualCancelOrderResult = this.orderRepositoryImpl.cancelOrder(_id);
+        OrderEntity actualCancelOrderResult = this.orderRepositoryImpl.cancelOrder(id);
 
         // Assert
-        // TODO: Add assertions on result
+        assertThat(actualCancelOrderResult).isNotNull();
     }
 
     /**
@@ -81,14 +81,13 @@ class OrderRepositoryImplDiffblueTest {
     @DisplayName("Test cancelOrder(OrderEntity) with '_order'")
     void testCancelOrderWithOrder() {
         // Arrange
-        // TODO: Populate arranged inputs
-        OrderEntity _order = null;
+        OrderEntity order = OrderMockObjects.mockGetOrderById("1234");
 
         // Act
-        OrderEntity actualCancelOrderResult = this.orderRepositoryImpl.cancelOrder(_order);
+        OrderEntity actualCancelOrderResult = this.orderRepositoryImpl.cancelOrder(order);
 
         // Assert
-        // TODO: Add assertions on result
+        assertThat(actualCancelOrderResult).isNotNull();
     }
 
     /**
@@ -100,13 +99,12 @@ class OrderRepositoryImplDiffblueTest {
     @DisplayName("Test prepareOrder(OrderEntity)")
     void testPrepareOrder() {
         // Arrange
-        // TODO: Populate arranged inputs
-        OrderEntity _order = null;
+        OrderEntity order = OrderMockObjects.mockGetOrderById("1234");
 
         // Act
-        OrderEntity actualPrepareOrderResult = this.orderRepositoryImpl.prepareOrder(_order);
+        OrderEntity actualPrepareOrderResult = this.orderRepositoryImpl.prepareOrder(order);
 
         // Assert
-        // TODO: Add assertions on result
+        assertThat(actualPrepareOrderResult).isNotNull();
     }
 }
