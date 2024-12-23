@@ -18,6 +18,9 @@ package test.fusion.water.order.junit.junit5.tests;
 
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.junit.jupiter.api.DisplayName;
@@ -53,6 +56,7 @@ public class NFRTests {
     @Order(1)
     void testOne() {
         log.debug("NFR Test 1 (Performance/Load)");
+        assertThat(1, is(equalTo(1)));
     }
 
     @Test
@@ -61,6 +65,7 @@ public class NFRTests {
     @Order(2)
     void testTwo() {
         log.debug("NFR Test 2 (Performance/Stress)");
+        assertThat(2, is(equalTo(2)));
     }
 
     @Test
@@ -69,6 +74,7 @@ public class NFRTests {
     @Order(3)
     void testThree() {
         log.debug("NFR Test 3 (Security)");
+        assertThat(3, is(equalTo(3)));
     }
 
     @Test
@@ -77,5 +83,6 @@ public class NFRTests {
     @Order(4)
     void testFour() {
         log.debug("NFR Test 4 (Usability)");
+        assertThat(4, is(equalTo(4)));
     }
 }

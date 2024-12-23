@@ -59,19 +59,20 @@ public class ConceptExamples {
      * Failure is when your Assertions is Wrong
      */
     @Test
-    public void expectWrongResult() {
+    void expectWrongResult() {
         double result = 7 / 3;
         System.out.println("T1 : 7 / 3 = "+result);
-        assertEquals(3, result);
+        assertEquals(2, result);
     }
     
     /**
      * Error is when your tests didnt go thru.
      */
     @Test
-    public void exceptionWhileTesting() {
+    void exceptionWhileTesting() {
         double result = 11 / 0;
         System.out.println("T2 : 11 / 0 = "+result);
+        assertEquals(3, result);
     }
     
     @AfterEach
