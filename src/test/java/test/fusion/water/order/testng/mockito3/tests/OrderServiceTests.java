@@ -65,7 +65,7 @@ public class OrderServiceTests {
         OrderEntity processedOrder = orderService.processOrder(order);
 
         // Then Check the Payment Status as Accepted
-        assertEquals(OrderStatus.PAID, processedOrder.getOrderStatus());
+        assertEquals(processedOrder.getOrderStatus(), OrderStatus.PAID);
     }
 
     @Test(description = "2. Test for Payment Declined")
@@ -80,7 +80,7 @@ public class OrderServiceTests {
         OrderEntity processedOrder = orderService.processOrder(order);
 
         // Then Check the Payment Status as Declined
-        assertEquals(OrderStatus.PAYMENT_DECLINED, processedOrder.getOrderStatus());
+        assertEquals(processedOrder.getOrderStatus(), OrderStatus.PAYMENT_DECLINED);
     }
 
     // Other methods remain the same
@@ -111,13 +111,13 @@ public class OrderServiceTests {
     /**
      * Payment Status - Accepted
      *
-     * @param _paymentDetails
+     * @param paymentDetails
      * @return
      */
-    public PaymentStatus createPaymentStatusAccepted(PaymentDetails _paymentDetails) {
+    public PaymentStatus createPaymentStatusAccepted(PaymentDetails paymentDetails) {
         return new PaymentStatus(
-                _paymentDetails.getTransactionId(),
-                _paymentDetails.getTransactionDate(),
+                paymentDetails.getTransactionId(),
+                paymentDetails.getTransactionDate(),
                 "Accepted",
                 UUID.randomUUID().toString(),
                 LocalDateTime.now(),
@@ -127,13 +127,13 @@ public class OrderServiceTests {
     /**
      * Payment Status - Declined
      *
-     * @param _paymentDetails
+     * @param paymentDetails
      * @return
      */
-    public PaymentStatus createPaymentStatusDeclined(PaymentDetails _paymentDetails) {
+    public PaymentStatus createPaymentStatusDeclined(PaymentDetails paymentDetails) {
         return new PaymentStatus(
-                _paymentDetails.getTransactionId(),
-                _paymentDetails.getTransactionDate(),
+                paymentDetails.getTransactionId(),
+                paymentDetails.getTransactionDate(),
                 "Declined",
                 UUID.randomUUID().toString(),
                 LocalDateTime.now(),

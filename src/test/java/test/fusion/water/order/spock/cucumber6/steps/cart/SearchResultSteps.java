@@ -32,14 +32,14 @@ public class SearchResultSteps implements En {
 	/**
 	 * Result Steps
 	 * 
-	 * @param _browser
+	 * @param browser
 	 */
-	public SearchResultSteps(BrowserState _browser) {
+	public SearchResultSteps(BrowserState browser) {
 
 		Then("the first title should be {string}", (String title) -> {
 
 		    // 3. Go to Product Page
-			WebElement product = _browser.getWebDriver().findElement(
+			WebElement product = browser.getWebDriver().findElement(
 					By.xpath("//*[@id=\"search\"]/div[1]/div[1]/div/span[1]/div[1]/div[3]/div/div/div/div/div/div/div/div[2]/div/div/div[1]/h2/a"));
 
 			System.out.println("Page:1] Result>   "+product.getText());
@@ -47,28 +47,28 @@ public class SearchResultSteps implements En {
 		    Thread.sleep(3000);
 		    product.click();
 
-		    String window1 = _browser.getWebDriver().getWindowHandle();
+		    String window1 = browser.getWebDriver().getWindowHandle();
 		    String window2 = window1;
-		    Set<String> windows = _browser.getWebDriver().getWindowHandles();
+		    Set<String> windows = browser.getWebDriver().getWindowHandles();
 		    for(String s : windows) {
 		    	window2 = s;
 		    }
-		    _browser.getWebDriver().switchTo().window(window2);
+		    browser.getWebDriver().switchTo().window(window2);
 
-		    WebElement productDetails = _browser.getWebDriver()
+		    WebElement productDetails = browser.getWebDriver()
 		    		.findElement(By.xpath("//*[@id=\"title\"]"));
 		    
 		    System.out.println("Page:2] Details>  "+productDetails.getText());
 
 			// 4. Add Product to Cart
-			WebElement addToCart = _browser.getWebDriver().findElement(
+			WebElement addToCart = browser.getWebDriver().findElement(
 					By.xpath("//*[@id=\"add-to-cart-button\"]"));
 			System.out.println("Page:2] Add2Cart> "+productDetails.getText());
 			addToCart.click();
 
 		    System.out.println("Done....... !!!");
 		    Thread.sleep(11000);
-		    _browser.getWebDriver().quit();
+		    browser.getWebDriver().quit();
 		});
 	}
 }

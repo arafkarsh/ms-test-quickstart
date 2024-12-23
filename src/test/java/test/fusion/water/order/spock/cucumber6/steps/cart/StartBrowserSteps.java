@@ -33,22 +33,22 @@ public class StartBrowserSteps implements En {
 
 	/**
 	 * Search Steps
-	 * @param _browser
+	 * @param browser
 	 */
-	public StartBrowserSteps(BrowserState _browser) {
+	public StartBrowserSteps(BrowserState browser) {
 		
 		Given("I start a new browser", () -> {
-			_browser.setWebDriver(WebDriverChrome.getChromeDriver(false, 60));
+			browser.setWebDriver(WebDriverChrome.getChromeDriver(false, 60));
 		});
 
 		Given("I am on Amazon search page", () -> {
-			_browser.getWebDriver().get("https://www.amazon.in");
+			browser.getWebDriver().get("https://www.amazon.in");
 		    System.out.println("Page:1] Browse>   https://www.amazon.in");
 
 		});
 
 		When("I do a search for {string}", (String keyword) -> {
-			WebElement searchBox = _browser.getWebDriver().findElement(
+			WebElement searchBox = browser.getWebDriver().findElement(
 					By.xpath("//input[@id='twotabsearchtextbox']"));
 			
 			System.out.println("Page:1] Search>   "+keyword);
@@ -62,9 +62,9 @@ public class StartBrowserSteps implements En {
 		});
 		
 		Then("I should see title {word}", (String title) -> {
-			String x = _browser.getWebDriver().getTitle();
+			String x = browser.getWebDriver().getTitle();
 			assertThat(x, containsString(title));
-		    _browser.getWebDriver().quit();
+		    browser.getWebDriver().quit();
 		});
 
 	}
