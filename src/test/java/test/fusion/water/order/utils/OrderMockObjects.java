@@ -12,14 +12,14 @@ public class OrderMockObjects {
     /**
      * Returns the OrderEntity with Order ID as an input
      *
-     * @param _orderId
+     * @param orderId
      * @return
      */
-    public static OrderEntity mockGetOrderById(String _orderId) {
+    public static OrderEntity mockGetOrderById(String orderId) {
         return new OrderEntity.Builder()
                 .addCustomer(new Customer
                         ("UUID", "John", "Doe", "0123456789"))
-                .setOrderId(_orderId)
+                .setOrderId(orderId)
                 .addOrderItem(new OrderItem
                         ("uuid1", "iPhone 12", 799, "USD", 1))
                 .addOrderItem(new OrderItem

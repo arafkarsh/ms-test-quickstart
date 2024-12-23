@@ -55,7 +55,9 @@ public final class RandomIDGenerator {
 	private int getCounterInitialState() {
 		try {
 			return cArray[RandomIDGenerator.getRandomNumber(1,80)];
-		} catch(Exception ignored) {}
+		} catch(Exception ignored) {
+			// Do Nothing
+		}
 		return 9900;
 	}
 	
@@ -100,7 +102,9 @@ public final class RandomIDGenerator {
 		String ts 	= timeMillis+""+result;
 		try {
 			ts = Long.toHexString(Long.parseLong(ts));
-		} catch(Exception ignored) {}
+		} catch(Exception ignored) {
+			// Do Nothing
+		}
 				
 		StringBuilder sb = new StringBuilder();
 		for(int x=0,s=0; x<ts.length(); x++,s++) {

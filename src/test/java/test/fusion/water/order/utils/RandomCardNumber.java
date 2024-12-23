@@ -63,11 +63,14 @@ public class RandomCardNumber {
 	 * Create Card Holder Name
 	 * @return
 	 */
-	private String createCardHolder() {;
+	private String createCardHolder() {
 		try {
 			return cardHolders[getRandomNumber(0,9)];
-		} catch(Exception ignored) {}
+		} catch(Exception ignored) {
+			// nothing to print
+		}
 		return cardHolders[2];
+
 	}
 	
 	/**
@@ -105,7 +108,9 @@ public class RandomCardNumber {
 		try {
 			block = cArray[getRandomNumber(1,80)];
 			block += getRandomNumber(0,99);
-		} catch(Exception ignored) {}
+		} catch(Exception ignored) {
+			// nothing to print
+		}
 		return block;
 	}
 	

@@ -39,8 +39,6 @@ public class SampleData {
 	
 	/**
 	 * Order Entity SampleData Data
-	 * 
-	 * @param args
 	 */
 	public static String OrderEntityToJson() {
 		OrderEntity oEntity = new OrderEntity.Builder()
@@ -125,15 +123,15 @@ public class SampleData {
 	/**
 	 * Get Payment Status Accepted
 	 * 
-	 * @param _txId
-	 * @param _txDate
+	 * @param txId
+	 * @param txDate
 	 * @return
 	 */
 	public static PaymentStatus getPaymentStatusAccepted(
-			String _txId, LocalDateTime _txDate) {
+			String txId, LocalDateTime txDate) {
 		return new PaymentStatus(
-				_txId, 
-				_txDate, 
+				txId,
+				txDate,
 				"Accepted", 
 				UUID.randomUUID().toString(), 
 				LocalDateTime.now(), 
@@ -141,22 +139,22 @@ public class SampleData {
 	}
 	
 	public static EchoResponseData getEchoResponseData(
-			String _word) {
-		return new EchoResponseData(_word);
+			String word) {
+		return new EchoResponseData(word);
 	}
 	
 	/**
 	 * Get Payment Status Declined
 	 * 
-	 * @param _txId
-	 * @param _txDate
+	 * @param txId
+	 * @param txDate
 	 * @return
 	 */
 	public static PaymentStatus getPaymentStatusDeclined(
-			String _txId, LocalDateTime _txDate) {
+			String txId, LocalDateTime txDate) {
 		return new PaymentStatus(
-				_txId, 
-				_txDate, 
+				txId,
+				txDate,
 				"Declined", 
 				UUID.randomUUID().toString(), 
 				LocalDateTime.now(), 
@@ -169,13 +167,11 @@ public class SampleData {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
 		System.out.println("-Order Entity-");
 		System.out.println(OrderEntityToJson());
 		System.out.println("-Payment Details Entity-");
 		System.out.println(PaymentDetailsToJson());
 		System.out.println("-Payment Status Entity-");
 		System.out.println(PaymentStatusToJson());
-		
 	}
 }

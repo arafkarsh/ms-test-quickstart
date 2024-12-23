@@ -24,24 +24,13 @@ import org.springframework.beans.factory.annotation.Value;
  *
  */
 public abstract class AbstractTestClient {
-	
-	// private WebClient client = null;
-	
+
 	@Value("${remote.host}")
 	private String host = "localhost";
 	
 	@Value("${remote.port}")
 	private int port = 8080;
-	
-	private String baseURL;
-	
-	/**
-	 * Reset the Web Client
-	 */
-	public void resetClient() {
-		// client = null;
-	}
-	
+
 	/**
 	 * Return Web Client
 	 * @return
