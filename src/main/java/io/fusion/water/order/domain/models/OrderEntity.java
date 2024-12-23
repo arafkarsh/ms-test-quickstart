@@ -68,7 +68,6 @@ public class OrderEntity {
 	 */
 	protected void addCustomer(Customer customer) {
 		this.customer = customer;
-		this.customer.validate();
 	}
 
 	/**

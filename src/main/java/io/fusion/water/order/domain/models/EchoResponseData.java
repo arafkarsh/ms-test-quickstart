@@ -54,8 +54,7 @@ public class EchoResponseData {
 	 */
 	public EchoResponseData(String wordData, 
 			LocalDateTime responseTime, int dayOftheYear) {
-		this(wordData, LocalDateTime.now(), 
-				LocalDateTime.now().getDayOfYear(), "Good Morning " + wordData);
+		this(wordData, responseTime, dayOftheYear, "Good Morning " + wordData);
 	}	
 	
 	/**
@@ -98,6 +97,13 @@ public class EchoResponseData {
 	 */
 	public int hashCode() {
 		return wordData.hashCode();
+	}
+
+	public boolean equals(Object obj) {
+		if(obj instanceof EchoResponseData erd) {
+			return wordData.equals(erd.getWordData());
+		}
+		return false;
 	}
 
 	/**

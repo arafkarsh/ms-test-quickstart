@@ -17,6 +17,7 @@
 package io.fusion.water.order.domain.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Customer Reference in Order Entity
@@ -49,9 +50,8 @@ public class Customer {
     	this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        phoneList	= new ArrayList<String>();
+        phoneList	= new ArrayList<>();
         addPhoneNumber(phoneNumber);
-        // validate();
     }
     
     /**
@@ -66,7 +66,7 @@ public class Customer {
     	for(int x=0; x<phones.length; x++) {
     		phoneList.add(phones[x]);
     	}
-    	if(phoneList.size() == 0) {
+    	if(phoneList.isEmpty()) {
     		phoneList.add(phoneNumber);
     	}
     }
@@ -75,7 +75,7 @@ public class Customer {
      * Returns the Phone List
      * @return
      */
-    public ArrayList<String> getPhoneList() {
+    public List<String> getPhoneList() {
     	return phoneList;
     }
 
@@ -137,86 +137,13 @@ public class Customer {
      * Compares 2 Customer Objects and 
      * returns TRUE if the Customer ID is Same
      */
-    public boolean equals(Object o) {
-    	try {
-    		Customer c = (Customer)o;
-    		return c.customerId.equalsIgnoreCase(customerId);
-    	} catch (Exception ignored) {}
-    	return false;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public String toJSON() {
-    	StringBuilder sb = new StringBuilder();
-    	return sb.toString();
-    }
-    /**
-     * Validate Customer
-     */
-    public void validate() {
-        validateFirstName();
-        validateLastName();
-        validatePhoneNumber();
-    }
-    
-    /**
-     * Validate First Name
-     */
-    public void validateFirstName() {
-        if (isBlank(firstName)) {
-        	System.out.println("First Name Cannot be null or empty");
-        }
-    }
-
-    /**
-     * Validate Last Name
-     */
-    public void validateLastName() {
-        if (isBlank(lastName)) {
-        	System.out.println("Last Name Cannot be null or empty");
-        }
-    }
-
-    /**
-     * Validate All Phone Numbers
-     */
-    public void validatePhoneNumber() {
-    	for(String phone : phoneList)  {
-    		validatePhoneNumber(phone);
-    	}
-    	if(phoneList.size() == 0) {
-    		validatePhoneNumber(null);
-    	}
-    }
-    /**
-     * Validate Phone No.
-     */
-    public void validatePhoneNumber(String phoneNumber) {
-        if (isBlank(phoneNumber)) {
-        	System.out.println("Phone No. Cannot be null or empty");
-            throw new RuntimeException("Phone Name Cannot be null or empty");
-        }
-
-        if (this.phoneNumber.length() != 10) {
-            throw new RuntimeException("Phone Number Should be 10 Digits Long");
-        }
-        if (!this.phoneNumber.matches("\\d+")) {
-            throw new RuntimeException("Phone Number Contain only digits");
-        }
-        if (!this.phoneNumber.startsWith("0")) {
-            throw new RuntimeException("Phone Number Should Start with 0");
-        }
-    }
-    
-    /**
-     * Check if the Field Value is NULL or BLANK
-     * @param _value
-     * @return
-     */
-    private boolean isBlank(String _value) {
-    	return (_value == null || _value.trim().length() == 0) ? true : false;
+    public boolean equals(Object obj) {
+        	if(obj == null) {
+        		return false;
+        	}
+        	if(obj instanceof Customer customer) {
+        		return customerId.equals(customer.getCustomerId());
+        	}
+        	return false;
     }
 }
