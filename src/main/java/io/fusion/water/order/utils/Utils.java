@@ -58,7 +58,7 @@ public final class Utils {
 		try {
 			return new ObjectMapper().writeValueAsString(object);
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			Std.println(e.getMessage());
 		}
 		return "";
 	}

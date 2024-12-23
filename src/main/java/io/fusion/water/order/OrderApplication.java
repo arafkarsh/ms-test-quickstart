@@ -124,7 +124,7 @@ public class OrderApplication {
 			context = SpringApplication.run(OrderApplication.class, args);
 			log.info("Booting (MS-Test-QuickStart) Order Service ..... ...Startup completed!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.trace(e.getMessage());
 		}
 	}
 	
@@ -324,17 +324,5 @@ public class OrderApplication {
 		return new ObjectMapper()
 				.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 				.findAndRegisterModules();
-	}
-	
-	/**
-	 * All file upload till 512 MB
-	 * returns MultipartConfigElement
-	 * @return
-	 */
-	@Bean
-	public MultipartConfigElement multipartConfigElement() {
-		MultipartConfigFactory factory = new MultipartConfigFactory();
-		factory.setMaxFileSize(DataSize.ofBytes(500000000L));
-		return factory.createMultipartConfig();
 	}
 }
