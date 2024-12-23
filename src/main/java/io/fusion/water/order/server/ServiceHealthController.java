@@ -96,7 +96,7 @@ public class ServiceHealthController {
     })
 	@GetMapping("/health")
 	public ResponseEntity<HashMap<String, String>> getHealth(
-			HttpServletRequest request) throws Exception {
+			HttpServletRequest request)   {
 		Std.println(LocalDateTime.now()+"|Request to Health of Service... ");
 		HashMap<String, String> data = new HashMap<>();
 		data.put("Service-Health", "OK");
@@ -116,7 +116,7 @@ public class ServiceHealthController {
     })
 	@GetMapping("/ready")
 	public ResponseEntity<HashMap<String, String>> isReady(
-			HttpServletRequest request) throws Exception {
+			HttpServletRequest request)   {
 		Std.println(LocalDateTime.now()+"|Request to Readiness Check.. ");
 		HashMap<String, String> data = new HashMap<>();
 		data.put("Status", "Ready");
