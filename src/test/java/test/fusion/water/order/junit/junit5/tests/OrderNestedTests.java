@@ -64,7 +64,7 @@ public class OrderNestedTests {
         @Test
         @DisplayName("1.1 Should Create Customer in order")
         @Order(1)
-        public void shouldCreateCustomer() {
+        void shouldCreateCustomer() {
             Customer c = new Customer("UUID", "John", "Doe", "0123456789");
             order = new OrderEntity.Builder().addCustomer(c).build();
             assertTrue(order.isCustomerAvailable());
@@ -73,7 +73,7 @@ public class OrderNestedTests {
         @Test
         @DisplayName("1.2 Should Not Create Customer When First Name is Null")
         @Order(2)
-        public void shouldThrowRuntimeExceptionWhenFirstNameIsNull() {
+        void shouldThrowRuntimeExceptionWhenFirstNameIsNull() {
             Assertions.assertThrows(RuntimeException.class, () -> {
                 order = new OrderEntity.Builder()
                         .addCustomer(new Customer("UUID", null, "Doe", "0123456789"))
@@ -84,7 +84,7 @@ public class OrderNestedTests {
         @Test
         @DisplayName("1.3 Should Not Create Customer When Last Name is Null")
         @Order(3)
-        public void shouldThrowRuntimeExceptionWhenLastNameIsNull() {
+        void shouldThrowRuntimeExceptionWhenLastNameIsNull() {
             Assertions.assertThrows(RuntimeException.class, () -> {
                 order = new OrderEntity.Builder()
                         .addCustomer(new Customer("UUID", "John", null, "0123456789"))
@@ -95,7 +95,7 @@ public class OrderNestedTests {
         @Test
         @DisplayName("1.4 Should Not Create Contact When Phone Number is Null")
         @Order(4)
-        public void shouldThrowRuntimeExceptionWhenPhoneNumberIsNull() {
+        void shouldThrowRuntimeExceptionWhenPhoneNumberIsNull() {
             Assertions.assertThrows(RuntimeException.class, () -> {
                 order = new OrderEntity.Builder()
                         .addCustomer(new Customer("UUID", "John", "Doe", null))
@@ -111,7 +111,7 @@ public class OrderNestedTests {
         @RepeatedTest(value = 3,
                 name = "Repeating Order Creation Test {currentRepetition} of {totalRepetitions}")
         @Order(1)
-        public void shouldTestOrderCreationRepeatedly() {
+        void shouldTestOrderCreationRepeatedly() {
             order = new OrderEntity.Builder()
                     .addCustomer(
                             new Customer
@@ -123,7 +123,7 @@ public class OrderNestedTests {
         @RepeatedTest(value = 5,
                 name = "Repeating Order Creation Test {currentRepetition} of {totalRepetitions}")
         @Order(2)
-        public void shouldTestOrderCreationRepeatedly2() {
+        void shouldTestOrderCreationRepeatedly2() {
             order = new OrderEntity.Builder()
                     .addCustomer(
                             new Customer
@@ -140,7 +140,7 @@ public class OrderNestedTests {
         @ParameterizedTest
         @ValueSource(strings = {"0123456777", "0123456888", "0123456999"})
         @Order(1)
-        public void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
+        void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
             order = new OrderEntity.Builder()
                     .addCustomer(
                             new Customer
@@ -154,7 +154,7 @@ public class OrderNestedTests {
         @ParameterizedTest
         @CsvSource({"0123456777", "0123456888", "0123456999"})
         @Order(2)
-        public void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
+        void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
             order = new OrderEntity.Builder()
                     .addCustomer(
                             new Customer
@@ -168,7 +168,7 @@ public class OrderNestedTests {
         @ParameterizedTest
         @CsvFileSource(resources = "/phoneList.csv")
         @Order(3)
-        public void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
+        void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
             order = new OrderEntity.Builder()
                     .addCustomer(
                             new Customer

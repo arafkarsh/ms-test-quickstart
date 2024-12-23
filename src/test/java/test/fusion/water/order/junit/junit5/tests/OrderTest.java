@@ -103,20 +103,19 @@ public class OrderTest {
     @Test
     @DisplayName("1. Should Create Customer in order")
     @Order(1)
-    public void shouldCreateCustomer() {
+    void shouldCreateCustomer() {
     	Customer c = new Customer("UUID", "John", "Doe", "0123456789");
     	System.out.println(c);
     	order = new OrderEntity.Builder()
     			.addCustomer(c)
     			.build();
     	assertTrue(order.isCustomerAvailable());
-        // assertEquals(1, contactManager.getAllContacts().size());
     }
     
     @Test
     @DisplayName("2. Should Not Create Customer When First Name is Null")
     @Order(2)
-    public void shouldThrowRuntimeExceptionWhenFirstNameIsNull() {
+    void shouldThrowRuntimeExceptionWhenFirstNameIsNull() {
         Assertions.assertThrows(RuntimeException.class, () -> {
         	order = new OrderEntity.Builder()
         			.addCustomer(
@@ -125,15 +124,13 @@ public class OrderTest {
         			.build();
 
         });
-        // System.out.println(">> "+order.getCustomer());
-        // assertTrue(order.isCustomerAvailable());
-
+        assertTrue(order.isCustomerAvailable());
     }
     
     @Test
     @DisplayName("3. Should Not Create Customer When Last Name is Null")
     @Order(3)
-    public void shouldThrowRuntimeExceptionWhenLastNameIsNull() {
+    void shouldThrowRuntimeExceptionWhenLastNameIsNull() {
         Assertions.assertThrows(RuntimeException.class, () -> {
         	order = new OrderEntity.Builder()
         			.addCustomer(
@@ -141,13 +138,13 @@ public class OrderTest {
         					("UUID", "John", null, "0123456789"))
         			.build();
         });
-        // assertTrue(order.isCustomerAvailable());
+        assertTrue(order.isCustomerAvailable());
     }
     
     @Test
     @DisplayName("4. Should Not Create Contact When Phone Number is Null")
     @Order(4)
-    public void shouldThrowRuntimeExceptionWhenPhoneNumberIsNull() {
+    void shouldThrowRuntimeExceptionWhenPhoneNumberIsNull() {
         Assertions.assertThrows(RuntimeException.class, () -> {
         	order = new OrderEntity.Builder()
         			.addCustomer(
@@ -160,7 +157,7 @@ public class OrderTest {
     @Test
     @DisplayName("5. Test All Customer Tests")
     @Order(5)
-    public void testAllCustomerTests() {
+    void testAllCustomerTests() {
     	assertAll(
     			() -> Assertions.assertThrows(RuntimeException.class, () -> {
     	        		order = new OrderEntity.Builder().addCustomer(
@@ -181,7 +178,7 @@ public class OrderTest {
     @DisplayName("6. Should Create Customer if run on Linux OS")
     @EnabledOnOs(value = OS.LINUX, disabledReason = "Should Run only on Linux")
     @Order(6)
-    public void shouldCreateOrderOnLinux() {
+    void shouldCreateOrderOnLinux() {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -197,7 +194,7 @@ public class OrderTest {
     @Test
     @DisplayName("7. Test Order Creation on Developer Machine")
     @Order(7)
-    public void shouldTestOrderCreationOnDEV() {
+    void shouldTestOrderCreationOnDEV() {
         System.setProperty("ENV", "DEV");
         System.out.println("Property = "+System.getProperty("ENV"));
         Assumptions.assumeTrue("DEV".equals(System.getProperty("ENV")));
@@ -213,7 +210,7 @@ public class OrderTest {
     @RepeatedTest(value = 3,
             name = "Repeating Order Creation Test {currentRepetition} of {totalRepetitions}")
     @Order(8)
-    public void shouldTestOrderCreationRepeatedly() {
+    void shouldTestOrderCreationRepeatedly() {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -226,7 +223,7 @@ public class OrderTest {
     @ParameterizedTest
     @ValueSource(strings = {"0123456777", "0123456888", "0123456999"})
     @Order(9)
-    public void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
+    void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -240,7 +237,7 @@ public class OrderTest {
     @ParameterizedTest
     @CsvSource({"0123456777", "0123456888", "0123456999"})
     @Order(10)
-    public void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
+    void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -254,7 +251,7 @@ public class OrderTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/phoneList.csv")
     @Order(11)
-    public void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
+    void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -268,7 +265,7 @@ public class OrderTest {
     @ParameterizedTest
     @MethodSource("phoneNumberList")
     @Order(12)
-    public void shouldTestPhoneNumberFormatUsingMethodSource(String phoneNumber) {
+    void shouldTestPhoneNumberFormatUsingMethodSource(String phoneNumber) {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -286,20 +283,19 @@ public class OrderTest {
     @ParameterizedTest
     @ArgumentsSource(CustomerArgumentProvider.class)
     @Order(13)
-    public void testWithArgumentsSource(String uuid, String fn, String ln, String phone) {
-        log.debug(">>> Parameterized test with (String) {} and (int) {} ", uuid, fn, ln, phone);
+    void testWithArgumentsSource(String uuid, String fn, String ln, String phone) {
+        log.debug(" Parameterized test with (String) {} and (int) {} {} {} ", uuid, fn, ln, phone);
 
         assertNotNull(uuid);
         assertNotNull(fn);
         assertNotNull(ln);
         assertNotNull(phone);
-        // assertTrue(age > 0);
     }
    
     @Test
     @DisplayName("14. Timeout Not Exceeded")
     @Order(14)
-    public void timeoutNotExceeded() {
+    void timeoutNotExceeded() {
           assertTimeout(ofMinutes(2), () -> {
               // Perform task that takes less than 2 minutes
           });
@@ -309,8 +305,9 @@ public class OrderTest {
     @Test
     @DisplayName("15. Timeout Exceeded")
     @Order(15)
-    public void timeoutExceeded() {
+    void timeoutExceeded() {
           assertTimeout(ofMillis(10), () -> {
+                // Simulation
         		 Thread.sleep(4);
           });
     }
@@ -318,7 +315,7 @@ public class OrderTest {
     @Test
     @DisplayName("16. Timeout Not Exceeded with Result")
     @Order(16)
-    public void timeoutNotExceededWithResult() {
+    void timeoutNotExceededWithResult() {
         String actualResult = assertTimeout(ofMinutes(1), () -> {
             return "Hello Order Microservice!";
         });
@@ -328,7 +325,7 @@ public class OrderTest {
     @Test
     @DisplayName("17. Timeout Not Exceeded with Result from Method")
     @Order(17)
-    public void timeoutNotExceededWithMethod() {
+    void timeoutNotExceededWithMethod() {
         String actualGreeting = assertTimeout(ofMinutes(1),
         		OrderTest::timeOutResult);
         assertEquals("Hello Order Microservice!", actualGreeting);
@@ -345,8 +342,9 @@ public class OrderTest {
     // @Test
     @DisplayName("18. Timeout Exceeded and Terminated Preemptively")
     @Order(18)
-    public void timeoutExceededWithPreemptiveTermination() {
+    void timeoutExceededWithPreemptiveTermination() {
         assertTimeoutPreemptively(ofMillis(10), () -> {
+            // Simulation
             Thread.sleep(9);
         });
     }
@@ -355,7 +353,7 @@ public class OrderTest {
     @Test
     @DisplayName("19. Exception Testing - Order Processing Failed!")
     @Order(19)
-    public void exceptionTesting() {
+    void exceptionTesting() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> {
                     throw new IllegalArgumentException("Order Processing Failed!");
@@ -366,17 +364,22 @@ public class OrderTest {
     @Test
     @DisplayName("20. Hamcrest AssertThat Assertion with Matchers")
     @Order(20)
-    public void assertWithHamcrestMatcher() {
+    void assertWithHamcrestMatcher() {
         assertThat(2 + 3, equalTo(5));
         assertThat("JohnDoe", notNullValue());
         assertThat("Hello Microservices", containsString("Hello"));
     }
-    
+
+    /**
+     * Example to show that this test is disabled
+     */
     @Test
     @DisplayName("21.Test Should Be Disabled")
     @Disabled
     @Order(21)
-    public void shouldBeDisabled() {
+    void shouldBeDisabled() {
+        // This an example to show that this test is disabled
+        assertThat("Hello Microservices", containsString("Hello"));
         throw new RuntimeException("Test Should Not be executed");
     }
 
@@ -385,7 +388,7 @@ public class OrderTest {
      * is available then the method need not be static
      */
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         System.out.println(counter+". Should Execute After Each Test");
         counter++;
     }
@@ -395,7 +398,7 @@ public class OrderTest {
 	 * is available then the method need not be static
 	 */
     @AfterAll
-    public void tearDownAll() {
+    void tearDownAll() {
         System.out.println("== Order tests Suite Execution Completed...");
     }
 }

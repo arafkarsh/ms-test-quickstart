@@ -78,7 +78,7 @@ public class OrderRepeatedTests {
     class genericTests {
 	    @Test
 	    @DisplayName("Should Create Customer in order")
-	    public void shouldCreateCustomer() {
+		void shouldCreateCustomer() {
 	    	Customer c = new Customer("UUID", "John", "Doe", "0123456789");
 	    	order = new OrderEntity.Builder().addCustomer(c).build();
 	    	assertTrue(order.isCustomerAvailable());
@@ -86,7 +86,7 @@ public class OrderRepeatedTests {
 	    
 	    @Test
 	    @DisplayName("Should Not Create Customer When First Name is Null")
-	    public void shouldThrowRuntimeExceptionWhenFirstNameIsNull() {
+		void shouldThrowRuntimeExceptionWhenFirstNameIsNull() {
 	        Assertions.assertThrows(RuntimeException.class, () -> {
 	        	order = new OrderEntity.Builder()
 	        			.addCustomer(new Customer("UUID", null, "Doe", "0123456789"))
@@ -96,7 +96,7 @@ public class OrderRepeatedTests {
 	    
 	    @Test
 	    @DisplayName("Should Not Create Customer When Last Name is Null")
-	    public void shouldThrowRuntimeExceptionWhenLastNameIsNull() {
+		void shouldThrowRuntimeExceptionWhenLastNameIsNull() {
 	        Assertions.assertThrows(RuntimeException.class, () -> {
 	        	order = new OrderEntity.Builder()
 	        			.addCustomer(new Customer("UUID", "John", null, "0123456789"))
@@ -106,7 +106,7 @@ public class OrderRepeatedTests {
 
 	    @Test
 	    @DisplayName("Should Not Create Contact When Phone Number is Null")
-	    public void shouldThrowRuntimeExceptionWhenPhoneNumberIsNull() {
+		void shouldThrowRuntimeExceptionWhenPhoneNumberIsNull() {
 	        Assertions.assertThrows(RuntimeException.class, () -> {
 	        	order = new OrderEntity.Builder()
 	        			.addCustomer(new Customer("UUID", "John", "Doe", null))
@@ -117,7 +117,7 @@ public class OrderRepeatedTests {
 	    @Test
 	    @DisplayName("Should Create Customer if run on Linux OS")
 	    @EnabledOnOs(value = OS.LINUX, disabledReason = "Should Run only on Linux")
-	    public void shouldCreateOrderOnLinux() {
+		void shouldCreateOrderOnLinux() {
 	    	order = new OrderEntity.Builder()
 	    			.addCustomer(new Customer("UUID", "John", "Doe", "0123456789"))
 	    			.build();
@@ -130,7 +130,7 @@ public class OrderRepeatedTests {
 	     */
 	    @Test
 	    @DisplayName("Test Order Creation on Developer Machine")
-	    public void shouldTestOrderCreationOnDEV() {
+		void shouldTestOrderCreationOnDEV() {
 	        Assumptions.assumeTrue("DEV".equals(System.getProperty("ENV")));
 	    	order = new OrderEntity.Builder()
 	    			.addCustomer(new Customer("UUID", "John", "Doe", "0123456789"))
@@ -145,7 +145,7 @@ public class OrderRepeatedTests {
 	    @DisplayName("Repeat Contact Creation Test 3 Times")
 	    @RepeatedTest(value = 3,
 	            name = "Repeating Order Creation Test {currentRepetition} of {totalRepetitions}")
-	    public void shouldTestOrderCreationRepeatedly() {
+		void shouldTestOrderCreationRepeatedly() {
 	    	order = new OrderEntity.Builder()
 	    			.addCustomer(
 	    					new Customer
@@ -160,7 +160,7 @@ public class OrderRepeatedTests {
 	    @DisplayName("Phone Number should match the required Format")
 	    @ParameterizedTest
 	    @ValueSource(strings = {"0123456777", "0123456888", "0123456999"})
-	    public void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
+		void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
 	    	order = new OrderEntity.Builder()
 	    			.addCustomer(
 	    					new Customer
@@ -173,7 +173,7 @@ public class OrderRepeatedTests {
 	    @DisplayName("CSV Source Case - Phone Number should match the required Format")
 	    @ParameterizedTest
 	    @CsvSource({"0123456777", "0123456888", "0123456999"})
-	    public void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
+		void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
 	    	order = new OrderEntity.Builder()
 	    			.addCustomer(
 	    					new Customer
@@ -186,7 +186,7 @@ public class OrderRepeatedTests {
 	    @DisplayName("CSV File Source Case - Phone Number should match the required Format")
 	    @ParameterizedTest
 	    @CsvFileSource(resources = "/phoneList.csv")
-	    public void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
+		void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
 	    	order = new OrderEntity.Builder()
 	    			.addCustomer(
 	    					new Customer
@@ -201,7 +201,7 @@ public class OrderRepeatedTests {
     @DisplayName("Method Source Case - Phone Number should match the required Format")
     @ParameterizedTest
     @MethodSource("phoneNumberList")
-    public void shouldTestPhoneNumberFormatUsingMethodSource(String phoneNumber) {
+	void shouldTestPhoneNumberFormatUsingMethodSource(String phoneNumber) {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer

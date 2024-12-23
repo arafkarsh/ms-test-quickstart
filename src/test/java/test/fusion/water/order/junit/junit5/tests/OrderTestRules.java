@@ -130,12 +130,15 @@ public class OrderTestRules {
 	@Test
 	@DisplayName("1. Rule Test - Temporary Folder")
 	@Order(1)
-    public void folderTest()  {
+	void folderTest()  {
     	try {
 			File newFile = tmpFolder2.newFile("MyNewFile.txt");
 			File newDir = tmpFolder2.newFolder("MyNewFolder");
 			System.out.println(newFile.getAbsolutePath());
 			System.out.println(newDir.getAbsolutePath());
+
+			assertThat(newFile.exists(), is(equalTo(true)));
+			assertThat(newDir.exists(), is(equalTo(true)));
 
     	} catch (IOException e) {
 			e.printStackTrace();
@@ -145,7 +148,7 @@ public class OrderTestRules {
 	@Test
 	@DisplayName("2. Rule Test - Error Collector")
 	@Order(2)
-    public void test() {
+	void test() {
         collector.checkThat("a", equalTo("b"));
         collector.checkThat(1, equalTo(2));
         collector.checkThat("c", equalTo("c"));
@@ -154,13 +157,15 @@ public class OrderTestRules {
     @Test
  	@DisplayName("3. Rule Test - ExpectedException : No Error")
 	@Order(3)
-    public void throwsNothing() {
+	void throwsNothing() {
+		// No Error Expected
+		assertThat("No Error", is(equalTo("No Error")));
     }
      
     @Test
   	@DisplayName("4. Rule Test - ExpectedException : Error Thrown")
 	@Order(4)
-    public void throwsNullPointerException() {
+	void throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         try {
         	throw new NullPointerException();
@@ -173,7 +178,7 @@ public class OrderTestRules {
     @Test
     @DisplayName("5. Rule Test - TestName") 
 	@Order(5)
-    public void ruleTestName() {
+	void ruleTestName() {
     	if(testName.getMethodName() == null) {
         	System.out.println(">> TestName Rule Doesnt Work! TestName="+testName.getMethodName());
     		return;
@@ -185,19 +190,22 @@ public class OrderTestRules {
     @Test
     @DisplayName("6. Rule Test - Timeout R1") 
 	@Order(6)
-    public void testTimeout1() throws InterruptedException {
+	void testTimeout1() throws InterruptedException {
     	long start = System.currentTimeMillis();
     	Thread.sleep(1000);
     	System.out.println("Time Taken R1 = "+(System.currentTimeMillis()-start));
+		assertThat("Timeout Test", is(equalTo("Timeout Test")));
     }
     
     @Test
     @DisplayName("7. Rule Test - Timeout R2") 
 	@Order(7)
-    public void testTimeout2() throws InterruptedException {
+	void testTimeout2() throws InterruptedException {
     	long start = System.currentTimeMillis();
+		// Simulating a Long Running Process
     	Thread.sleep(5000);
     	System.out.println("Time Taken R2 = "+(System.currentTimeMillis()-start));
+		assertThat("Timeout Test", is(equalTo("Timeout Test")));
     }
     
     @AfterEach

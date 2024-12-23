@@ -100,7 +100,7 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @ValueSource(strings = {"0123456777", "0123456888", "0123456999"})
     @Order(1)
-    public void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
+    void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -114,7 +114,7 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 5, -3, 15, Integer.MAX_VALUE}) // six numbers
     @Order(2)
-    public void isOddShouldReturnTrueForOddNumbers(int number) {
+    void isOddShouldReturnTrueForOddNumbers(int number) {
         assertTrue(Utils.Numbers.isOdd(number));
     }
     
@@ -122,7 +122,7 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @NullSource
     @Order(3)
-    public void isBlankShouldReturnTrueForNullInputs(String input) {
+    void isBlankShouldReturnTrueForNullInputs(String input) {
         assertTrue(Utils.Strings.isBlank(input));
     }
     
@@ -130,7 +130,7 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @EmptySource
     @Order(4)
-    public void isBlankShouldReturnTrueForEmptyStrings(String input) {
+    void isBlankShouldReturnTrueForEmptyStrings(String input) {
         assertTrue(Utils.Strings.isBlank(input));
     }
     
@@ -138,7 +138,7 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @NullAndEmptySource
     @Order(5)
-    public void isBlankShouldReturnTrueForNullAndEmptyStrings(String input) {
+    void isBlankShouldReturnTrueForNullAndEmptyStrings(String input) {
         assertTrue(Utils.Strings.isBlank(input));
     }
     
@@ -147,7 +147,7 @@ public class OrderTestParametrized {
     @NullAndEmptySource
     @ValueSource(strings = {"  ", "\t", "\n"})
     @Order(6)
-    public void isBlank_ShouldReturnTrueForAllTypesOfBlankStrings(String input) {
+    void isBlank_ShouldReturnTrueForAllTypesOfBlankStrings(String input) {
         assertTrue(Utils.Strings.isBlank(input));
     }
     
@@ -155,7 +155,7 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @EnumSource(Month.class) 
     @Order(7)
-    public void getValueForAMonthIsAlwaysBetweenOneAndTwelve(Month month) {
+    void getValueForAMonthIsAlwaysBetweenOneAndTwelve(Month month) {
         int monthNumber = month.getValue();
         assertTrue(monthNumber > 0 && monthNumber < 13);
     }
@@ -165,7 +165,7 @@ public class OrderTestParametrized {
     @EnumSource(value = Month.class, names = 
 				{"APRIL", "JUNE", "SEPTEMBER", "NOVEMBER"})
     @Order(8)
-    public void someMonths_Are30DaysLong(Month month) {
+    void someMonths_Are30DaysLong(Month month) {
         final boolean isALeapYear = false;
         assertEquals(30, month.length(isALeapYear));
     }
@@ -174,7 +174,7 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @CsvSource({"0123456777", "0123456888", "0123456999"})
     @Order(9)
-    public void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
+    void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -188,7 +188,7 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @CsvFileSource(resources = "/phoneList.csv")
     @Order(10)
-    public void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
+    void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -202,7 +202,7 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @MethodSource("phoneNumberList")
     @Order(11)
-    public void shouldTestPhoneNumberFormatUsingMethodSource(String phoneNumber) {
+    void shouldTestPhoneNumberFormatUsingMethodSource(String phoneNumber) {
     	order = new OrderEntity.Builder()
     			.addCustomer(
     					new Customer
@@ -220,16 +220,14 @@ public class OrderTestParametrized {
     @ParameterizedTest
     @ArgumentsSource(CustomerArgumentProvider.class)
     @Order(12)
-    public void testWithArgumentsSource(
+    void testWithArgumentsSource(
     		String uuid, String fn, String ln, String phone) {
-        log.debug(">>> Parameterized test with (String) {} and (int) {} ", 
-        		uuid, fn, ln, phone);
+        log.debug(">>> Parameterized test with (String) {} and (int) {} {} {}", uuid, fn, ln, phone);
 
        assertNotNull(uuid);
        assertNotNull(fn);        
        assertNotNull(ln);
        assertNotNull(phone);
-       // assertTrue(age > 0);
     }
 
     static Stream<Arguments> arguments = Stream.of(
