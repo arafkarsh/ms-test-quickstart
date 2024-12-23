@@ -218,18 +218,22 @@ public class OrderTest {
     			.build(); 
     	assertTrue(order.isCustomerAvailable());
     }
+
+    private OrderEntity createOrder(String phoneNumber) {
+        return new OrderEntity.Builder()
+                .addCustomer(
+                        new Customer
+                                ("UUID", "John", "Doe", phoneNumber))
+                .build();
+    }
     
     @DisplayName("9. Phone Number should match the required Format")
     @ParameterizedTest
     @ValueSource(strings = {"0123456777", "0123456888", "0123456999"})
     @Order(9)
     void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
-    	order = new OrderEntity.Builder()
-    			.addCustomer(
-    					new Customer
-    					("UUID", "John", "Doe", phoneNumber))
-    			.build(); 
-    	assertTrue(order.isCustomerAvailable());
+    	order = createOrder( phoneNumber);
+        assertTrue(order.isCustomerAvailable());
     	assertEquals(1, order.getCustomer().getPhoneList().size());
     }
     
@@ -238,12 +242,8 @@ public class OrderTest {
     @CsvSource({"0123456777", "0123456888", "0123456999"})
     @Order(10)
     void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
-    	order = new OrderEntity.Builder()
-    			.addCustomer(
-    					new Customer
-    					("UUID", "John", "Doe", phoneNumber))
-    			.build(); 
-    	assertTrue(order.isCustomerAvailable());
+        order = createOrder( phoneNumber);
+        assertTrue(order.isCustomerAvailable());
     	assertEquals(1, order.getCustomer().getPhoneList().size());
     }
     
@@ -252,11 +252,8 @@ public class OrderTest {
     @CsvFileSource(resources = "/phoneList.csv")
     @Order(11)
     void shouldTestPhoneNumberFormatUsingCSVFileSource(String phoneNumber) {
-    	order = new OrderEntity.Builder()
-    			.addCustomer(
-    					new Customer
-    					("UUID", "John", "Doe", phoneNumber))
-    			.build(); 
+        order = createOrder( phoneNumber);
+
     	assertTrue(order.isCustomerAvailable());
     	assertEquals(1, order.getCustomer().getPhoneList().size());
     }
@@ -266,11 +263,8 @@ public class OrderTest {
     @MethodSource("phoneNumberList")
     @Order(12)
     void shouldTestPhoneNumberFormatUsingMethodSource(String phoneNumber) {
-    	order = new OrderEntity.Builder()
-    			.addCustomer(
-    					new Customer
-    					("UUID", "John", "Doe", phoneNumber))
-    			.build(); 
+        order = createOrder( phoneNumber);
+
     	assertTrue(order.isCustomerAvailable());
     	assertEquals(1, order.getCustomer().getPhoneList().size());
     }

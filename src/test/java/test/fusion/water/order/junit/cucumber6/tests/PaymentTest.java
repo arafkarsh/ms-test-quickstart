@@ -54,5 +54,6 @@ public class PaymentTest {
 
 	@BeforeClass
 	public static void setupAll() {
+		// setup
 	}
 }

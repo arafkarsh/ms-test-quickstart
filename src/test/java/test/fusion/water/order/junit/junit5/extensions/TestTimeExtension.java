@@ -34,6 +34,7 @@ public class TestTimeExtension implements InvocationInterceptor {
 	 * Intercept Test Method to calculate the Time
 	 * (it took to run the test).
 	 */
+    @Override
 	public void interceptTestMethod(Invocation<Void> invocation,
             ReflectiveInvocationContext<Method> classContext,
             ExtensionContext extensionContext) throws Throwable {
