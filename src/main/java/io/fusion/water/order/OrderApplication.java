@@ -15,7 +15,6 @@
  */
 package io.fusion.water.order;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -80,18 +79,30 @@ public class OrderApplication {
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());
 	
-	private final String title = "<h1>Welcome to (Ms-Test-Quickstart) Order Service<h1/>"
+	private static final String TITLE = "<h1>Welcome to (Ms-Test-Quickstart) Order Service<h1/>"
 								+"<h3>Copyright (c) Araf Karsh Hamid, 2021-24</h3>";
 	
 	private static ConfigurableApplicationContext context;
 
+	// Autowired using Constructor Injection
 	@Autowired
 	private ServiceConfiguration serviceConfig;
 
 	// Get the Service Name from the properties file
 	@Value("${service.name:NameNotDefined}")
 	private String serviceName = "Unknown";
-	
+
+	/**
+	 * Autowired using Constructor Injection
+	 * @param serviceConfig
+	 */
+	/**
+	@Autowired
+	private OrderApplication(ServiceConfiguration serviceConfig) {
+		this.serviceConfig = serviceConfig;
+	}
+	*/
+
 	/**
 	 * Start the Order Service
 	 * 
@@ -140,6 +151,7 @@ public class OrderApplication {
 	 */
 	@PostConstruct
 	public void configure() {
+		// Load the Configuration
 	}
 
 	/**
@@ -148,12 +160,13 @@ public class OrderApplication {
 	 */
 	@GetMapping("/root")
 	public String home(HttpServletRequest request) {
-		log.info("Request to Home Page of Service... " + printRequestURI(request));
-		return (serviceConfig == null) ? this.title :
-				this.title.replaceAll("MICRO", serviceConfig.getServiceName())
-						.replaceAll("COMPANY", serviceConfig.getServiceOrg())
-						.replaceAll("BN", "" + serviceConfig.getBuildNumber())
-						.replaceAll("BD", serviceConfig.getBuildDate());
+		String str = printRequestURI(request);
+		log.info("Request to Home Page of Service... {} ", str );
+		return (serviceConfig == null) ? TITLE :
+				TITLE.replace("MICRO", serviceConfig.getServiceName())
+						.replace("COMPANY", serviceConfig.getServiceOrg())
+						.replace("BN", "" + serviceConfig.getBuildNumber())
+						.replace("BD", serviceConfig.getBuildDate());
 	}
 
 	/**
@@ -171,8 +184,9 @@ public class OrderApplication {
 			sb.append(req[x]).append("|");
 		}
 		sb.append("\n");
-		log.info("HttpServletRequest: ["+sb.toString()+"]");
-		return sb.toString();
+		String str = sb.toString();
+		log.info("HttpServletRequest: [{}]",str);
+		return str;
 	}
 
 	/**
@@ -223,11 +237,9 @@ public class OrderApplication {
 	 * Reference: https://springdoc.org/faq.html
 	 * Change the Resource Mapping in HealthController
 	 *
-	 * @see HealthController
 	 */
 	@Bean
 	public GroupedOpenApi configPublicApi() {
-		// System.out.println;
 		return GroupedOpenApi.builder()
 				.group(serviceConfig.getServiceName()+"-service-config")
 				.pathsToMatch(serviceConfig.getServiceApiPath()+"/config/**")
@@ -275,7 +287,7 @@ public class OrderApplication {
 	 * @return
 	 */
 	private List<Server> getServers() {
-		List<Server> serverList = new ArrayList<Server>();
+		List<Server> serverList = new ArrayList<>();
 
 		Server dev = new Server();
 		dev.setUrl(serviceConfig.getServerHostDev());
@@ -292,10 +304,6 @@ public class OrderApplication {
 		serverList.add(prod);
 
 		return serverList;
-	}
-
-	private String getServerVersion() {
-		return (serviceConfig != null) ? serviceConfig.getServerVersion() : "v0.0.0";
 	}
 	
 	/**

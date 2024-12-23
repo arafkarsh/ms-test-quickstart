@@ -28,31 +28,35 @@ import com.google.gson.Gson;
  *
  */
 public final class Utils {
-	
+
+
+	private Utils() {
+	}
+
 	/**
 	 * Return JSON
 	 * 
-	 * @param _object
+	 * @param object
 	 * @return
 	 */
-	public static String toJson(Object _object) {
-		if(_object == null) {
+	public static String toJson(Object object) {
+		if(object == null) {
 			return "";
 		}
-		return new Gson().toJson(_object);
+		return new Gson().toJson(object);
 	}
 	
 	/***
 	 * 
-	 * @param _object
+	 * @param object
 	 * @return
 	 */
-	public static String toJsonString(Object _object) {
-		if(_object == null) {
+	public static String toJsonString(Object object) {
+		if(object == null) {
 			return "";
 		}
 		try {
-			return new ObjectMapper().writeValueAsString(_object);
+			return new ObjectMapper().writeValueAsString(object);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
@@ -66,6 +70,8 @@ public final class Utils {
 	 *
 	 */
 	public static class Strings {
+
+		private Strings() {}
 
 		/**
 		 * Returns True if the String is NULL or Empty
@@ -89,7 +95,9 @@ public final class Utils {
 	 *
 	 */
 	public static class Numbers {
-		
+
+		private Numbers() {}
+
 		/**
 		 * Returns True if the Number is an Odd Number
 		 * @param number
@@ -99,5 +107,4 @@ public final class Utils {
 	        return number % 2 != 0;
 	    }
 	}
-
 }
