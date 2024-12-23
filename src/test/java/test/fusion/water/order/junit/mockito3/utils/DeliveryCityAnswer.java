@@ -59,18 +59,17 @@ public class DeliveryCityAnswer<T> implements Answer<Object> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
- 		// System.out.println("Answer >> "+city+" | "+state+" | "+country);
 		return getDeliveryCity( city,  state,  country);
 	}
 	
 	/**
 	 * Add Delivery City
 	 * 
-	 * @param _deliveryCity
+	 * @param deliveryCity
 	 * @return
 	 */
-	public void addCity(DeliveryCity _deliveryCity) {
-		cities.put(_deliveryCity.getCityKey(), _deliveryCity);
+	public void addCity(DeliveryCity deliveryCity) {
+		cities.put(deliveryCity.getCityKey(), deliveryCity);
 	}
 	
 	/**

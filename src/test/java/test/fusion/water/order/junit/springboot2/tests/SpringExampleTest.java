@@ -74,7 +74,7 @@ public class SpringExampleTest {
 	
 	@Test
 	@DisplayName("1. Spring Boot Testing Autowired Payment Service")
-	public void paymentServiceTest() {
+	void paymentServiceTest() {
 		String param = "World";
 		String expectedResult = "Hello "+param;
 		String result = paymentService.echo("World");

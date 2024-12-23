@@ -54,7 +54,7 @@ public class HttpMockClassRuleTest {
 	}
 
 	@Test
-	public void exampleTest() {
+	void exampleTest() {
 	    stubFor(post("/my/resource")
 	        .withHeader("Content-Type", containing("xml"))
 	        .willReturn(ok()
