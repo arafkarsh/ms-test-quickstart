@@ -19,7 +19,6 @@ package io.fusion.water.order.adapters.service;
 import io.fusion.water.order.adapters.external.ExternalGateWay;
 import io.fusion.water.order.domainLayer.models.*;
 import jakarta.resource.ResourceException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.fusion.water.order.domainLayer.services.OrderRepository;
@@ -35,45 +34,47 @@ import io.fusion.water.order.domainLayer.services.PaymentService;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-	@Autowired
+	// Autowiring using Constructor Injection
 	private OrderRepository orderRepo;
 
-	@Autowired
+	// Autowiring using Constructor Injection
 	private PaymentService paymentService;
+
+	// THIS IS ONLY TO DO THE DEMO OF PACT
+	// Autowiring using Constructor Injection
+	private ExternalGateWay externalGateWay;
 
 	/**
 	 * For Auto wiring the service with Order Repo and Payment Service
-	 * @param _orderRepo
-	 * @param _paymentService
+	 * @param orderRepo
+	 * @param paymentService
 	 */
-	public OrderServiceImpl(OrderRepository _orderRepo, PaymentService _paymentService) {
-		orderRepo = _orderRepo;
-		paymentService = _paymentService;
+	public OrderServiceImpl(OrderRepository orderRepo, PaymentService paymentService,
+							ExternalGateWay externalGateWay) {
+		this.orderRepo = orderRepo;
+		this.paymentService = paymentService;
+		this.externalGateWay = externalGateWay;
 	}
 
-	// THIS IS ONLY TO DO THE DEMO OF PACT
-	@Autowired
-	private ExternalGateWay externalGateWay;
-
 	@Override
-	public OrderEntity getOrderById(String _id) {
+	public OrderEntity getOrderById(String id) {
 		// return orderRepo.getOrderById(_id);
-		return mockGetOrderById(_id);
+		return mockGetOrderById(id);
 	}
 
 	/**
 	 * This is Only for PACT DEMO
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public OrderEntity saveOrderExternal(OrderEntity _order) {
-		return externalGateWay.saveOrder(_order);
+	public OrderEntity saveOrderExternal(OrderEntity order) {
+		return externalGateWay.saveOrder(order);
 	}
 
 	@Override
-	public OrderEntity processOrder(OrderEntity _order) {
+	public OrderEntity processOrder(OrderEntity orderEntity) {
 		// Save order
-		OrderEntity order = orderRepo.saveOrder(_order);
+		OrderEntity order = orderRepo.saveOrder(orderEntity);
 		if(order != null) {
 			// Make Payments
 			PaymentStatus payStatus = paymentService.processPayments(
@@ -85,32 +86,32 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public OrderEntity cancelOrder(OrderEntity _order) {
-		return orderRepo.cancelOrder(_order);
+	public OrderEntity cancelOrder(OrderEntity order) {
+		return orderRepo.cancelOrder(order);
 	}
 
 	@Override
-	public OrderEntity cancelOrder(String _id) {
-		return orderRepo.cancelOrder(_id);
+	public OrderEntity cancelOrder(String id) {
+		return orderRepo.cancelOrder(id);
 	}
 
 	@Override
-	public OrderEntity prepareOrder(OrderEntity _order) {
-		return orderRepo.prepareOrder(_order);
+	public OrderEntity prepareOrder(OrderEntity order) {
+		return orderRepo.prepareOrder(order);
 	}
 
 	/**
 	 * Update Order Status
 	 */
-	public OrderEntity updateOrderStatus(String _id, String _status) {
+	public OrderEntity updateOrderStatus(String id, String status) {
 		// Fetch Order based on Order Id
 		// OrderEntity order = orderRepo.getOrderById(_id);
-		OrderEntity order = mockGetOrderById(_id);
+		OrderEntity order = mockGetOrderById(id);
 
 		// Check Order Status and set the the status in the Order
-		if(_status.equalsIgnoreCase(OrderStatus.READY_FOR_SHIPMENT.name())) {
+		if(status.equalsIgnoreCase(OrderStatus.READY_FOR_SHIPMENT.name())) {
 			order.orderReadyForShipment();
-		} else if (_status.equalsIgnoreCase(OrderStatus.PAYMENT_EXPECTED.name())) {
+		} else if (status.equalsIgnoreCase(OrderStatus.PAYMENT_EXPECTED.name())) {
 			order.orderWaitingForPayment();
 		}
 		return orderRepo.saveOrder(order);
@@ -119,12 +120,12 @@ public class OrderServiceImpl implements OrderService {
 	/**
 	 *
 	 * Ship Order
-	 * @param _id
+	 * @param id
 	 * @return
 	 */
-	public OrderEntity shipOrder(String _id) {
+	public OrderEntity shipOrder(String id) {
 		// Fetch Order based on Order Id
-		OrderEntity order =  mockGetOrderById(_id);
+		OrderEntity order =  mockGetOrderById(id);
 		order.orderReadyForShipment();
 		return order;
 	}
@@ -159,8 +160,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public PaymentStatus processPayments(PaymentDetails _paymentDetails) {
-		return paymentService.processPayments(_paymentDetails);
+	public PaymentStatus processPayments(PaymentDetails paymentDetails) {
+		return paymentService.processPayments(paymentDetails);
 	}
 
 	/**
@@ -168,15 +169,15 @@ public class OrderServiceImpl implements OrderService {
 	 * In a real world scenario you will be retrieving the data from a database based on
 	 * the input _orderId
 	 *
-	 * @param _orderId
+	 * @param orderId
 	 * @return
 	 */
-	private OrderEntity mockGetOrderById(String _orderId) {
+	private OrderEntity mockGetOrderById(String orderId) {
 		return new OrderEntity.Builder()
 				.addCustomer(new Customer
 						("UUID", "John", "Doe", "0123456789"))
 				// Set Order ID
-				.setOrderId(_orderId)
+				.setOrderId(orderId)
 				.addOrderItem(new OrderItem
 						("uuid1", "iPhone 12", 799, "USD", 1))
 				.addOrderItem(new OrderItem

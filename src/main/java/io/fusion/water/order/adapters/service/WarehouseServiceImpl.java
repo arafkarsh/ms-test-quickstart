@@ -18,7 +18,6 @@ package io.fusion.water.order.adapters.service;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.fusion.water.order.domainLayer.models.OrderEntity;
@@ -35,15 +34,30 @@ import io.fusion.water.order.domainLayer.services.WarehouseService;
 @Service
 public class WarehouseServiceImpl implements WarehouseService {
 	
-	@Autowired
-	PackingService packingService;
+	//  Autowired using the Constructor Injection
+	private PackingService packingService;
 	
-	@Autowired
-	ShippingService shippingService;
+	// Autowired using the Constructor Injection
+	private ShippingService shippingService;
 
+	/**
+	 * Autowired using the Constructor Injection
+	 * @param packingService
+	 * @param shippingService
+	 */
+	public WarehouseServiceImpl(PackingService packingService, ShippingService shippingService) {
+		this.packingService = packingService;
+		this.shippingService = shippingService;
+	}
+
+	/**
+	 * Process Orders
+	 * @param orderList
+	 * @return
+	 */
 	@Override
-	public ArrayList<OrderEntity> processOrders(ArrayList<OrderEntity> _orderList) {
-		ArrayList<OrderEntity> orders = packingService.packOrders(_orderList);
+	public ArrayList<OrderEntity> processOrders(ArrayList<OrderEntity> orderList) {
+		ArrayList<OrderEntity> orders = packingService.packOrders(orderList);
 		return shippingService.shipOrder(orders);
 	}
 

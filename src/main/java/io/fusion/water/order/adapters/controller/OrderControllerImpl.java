@@ -18,12 +18,8 @@ package io.fusion.water.order.adapters.controller;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
-
-import java.time.LocalDateTime;
-
 import org.slf4j.Logger;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,8 +58,19 @@ public class OrderControllerImpl implements OrderController {
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());
 
-	@Autowired
-	OrderService orderService;
+	// Autowired using Constructor Injection
+	private OrderService orderService;
+
+	private static final String ERROR = "Error: ";
+
+	/**
+	 * Autowired using Constructor Injection
+	 * @param orderService
+	 */
+	public OrderControllerImpl(OrderService orderService) {
+		this.orderService = orderService;
+		log.info("Order Controller Created...");
+	}	
 
 	/**
 	 * Get Order - Follows REST Guidelines for URI
@@ -80,12 +87,12 @@ public class OrderControllerImpl implements OrderController {
 	})
 	@Override
 	@GetMapping("/{orderId}/")
-	public ResponseEntity<OrderEntity> getOrderById(@PathVariable("orderId") String _id) {
+	public ResponseEntity<OrderEntity> getOrderById(@PathVariable("orderId") String id) {
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderService.getOrderById(_id);
+			orderEntity = orderService.getOrderById(id);
 		} catch (Exception e) {
-			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(orderEntity, HttpStatus.BAD_REQUEST);
 		}
 		return ResponseEntity.ok(orderEntity);
 	}
@@ -105,8 +112,9 @@ public class OrderControllerImpl implements OrderController {
 	})
 	@Override
 	@PostMapping("/")
-	public ResponseEntity<OrderEntity> saveOrder(@RequestBody OrderEntity _order) {
-		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_order));
+	public ResponseEntity<OrderEntity> saveOrder(@RequestBody OrderEntity order) {
+		String orderJson = Utils.toJsonString(order);
+		log.info("|Order= {}", orderJson);
 		OrderEntity orderEntity = null;
 		// Create HttpHeaders object and add a custom header
 		// HttpHeaders are used like this to Demo a RestAssured test case.
@@ -115,13 +123,13 @@ public class OrderControllerImpl implements OrderController {
 		headers.add("X-CSRF-TOKEN", "csrf-token");
 		// The above headers are not meant for production usage.
 		try  {
-			orderEntity = orderService.processOrder(_order);
+			orderEntity = orderService.processOrder(order);
 		} catch (Exception e) {
-			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
-			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
+			log.info(ERROR+" {} ",e.getMessage());
+			return new ResponseEntity<>(orderEntity, HttpStatus.BAD_REQUEST);
 		}
-		System.out.println(LocalDateTime.now()+"|Order Saved.");
-		return new ResponseEntity<OrderEntity>(orderEntity, headers, HttpStatus.OK);
+		log.info("|Order Saved.");
+		return new ResponseEntity<>(orderEntity, headers, HttpStatus.OK);
 	}
 
 	/**
@@ -140,16 +148,17 @@ public class OrderControllerImpl implements OrderController {
 	})
 	@Override
 	@DeleteMapping("/cancel")
-	public ResponseEntity<OrderEntity> cancelOrder(@RequestBody  OrderEntity _order) {
-		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_order));
+	public ResponseEntity<OrderEntity> cancelOrder(@RequestBody  OrderEntity order) {
+		String orderJson = Utils.toJsonString(order);
+		log.info("|Order= {}", orderJson);
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderService.cancelOrder(_order);
+			orderEntity = orderService.cancelOrder(order);
 		} catch (Exception e) {
-			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
-			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
+			log.info(ERROR+" {} ",e.getMessage());
+			return new ResponseEntity<>(orderEntity, HttpStatus.BAD_REQUEST);
 		}
-		System.out.println(LocalDateTime.now()+"|Order Cancelled.");
+		log.info("|Order Cancelled.");
 		return ResponseEntity.ok(orderEntity);
 	}
 
@@ -170,23 +179,22 @@ public class OrderControllerImpl implements OrderController {
 	@Override
 	@DeleteMapping("/cancel/{orderId}/")
 	public ResponseEntity<OrderEntity> cancelOrder(
-			@PathVariable("orderId") String _id) {
-		System.out.println(LocalDateTime.now()+"|Order="+Utils.toJsonString(_id));
+			@PathVariable("orderId") String id) {
+		log.info("|Order ID = {}", id);
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderService.cancelOrder(_id);
+			orderEntity = orderService.cancelOrder(id);
 		} catch (Exception e) {
-			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
-			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
+			log.info(ERROR+" {} ",e.getMessage());
+			return new ResponseEntity<>(orderEntity, HttpStatus.BAD_REQUEST);
 		}
-		System.out.println(LocalDateTime.now()+"|Order Cancelled.");
+		log.info("|Order Cancelled.");
 		return ResponseEntity.ok(orderEntity);
 	}
 
 	/**
 	 * Update Order Status
 	 *
-	 * @param _order
 	 * @return
 	 */
 	@Operation(summary = "Update Order Status based on Order Id")
@@ -200,17 +208,17 @@ public class OrderControllerImpl implements OrderController {
 	})
 	@PutMapping("/{orderId}/status/{statusId}/")
 	public ResponseEntity<OrderEntity> updateOrderStatus(
-			@PathVariable("orderId") String _id,
-			@PathVariable("statusId") String _status) {
-		System.out.println(LocalDateTime.now()+"|Order="+_id+"|Status="+_status);
+			@PathVariable("orderId") String id,
+			@PathVariable("statusId") String status) {
+		log.info("|Order ID = {}, Status = {} ", id, status );
 		OrderEntity orderEntity = null;
 		try  {
-			orderEntity = orderService.updateOrderStatus(_id, _status);
+			orderEntity = orderService.updateOrderStatus(id, status);
 		} catch (Exception e) {
-			System.out.println(LocalDateTime.now()+"|Error="+e.getMessage());
-			return new ResponseEntity<OrderEntity>(orderEntity, HttpStatus.BAD_REQUEST);
+			log.info(ERROR+" {} ",e.getMessage());
+			return new ResponseEntity<>(orderEntity, HttpStatus.BAD_REQUEST);
 		}
-		System.out.println(LocalDateTime.now()+"|Order Updated.");
+		log.info("|Order Updated.");
 		return ResponseEntity.ok(orderEntity);
 	}
 

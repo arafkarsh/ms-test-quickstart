@@ -21,7 +21,6 @@ package io.fusion.water.order.adapters.service;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.fusion.water.order.domainLayer.models.DeliveryCity;
@@ -36,20 +35,37 @@ import io.fusion.water.order.domainLayer.services.ShippingService;
 @Service
 public class ShippingServiceImpl implements ShippingService {
 	
-	@Autowired
+	// Autowired using the Constructor Injection
 	private DeliveryCityService deliveryCityService;
 
-	@Override
-	public ArrayList<OrderEntity> shipOrder(ArrayList<OrderEntity> _orderList) {
-		return _orderList;
+	/**
+	 * Autowired using the Constructor Injection
+	 * @param deliveryCityService
+	 */
+	public ShippingServiceImpl(DeliveryCityService deliveryCityService) {
+		this.deliveryCityService = deliveryCityService;
 	}
 
 	/**
-	 * 
+	 * Ship Order
+	 * @param orderList
+	 * @return
+	 */
+	@Override
+	public ArrayList<OrderEntity> shipOrder(ArrayList<OrderEntity> orderList) {
+		return orderList;
+	}
+
+	/**
+	 * Get Delivery Cities
+	 * @param cities
+	 * @param state
+	 * @param country
+	 * @return
 	 */
 	public ArrayList<DeliveryCity> getCities(ArrayList<String> cities, String state, String country) {
-		ArrayList<DeliveryCity> dCities = new ArrayList<DeliveryCity>();
-		if(cities != null && cities.size() > 0) {
+		ArrayList<DeliveryCity> dCities = new ArrayList<>();
+		if(cities != null && cities.isEmpty()) {
 			for(String cityName : cities) {
 				DeliveryCity city = deliveryCityService.getDeliveryCity(cityName, state, country);
 				if(city != null) {
@@ -60,8 +76,15 @@ public class ShippingServiceImpl implements ShippingService {
 		return dCities;
 	}
 
+	/**
+	 * Get Delivery City
+	 * @param city
+	 * @param state
+	 * @param country
+	 * @return
+	 */
 	@Override
-	public DeliveryCity getCity(String city, String State, String country) {
-		return deliveryCityService.getDeliveryCity(city, State, country);
+	public DeliveryCity getCity(String city, String state, String country) {
+		return deliveryCityService.getDeliveryCity(city, state, country);
 	}
 }

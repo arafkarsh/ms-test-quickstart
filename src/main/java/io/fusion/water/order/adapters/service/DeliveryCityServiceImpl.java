@@ -38,7 +38,7 @@ public class DeliveryCityServiceImpl implements DeliveryCityService {
 	 * DeliveryCity Service Impl
 	 */
 	public DeliveryCityServiceImpl() {
-		cities = new HashMap<String, DeliveryCity>();
+		cities = new HashMap<>();
 	}
 	
 	/**
@@ -69,11 +69,11 @@ public class DeliveryCityServiceImpl implements DeliveryCityService {
 	/**
 	 * Add Delivery City
 	 * 
-	 * @param _deliveryCity
+	 * @param deliveryCity
 	 * @return
 	 */
-	public DeliveryCityService addCity(DeliveryCity _deliveryCity) {
-		cities.put(_deliveryCity.getCityKey(), _deliveryCity);
+	public DeliveryCityService addCity(DeliveryCity deliveryCity) {
+		cities.put(deliveryCity.getCityKey(), deliveryCity);
 		return this;
 	}
 	

@@ -33,7 +33,6 @@ import org.springframework.web.client.RestTemplate;
 // Faster XML
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * 
@@ -50,7 +49,6 @@ public class RestClientService  extends RestTemplate {
     public RestClientService() {
     	// Set Object Mapper For Serialization
     	setMessageConverters(getDataConverters1());
-    	// setMessageConverters(getDataConverters2());
         // Set Factory to RestTemplate
         super.setRequestFactory(getHttpFactory());
     }

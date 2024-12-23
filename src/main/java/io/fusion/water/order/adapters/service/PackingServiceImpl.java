@@ -33,11 +33,11 @@ import io.fusion.water.order.domainLayer.services.PackingService;
 public class PackingServiceImpl implements PackingService {
 
 	@Override
-	public ArrayList<OrderEntity> packOrders(ArrayList<OrderEntity> _orderList) {
-		for(OrderEntity order : _orderList) {
+	public ArrayList<OrderEntity> packOrders(ArrayList<OrderEntity> orderList) {
+		for(OrderEntity order : orderList) {
 			order.orderReadyForShipment();
 		}
-		return _orderList;
+		return orderList;
 	}
 
 }

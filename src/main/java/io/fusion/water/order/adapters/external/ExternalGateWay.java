@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.UUID;
 
 import io.fusion.water.order.domainLayer.models.*;
+import io.fusion.water.order.utils.Std;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -37,38 +38,49 @@ import io.fusion.water.order.utils.Utils;
  */
 @Service
 public class ExternalGateWay {
-
-	@Autowired
-	private ServiceConfiguration serviceConfig;
 	
 	private String payments 	= "/payment";
 	private String remoteEcho 	= "/remoteEcho";
 	private String order 	= "/order";
 
-
-	private String gwBaseURL;
 	private String paymentURL;
 	private String echoURL;
 	private String orderURL;
 
 	private boolean urlsSet = false;
-	
-	@Autowired
+
+	// Autowired using the Constructor Injection
+	private ServiceConfiguration serviceConfig;
+
+	// Autowired using the Constructor Injection
 	private RestClientService restClient;
+
+	private static final String REMOTE = "REMOTE  |> ";
+	private static final String REQUEST = "REQUEST |> ";
+	private static final String RESPONSE = "RESPONSE |> ";
+	private static final String SESSIONID = "sessionId";
+	private static final String BIGBASKET = "bigBasket";
 	
 	/**
-	 * Only for Testing outside SpringBoot Context
+	 * Autowired using the Constructor Injection
+	 * @param serviceConfig
+	 * @param restClient
 	 */
-	public ExternalGateWay() {
+	@Autowired
+	public ExternalGateWay(ServiceConfiguration serviceConfig, RestClientService restClient) {
+		Std.println(LocalDateTime.now()+"|GateWay Constructor(RestClient) ...");
+		this.serviceConfig = serviceConfig;
+		this.restClient = restClient;
+		setURLs();
 	}
 	
-	/**
+	/**¡
 	 * Only for Testing outside SpringBoot Context
 	 * Set the Payment GateWay
 	 */
-	public ExternalGateWay(String _host, int _port) {
-		System.out.println(LocalDateTime.now()+"|GateWay Constructor(host,port) ...");
-		serviceConfig = new ServiceConfiguration(_host, _port);
+	public ExternalGateWay(String host, int port) {
+		Std.println(LocalDateTime.now()+"|GateWay Constructor(host,port) ...");
+		serviceConfig = new ServiceConfiguration(host, port);
 		restClient = new RestClientService();
 		setURLs();
 	}
@@ -78,11 +90,12 @@ public class ExternalGateWay {
 	 */
 	private void setURLs() {
 		if(!urlsSet) {
+			String gwBaseURL;
 			if(serviceConfig != null) {
 				gwBaseURL = "http://" + serviceConfig.getRemoteHost() 
 							+ ":" + serviceConfig.getRemotePort();
 			} else {
-				System.out.println("INIT ERR|> Service Configuration NOT Available!!");
+				Std.println("INIT ERR|> Service Configuration NOT Available!!");
 				gwBaseURL = "http://localhost:8080";
 				
 			}
@@ -90,10 +103,10 @@ public class ExternalGateWay {
 			echoURL = gwBaseURL + remoteEcho;
 			orderURL = gwBaseURL + order;
 			urlsSet = true;
-			System.out.println("INIT    |> Gateway Service Initialize.");
-			System.out.println("REMOTE  |> "+paymentURL+"/");
-			System.out.println("REMOTE  |> "+echoURL+"/");
-			System.out.println("REMOTE  |> "+orderURL+"/");
+			Std.println("INIT    |> Gateway Service Initialize.");
+			Std.println(REMOTE+paymentURL+"/");
+			Std.println(REMOTE+echoURL+"/");
+			Std.println(REMOTE+orderURL+"/");
 
 		}
 	}
@@ -101,28 +114,28 @@ public class ExternalGateWay {
 	/**
 	 * Do a Remote Echo - For Testing Purpose ONLY
 	 * 
-	 * @param _word
+	 * @param word
 	 * @return
 	 */
-	public EchoResponseData remoteEcho(EchoData _word) {
+	public EchoResponseData remoteEcho(EchoData word) {
 		setURLs();
-		System.out.println("REQUEST |> "+Utils.toJsonString(_word));
+		Std.println(REQUEST+Utils.toJsonString(word));
 	    // Set Headers
 		HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_JSON);
-	    headers.add("sessionId", UUID.randomUUID().toString());
-	    headers.add("app", "bigBasket");
+	    headers.add(SESSIONID, UUID.randomUUID().toString());
+	    headers.add("app", BIGBASKET);
 
 	    List<String> cookies = new ArrayList<>();
 	    cookies.add("token="+UUID.randomUUID().toString());
 	    cookies.add("domain=arafkarsh.com");
 	    headers.put(HttpHeaders.COOKIE, cookies);
 	    
-		HttpEntity<EchoData> request = new HttpEntity<EchoData>(_word, headers);
-		System.out.println("REQUEST |> "+Utils.toJsonString(request));
+		HttpEntity<EchoData> request = new HttpEntity<>(word, headers);
+		Std.println(REQUEST+Utils.toJsonString(request));
 		// Call Remote Service > POST
 		EchoResponseData erd = restClient.postForObject(echoURL, request, EchoResponseData.class);
-		System.out.println("RESPONSE|> "+Utils.toJsonString(erd));
+		Std.println(RESPONSE+Utils.toJsonString(erd));
 		
 		return erd;
 	}
@@ -130,14 +143,14 @@ public class ExternalGateWay {
 	/**
 	 * Do a Remote Echo - For Testing Purpose ONLY
 	 * 
-	 * @param _word
+	 * @param word
 	 * @return
 	 */
-	public EchoResponseData remoteEcho(String _word) {
+	public EchoResponseData remoteEcho(String word) {
 		setURLs();
-		System.out.println("REQUEST |> "+Utils.toJsonString(_word));
-		EchoResponseData erd = restClient.getForObject(echoURL +"/"+ _word,  EchoResponseData.class);
-		System.out.println("RESPONSE|> "+Utils.toJsonString(erd));
+		Std.println(REQUEST+Utils.toJsonString(word));
+		EchoResponseData erd = restClient.getForObject(echoURL +"/"+ word,  EchoResponseData.class);
+		Std.println(RESPONSE+Utils.toJsonString(erd));
 		return erd;
 	}
 
@@ -146,23 +159,23 @@ public class ExternalGateWay {
 	 * ONLY FOR TEST DEMO - PACT / WIREMOCK
 	 * Process Payments
 	 * 
-	 * @param _paymentDetails
+	 * @param paymentDetails
 	 * @return
 	 */
-	public PaymentStatus processPayments(PaymentDetails _paymentDetails) {
+	public PaymentStatus processPayments(PaymentDetails paymentDetails) {
 		setURLs();
-		System.out.println("REQUEST |> "+Utils.toJsonString(_paymentDetails));
+		Std.println(REQUEST+Utils.toJsonString(paymentDetails));
 	    // Set Headers
 		HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_JSON);
-	    headers.add("sessionId", UUID.randomUUID().toString());
-	    headers.add("app", "bigBasket");
+	    headers.add(SESSIONID, UUID.randomUUID().toString());
+	    headers.add("app", BIGBASKET);
 
-		HttpEntity<PaymentDetails> request = new HttpEntity<PaymentDetails>(_paymentDetails, headers);
-		System.out.println("REQUEST |> "+Utils.toJsonString(request));
+		HttpEntity<PaymentDetails> request = new HttpEntity<>(paymentDetails, headers);
+		Std.println(REQUEST+Utils.toJsonString(request));
 		// Call Remote Service > POST
 		PaymentStatus ps = restClient.postForObject(paymentURL, request, PaymentStatus.class);
-		System.out.println("RESPONSE|> "+Utils.toJsonString(ps));
+		Std.println(RESPONSE+Utils.toJsonString(ps));
 		
 		return ps;
 	}
@@ -170,23 +183,23 @@ public class ExternalGateWay {
 	/**
 	 * ONLY FOR TEST DEMO - PACT / WIREMOCK
 	 * Save Order
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public OrderEntity saveOrder(OrderEntity _order) {
+	public OrderEntity saveOrder(OrderEntity order) {
 		setURLs();
-		System.out.println("REQUEST |> "+Utils.toJsonString(_order));
+		Std.println(REQUEST+Utils.toJsonString(order));
 		// Set Headers
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.add("sessionId", UUID.randomUUID().toString());
-		headers.add("app", "bigBasket");
+		headers.add(SESSIONID, UUID.randomUUID().toString());
+		headers.add("app", BIGBASKET);
 
-		HttpEntity<OrderEntity> request = new HttpEntity<OrderEntity>(_order, headers);
-		System.out.println("REQUEST |> "+Utils.toJsonString(request));
+		HttpEntity<OrderEntity> request = new HttpEntity<>(order, headers);
+		Std.println(REQUEST+Utils.toJsonString(request));
 		// Call Remote Service > POST
 		OrderEntity ps = restClient.postForObject(orderURL, request, OrderEntity.class);
-		System.out.println("RESPONSE|> "+Utils.toJsonString(ps));
+		Std.println(RESPONSE+Utils.toJsonString(ps));
 
 		return ps;
 	}

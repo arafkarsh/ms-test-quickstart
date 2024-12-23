@@ -14,26 +14,19 @@
  * limitations under the License.
  */
 package io.fusion.water.order.adapters.security;
+// Custom
 
 import io.fusion.water.order.server.ServiceConfiguration;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
-import org.springframework.web.filter.OncePerRequestFilter;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -45,8 +38,18 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration {
-    @Autowired
-    private ServiceConfiguration serviceConfig;
+
+    private final String apiPath;
+    private final String hostName;
+
+    /**
+     * Autowired using the constructor
+     * @param serviceConfig
+     */
+    public WebSecurityConfiguration(ServiceConfiguration serviceConfig) {
+        apiPath = serviceConfig.getServiceApiPath();
+        hostName = serviceConfig.getServerHost();
+    }
 
     /**
      * Configures the security filter chain for HTTP requests, applying various security measures
@@ -58,62 +61,23 @@ public class WebSecurityConfiguration {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // Forces All Request to be Secured (HTTPS)
-        // http.requiresChannel().anyRequest().requiresSecure();
-        authorizeRequests(http);              // Set Authorization Policies
-        // authorizeRequestsNew(http);         // Set Authorization Policies
-        csrfProtection(http);                   // Set CSRF Protection
-        xFrameProtection(http);               // Set X-Frame Protection
-        contentSecurityPolicy(http);          // Set Content Security Policy
-        return http.build();                     // Build Security Filter Chain
+        // enableSecureChannel(http);           // Forces All Request to be Secured (HTTPS)
+        csrfProtection(http);                   // Step 1: Set CSRF Protection
+        authorizeHttpRequests(http);         // Step 2: Set Authorization Policies
+        xFrameProtection(http);               // Step 3: Set X-Frame Protection
+        contentSecurityPolicy(http);          // Step 4: Set Content Security Policy
+        return http.build();                     // Step 5: Build Security Filter Chain
     }
 
     /**
-     * Configures HTTP security to authorize requests based on the API documentation path.
-     * It permits all requests matching the API documentation path and redirects unauthorized
-     * access attempts to a custom access denied page.
-     *
-     * @param http the {@link HttpSecurity} object to configure HTTP security for the application
-     * @throws Exception if there is a problem during configuration
+     * To Run your Web Application on SSL/TLS
+     * @param http
+     * @throws Exception
      */
-    private void authorizeRequests(HttpSecurity http) throws Exception {
-        String apiPath = serviceConfig.getApiDocPath();
-        http.authorizeRequests()
-                .requestMatchers(apiPath + "/**")
-                .permitAll()
-                .and()
-                // This configures exception handling, specifically specifying that when a user tries to access a page
-                // they're not authorized to view, they're redirected to "/403" (typically an "Access Denied" page).
-                .exceptionHandling(exceptionHandling -> exceptionHandling
-                        .accessDeniedPage("/403"))
-                // Make sure to add stateless session management since it's a microservice
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-    }
-
-    /**
-     * Configures HTTP security to authorize requests based on the API documentation path.
-     * It permits all requests matching the API documentation path and redirects unauthorized
-     * access attempts to a custom access denied page.
-     *
-     * @param http the {@link HttpSecurity} object to configure HTTP security for the application
-     * @throws Exception if there is a problem during configuration
-     */
-    private void authorizeRequestsNew(HttpSecurity http) throws Exception {
-        String apiPath = serviceConfig.getApiDocPath();
-        http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(apiPath + "/**")
-                        .permitAll()
-                        // Require authentication for any other requests
-                        // .anyRequest().authenticated()
-                )
-                // This configures exception handling, specifically specifying that when a user tries to access a page
-                // they're not authorized to view, they're redirected to "/403" (typically an "Access Denied" page).
-                .exceptionHandling(exceptionHandling -> exceptionHandling
-                        .accessDeniedPage("/403"))
-                // Make sure to add stateless session management since it's a microservice
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+    public void enableSecureChannel(HttpSecurity http) throws Exception {
+        http.requiresChannel(channel -> channel
+                .anyRequest().requiresSecure()
+        );
     }
 
     /**
@@ -126,20 +90,40 @@ public class WebSecurityConfiguration {
      */
     private void csrfProtection(HttpSecurity http) throws Exception {
         // Enable CSRF Protection
-        // This line configures the Cross-Site Request Forgery (CSRF) protection, using a Cookie-based CSRF token
-        // repository. This means that CSRF tokens will be stored in cookies. The withHttpOnlyFalse() method makes
-        // these cookies accessible to client-side scripting, which is typically necessary for applications that use
-        // a JavaScript-based frontend.
-        /**
-         http
-         .csrf()
-         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-         // Add the above Only for testing in Swagger
-         .and()
-         .addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
-         */
-        // Disable for Local Testing
-        http.csrf(CsrfConfigurer::disable);
+        // http.csrf(csrf -> ...):
+	    // - Configures CSRF protection for the application.
+	    // - CSRF protection is enabled by default in Spring Security, but this configuration customizes its behavior.
+        // Change the API Path As per the Security Requirement
+        // apiPath:
+        //	- The variable apiPath likely holds a string such as /api/v1. This would exclude all
+        // 	endpoints like /api/v1/* or /api/v1/resource/123 from CSRF validation.
+        //	- Typically used to exclude REST API endpoints, which are not vulnerable to CSRF in most cases.
+        http.csrf(csrf -> csrf
+                .ignoringRequestMatchers(apiPath +"/**")
+        );
+    }
+
+    /**
+     * Configures HTTP security to authorize requests based on the API documentation path.
+     * It permits all requests matching the API documentation path and redirects unauthorized
+     * access attempts to a custom access denied page.
+     *
+     * @param http the {@link HttpSecurity} object to configure HTTP security for the application
+     * @throws Exception if there is a problem during configuration
+     */
+    private void authorizeHttpRequests(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(apiPath + "/**").permitAll()
+                        // Require authentication for any other requests
+                        .anyRequest().permitAll()
+                )
+                // This configures exception handling, specifically specifying that when a user tries to access a page
+                // they're not authorized to view, they're redirected to "/403" (typically an "Access Denied" page).
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/403"))
+                // Make sure to add stateless session management since it's a microservice
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
     }
 
     /**
@@ -155,7 +139,7 @@ public class WebSecurityConfiguration {
         // control of their interaction with the website, by loading your website in an iframe of another website and
         // then overlaying it with additional content.
         http.headers(headers -> headers
-                .frameOptions(frameOptions -> frameOptions.deny())
+                .frameOptions(HeadersConfigurer.FrameOptionsConfig::deny)
                 .contentSecurityPolicy(csp -> csp
                         .policyDirectives("default-src 'self'; frame-ancestors 'none'")
                 )
@@ -173,7 +157,6 @@ public class WebSecurityConfiguration {
      * @throws Exception if there is a problem during configuration
      */
     private void contentSecurityPolicy(HttpSecurity http) throws Exception {
-        String hostName = serviceConfig.getServerHost();
         // Content Security Policy
         // The last part sets the Content Security Policy (CSP). This is a security measure that helps prevent a range
         // of attacks, including Cross-Site Scripting (XSS) and data injection attacks. It does this by specifying which
@@ -202,7 +185,7 @@ public class WebSecurityConfiguration {
      */
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**");
+        return web -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**");
     }
 
     /**
@@ -219,6 +202,7 @@ public class WebSecurityConfiguration {
     /**
      * ONLY For Local Testing with Custom CSRF Headers in Swagger APi Docs
      */
+    /**
     private static class CsrfTokenResponseHeaderBindingFilter extends OncePerRequestFilter {
         @Override
         protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -230,5 +214,6 @@ public class WebSecurityConfiguration {
             filterChain.doFilter(request, response);
         }
     }
+     */
 }
 

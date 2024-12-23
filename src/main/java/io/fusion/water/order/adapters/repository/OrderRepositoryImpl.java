@@ -31,33 +31,33 @@ import io.fusion.water.order.domainLayer.services.OrderRepository;
 public class OrderRepositoryImpl implements OrderRepository {
 
 	@Override
-	public OrderEntity getOrderById(String _id) {
+	public OrderEntity getOrderById(String id) {
 		// Mock API
 		return null;
 	}
 
 	@Override
-	public OrderEntity saveOrder(OrderEntity _order) {
+	public OrderEntity saveOrder(OrderEntity order) {
 		// Mock API
-		return _order;
+		return order;
 	}
 
 	@Override
-	public OrderEntity cancelOrder(OrderEntity _order) {
+	public OrderEntity cancelOrder(OrderEntity order) {
 		// Mock API
-		return _order;
+		return order;
 	}
 
 	@Override
-	public OrderEntity cancelOrder(String _id) {
+	public OrderEntity cancelOrder(String id) {
 		// Mock API
 		return null;
 	}
 
 	@Override
-	public OrderEntity prepareOrder(OrderEntity _order) {
+	public OrderEntity prepareOrder(OrderEntity order) {
 		// Mock API
-		return _order;
+		return order;
 	}
 
 }

@@ -28,7 +28,6 @@ import io.fusion.water.order.domainLayer.models.PaymentDetails;
 import io.fusion.water.order.domainLayer.models.PaymentStatus;
 import io.fusion.water.order.domainLayer.models.PaymentType;
 import io.fusion.water.order.domainLayer.services.PaymentService;
-import io.fusion.water.order.server.ServiceConfiguration;
 
 /**
  * Order Payment Service
@@ -39,77 +38,75 @@ import io.fusion.water.order.server.ServiceConfiguration;
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
-	@Autowired
-	private ServiceConfiguration serviceConfig;
-	
-	@Autowired
+	// Autowired using the Constructor Injection
 	private ExternalGateWay externalGateWay;
-	
+
 	public PaymentServiceImpl() {
+		// Nothing to Instantiate
 	}
-	
 	/**
-	 * 
-	 * @param _gw
+	 *
+	 * @param externalGateWay
 	 */
-	public PaymentServiceImpl(ExternalGateWay _gw) {
-		externalGateWay = _gw;
+	@Autowired
+	public PaymentServiceImpl(ExternalGateWay externalGateWay) {
+		this.externalGateWay = externalGateWay;
 	}
 	
 	/**
 	 * Echo Returns the word with a Greeting
 	 * @return
 	 */
-	public String echo(String _word) {
-		return "Hello "+_word;
+	public String echo(String word) {
+		return "Hello "+word;
 	}
 	
 	/**
 	 * Returns the Echo from the Remote Server
 	 * @return
 	 */
-	public EchoResponseData remoteEcho(EchoData _word) {
-		return externalGateWay.remoteEcho(_word);
+	public EchoResponseData remoteEcho(EchoData word) {
+		return externalGateWay.remoteEcho(word);
 	}
 	
 	/**
 	 * Returns the Echo from the Remote Server
 	 */
-	public EchoResponseData remoteEcho(String _word) {
-		return externalGateWay.remoteEcho(_word);
+	public EchoResponseData remoteEcho(String word) {
+		return externalGateWay.remoteEcho(word);
 	}
 	
 	/**
 	 *  Process Payments (used by Rest Assured)
 	 *
-	 * @param _paymentDetails
+	 * @param paymentDetails
 	 * @return
 	 */
-	public PaymentStatus processPayments(PaymentDetails _paymentDetails) {
+	public PaymentStatus processPayments(PaymentDetails paymentDetails) {
 		// For Testing Purpose ONLY
-		return processPaymentsDefault(_paymentDetails);
+		return processPaymentsDefault(paymentDetails);
 	}
 
 	/**
 	 * Process Payments External (used by WireMock)
 	 *
-	 * @param _paymentDetails
+	 * @param paymentDetails
 	 * @return
 	 */
-	public PaymentStatus processPaymentsExternal(PaymentDetails _paymentDetails) {
-		return externalGateWay.processPayments(_paymentDetails);
+	public PaymentStatus processPaymentsExternal(PaymentDetails paymentDetails) {
+		return externalGateWay.processPayments(paymentDetails);
 	}
 
 
 	/**
 	 * Default 
-	 * @param _paymentDetails
+	 * @param paymentDetails
 	 * @return
 	 */
-	public PaymentStatus processPaymentsDefault(PaymentDetails _paymentDetails) {
+	public PaymentStatus processPaymentsDefault(PaymentDetails paymentDetails) {
 		return new PaymentStatus(
-				_paymentDetails.getTransactionId(), 
-				_paymentDetails.getTransactionDate(), 
+				paymentDetails.getTransactionId(),
+				paymentDetails.getTransactionDate(),
 				"Accepted", "Ref-uuid", 
 				LocalDateTime.now(), 
 				PaymentType.CREDIT_CARD);
