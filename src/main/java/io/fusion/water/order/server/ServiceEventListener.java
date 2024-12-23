@@ -17,7 +17,6 @@ package io.fusion.water.order.server;
  
 import io.fusion.water.order.utils.Std;
 import org.slf4j.MDC;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;
@@ -62,7 +61,8 @@ public class ServiceEventListener {
 	@EventListener(ApplicationReadyEvent.class)
 	public void doSomethingAfterStartup() {
 		log.info("Order Service is getting ready...... ");
-	    log.info(CPU.printCpuStats());
+		String s = CPU.printCpuStats();
+	    log.info(s);
 	    Std.println(LocalDateTime.now()+"|Order Service is getting ready...... ");
 		showLogo();
 	}
@@ -75,47 +75,30 @@ public class ServiceEventListener {
 		String name="NoName";
 		String javaVersion="21";
 		String sbVersion="3.3.4";
+		String buildNo = "";
+		String buildDate = "";
+		String counter = "";
 
 		if(serviceConfig != null) {
 			version = serviceConfig.getServerVersion();
 			name =serviceConfig.getServiceName();
 			javaVersion = System.getProperty("java.version");
 			sbVersion = SpringBootVersion.getVersion();
+			buildNo = "" +serviceConfig.getBuildNumber();
+			buildDate = serviceConfig.getBuildDate();
+			counter = "" +ServiceHelp.getCounter();
 		}
 		MDC.put("Service", name);
 		String logo =ServiceHelp.LOGO
-				.replaceAll("SIGMA", name)
-				.replaceAll("MSVERSION", version)
-				.replaceAll("JAVAVERSION", javaVersion)
-				.replaceAll("SPRINGBOOTVERSION", sbVersion);
-		log.info(name+" Service is ready! ... .."
-				+ logo
-				+ "Build No. = "+serviceConfig.getBuildNumber()
-				+ " :: Build Date = "+serviceConfig.getBuildDate()
-				+ " :: Mode = Testing"
-				+ " :: Restart = "+ServiceHelp.getCounter()
-				+ ServiceHelp.NL + ServiceHelp.DL);
+				.replace("SIGMA", name)
+				.replace("MSVERSION", version)
+				.replace("JAVAVERSION", javaVersion)
+				.replace("SPRINGBOOTVERSION", sbVersion);
 
-		log.info(ServiceHelp.NL + "API URL : " + serviceConfig.apiURL() + ServiceHelp.NL + ServiceHelp.DL);
-	}
+		log.info("{}  Service is ready! ... .. {} Build No. = {}   :: Build Date = {}  :: Mode = Testing :: Restart =  {} {} {} ",
+				name, logo, buildNo, buildDate, counter ,  ServiceHelp.NL , ServiceHelp.DL);
 
-	/**
-	 * Shows the Service Logo and Version Details. 
-	 */
-	public void showLogoOld() {
-		String version = (serviceConfig != null) 
-				? serviceConfig.getServerVersion() : "v0.0.0";
-		log.info("MS Test Quickstart: Order Service is ready! ....... ..."
-				+ ServiceHelp.LOGO
-				+ " (v" + version + ") " + ServiceHelp.NL
-				+"============================================================================" + ServiceHelp.NL
-				+ "Build No. = "+serviceConfig.getBuildNumber()
-				+ " :: Build Date = "+serviceConfig.getBuildDate()
-				+ " :: Restart = "+ServiceHelp.getCounter()
-				+ ServiceHelp.NL + ServiceHelp.DL
-				);
-		log.info(ServiceHelp.NL + "API URL : " + serviceConfig.apiURL()
-				+ ServiceHelp.NL + ServiceHelp.DL
-		);
+		String url = serviceConfig.apiURL() + ServiceHelp.NL + ServiceHelp.DL;
+		log.info("{} API URL : {}", ServiceHelp.NL , url);
 	}
 }
