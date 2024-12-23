@@ -390,7 +390,14 @@ public class OrderEntity {
 	}
 
 	/**
-	 * @param paymentStatus the paymentStatus to set
+	 * Order Status = CANCELLED
+	 */
+	public void orderCancelled() {
+		orderStatus = OrderStatus.CANCELLED;
+	}
+
+	/**
+	 * @param _paymentStatus the paymentStatus to set
 	 */
 	public void setPaymentStatus(PaymentStatus _paymentStatus) {
 		if(_paymentStatus == null) {

@@ -4,36 +4,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.ArgumentMatchers.isNull;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import io.fusion.water.order.adapters.external.ExternalGateWay;
-import io.fusion.water.order.domainLayer.models.CardDetails;
-import io.fusion.water.order.domainLayer.models.CardType;
-import io.fusion.water.order.domainLayer.models.Customer;
 import io.fusion.water.order.domainLayer.models.OrderEntity;
 import io.fusion.water.order.domainLayer.models.OrderStatus;
 import io.fusion.water.order.domainLayer.models.PaymentDetails;
 import io.fusion.water.order.domainLayer.models.PaymentStatus;
 import io.fusion.water.order.domainLayer.models.PaymentType;
-import io.fusion.water.order.domainLayer.models.ShippingAddress;
 import io.fusion.water.order.domainLayer.services.OrderRepository;
 import io.fusion.water.order.domainLayer.services.PaymentService;
-
-import java.sql.SQLOutput;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
+import jakarta.resource.ResourceException;
 import org.junit.jupiter.api.Disabled;
-
 import org.junit.jupiter.api.DisplayName;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -43,9 +31,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@DisabledInAotMode
 @ContextConfiguration(classes = {OrderServiceImpl.class})
 @ExtendWith(SpringExtension.class)
+@DisabledInAotMode
 class OrderServiceImplDiffblueTest {
     @MockBean
     private ExternalGateWay externalGateWay;
@@ -67,13 +55,13 @@ class OrderServiceImplDiffblueTest {
     @Test
     @DisplayName("Test getOrderById(String)")
     void testGetOrderById() {
-        System.out.println("Arrange & Act: Get Order By ID... ");
+        System.out.println("Arrange & Act: Get Order By ID");
         // Arrange and Act
-        OrderEntity actualOrderById = orderServiceImpl.getOrderById("1234");
-
-        System.out.println("Assert: Check All the Critical Fields = "+actualOrderById);
+        OrderEntity actualOrderById = orderServiceImpl.getOrderById(" id");
+        System.out.println("Act: Order retrieved");
+        System.out.println("Assert : Check OrderEntity Values");
         // Assert
-        assertEquals("1234", actualOrderById.getOrderId());
+        assertEquals(" id", actualOrderById.getOrderId());
         assertNull(actualOrderById.getPaymentStatus());
         assertEquals(2248.0d, actualOrderById.getTotalValue());
         assertEquals(3, actualOrderById.getTotalItems());
@@ -82,7 +70,7 @@ class OrderServiceImplDiffblueTest {
         assertEquals(PaymentType.CREDIT_CARD, actualOrderById.getPaymentType());
         assertTrue(actualOrderById.isCustomerAvailable());
         assertTrue(actualOrderById.isShippingAddressAvailable());
-        System.out.println("Test Completed... Success... ");
+        System.out.println("Test Completed");
     }
 
     /**
@@ -94,28 +82,27 @@ class OrderServiceImplDiffblueTest {
     @DisplayName("Test saveOrderExternal(OrderEntity)")
     void testSaveOrderExternal() {
         // Arrange
-        OrderEntity buildResult = orderServiceImpl.getOrderById("1234");
+        OrderEntity buildResult = (new OrderEntity.Builder()).build();
         when(externalGateWay.saveOrder(Mockito.<OrderEntity>any())).thenReturn(buildResult);
-        System.out.println("Arrange: Get OrderEntity "+buildResult);
 
         // Act
         OrderEntity actualSaveOrderExternalResult = orderServiceImpl.saveOrderExternal(new OrderEntity());
-        System.out.println("Act: save OrderEntity "+actualSaveOrderExternalResult);
 
         // Assert
         verify(externalGateWay).saveOrder(isA(OrderEntity.class));
-        assertEquals("1234", actualSaveOrderExternalResult.getOrderId());
+        assertNull(actualSaveOrderExternalResult.getCustomer());
+        assertNull(actualSaveOrderExternalResult.getOrderStatus());
+        assertNull(actualSaveOrderExternalResult.getPaymentDetails());
         assertNull(actualSaveOrderExternalResult.getPaymentStatus());
-        assertEquals(2248.0d, actualSaveOrderExternalResult.getTotalValue());
-        assertEquals(3, actualSaveOrderExternalResult.getTotalItems());
-        assertEquals(3, actualSaveOrderExternalResult.getOrderItems().size());
-        assertEquals(OrderStatus.INITIATED, actualSaveOrderExternalResult.getOrderStatus());
-        assertEquals(PaymentType.CREDIT_CARD, actualSaveOrderExternalResult.getPaymentType());
-        assertTrue(actualSaveOrderExternalResult.isCustomerAvailable());
-        assertTrue(actualSaveOrderExternalResult.isShippingAddressAvailable());
-        System.out.println("Assert: Check All the Critical Fields = "+actualSaveOrderExternalResult);
-
-        System.out.println("Test Completed... Success... ");
+        assertNull(actualSaveOrderExternalResult.getPaymentType());
+        assertNull(actualSaveOrderExternalResult.getShippingAddress());
+        assertNull(actualSaveOrderExternalResult.getOrderId());
+        assertNull(actualSaveOrderExternalResult.getOrderDate());
+        assertEquals(0, actualSaveOrderExternalResult.getTotalItems());
+        assertEquals(0.0d, actualSaveOrderExternalResult.getTotalValue());
+        assertFalse(actualSaveOrderExternalResult.isCustomerAvailable());
+        assertFalse(actualSaveOrderExternalResult.isShippingAddressAvailable());
+        assertTrue(actualSaveOrderExternalResult.getOrderItems().isEmpty());
     }
 
     /**
@@ -143,24 +130,6 @@ class OrderServiceImplDiffblueTest {
 
         // Act
         orderServiceImpl.processOrder(new OrderEntity());
-    }
-
-    /**
-     * Method under test: {@link OrderServiceImpl#cancelOrder(String)}
-     */
-    @Test
-    void testCancelOrder2() {
-        // Arrange
-        OrderEntity orderEntity = new OrderEntity();
-        when(orderRepository.cancelOrder(Mockito.<String>any())).thenReturn(orderEntity);
-
-        // Act
-        OrderEntity actualCancelOrderResult = orderServiceImpl.cancelOrder(" id");
-
-        // Assert
-        verify(orderRepository).cancelOrder(eq(" id"));
-        assertSame(orderEntity, actualCancelOrderResult);
-        System.out.println("Test Completed... Success... ");
     }
 
     /**
@@ -193,7 +162,6 @@ class OrderServiceImplDiffblueTest {
         assertFalse(actualCancelOrderResult.isCustomerAvailable());
         assertFalse(actualCancelOrderResult.isShippingAddressAvailable());
         assertTrue(actualCancelOrderResult.getOrderItems().isEmpty());
-        System.out.println("Test Completed... Success... ");
     }
 
     /**
@@ -226,7 +194,6 @@ class OrderServiceImplDiffblueTest {
         assertFalse(actualCancelOrderResult.isCustomerAvailable());
         assertFalse(actualCancelOrderResult.isShippingAddressAvailable());
         assertTrue(actualCancelOrderResult.getOrderItems().isEmpty());
-        System.out.println("Test Completed... Success... ");
     }
 
     /**
@@ -259,7 +226,6 @@ class OrderServiceImplDiffblueTest {
         assertFalse(actualPrepareOrderResult.isCustomerAvailable());
         assertFalse(actualPrepareOrderResult.isShippingAddressAvailable());
         assertTrue(actualPrepareOrderResult.getOrderItems().isEmpty());
-        System.out.println("Test Completed... Success... ");
     }
 
     /**
@@ -292,7 +258,6 @@ class OrderServiceImplDiffblueTest {
         assertFalse(actualUpdateOrderStatusResult.isCustomerAvailable());
         assertFalse(actualUpdateOrderStatusResult.isShippingAddressAvailable());
         assertTrue(actualUpdateOrderStatusResult.getOrderItems().isEmpty());
-        System.out.println("Test Completed... Success... ");
     }
 
     /**
@@ -316,13 +281,31 @@ class OrderServiceImplDiffblueTest {
         assertEquals(PaymentType.CREDIT_CARD, actualShipOrderResult.getPaymentType());
         assertTrue(actualShipOrderResult.isCustomerAvailable());
         assertTrue(actualShipOrderResult.isShippingAddressAvailable());
-        System.out.println("Test Completed... Success... ");
     }
 
     /**
+     * Test {@link OrderServiceImpl#trackOrder(String, String)}.
+     * <ul>
+     *   <li>When {@code Status}.</li>
+     *   <li>Then throw {@link RuntimeException}.</li>
+     * </ul>
+     * <p>
+     * Method under test: {@link OrderServiceImpl#trackOrder(String, String)}
+     */
+    @Test
+    @DisplayName("Test trackOrder(String, String); when 'Status'; then throw RuntimeException")
+    void testTrackOrder_whenStatus_thenThrowRuntimeException() {
+        // Arrange, Act and Assert
+        assertThrows(RuntimeException.class, () -> orderServiceImpl.trackOrder("42", "Status"));
+    }
+
+    /**
+     * Test {@link OrderServiceImpl#processPayments(PaymentDetails)}.
+     * <p>
      * Method under test: {@link OrderServiceImpl#processPayments(PaymentDetails)}
      */
     @Test
+    @DisplayName("Test processPayments(PaymentDetails)")
     void testProcessPayments() {
         // Arrange
         PaymentStatus paymentStatus = new PaymentStatus();
@@ -334,6 +317,5 @@ class OrderServiceImplDiffblueTest {
         // Assert
         verify(paymentService).processPayments(isA(PaymentDetails.class));
         assertSame(paymentStatus, actualProcessPaymentsResult);
-        System.out.println("Test Completed... Success... ");
     }
 }

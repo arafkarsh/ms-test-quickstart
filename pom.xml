@@ -269,9 +269,7 @@
 			<artifactId>junit-jupiter</artifactId>
 			<!-- Version defined in the Properties  -->
 			<version>${junit.jupiter.version}</version>
-			<!-- Junit Dependencies are ONLY Part of test Scope
-				 it wont be there in your build.
-			 -->
+			<!-- Junit Dependencies are ONLY Part of test Scope it won't be there in your build. -->
 			<scope>test</scope>
 		</dependency>
 		
@@ -584,7 +582,6 @@
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
 			<version>3.0.17</version>
-			<!-- <version>3.0.21</version> -->
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.groovy/groovy-all -->

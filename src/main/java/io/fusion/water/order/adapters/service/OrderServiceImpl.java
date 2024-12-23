@@ -18,6 +18,7 @@ package io.fusion.water.order.adapters.service;
 
 import io.fusion.water.order.adapters.external.ExternalGateWay;
 import io.fusion.water.order.domainLayer.models.*;
+import jakarta.resource.ResourceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -116,7 +117,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	/**
-	 * Adding a New Method to test DiffBlue Cover
+	 *
 	 * Ship Order
 	 * @param _id
 	 * @return
@@ -126,6 +127,35 @@ public class OrderServiceImpl implements OrderService {
 		OrderEntity order =  mockGetOrderById(_id);
 		order.orderReadyForShipment();
 		return order;
+	}
+
+	/**
+	 * Adding a New Method to test DiffBlue Cover
+	 * @param id
+	 * @param status
+	 * @return
+	 * @throws ResourceException
+	 */
+	public OrderEntity trackOrder(String id, String status)  {
+		// Fetch Order based on Order Id
+		OrderEntity order =  mockGetOrderById(id);
+		if(order == null) {
+			throw new RuntimeException("Order Not Found");
+		}
+		// Set Order Status
+		if(status.equalsIgnoreCase(OrderStatus.IN_TRANSIT.name())) {
+			order.orderReadyForShipment();
+		} else if(status.equalsIgnoreCase(OrderStatus.CANCELLED.name())) {
+			order.orderDelivered();
+		} else if(status.equalsIgnoreCase(OrderStatus.DELIVERED.name())) {
+			order.orderDelivered();
+		} else if(status.equalsIgnoreCase(OrderStatus.RETURNED.name())) {
+			order.orderReturned();
+		} else {
+			throw new RuntimeException("Invalid Status");
+		}
+		// Save Order
+		return orderRepo.saveOrder(order);
 	}
 
 	@Override
