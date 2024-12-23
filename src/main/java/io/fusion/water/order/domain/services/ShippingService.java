@@ -16,7 +16,7 @@
 
 package io.fusion.water.order.domain.services;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import io.fusion.water.order.domain.models.DeliveryCity;
 import io.fusion.water.order.domain.models.OrderEntity;
@@ -32,10 +32,9 @@ public interface ShippingService {
 	/**
 	 * Ship Order and Set Order Status to IN_TRANSIT
 	 * 
-	 * @param _order
 	 * @return
 	 */
-	public ArrayList<OrderEntity> shipOrder(ArrayList<OrderEntity>  _orderList);
+	public List<OrderEntity> shipOrder(List<OrderEntity> orderList);
 	
 	/**
 	 * Return a List of Delivery Cities
@@ -43,7 +42,7 @@ public interface ShippingService {
 	 * @param cities
 	 * @return
 	 */
-	public ArrayList<DeliveryCity> getCities(ArrayList<String> cities, String state, String country);
+	public List<DeliveryCity> getCities(List<String> cities, String state, String country);
 	
 	
 	/**
@@ -52,6 +51,6 @@ public interface ShippingService {
 	 * @param city
 	 * @return
 	 */
-	public DeliveryCity getCity(String city, String State, String country);
+	public DeliveryCity getCity(String city, String state, String country);
 
 }

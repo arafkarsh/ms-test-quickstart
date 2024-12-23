@@ -16,9 +16,9 @@
 package io.fusion.water.order.server;
 
 // Jakarta
+import io.fusion.water.order.utils.Std;
 import jakarta.servlet.http.HttpServletRequest;
 // Spring
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,15 +62,23 @@ public class ServiceHealthController {
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());
 	
-	private final String title = "<h1>Welcome to Order Service<h1/>"
+	private static final String TITLE = "<h1>Welcome to Order Service<h1/>"
 					+ ServiceHelp.NL
 					+"<h3>Copyright (c) Araf Karsh Hamid, 2021-23</h3>"
 					+ ServiceHelp.NL
 					;
 
-
-	@Autowired
+	// Autowired using the Constructor Injection
 	private ServiceConfiguration serviceConfig;
+
+	/**
+	 * Autowired using the Constructor Injection
+	 * @param serviceConfig
+	 */
+	public ServiceHealthController(ServiceConfiguration serviceConfig) {
+		log.info("Service Health Controller is Ready!");
+		this.serviceConfig = serviceConfig;
+	}
 	
 	/**
 	 * Get Method Call to Check the Health of the App
@@ -89,13 +97,8 @@ public class ServiceHealthController {
 	@GetMapping("/health")
 	public ResponseEntity<HashMap<String, String>> getHealth(
 			HttpServletRequest request) throws Exception {
-		System.out.println(LocalDateTime.now()+"|Request to Health of Service... ");
-		if(serviceConfig == null) {
-			System.out.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
-		} else {
-			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
-		}
-		HashMap<String, String> data = new HashMap<String, String>();
+		Std.println(LocalDateTime.now()+"|Request to Health of Service... ");
+		HashMap<String, String> data = new HashMap<>();
 		data.put("Service-Health", "OK");
 		data.put("Code", "200");
 		return ResponseEntity.ok(data);
@@ -114,13 +117,8 @@ public class ServiceHealthController {
 	@GetMapping("/ready")
 	public ResponseEntity<HashMap<String, String>> isReady(
 			HttpServletRequest request) throws Exception {
-		System.out.println(LocalDateTime.now()+"|Request to Readiness Check.. ");
-		if(serviceConfig == null) {
-			System.out.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
-		} else {
-			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
-		}
-		HashMap<String, String> data = new HashMap<String, String>();
+		Std.println(LocalDateTime.now()+"|Request to Readiness Check.. ");
+		HashMap<String, String> data = new HashMap<>();
 		data.put("Status", "Ready");
 		data.put("Code", "200");
 		return ResponseEntity.ok(data);
@@ -146,7 +144,7 @@ public class ServiceHealthController {
 	// @GetMapping(value = "/log", produces = "application/json")
 	@GetMapping(value = "/log")
 	public ResponseEntity<String> log() {
-		System.out.println(LocalDateTime.now()+"|Request to Log Level.. ");
+		Std.println(LocalDateTime.now()+"|Request to Log Level.. ");
     	log.trace("OrderApplication|This is TRACE level message");
         log.debug("OrderApplication|This is a DEBUG level message");
         log.info("OrderApplication|This is an INFO level message");
@@ -169,12 +167,12 @@ public class ServiceHealthController {
     })
     @PostMapping("/restart")
     public void restart() {
-		System.out.println(LocalDateTime.now()+"|Request to Restart... ");
+		Std.println(LocalDateTime.now()+"|Request to Restart... ");
 
 		if(serviceConfig == null) {
-			System.out.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
+			Std.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
 		} else {
-			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
+			Std.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
 		}
     	if(serviceConfig != null && serviceConfig.isServerRestart()) {
     		log.info("OrderApplication|Server Restart Request Received ....");
@@ -197,14 +195,14 @@ public class ServiceHealthController {
     })
     @PostMapping("/remoteEcho")
     public ResponseEntity<EchoResponseData> remoteEcho(@RequestBody EchoData echoData) {
-		System.out.println(LocalDateTime.now()+"|Request for RemoteEcho ");
+		Std.println(LocalDateTime.now()+"|Request for RemoteEcho ");
 
     	if(serviceConfig == null) {
-			System.out.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
+			Std.println(LocalDateTime.now()+"|OrderApplication|Error Autowiring Service config!!!");
 		} else {
-			System.out.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
+			Std.println(LocalDateTime.now()+"|OrderApplication|Version="+getServerVersion());
     	}
-		System.out.println(LocalDateTime.now()+"|OrderApplication|RemoteEcho Call .... "+echoData);
+		Std.println(LocalDateTime.now()+"|OrderApplication|RemoteEcho Call .... "+echoData);
     	if(echoData == null) {
 			return ResponseEntity.notFound().build();
 		}
@@ -228,9 +226,9 @@ public class ServiceHealthController {
     })
 	@GetMapping("/home")
 	public String apiHome(HttpServletRequest request) {
-		System.out.println(LocalDateTime.now()+"|Request to /home/ path... ");
+		Std.println(LocalDateTime.now()+"|Request to /home/ path... ");
 		StringBuilder sb = new StringBuilder();
-		sb.append(title);
+		sb.append(TITLE);
 		sb.append("<br>");
 		sb.append(printRequestURI(request));
 		return sb.toString();
@@ -250,8 +248,9 @@ public class ServiceHealthController {
 			sb.append(req[x]).append("|");
 		}
  		sb.append("\n");
-		log.info(sb.toString());
-		return sb.toString();
+		String str = sb.toString();
+		log.info(str);
+		return str;
 	}
  }
 

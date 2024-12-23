@@ -31,66 +31,66 @@ public interface OrderService {
 	/**
 	 * Returns Order By Order ID
 	 * 
-	 * @param _id
+	 * @param id
 	 * @return
 	 */
-	public OrderEntity getOrderById(String _id);
+	public OrderEntity getOrderById(String id);
 
 
 	/**
 	 * ONLY FOR PACT DEMO
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public OrderEntity saveOrderExternal(OrderEntity _order);
+	public OrderEntity saveOrderExternal(OrderEntity order);
 
 	/**
 	 * Save Order
 	 * 
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public OrderEntity processOrder(OrderEntity _order);
+	public OrderEntity processOrder(OrderEntity order);
 	
 	/**
 	 * Cancel Order
 	 * 
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public OrderEntity cancelOrder(OrderEntity _order);
+	public OrderEntity cancelOrder(OrderEntity order);
 	
 	/**
 	 * Cancel Order by Id
 	 * 
-	 * @param _id
+	 * @param id
 	 * @return
 	 */
-	public OrderEntity cancelOrder(String _id);
+	public OrderEntity cancelOrder(String id);
 	
 	/**
 	 * Prepare Order for Shipping
 	 * 
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public OrderEntity prepareOrder(OrderEntity _order);
+	public OrderEntity prepareOrder(OrderEntity order);
 	
 	/**
 	 * Update Order Status based on Order ID
 	 * 
-	 * @param _id
-	 * @param _status
+	 * @param id
+	 * @param status
 	 * @return
 	 */
-	public OrderEntity updateOrderStatus(String _id, String _status);
+	public OrderEntity updateOrderStatus(String id, String status);
 	
 	/**
 	 * Process Payments
 	 * 
-	 * @param _paymentDetails
+	 * @param paymentDetails
 	 * @return
 	 */
-	public PaymentStatus processPayments(PaymentDetails _paymentDetails);
+	public PaymentStatus processPayments(PaymentDetails paymentDetails);
 
 }

@@ -31,33 +31,33 @@ public interface OrderController {
 	/**
 	 * Returns Order By Order ID
 	 * 
-	 * @param _id
+	 * @param id
 	 * @return
 	 */
-	public ResponseEntity<OrderEntity> getOrderById(String _id);
+	public ResponseEntity<OrderEntity> getOrderById(String id);
 	
 	/**
 	 * Save Order
 	 * 
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public ResponseEntity<OrderEntity> saveOrder(OrderEntity _order);
+	public ResponseEntity<OrderEntity> saveOrder(OrderEntity order);
 	
 	/**
 	 * Cancel Order
 	 * 
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public ResponseEntity<OrderEntity> cancelOrder(OrderEntity _order);
+	public ResponseEntity<OrderEntity> cancelOrder(OrderEntity order);
 	
 	/**
 	 * Cancel Order by Id
 	 * 
-	 * @param _id
+	 * @param id
 	 * @return
 	 */
-	public ResponseEntity<OrderEntity> cancelOrder(String _id);
+	public ResponseEntity<OrderEntity> cancelOrder(String id);
 
 }

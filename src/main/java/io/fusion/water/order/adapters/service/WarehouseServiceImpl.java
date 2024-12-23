@@ -16,7 +16,7 @@
 
 package io.fusion.water.order.adapters.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -56,8 +56,8 @@ public class WarehouseServiceImpl implements WarehouseService {
 	 * @return
 	 */
 	@Override
-	public ArrayList<OrderEntity> processOrders(ArrayList<OrderEntity> orderList) {
-		ArrayList<OrderEntity> orders = packingService.packOrders(orderList);
+	public List<OrderEntity> processOrders(List<OrderEntity> orderList) {
+		List<OrderEntity> orders = packingService.packOrders(orderList);
 		return shippingService.shipOrder(orders);
 	}
 

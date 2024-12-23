@@ -32,37 +32,37 @@ public interface PaymentService {
 	/**
 	 * Process Payments (used by Rest Assured)
 	 * 
-	 * @param _paymentDetails
+	 * @param paymentDetails
 	 * @return
 	 */
-	public PaymentStatus processPayments(PaymentDetails _paymentDetails);
+	public PaymentStatus processPayments(PaymentDetails paymentDetails);
 
 	/**
 	 * Process Payments External (used by WireMock)
-	 * @param _paymentDetails
+	 * @param paymentDetails
 	 * @return
 	 */
-	public PaymentStatus processPaymentsExternal(PaymentDetails _paymentDetails);
+	public PaymentStatus processPaymentsExternal(PaymentDetails paymentDetails);
 
 	/**
 	 * Returns the word with a greeting from Local 
 	 * 
 	 * @return
 	 */
-	public String echo(String _word);
+	public String echo(String word);
 	
 	/**
 	 * Returns the Echo from Remote Server
-	 * @param _word
+	 * @param word
 	 * @return
 	 */
-	public EchoResponseData remoteEcho(EchoData _word);
+	public EchoResponseData remoteEcho(EchoData word);
 	
 	/**
 	 * Returns the Echo from Remote Server
-	 * @param _word
+	 * @param word
 	 * @return
 	 */
-	public EchoResponseData remoteEcho(String _word);
+	public EchoResponseData remoteEcho(String word);
 
 }

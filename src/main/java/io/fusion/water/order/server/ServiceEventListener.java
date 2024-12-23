@@ -15,6 +15,7 @@
  */
 package io.fusion.water.order.server;
  
+import io.fusion.water.order.utils.Std;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootVersion;
@@ -43,8 +44,17 @@ public class ServiceEventListener {
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());
 	
-	@Autowired
+	// Autowired using the Constructor Injection
 	private ServiceConfiguration  serviceConfig;
+
+	/**
+	 * Autowired using the Constructor Injection
+	 * @param serviceConfig
+	 */
+	public ServiceEventListener(ServiceConfiguration  serviceConfig) {
+		log.info("Service Event Listener is Ready!");
+		this.serviceConfig = serviceConfig;
+	}
 	
 	/**
 	 * 
@@ -53,8 +63,7 @@ public class ServiceEventListener {
 	public void doSomethingAfterStartup() {
 		log.info("Order Service is getting ready...... ");
 	    log.info(CPU.printCpuStats());
-	    System.out.println(LocalDateTime.now()+"|Order Service is getting ready...... ");
-	    // System.out.println(LocalDateTime.now()+"|"+CPU.printCpuStats());
+	    Std.println(LocalDateTime.now()+"|Order Service is getting ready...... ");
 		showLogo();
 	}
 
@@ -62,7 +71,10 @@ public class ServiceEventListener {
 	 * Shows the Service Logo and Version Details.
 	 */
 	public void showLogo() {
-		String version="v0.9.0", name="NoName", javaVersion="21", sbVersion="3.3.4";
+		String version="v0.9.0";
+		String name="NoName";
+		String javaVersion="21";
+		String sbVersion="3.3.4";
 
 		if(serviceConfig != null) {
 			version = serviceConfig.getServerVersion();
@@ -83,10 +95,8 @@ public class ServiceEventListener {
 				+ " :: Mode = Testing"
 				+ " :: Restart = "+ServiceHelp.getCounter()
 				+ ServiceHelp.NL + ServiceHelp.DL);
-		// if(getDevMode() ) {
-		log.info(ServiceHelp.NL + "API URL : " + serviceConfig.apiURL() + ServiceHelp.NL + ServiceHelp.DL
-		);
-		//}
+
+		log.info(ServiceHelp.NL + "API URL : " + serviceConfig.apiURL() + ServiceHelp.NL + ServiceHelp.DL);
 	}
 
 	/**

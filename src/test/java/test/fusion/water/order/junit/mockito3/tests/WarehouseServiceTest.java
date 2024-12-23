@@ -25,6 +25,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import io.fusion.water.order.domain.models.*;
@@ -156,7 +157,7 @@ public class WarehouseServiceTest {
 		when(shippingService.shipOrder(orderReadyList)).thenReturn(orderReadyList);
 
 		// Prepare the Order for Shipping
-		ArrayList<OrderEntity> orders = warehouseService.processOrders(orderReadyList);
+		List<OrderEntity> orders = warehouseService.processOrders(orderReadyList);
 		
 		// Then Check if all orders are Ready for Shipment
 		for(OrderEntity order : orders)  {
@@ -178,7 +179,7 @@ public class WarehouseServiceTest {
 		when(shippingService.shipOrder(orderReadyList)).thenReturn(shipOrders);
 		
 		// Prepare the Order for Shipping
-		ArrayList<OrderEntity> orders = warehouseService.processOrders(orderReadyList);
+		List<OrderEntity> orders = warehouseService.processOrders(orderReadyList);
 		
 		// Then Check if all orders are IN Transit
 		for(OrderEntity order : orders) {

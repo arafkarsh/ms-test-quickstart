@@ -16,11 +16,11 @@
 package io.fusion.water.order.server;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.fusion.water.order.utils.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -54,31 +54,21 @@ public class ServiceConfiguration implements Serializable {
 	public static final String DB_MYSQL 		= "MySQL";
 	public static final String DB_ORACLE 	= "Oracle";
 
-	@JsonIgnore
-	private ConfigMap configMap = new ConfigMap();
-
 	/**
-	 * Returns the ConfigMap
+	 * Returns Basic Info about the Server
 	 * @return
 	 */
-	public ConfigMap getConfigMap() {
-		configMap.setServiceOrg(serviceOrg);
-		configMap.setServiceName( serviceName);
-		configMap.setServiceApiPrefix( serviceApiPrefix);
-		configMap.setServiceApiVersion( serviceApiVersion);
-		configMap.setServiceApiName( serviceApiName);
-		configMap.setServiceApiPath( serviceApiPath);
-		configMap.setServiceApiErrorPrefix( serviceApiErrorPrefix);
-		configMap.setServiceContainer( serviceContainer);
-		configMap.setServiceUrl( serviceUrl);
-		configMap.setApiDocPath( apiDocPath) ;
-		configMap.setBuildNumber( buildNumber);
-		configMap.setBuildDate( buildDate) ;
-		configMap.setServerVersion( serverVersion);
-		configMap.setServerHost( serverHost) ;
-		configMap.setAppPropertyList( appPropertyList);
-		configMap.setAppPropertyMap( appPropertyMap);
-		return configMap;
+	public Map<String, String> getConfigMap() {
+		HashMap<String,String> map = new LinkedHashMap<>();
+		map.put("swagger.api.path", apiDocPath);
+		map.put("service.org", serviceOrg);
+		map.put("service.name",  serviceName);
+		map.put("service.url", serviceUrl);
+		map.put("service.api.version", serviceApiVersion);
+		map.put("build.number", ""+buildNumber);
+		map.put("build.date", buildDate);
+		map.put("serverVersion", serverVersion);
+		return map;
 	}
 
 
@@ -156,7 +146,6 @@ public class ServiceConfiguration implements Serializable {
 	@Value("${server.host:localhost}")
 	private String serverHost;
 
-	// server.resources.url=${service.url}${service.api.path}
 	@Value("${server.resources.url}")
 	private String serverResourceUrl;
 
@@ -199,7 +188,6 @@ public class ServiceConfiguration implements Serializable {
 	@Value("${server.crypto.private.key:privateKey.pem}")
 	private String cryptoPrivateKeyFile;
 
-	// server.token.issuer=${service.org}
 	@Value("${server.token.issuer}")
 	private String tokenIssuer;
 
@@ -257,12 +245,8 @@ public class ServiceConfiguration implements Serializable {
 	@Value("${spring.jpa.database-platform:org.hibernate.dialect.H2Dialect}")
 	private String dataSourceDialect;
 
-	// @Value("${logging.level}")
-	// private String loggingLevel;
-
 	@Value("${spring.codec.max-in-memory-size:3MB}")
 	private String springCodecMaxMemory;
-
 
 	// Get All the System Properties
 	@JsonIgnore
@@ -277,12 +261,13 @@ public class ServiceConfiguration implements Serializable {
 	// Deployed App Properties Map
 	@JsonIgnore
 	@Value("#{${app.property.map}}")
-	private HashMap<String, String> appPropertyMap;
+	private Map<String, String> appPropertyMap;
 
 	/**
 	 * To be used outside SpringBoot Context
 	 * For WireMock Testing the External Services
 	 */
+	@Autowired
 	public ServiceConfiguration() {
 		this("localhost", 8080);
 	}
@@ -414,21 +399,21 @@ public class ServiceConfiguration implements Serializable {
 	/**
 	 * @return the appPropertyList
 	 */
-	public ArrayList<String> getAppPropertyList() {
+	public List<String> getAppPropertyList() {
 		return appPropertyList;
 	}
 
 	/**
 	 * @return the appPropertyMap
 	 */
-	public HashMap<String, String> getAppPropertyMap() {
+	public Map<String, String> getAppPropertyMap() {
 		return appPropertyMap;
 	}
 
 	/**
 	 * @return the systemProperties
 	 */
-	public HashMap<String, String> systemProperties() {
+	public Map<String, String> systemProperties() {
 		return getSystemProperties();
 	}
 
@@ -470,14 +455,6 @@ public class ServiceConfiguration implements Serializable {
 	 */
 	public String getServiceApiPath() {
 		return serviceApiPath;
-	}
-
-	/**
-	 * Retuurns Service API Error Prefix
-	 * @return
-	 */
-	public String getServiceAPIErrorPrefix() {
-		return (getServiceApiErrorPrefix() != null) ? getServiceApiErrorPrefix() : "99";
 	}
 
 	/**
@@ -640,7 +617,7 @@ public class ServiceConfiguration implements Serializable {
 	 * Returns System Properties
 	 * @return
 	 */
-	public HashMap<String, String> getSystemProperties() {
+	public Map<String, String> getSystemProperties() {
 		return systemProperties;
 	}
 
@@ -649,7 +626,7 @@ public class ServiceConfiguration implements Serializable {
 	 * @return
 	 */
 	public String getServiceApiErrorPrefix() {
-		return serviceApiErrorPrefix;
+		return (serviceApiErrorPrefix != null) ? serviceApiErrorPrefix : "99";
 	}
 
 	/**

@@ -16,6 +16,7 @@
 package io.fusion.water.order.server;
 
 // Swagger Open API
+import io.fusion.water.order.utils.Std;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -24,25 +25,19 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 // Spring
 import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.salt.RandomSaltGenerator;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
-// import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 // Java
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import org.slf4j.Logger;
 
-import static java.lang.System.out;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 // Security
-import org.jasypt.util.text.BasicTextEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.salt.ZeroSaltGenerator;
 /**
  * Security Controller for the Service
  * 
@@ -74,10 +69,9 @@ public class SecurityController {
             content = @Content)
     })
 	@GetMapping("/security/{text}")
-	public ResponseEntity<HashMap<String, String>> encryptText(@PathVariable("text") String _text) throws Exception {
-		log.info(LocalDateTime.now()+"|Request to Encrypt of Service... ");
+	public ResponseEntity<HashMap<String, String>> encryptText(@PathVariable("text") String text)   {
+		log.info("|Request to Encrypt of Service... ");
 		String masterPassword = System.getenv("JASYPT_ENCRYPTOR_PASSWORD");
-
 		if(masterPassword != null) {
 			// Create a StandardPBEStringEncryptor instance
 			StandardPBEStringEncryptor textEncryptor = new StandardPBEStringEncryptor();
@@ -89,15 +83,15 @@ public class SecurityController {
 			//  Add Random IV and Salt
 			textEncryptor.setIvGenerator(new RandomIvGenerator());
 			textEncryptor.setSaltGenerator(new RandomSaltGenerator());
-			out.println("Algorithm Used: "+algo);
-			String encryptedText = textEncryptor.encrypt(_text); // String to encrypt
-			out.println("Encrypted Text: ENC(" + encryptedText + ")");
+			Std.println("Algorithm Used: "+algo);
+			String encryptedText = textEncryptor.encrypt(text); // String to encrypt
+			Std.println("Encrypted Text: ENC(" + encryptedText + ")");
 			// Decrypt the text
 			String decryptedText = textEncryptor.decrypt(encryptedText);
-			out.println("Decrypted Text: " + decryptedText);
-			HashMap<String, String> data = new LinkedHashMap<String, String>();
+			Std.println("Decrypted Text: " + decryptedText);
+			HashMap<String, String> data = new LinkedHashMap<>();
 			data.put("algo", algo);
-			data.put("text", _text);
+			data.put("text", text);
 			data.put("encrypted", encryptedText);
 			return ResponseEntity.ok(data);
 		}

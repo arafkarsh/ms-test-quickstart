@@ -20,6 +20,7 @@
 package io.fusion.water.order.adapters.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,7 @@ public class ShippingServiceImpl implements ShippingService {
 	 * @return
 	 */
 	@Override
-	public ArrayList<OrderEntity> shipOrder(ArrayList<OrderEntity> orderList) {
+	public List<OrderEntity> shipOrder(List<OrderEntity> orderList) {
 		return orderList;
 	}
 
@@ -63,7 +64,7 @@ public class ShippingServiceImpl implements ShippingService {
 	 * @param country
 	 * @return
 	 */
-	public ArrayList<DeliveryCity> getCities(ArrayList<String> cities, String state, String country) {
+	public List<DeliveryCity> getCities(List<String> cities, String state, String country) {
 		ArrayList<DeliveryCity> dCities = new ArrayList<>();
 		if(cities != null && cities.isEmpty()) {
 			for(String cityName : cities) {

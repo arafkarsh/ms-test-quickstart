@@ -27,11 +27,11 @@
  */
 package io.fusion.water.order.security;
 // Jasypt
+import io.fusion.water.order.utils.Std;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.salt.RandomSaltGenerator;
 // Java
-import static java.lang.System.out;
 
 /**
  * Text Decryptor for Decrypting Sensitive Data
@@ -45,8 +45,8 @@ import static java.lang.System.out;
 public class Decrypt17 {
 
     public static void main(String[] args) {
-        out.println("Text Decryptor using Jasypt Encryption Library (v1.9.3)");
-        out.println("-------------------------------------------------------");
+        Std.println("Text Decryptor using Jasypt Encryption Library (v1.9.3)");
+        Std.println("-------------------------------------------------------");
         doDecryptionAES(args);
     }
 
@@ -58,7 +58,7 @@ public class Decrypt17 {
         // Master password for Decryption
         var masterPassword = System.getenv("JASYPT_ENCRYPTOR_PASSWORD");
         if(masterPassword == null) {
-            out.println("Encryption Key is missing in Env var > JASYPT_ENCRYPTOR_PASSWORD!");
+            Std.println("Encryption Key is missing in Env var > JASYPT_ENCRYPTOR_PASSWORD!");
             return;
         }
 
@@ -68,15 +68,15 @@ public class Decrypt17 {
         // Use an AES-based PBE algorithm - PBEWithHmacSHA512AndAES_256
         String algo = "PBEWithHmacSHA512AndAES_256";
         decryptor.setAlgorithm(algo);
-        out.println("Algorithm Used : "+algo);
+        Std.println("Algorithm Used : "+algo);
         // Add Randomness to the Decryption
         decryptor.setIvGenerator(new RandomIvGenerator());
         decryptor.setSaltGenerator(new RandomSaltGenerator());
         // Decrypt Text
-        out.println("Encrypted Text : "+ testToDecrypt);
+        Std.println("Encrypted Text : "+ testToDecrypt);
         var decryptedText = decryptor.decrypt(testToDecrypt);
-        out.println("Decrypted Text : "+ decryptedText);
-        out.println("-------------------------------------------------------");
+        Std.println("Decrypted Text : "+ decryptedText);
+        Std.println("-------------------------------------------------------");
     }
 
     /**
@@ -87,7 +87,7 @@ public class Decrypt17 {
     private static boolean validateInputs(String[] args) {
         if (args.length != 1) {
             // "Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Decrypt17.java <encrypted_text>");
-            out.println("Usage: source decrypt encrypted_text");
+            Std.println("Usage: source decrypt encrypted_text");
             return false;
         }
         return true;

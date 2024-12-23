@@ -29,41 +29,41 @@ public interface OrderRepository {
 	/**
 	 * Returns Order By Order ID
 	 * 
-	 * @param _id
+	 * @param id
 	 * @return
 	 */
-	public OrderEntity getOrderById(String _id);
+	public OrderEntity getOrderById(String id);
 	
 	/**
 	 * Save Order
 	 * 
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public OrderEntity saveOrder(OrderEntity _order);
+	public OrderEntity saveOrder(OrderEntity order);
 	
 	/**
 	 * Cancel Order
 	 * 
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public OrderEntity cancelOrder(OrderEntity _order);
+	public OrderEntity cancelOrder(OrderEntity order);
 	
 	/**
 	 * Cancel Order by Id
 	 * 
-	 * @param _id
+	 * @param id
 	 * @return
 	 */
-	public OrderEntity cancelOrder(String _id);
+	public OrderEntity cancelOrder(String id);
 	
 	/**
 	 * Prepare Order for Shipping
 	 * 
-	 * @param _order
+	 * @param order
 	 * @return
 	 */
-	public OrderEntity prepareOrder(OrderEntity _order);
+	public OrderEntity prepareOrder(OrderEntity order);
 
 }

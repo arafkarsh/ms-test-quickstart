@@ -16,7 +16,7 @@
 
 package io.fusion.water.order.domain.services;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import io.fusion.water.order.domain.models.OrderEntity;
 
@@ -31,9 +31,9 @@ public interface PackingService {
 	/**
 	 * Pack Orders and ready for Shipment
 	 * 
-	 * @param _orderList
+	 * @param orderList
 	 * @return
 	 */
-	public ArrayList<OrderEntity> packOrders(ArrayList<OrderEntity>  _orderList);
+	public List<OrderEntity> packOrders(List<OrderEntity> orderList);
 
 }

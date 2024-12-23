@@ -16,12 +16,11 @@
 package io.fusion.water.order.server;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import io.fusion.water.order.utils.Std;
 import jakarta.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 // Logging System
@@ -43,7 +42,7 @@ public class ServiceHelp {
 	
 	private static int counter;
 	
-	@Autowired
+	// Autowired using the Constructor Injection
 	private ServiceConfiguration serviceConfig;
 	
 	public static final String NL = System.getProperty("line.separator");
@@ -51,7 +50,6 @@ public class ServiceHelp {
 	public static final String PADDING = "                 ";
 	public static final String LINE = "                 --------------------------------------------";
 
-	
 	public static final String DL = "----------------------------------------------------------------------------";
 
 	public static final String LOGO1 = "" +NL
@@ -75,7 +73,12 @@ public class ServiceHelp {
 			+"=======================================================================================================" + NL;
 
 
-	public ServiceHelp() {
+	/**
+	 * Autowired using the Constructor Injection
+	 * @param serviceConfig
+	 */
+	public ServiceHelp(ServiceConfiguration serviceConfig) {
+		this.serviceConfig = serviceConfig;
 		counter++;
 	}
 	
@@ -92,22 +95,16 @@ public class ServiceHelp {
 	 */
 	@PostConstruct
 	public void printProperties() {
-		HashMap<String, String> sysProps = serviceConfig.getSystemProperties();
-		/**
-		for(String s: sysProps.keySet()) {
-			log.info("|System Property List  = "+s);
-			// System.out.println(LocalDateTime.now()+"|System Property List  = "+s);
-		}
-		 */
-		ArrayList<String> properties = serviceConfig.getAppPropertyList();
+		List<String> properties = serviceConfig.getAppPropertyList();
 		for(String p: properties) {
-			log.info("|Service Property List = "+p);
-			System.out.println(LocalDateTime.now()+"|Service Property List = "+p);
+			log.info("|Service Property List = {} ", p);
+			Std.println(LocalDateTime.now()+"|Service Property List = "+p);
 		}
-		HashMap<String, String> map = serviceConfig.getAppPropertyMap();
+		Map<String, String> map = serviceConfig.getAppPropertyMap();
 		for(String k : map.keySet()) {
-			log.info("|Service Property Map  = "+k+" | Value = "+map.get(k));
-			System.out.println(LocalDateTime.now()+"|Service Property Map  = "+k+" | Value = "+map.get(k));
+			String v = map.get(k);
+			log.info("|Service Property Map  = {}  | Value = {} ",k,v);
+			Std.println(LocalDateTime.now()+"|Service Property Map  = "+k+" | Value = "+v);
 		}
  	}
 }

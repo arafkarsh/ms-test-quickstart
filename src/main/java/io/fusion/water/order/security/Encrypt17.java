@@ -28,12 +28,12 @@
 package io.fusion.water.order.security;
 
 // Jasypt
+import io.fusion.water.order.utils.Std;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.salt.RandomSaltGenerator;
 import org.jasypt.salt.ZeroSaltGenerator;
 // Java
-import static java.lang.System.out;
 
 /**
  * Text Encryptor for Encrypting Sensitive Data
@@ -46,9 +46,11 @@ import static java.lang.System.out;
  */
 public class Encrypt17 {
 
+    private static final String LINE = "-------------------------------------------------------";
+
     public static void main(String[] args) {
-        out.println("Text Encryptor using Jasypt Encryption Library (v1.9.3)");
-        out.println("-------------------------------------------------------");
+        Std.println("Text Encryptor using Jasypt Encryption Library (v1.9.3)");
+        Std.println(LINE);
         doEncryptionAES(args);
     }
 
@@ -70,15 +72,15 @@ public class Encrypt17 {
         String algo = "PBEWithMD5AndDES";
         encryptor.setAlgorithm(algo);
         encryptor.setSaltGenerator(new ZeroSaltGenerator()); // Fixed salt for consistent output
-        out.println("Algorithm Used : "+algo);
+        Std.println("Algorithm Used : "+algo);
         // Encrypt the text
         var encryptedText = encryptor.encrypt(textToEncrypt);
-        out.println("Text to Encrypt: "+ textToEncrypt);
-        out.println("Encrypted Text : "+ encryptedText);
+        Std.println("Text to Encrypt: "+ textToEncrypt);
+        Std.println("Encrypted Text : "+ encryptedText);
         // Decrypt the text
         var decryptedText = encryptor.decrypt(encryptedText);
-        out.println("Decrypted Text : "+ decryptedText);
-        out.println("-------------------------------------------------------");
+        Std.println("Decrypted Text : "+ decryptedText);
+        Std.println(LINE);
     }
 
     /**
@@ -103,15 +105,15 @@ public class Encrypt17 {
         encryptor.setIvGenerator(new RandomIvGenerator());
         encryptor.setSaltGenerator(new RandomSaltGenerator());
 
-        out.println("Algorithm Used : "+algo);
+        Std.println("Algorithm Used : "+algo);
         // Encrypt the text
         var encryptedText = encryptor.encrypt(textToEncrypt);
-        out.println("Text to Encrypt: "+ textToEncrypt);
-        out.println("Encrypted Text : "+ encryptedText);
+        Std.println("Text to Encrypt: "+ textToEncrypt);
+        Std.println("Encrypted Text : "+ encryptedText);
         // Decrypt the text
         var decryptedText = encryptor.decrypt(encryptedText);
-        out.println("Decrypted Text : "+ decryptedText);
-        out.println("-------------------------------------------------------");
+        Std.println("Decrypted Text : "+ decryptedText);
+        Std.println(LINE);
     }
 
     /**
@@ -122,7 +124,7 @@ public class Encrypt17 {
     private static boolean validateInputs(String[] args) {
         if (args.length != 2) {
             // "Usage: java -cp libs/jasypt-1.9.3.jar src/main/java/io/fusion/water/order/security/Encrypt17.java <text_to_encrypt> <encryption_key>");
-            out.println("Usage: source encrypt text_to_encrypt encryption_key");
+            Std.println("Usage: source encrypt text_to_encrypt encryption_key");
             return false;
         }
         return true;

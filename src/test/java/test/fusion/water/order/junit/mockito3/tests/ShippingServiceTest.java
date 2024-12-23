@@ -40,6 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -142,7 +143,7 @@ public class ShippingServiceTest {
 		
 		// Check the Delivery City in Shipping Service
 		// Arguments (numbers) to the Stub (DeliveryCityService) must be same
-		ArrayList<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
+		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
 		
 		// Then Check the City
 		assertEquals(3, cityList.size());
@@ -166,7 +167,7 @@ public class ShippingServiceTest {
 		
 		// Check the Delivery City in Shipping Service
 		// Arguments (numbers) to the Stub (DeliveryCityService) must be same
-		ArrayList<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
+		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
 		
 		// Then Check the City
 		assertEquals(3, cityList.size());
@@ -238,7 +239,7 @@ public class ShippingServiceTest {
 		
 		// Check the Delivery City in Shipping Service
 		// Arguments (numbers) to the Stub (DeliveryCityService) must be same
-		ArrayList<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
+		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
 		
 		// Then Check the City
 		assertEquals(3, cityList.size());
@@ -265,7 +266,7 @@ public class ShippingServiceTest {
 		
 		// Check the Delivery City in Shipping Service
 		// Arguments (numbers) to the Stub (DeliveryCityService) must be same
-		ArrayList<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
+		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
 		
 		// Then Check the City
 		assertEquals(3, cityList.size());
@@ -292,7 +293,7 @@ public class ShippingServiceTest {
 		cities.add("Kochi");
 		
 		// Check the Delivery City in Shipping Service
-		ArrayList<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
+		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
 
 		assertEquals(3, cityList.size());
 		for(String cityName : cities) {
@@ -322,7 +323,7 @@ public class ShippingServiceTest {
 		cities.add("Kochi");
 
 		// Check the Delivery City in Shipping Service
-		ArrayList<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
+		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
 
 		assertEquals(3, cityList.size());
 		for(String cityName : cities) {
@@ -341,7 +342,7 @@ public class ShippingServiceTest {
 		.thenThrow(new RuntimeException("Data Not Available"));
 		
 		// Change the Order of the Cities and the test will fail
-		ArrayList<String> cities = new ArrayList<String>();
+		List<String> cities = new ArrayList<>();
 		cities.add("Bengaluru");
 		cities.add("Chennai");
 		cities.add("Kochi");
@@ -349,7 +350,7 @@ public class ShippingServiceTest {
 		ArrayList<DeliveryCity> cityList = null;
 		try {
 			// Check the Delivery City in Shipping Service
-			cityList = shippingService.getCities(cities, "", "India");
+			cityList = (ArrayList)shippingService.getCities(cities, "", "India");
 		} catch (Exception e) {
 			failed = true;
 			System.out.println("Test 11 > "+e.getMessage());
@@ -376,7 +377,7 @@ public class ShippingServiceTest {
 		
 		// Check the Delivery City in Shipping Service
 		try {
-			ArrayList<DeliveryCity> cityList = shippingService.getCities(cities, null, null);
+			List<DeliveryCity> cityList = shippingService.getCities(cities, null, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
