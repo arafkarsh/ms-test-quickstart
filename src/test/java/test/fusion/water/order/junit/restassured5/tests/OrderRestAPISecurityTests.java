@@ -33,7 +33,6 @@ import test.fusion.water.order.utils.OrderMockObjects;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * REST Assured Examples based on BDD
@@ -100,7 +99,7 @@ public class OrderRestAPISecurityTests {
         @DisplayName("1.1 Check Content Type")
         @Test
         @Order(1)
-        public void testContentType() {
+        void testContentType() {
             OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .contentType("application/json")
@@ -124,7 +123,7 @@ public class OrderRestAPISecurityTests {
         @DisplayName("1.2 Check Cache Control")
         @Test
         @Order(2)
-        public void testCacheControl() {
+        void testCacheControl() {
             OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .contentType("application/json")
@@ -146,7 +145,7 @@ public class OrderRestAPISecurityTests {
         @DisplayName("1.3 Check X-Frame Option")
         @Test
         @Order(3)
-        public void testNoFrame() {
+        void testNoFrame() {
             OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .contentType("application/json")
@@ -169,7 +168,7 @@ public class OrderRestAPISecurityTests {
         @DisplayName("1.4 Check X-Content-Type-Options")
         @Test
         @Order(4)
-        public void testContentTypeOptions() {
+        void testContentTypeOptions() {
             OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .contentType("application/json")
@@ -201,7 +200,7 @@ public class OrderRestAPISecurityTests {
         @DisplayName("1.5 Check X-XSS-Protection")
         @Test
         @Order(5)
-        public void testXXSSProtection() {
+        void testXXSSProtection() {
             OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .contentType("application/json")
@@ -235,7 +234,7 @@ public class OrderRestAPISecurityTests {
         @DisplayName("1.6 Check Content Security Policy")
         @Test
         @Order(6)
-        public void testContentSecurityPolicy() {
+        void testContentSecurityPolicy() {
             OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .contentType("application/json")
@@ -261,7 +260,7 @@ public class OrderRestAPISecurityTests {
         @DisplayName("2.1 Check Content Type")
         @Test
         @Order(1)
-        public void getOrderById() {
+        void getOrderById() {
             given()
                     .pathParam("orderId", "1234")
             .when()
@@ -278,8 +277,8 @@ public class OrderRestAPISecurityTests {
         @DisplayName("2.2 Check Cache Control")
         @Test
         @Order(2)
-        public void testCacheControl() {
-            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        void testCacheControl() {
+            // OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .pathParam("orderId", "1234")
             .when()
@@ -297,8 +296,8 @@ public class OrderRestAPISecurityTests {
         @DisplayName("2.3 Check X-Frame Option")
         @Test
         @Order(3)
-        public void testNoFrame() {
-            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        void testNoFrame() {
+            //  orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .pathParam("orderId", "1234")
             .when()
@@ -316,8 +315,8 @@ public class OrderRestAPISecurityTests {
         @DisplayName("2.4 Check X-Content-Type-Options")
         @Test
         @Order(4)
-        public void testContentTypeOptions() {
-            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        void testContentTypeOptions() {
+            //  orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .pathParam("orderId", "1234")
             .when()
@@ -335,8 +334,8 @@ public class OrderRestAPISecurityTests {
         @DisplayName("2.5 Check X-XSS-Protection")
         @Test
         @Order(5)
-        public void testXXSSProtection() {
-            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        void testXXSSProtection() {
+            // OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .pathParam("orderId", "1234")
             .when()
@@ -354,8 +353,8 @@ public class OrderRestAPISecurityTests {
         @DisplayName("2.6 Check Content Security Policy")
         @Test
         @Order(6)
-        public void testContentSecurityPolicy() {
-            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        void testContentSecurityPolicy() {
+            // OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .pathParam("orderId", "1234")
             .when()
@@ -376,8 +375,8 @@ public class OrderRestAPISecurityTests {
         @DisplayName("3.1 JWT Token Test")
         @Test
         @Order(1)
-        public void testJWT() {
-            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        void testJWT() {
+            // OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .header("Authorization", "Bearer: jwt-1")
                     .header("Refresh-Token", "Bearer: jwt-2")
@@ -392,8 +391,8 @@ public class OrderRestAPISecurityTests {
         @DisplayName("3.2 OAuth 1 Test")
         @Test
         @Order(2)
-        public void testOAuth() {
-            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        void testOAuth() {
+            // OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .auth()
                     .oauth("consumerKey", "consumerSecret", "accessToken", "secretToken")
@@ -408,9 +407,9 @@ public class OrderRestAPISecurityTests {
         @DisplayName("3.3 OAuth 2 Test")
         @Test
         @Order(3)
-        public void testOAuth2() {
+        void testOAuth2() {
             String accessToken = "OAuth2-Access-Token";
-            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+            // OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .auth()
                     .oauth2(accessToken)

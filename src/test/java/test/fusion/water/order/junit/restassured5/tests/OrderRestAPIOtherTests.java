@@ -37,7 +37,6 @@ import test.fusion.water.order.utils.OrderMockObjects;
 import static io.restassured.RestAssured.given;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -103,7 +102,7 @@ public class OrderRestAPIOtherTests {
         @DisplayName("1.1 Performance Test: Response Time")
         @Test
         @Order(1)
-        public void testContentType() {
+        void testContentType() {
             OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
             given()
                     .spec(requestSpec1)
@@ -120,7 +119,7 @@ public class OrderRestAPIOtherTests {
         @DisplayName("1.2. Headers thru Specs")
         @Test
         @Order(2)
-        public void getOrderById() {
+        void getOrderById() {
             response =
                     given()
                             .spec(requestSpec1)
@@ -143,7 +142,7 @@ public class OrderRestAPIOtherTests {
         @DisplayName("1.3. Cookies thru Specs")
         @Test
         @Order(3)
-        public void testHeaders() {
+        void testHeaders() {
             String orderId = "1234";  // Replace with actual order ID
             String statusId = OrderStatus.PAYMENT_EXPECTED.name();  // Replace with actual status ID
 
@@ -165,7 +164,7 @@ public class OrderRestAPIOtherTests {
         @DisplayName("1.4. Direct Cookies")
         @Test
         @Order(4)
-        public void testCookies() {
+        void testCookies() {
             String orderId = "1234";  // Replace with actual order ID
             String statusId = OrderStatus.PAYMENT_EXPECTED.name();  // Replace with actual status ID
 

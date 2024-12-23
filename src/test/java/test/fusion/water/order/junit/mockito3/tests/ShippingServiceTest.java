@@ -116,7 +116,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("1. Mock > Test Delivery City Bengaluru")
 	@Order(1)
-	public void testDeliveryCity() {
+	void testDeliveryCity() {
 		// Set the Shipping Service with Bengaluru City
 		when(deliveryCityService.getDeliveryCity("Bengaluru", "", "India")).thenReturn(bengaluru);
 		
@@ -130,7 +130,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("2. Mock > Test Delivery Cities Bengaluru, Chennai, Kochi")
 	@Order(2)
-	public void testDeliveryCities() {
+	void testDeliveryCities() {
 		// Set the Shipping Service with multiple Cities
 		when(deliveryCityService.getDeliveryCity("Bengaluru", "", "India")).thenReturn(bengaluru);
 		when(deliveryCityService.getDeliveryCity("Chennai", "", "India")).thenReturn(chennai);
@@ -152,7 +152,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("3. Mock > InOrder > Test Delivery Cities Bengaluru, Chennai, Kochi")
 	@Order(3)
-	public void testDeliveryCitiesInOrder() {
+	void testDeliveryCitiesInOrder() {
 		// Set the Shipping Service with multiple Cities
 		InOrder inorder = inOrder(deliveryCityService); 
 		when(deliveryCityService.getDeliveryCity("Bengaluru", "", "India")).thenReturn(bengaluru);
@@ -180,7 +180,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("4. Mock > Arg Matcher > Test Delivery City Kochi - AnyString()")
 	@Order(4)
-	public void testDeliveryCityAnyString() {
+	void testDeliveryCityAnyString() {
 		// Set the Shipping Service with Kochi City
 		when(deliveryCityService.getDeliveryCity(
 				anyString(), anyString(), anyString())).thenReturn(kochi);
@@ -195,7 +195,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("5. Mock > Arg Matcher > Test Delivery City Kochi - eq('Kochi') ")
 	@Order(5)
-	public void testDeliveryCityEQString() {
+	void testDeliveryCityEQString() {
 		// Set the Shipping Service with Kochi City
 		when(deliveryCityService.getDeliveryCity(
 				eq("Kochi"), anyString(), anyString())).thenReturn(kochi);
@@ -210,7 +210,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("6. Mock > Arg Matcher > Test Delivery City Kochi - OR Condition ")
 	@Order(6)
-	public void testDeliveryCityOR() {
+	void testDeliveryCityOR() {
 		// Set the Shipping Service with Kochi City
 		when(deliveryCityService.getDeliveryCity( 
 				or(eq("Kochi"), eq("Cochin")), anyString(), eq("India")))
@@ -226,7 +226,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("7. Mock > Counts > Test Delivery Cities Bengaluru")
 	@Order(7)
-	public void testDeliveryCitiesCount() {
+	void testDeliveryCitiesCount() {
 		// Set the Shipping Service with multiple Cities
 		when(deliveryCityService.getDeliveryCity(anyString(), anyString(), anyString()))
 		.thenReturn(bengaluru);
@@ -253,7 +253,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("8. Mock > Counts > Test Delivery Cities Bengaluru atLeast(), atMost()")
 	@Order(8)
-	public void testDeliveryCitiesCount2() {
+	void testDeliveryCitiesCount2() {
 		// Set the Shipping Service with multiple Cities
 		when(deliveryCityService.getDeliveryCity(anyString(), anyString(), anyString()))
 		.thenReturn(bengaluru);
@@ -281,7 +281,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("9. Mock > Answer > Test Delivery Cities ")
 	@Order(9)
-	public void testDeliveryCitiesCustomAnswer() {
+	void testDeliveryCitiesCustomAnswer() {
 		// Set the Shipping Service with multiple Cities
 		when(deliveryCityService.getDeliveryCity(anyString(), anyString(), anyString()))
 		.thenAnswer(new DeliveryCityAnswer());
@@ -306,7 +306,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("10. Mock > Captor > Test Delivery Cities ")
 	@Order(10)
-	public void testDeliveryCitiesCaptor() {
+	void testDeliveryCitiesCaptor() {
 		ArgumentCaptor<String> city = ArgumentCaptor.forClass(String.class);
 		ArgumentCaptor<String> state = ArgumentCaptor.forClass(String.class);
 		ArgumentCaptor<String> country = ArgumentCaptor.forClass(String.class);
@@ -336,7 +336,7 @@ public class ShippingServiceTest {
 	@Test
 	@DisplayName("11. Mock > Throw Exception > Test Delivery Cities ")
 	@Order(11)
-	public void testDeliveryCitiesThrowException() {
+	void testDeliveryCitiesThrowException() {
 		// Set the Shipping Service with multiple Cities
 		when(deliveryCityService.getDeliveryCity(anyString(), anyString(), anyString()))
 		.thenThrow(new RuntimeException("Data Not Available"));
@@ -354,7 +354,6 @@ public class ShippingServiceTest {
 		} catch (Exception e) {
 			failed = true;
 			System.out.println("Test 11 > "+e.getMessage());
-			// e.printStackTrace();
 		}
 		// Add the variant where Exception is tested implicitly
 		// Verify
@@ -366,7 +365,7 @@ public class ShippingServiceTest {
 	// @Test
 	@DisplayName("12. Mock > No Calls > Test Delivery Cities Bengaluru ")
 	@Order(20)
-	public void testDeliveryCitiesNoCalls() {
+	void testDeliveryCitiesNoCalls() {
 		// No Expectations 
 
 		// Change the Order of the Cities and the test will fail

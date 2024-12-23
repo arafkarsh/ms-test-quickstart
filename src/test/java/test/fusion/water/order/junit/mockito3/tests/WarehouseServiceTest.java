@@ -121,7 +121,7 @@ public class WarehouseServiceTest {
     @MethodSource("createOrder")
     @Order(1)
     @Tag("critical")
-    public void testForOrderPackaging(OrderEntity order) { 
+	void testForOrderPackaging(OrderEntity order) {
     	PaymentStatus paymentAccepted = new PaymentStatus(
         		order.getPaymentDetails().getTransactionId(), 
         		order.getPaymentDetails().getTransactionDate(), 
@@ -150,7 +150,7 @@ public class WarehouseServiceTest {
 	@DisplayName("1.2 Test for Warehouse Ready for Shipping")
     @Order(2)
     @Tag("critical")
-	public void testOrderForShipping() {
+	void testOrderForShipping() {
 		printLogs();
 		// Given Order is Ready for Shipping
 		when(packingService.packOrders(orderReadyList)).thenReturn(orderReadyList);
@@ -170,7 +170,7 @@ public class WarehouseServiceTest {
 	@DisplayName("1.3 Test for Warehouse Order Shipped")
     @Order(3)
     @Tag("critical")
-	public void testOrderInTransit() {
+	void testOrderInTransit() {
 		printLogs();
 		// Given Order is Ready for Shipping
 		when(packingService.packOrders(orderReadyList)).thenReturn(orderReadyList);
@@ -190,7 +190,6 @@ public class WarehouseServiceTest {
 	
     @AfterEach
     public void tearDown() {
-        // System.out.println(counter+". Should Execute After Each Test");
         counter++;
 		printLogs(orderReadyList);
     }

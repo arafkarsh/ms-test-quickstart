@@ -89,7 +89,7 @@ public class EmbeddedServerTests {
     @DisplayName("1. POST: Create the Order")
     @Test
     @Order(1)
-    public void testPostOrder() {
+    void testPostOrder() {
         OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
         given()
                 .contentType("application/json")
@@ -117,7 +117,7 @@ public class EmbeddedServerTests {
     @DisplayName("2. GET: Fetch the Order")
     @Test
     @Order(2)
-    public void getOrderById() {
+    void getOrderById() {
         response =
         given()
                 .pathParam("orderId", "1234")
@@ -157,7 +157,7 @@ public class EmbeddedServerTests {
     @DisplayName("3. Check the Order Value Against Payment")
     @Test
     @Order(3)
-    public void checkOrderValueAgainstPayment() {
+    void checkOrderValueAgainstPayment() {
         float orderValue = response.path("paymentDetails.orderValue");
         float totalValue = response.path("totalValue");
         assertEquals(orderValue, totalValue, 0.01f);  // comparing two values
@@ -169,7 +169,7 @@ public class EmbeddedServerTests {
     @DisplayName("4. PUT: Update Order Status for Waiting for Payment")
     @Test
     @Order(4)
-    public void testPutOrderStatus() {
+    void testPutOrderStatus() {
         String orderId = "1234";  // Replace with actual order ID
         String statusId = OrderStatus.PAYMENT_EXPECTED.name();  // Replace with actual status ID
 
@@ -191,7 +191,7 @@ public class EmbeddedServerTests {
     @DisplayName("5. DELETE: Cancel the Order Status on Order ID")
     @Test
     @Order(5)
-    public void testCancelOrder() {
+    void testCancelOrder() {
         String orderId = "1234";  // Replace with actual order ID
         given()
                 .contentType("application/json")

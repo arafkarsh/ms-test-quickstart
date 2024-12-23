@@ -95,7 +95,7 @@ public class OrderItemGroupTest {
     
 	@Test
 	@DisplayName("1. Test for Payment Accepted")
-	public void testValidatePaymentAccepted() {
+	void testValidatePaymentAccepted() {
 		// Given Order is Ready
 		when(orderRepo.saveOrder(order))
 			.thenReturn(order);
@@ -114,7 +114,7 @@ public class OrderItemGroupTest {
 	
 	@Test
 	@DisplayName("2. Test for Payment Declined")
-	public void testValidatePaymentDeclined() {
+	void testValidatePaymentDeclined() {
 		// Given Order is Ready
 		when(orderRepo.saveOrder(order))
 			.thenReturn(order);
@@ -157,13 +157,13 @@ public class OrderItemGroupTest {
 	/**
 	 * Payment Status - Accepted
 	 * 
-	 * @param _paymentDetails
+	 * @param paymentDetails
 	 * @return
 	 */
-	public PaymentStatus createPaymentStatusAccepted(PaymentDetails _paymentDetails) {
+	public PaymentStatus createPaymentStatusAccepted(PaymentDetails paymentDetails) {
 		return new PaymentStatus(
-				_paymentDetails.getTransactionId(), 
-				_paymentDetails.getTransactionDate(), 
+				paymentDetails.getTransactionId(),
+				paymentDetails.getTransactionDate(),
 				"Accepted", 
 				UUID.randomUUID().toString(), 
 				LocalDateTime.now(), 
@@ -173,13 +173,13 @@ public class OrderItemGroupTest {
 	/**
 	 * Payment Status - Declined
 	 * 
-	 * @param _paymentDetails
+	 * @param paymentDetails
 	 * @return
 	 */
-	public PaymentStatus createPaymentStatusDeclined(PaymentDetails _paymentDetails) {
+	public PaymentStatus createPaymentStatusDeclined(PaymentDetails paymentDetails) {
 		return new PaymentStatus(
-				_paymentDetails.getTransactionId(), 
-				_paymentDetails.getTransactionDate(), 
+				paymentDetails.getTransactionId(),
+				paymentDetails.getTransactionDate(),
 				"Declined", 
 				UUID.randomUUID().toString(), 
 				LocalDateTime.now(), 
