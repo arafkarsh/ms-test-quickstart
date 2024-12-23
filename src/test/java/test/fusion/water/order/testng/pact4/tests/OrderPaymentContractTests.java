@@ -117,7 +117,7 @@ public class OrderPaymentContractTests  extends AbstractTestNGSpringContextTests
      */
     // @Test(priority = 1, description = "1. Pact > Payment Service > Remote Echo > GET")
     // @PactTestFor(pactMethod = "remoteEcho", port="8080")
-    public void remoteEchoGet(MockServer mockServer) throws IOException {
+    public void remoteEchoGet(MockServer mockServer) {
         System.out.println("PACT    |> MockServer|"+mockServer.getUrl());
         String param = new String("Jane");
         EchoResponseData expectedResult =  new EchoResponseData("Jane");
@@ -126,7 +126,6 @@ public class OrderPaymentContractTests  extends AbstractTestNGSpringContextTests
             result = paymentService.remoteEcho(param);
         } catch(Exception e) {
             System.out.println("ERROR: "+e.getMessage());
-            // e.printStackTrace();
         }
         assertNotNull(result);
         assertThat(expectedResult.getWordData(),
@@ -143,7 +142,6 @@ public class OrderPaymentContractTests  extends AbstractTestNGSpringContextTests
     public RequestResponsePact processPayments(PactDslWithProvider builder) {
         HashMap<String, String> headers = new HashMap<String,String>();
         headers.put("Content-Type", "application/json");
-        // headers.put("sessionId", "");
         headers.put("app", "bigBasket");
 
         RequestResponsePact rrp = builder
@@ -172,7 +170,7 @@ public class OrderPaymentContractTests  extends AbstractTestNGSpringContextTests
      */
     // @Test(priority = 2, description = "2. Pact > Payment Service > Process Payments")
     // @PactTestFor(pactMethod = "processPayments", port="8080")
-    public void processPaymentsPost(MockServer mockServer) throws IOException {
+    public void processPaymentsPost(MockServer mockServer) {
         System.out.println("PACT    |> MockServer|"+mockServer.getUrl());
         PaymentStatus paymentStatus = null;
         try {
@@ -189,6 +187,7 @@ public class OrderPaymentContractTests  extends AbstractTestNGSpringContextTests
 
     @AfterMethod
     public void tearDown() {
+        // Clean Up
     }
 
     @AfterClass

@@ -93,7 +93,7 @@ public class PaymentGateWayMockTests {
         PaymentStatus payStatus = paymentService.processPaymentsExternal(pd);
 
         assertNotNull(payStatus);
-        assertEquals("Accepted", payStatus.getPaymentStatus());
+        assertEquals(payStatus.getPaymentStatus(),"Accepted" );
 
         verify(postRequestedFor(urlPathEqualTo("/payment"))
                 .withRequestBody(equalToJson(Utils.toJsonString(pd)))
@@ -113,7 +113,7 @@ public class PaymentGateWayMockTests {
         PaymentStatus payStatus = paymentService.processPaymentsExternal(pd);
 
         assertNotNull(payStatus);
-        assertEquals("Declined", payStatus.getPaymentStatus());
+        assertEquals(payStatus.getPaymentStatus(),"Declined");
 
         verify(postRequestedFor(urlPathEqualTo("/payment"))
                 .withRequestBody(equalToJson(Utils.toJsonString(pd)))
