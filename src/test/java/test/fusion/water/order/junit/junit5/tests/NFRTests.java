@@ -46,7 +46,7 @@ import test.fusion.water.order.junit.junit5.annotations.tools.Junit5;
 @NonFunctional()
 @TestMethodOrder(OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class NFRTests {
+class NFRTests {
 
 	static final Logger log = getLogger(lookup().lookupClass());
 

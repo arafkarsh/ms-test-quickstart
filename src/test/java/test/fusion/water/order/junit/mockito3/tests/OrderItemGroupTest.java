@@ -56,7 +56,7 @@ import io.fusion.water.order.domain.services.OrderRepository;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
 @ExtendWith(MockitoExtension.class)
-public class OrderItemGroupTest {
+class OrderItemGroupTest {
 
 	static final Logger log = getLogger(lookup().lookupClass());
 

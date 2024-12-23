@@ -39,7 +39,7 @@ import org.junit.jupiter.api.AfterEach;
 @Junit5()
 @NonFunctional()
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ConceptExamples {
+class ConceptExamples {
 
 	/**
 	 * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)

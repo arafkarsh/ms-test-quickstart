@@ -73,7 +73,7 @@ import org.slf4j.Logger;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 // @PrintTestDuration
 @ExtendWith(TestTimeExtension.class)
-public class OrderTestParametrized {
+class OrderTestParametrized {
 	
 	static final Logger log = getLogger(lookup().lookupClass());
 
