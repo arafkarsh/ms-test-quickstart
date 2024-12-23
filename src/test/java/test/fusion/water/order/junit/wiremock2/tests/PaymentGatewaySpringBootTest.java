@@ -19,8 +19,6 @@ import com.github.tomakehurst.wiremock.client.WireMock;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
-
 import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
@@ -120,7 +118,7 @@ public class PaymentGatewaySpringBootTest {
 	@Test
 	@DisplayName("1. Spring Boot Testing Autowired Payment Service")
 	@Order(1)
-	public void paymentServiceLocalEcho() {
+	void paymentServiceLocalEcho() {
 		String param = "World";
 		String expectedResult = "Hello "+param;
 		String result = paymentService.echo("World");
@@ -132,7 +130,7 @@ public class PaymentGatewaySpringBootTest {
 	@Test
 	@DisplayName("2. Payment Service HTTP : Remote Echo")
 	@Order(2)
-	public void paymentServiceRemoteEcho() {
+	void paymentServiceRemoteEcho() {
 
 		EchoData param = new EchoData("John");
 		EchoResponseData expectedResult =  new EchoResponseData("John");
@@ -160,7 +158,7 @@ public class PaymentGatewaySpringBootTest {
 	@Test
 	@DisplayName("3. Payment Service HTTP : Accepted")
 	@Order(3)
-	public void paymentServiceTest1() {
+	void paymentServiceTest1() {
 
 		PaymentDetails pd = SampleData.getPaymentDetails();
 	    PaymentStatus ps = SampleData.getPaymentStatusAccepted(
@@ -189,7 +187,7 @@ public class PaymentGatewaySpringBootTest {
 	@Test
 	@DisplayName("4. Payment Service HTTP : Declined")
 	@Order(4)
-	public void paymentServiceTest2() {
+	void paymentServiceTest2() {
 
 		PaymentDetails pd = SampleData.getPaymentDetails();
 	    PaymentStatus ps = SampleData.getPaymentStatusDeclined(

@@ -49,7 +49,7 @@ public class WebBrowserTesting {
 
 	@Test
 	@DisplayName("Search Amazon for Product and Add to Cart")
-	public void searchFindAddProductToCart() throws InterruptedException {
+	void searchFindAddProductToCart() throws InterruptedException {
 
 		WebDriverChrome.initialize();
 		WebDriver browser = WebDriverChrome.getChromeDriver(false, 60);
@@ -77,11 +77,7 @@ public class WebBrowserTesting {
 		// 3. Go to Product Page
 		WebElement product = browser.findElement(
 		 			By.xpath("//*[@id=\"search\"]/div[1]/div[1]/div/span[1]/div[1]/div[3]/div/div/div/div/div/div/div/div[2]/div/div/div[1]/h2/a"));
-		//
-	    // WebElement product = browser.findElement(
-	    // 			By.cssSelector("#search > div.s-desktop-width-max.s-opposite-dir > div > div.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div > span:nth-child(4) > div.s-main-slot.s-result-list.s-search-results.sg-row > div:nth-child(2) > div > span > div > div > div > div > div:nth-child(2) > div.sg-col.sg-col-4-of-12.sg-col-8-of-16.sg-col-12-of-20 > div > div > div:nth-child(1) > h2 > a")
-	    // 			);
-	    
+
 	    System.out.println("Page:1] Result>   "+product.getText());
 	    // Wait for 3 Seconds before going to Product Page
 	    Thread.sleep(3000);
@@ -93,11 +89,10 @@ public class WebBrowserTesting {
 	    
 	    String window1 = browser.getWindowHandle();
 	    String window2 = window1;
-	    // System.out.println("0> "+window1);
 	    Set<String> windows = browser.getWindowHandles();
 	    int x=1;
 	    for(String s : windows) {
-	    	// System.out.println(x+"> "+s);
+	    	System.out.println(x+"> "+s);
 	    	x++;
 	    	window2 = s;
 	    }

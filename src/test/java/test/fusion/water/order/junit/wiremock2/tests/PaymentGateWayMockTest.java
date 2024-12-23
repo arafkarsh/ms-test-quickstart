@@ -97,7 +97,7 @@ public class PaymentGateWayMockTest {
 	@Test
 	@DisplayName("1. Payment Service HTTP : Remote Echo")
 	@Order(1)
-	public void paymentServiceRemoteEcho() {
+	void paymentServiceRemoteEcho() {
 		EchoData param = new EchoData("John");
 		EchoResponseData expectedResult = new EchoResponseData("John");
 
@@ -123,7 +123,7 @@ public class PaymentGateWayMockTest {
 	@Test
 	@DisplayName("2. Payment Service HTTP : Accepted")
 	@Order(2)
-	public void paymentServiceTest1() {
+	void paymentServiceTest1() {
 
 		PaymentDetails pd = SampleData.getPaymentDetails();
 	    PaymentStatus ps = SampleData.getPaymentStatusAccepted(
@@ -151,7 +151,7 @@ public class PaymentGateWayMockTest {
 	@Test
 	@DisplayName("3. Payment Service HTTP : Declined")
 	@Order(3)
-	public void paymentServiceTest2() {
+	void paymentServiceTest2() {
 
 		PaymentDetails pd = SampleData.getPaymentDetails();
 	    PaymentStatus ps = SampleData.getPaymentStatusDeclined(

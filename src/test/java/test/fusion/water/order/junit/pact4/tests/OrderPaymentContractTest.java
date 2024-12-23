@@ -36,9 +36,6 @@ import au.com.dius.pact.core.model.RequestResponseInteraction;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -133,7 +130,7 @@ public class OrderPaymentContractTest {
 	@DisplayName("1. Pact > Payment Service > Remote Echo > GET")
 	@Order(1)
 	@PactTestFor(pactMethod = "remoteEcho", port="8080")
-	public void remoteEchoGet(MockServer mockServer) throws IOException {
+	void remoteEchoGet(MockServer mockServer)  {
 		System.out.println("PACT    |> MockServer|"+mockServer.getUrl());
 		String param = new String("Jane");
 		EchoResponseData expectedResult =  new EchoResponseData("Jane");
@@ -142,7 +139,6 @@ public class OrderPaymentContractTest {
 			result = paymentService.remoteEcho(param);
 		} catch(Exception e) {
 			System.out.println("ERROR: "+e.getMessage());
-			// e.printStackTrace();
 		}
 		assertNotNull(result);
         assertThat(expectedResult.getWordData(), 
@@ -189,7 +185,7 @@ public class OrderPaymentContractTest {
 	@DisplayName("2. Pact > Payment Service > Process Payments")
 	@Order(2)
 	@PactTestFor(pactMethod = "processPayments", port="8080")
-	public void processPaymentsPost(MockServer mockServer) throws IOException {
+	public void processPaymentsPost(MockServer mockServer)  {
 		System.out.println("PACT    |> MockServer|"+mockServer.getUrl());
 		PaymentStatus paymentStatus = null;
 		try {
@@ -206,6 +202,7 @@ public class OrderPaymentContractTest {
 	
     @AfterEach
     public void tearDown() {
+		// Clear the Order
     }
 
     @AfterAll

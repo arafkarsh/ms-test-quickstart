@@ -17,8 +17,6 @@ package test.fusion.water.order.junit.pact4.tests;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.io.IOException;
-
 import io.fusion.water.order.OrderApplication;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -43,9 +41,6 @@ import au.com.dius.pact.core.model.RequestResponseInteraction;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import io.fusion.water.order.domain.models.EchoResponseData;
@@ -119,7 +114,7 @@ public class PactContractSimpleTest {
 	@DisplayName("1. Pact > Payment Service > Remote Echo > GET")
 	@Order(1)
 	@PactTestFor(pactMethod = "remoteEcho", port="8080")
-	public void remoteEchoGet(MockServer mockServer) throws IOException {
+	void remoteEchoGet(MockServer mockServer)  {
 		System.out.println("MockServer|"+mockServer.getUrl());
 		String param = new String("Jane");
 		EchoResponseData expectedResult = new EchoResponseData("Jane");
@@ -128,7 +123,6 @@ public class PactContractSimpleTest {
 			result = paymentService.remoteEcho(param);
 		} catch(Exception e) {
 			System.out.println("ERROR: "+e.getMessage());
-			// e.printStackTrace();
 		}
 		assertNotNull(result);
         assertThat(expectedResult.getWordData(), 
@@ -137,6 +131,7 @@ public class PactContractSimpleTest {
 	
     @AfterEach
     void tearDown() {
+		// Clear the Order
     }
 
     @AfterAll

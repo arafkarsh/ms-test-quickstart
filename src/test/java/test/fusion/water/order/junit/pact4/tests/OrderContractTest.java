@@ -38,8 +38,6 @@ import test.fusion.water.order.junit.junit5.annotations.tools.Pact4;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 import test.fusion.water.order.utils.OrderMockObjects;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
@@ -104,7 +102,7 @@ public class OrderContractTest {
 	@DisplayName("1. Pact > Order Service: Save Order")
 	@Order(1)
 	@PactTestFor(pactMethod = "createPact", port="8080")
-	public void saveOrder(MockServer mockServer) throws IOException {
+	void saveOrder(MockServer mockServer)  {
 		System.out.println("PACT    |> MockServer|"+mockServer.getUrl());
 		OrderEntity order = null;
 		try {
@@ -121,6 +119,7 @@ public class OrderContractTest {
 	
     @AfterEach
     public void tearDown() {
+		// Clear the Order
     }
 
     @AfterAll

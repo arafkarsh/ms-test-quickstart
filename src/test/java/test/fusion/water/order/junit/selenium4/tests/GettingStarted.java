@@ -32,11 +32,11 @@ import org.junit.jupiter.api.Test;
 public class GettingStarted {
 
     @Test
-    public void testGoogleSearch() throws InterruptedException {
+    void testGoogleSearch() throws InterruptedException {
 
         // Optional. If not specified, WebDriver searches the PATH for chromedriver.
         // System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
-        // System.setProperty("webdriver.chrome.driver", "/Users/arafkarsh/ChromeDriver/mac-m1/chromedriver");
+        // System.setProperty("webdriver.chrome.driver", "~/ChromeDriver/mac-m1/chromedriver");
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");

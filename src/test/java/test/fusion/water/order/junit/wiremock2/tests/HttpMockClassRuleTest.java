@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 
+import org.junit.jupiter.api.Test;
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.WireMock2;
@@ -52,16 +53,13 @@ public class HttpMockClassRuleTest {
 		
 	}
 
-	// @Test
+	@Test
 	public void exampleTest() {
 	    stubFor(post("/my/resource")
 	        .withHeader("Content-Type", containing("xml"))
 	        .willReturn(ok()
 	            .withHeader("Content-Type", "text/xml")
 	            .withBody("<response>SUCCESS</response>")));
-
-	    // Result result = myHttpServiceCallingObject.doSomething();
-	    // assertTrue(result.wasSuccessful());
 
 	    verify(postRequestedFor(urlPathEqualTo("/my/resource"))
 	        .withRequestBody(matching(".*message-1234.*"))
