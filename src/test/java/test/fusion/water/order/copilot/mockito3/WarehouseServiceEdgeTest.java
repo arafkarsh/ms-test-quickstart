@@ -56,7 +56,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(OrderAnnotation.class)
-class WarehouseServiceEdgeTestCases {
+class WarehouseServiceEdgeTest {
 
     @Mock
     private PackingService packingService;
@@ -93,7 +93,7 @@ class WarehouseServiceEdgeTestCases {
     @Test
     @Order(5)
     void processOrdersWithInvalidOrderStatus() {
-        List<OrderEntity> invalidOrderList = new ArrayList<>();
+        List<OrderEntity> invalidOrderList = createOrder();
         OrderEntity order = new OrderEntity.Builder()
                 .addCustomer(new Customer("UUID", "John", "Doe", "0123456789"))
                 .build();
@@ -105,7 +105,7 @@ class WarehouseServiceEdgeTestCases {
 
         List<OrderEntity> processedOrders = warehouseService.processOrders(invalidOrderList);
 
-        assertEquals(1, processedOrders.size());
+        assertEquals(4, processedOrders.size());
         assertEquals(OrderStatus.CANCELLED, processedOrders.get(0).getOrderStatus());
     }
 
@@ -137,7 +137,26 @@ class WarehouseServiceEdgeTestCases {
 
     private List<OrderEntity> createOrder() {
         // Implement the method to create and return a list of OrderEntity objects
-        return new ArrayList<>();
+        List<OrderEntity> orderList = new ArrayList<>();
+        // Create Order 1 for John Doe
+        OrderEntity order1 = new OrderEntity.Builder()
+                .addCustomer(new Customer("UUID", "John", "Doe", "0123465789"))
+                .build();
+        order1.orderPacked();
+        orderList.add(order1);
+        // Create Order 2 for Jane Doe
+        OrderEntity order2 = new OrderEntity.Builder()
+                .addCustomer(new Customer("UUID", "Jane", "Doe", "0132456879"))
+                .build();
+        order2.orderPacked();
+        orderList.add(order2);
+        // Create Order 3 for Joe Doe
+        OrderEntity order3 = new OrderEntity.Builder()
+                .addCustomer(new Customer("UUID", "Joe", "Doe", "0142358769"))
+                .build();
+        order3.orderPacked();
+        orderList.add(order3);
+        return orderList;
     }
 }
 
