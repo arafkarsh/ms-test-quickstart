@@ -16,8 +16,10 @@
 
 package io.fusion.water.order.adapters.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import io.fusion.water.order.domain.models.OrderStatus;
 import org.springframework.stereotype.Service;
 
 import io.fusion.water.order.domain.models.OrderEntity;
@@ -34,10 +36,16 @@ public class PackingServiceImpl implements PackingService {
 
 	@Override
 	public List<OrderEntity> packOrders(List<OrderEntity> orderList) {
-		for(OrderEntity order : orderList) {
-			order.orderReadyForShipment();
+		if(orderList == null || orderList.isEmpty()) {
+			return orderList;
 		}
-		return orderList;
+		List<OrderEntity> ordersReadyForShipment = new ArrayList<>();
+		for(OrderEntity order : orderList) {
+			if(order.getOrderStatus().equals(OrderStatus.ORDER_PACKED)) {
+				order.orderReadyForShipment();
+				ordersReadyForShipment.add(order);
+			}
+		}
+		return ordersReadyForShipment;
 	}
-
 }

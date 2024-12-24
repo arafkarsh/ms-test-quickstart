@@ -1,4 +1,9 @@
 # =======================================================================
+# Order Service Properties
+# =======================================================================
+build.number=132
+build.date=Tue Dec 24 10:24:56 IST 2024
+# =======================================================================
 # Service Name & API Details -  Version, Path
 # =======================================================================
 service.org=orgname
@@ -19,7 +24,7 @@ service.license=Apache 2 License
 # Test (Order) Server Properties
 # =======================================================================
 server.port=9081
-server.version=1.0.0
+server.version=0.9.7
 server.restart=true
 server.resources.url=${service.url}${service.api.path}
 # ------------------------------------------------------------------------

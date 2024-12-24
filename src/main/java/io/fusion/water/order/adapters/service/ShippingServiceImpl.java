@@ -22,6 +22,7 @@ package io.fusion.water.order.adapters.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.fusion.water.order.domain.models.OrderStatus;
 import org.springframework.stereotype.Service;
 
 import io.fusion.water.order.domain.models.DeliveryCity;
@@ -49,12 +50,23 @@ public class ShippingServiceImpl implements ShippingService {
 
 	/**
 	 * Ship Order
+	 * Only Order with Ready for Shipment status can be shipped
 	 * @param orderList
 	 * @return
 	 */
 	@Override
 	public List<OrderEntity> shipOrder(List<OrderEntity> orderList) {
-		return orderList;
+		if(orderList == null || orderList.isEmpty()) {
+			return orderList;
+		}
+		List<OrderEntity> ordersInTransit = new ArrayList<>();
+		for(OrderEntity order : orderList) {
+			if(order.getOrderStatus().equals(OrderStatus.READY_FOR_SHIPMENT)) {
+				order.orderInTransit();
+				ordersInTransit.add(order);
+			}
+		}
+		return ordersInTransit;
 	}
 
 	/**

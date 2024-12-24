@@ -54,6 +54,8 @@ public enum OrderStatus {
 	 */
 	PREPARING,
 
+	ORDER_PACKED,
+
 	/**
 	 * Order is ready for Shipment.
 	 */

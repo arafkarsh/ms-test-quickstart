@@ -28,6 +28,7 @@
 package test.fusion.water.order.copilot.mockito3;
 
 import io.fusion.water.order.adapters.service.WarehouseServiceImpl;
+import io.fusion.water.order.domain.models.Customer;
 import io.fusion.water.order.domain.models.OrderEntity;
 import io.fusion.water.order.domain.models.OrderStatus;
 import io.fusion.water.order.domain.services.PackingService;
@@ -46,6 +47,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Order;
@@ -77,16 +79,19 @@ class WarehouseServiceTest {
     @Test
     @Order(1)
     void processOrdersSuccessfully() {
-        List<OrderEntity> orderList = createOrder();
+        List<OrderEntity> orderList = createPackedOrders();
+        System.out.println("Order List Size: "+orderList.size());
         when(packingService.packOrders(orderList)).thenReturn(orderList);
         when(shippingService.shipOrder(orderList)).thenReturn(orderList);
 
         List<OrderEntity> processedOrders = warehouseService.processOrders(orderList);
 
+        System.out.println("Processed Order List Size: "+orderList.size());
         assertEquals(orderList.size(), processedOrders.size());
         for (OrderEntity order : processedOrders) {
             assertEquals(OrderStatus.READY_FOR_SHIPMENT, order.getOrderStatus());
         }
+        System.out.println("Ready For Shipment Order List Size: "+orderList.size());
     }
 
     @DisplayName("Process Orders with Empty List")
@@ -94,12 +99,15 @@ class WarehouseServiceTest {
     @Order(2)
     void processOrdersWithEmptyList() {
         List<OrderEntity> emptyOrderList = new ArrayList<>();
+        System.out.println("Order List Size: "+emptyOrderList.size());
         when(packingService.packOrders(emptyOrderList)).thenReturn(emptyOrderList);
         when(shippingService.shipOrder(emptyOrderList)).thenReturn(emptyOrderList);
 
         List<OrderEntity> processedOrders = warehouseService.processOrders(emptyOrderList);
-
+        System.out.println("Processed Order List Size: "+processedOrders.size());
         assertTrue(processedOrders.isEmpty());
+        verify(packingService).packOrders(emptyOrderList);
+        verify(shippingService).shipOrder(emptyOrderList);
     }
 
     @DisplayName("Process Orders with Null List")
@@ -115,9 +123,28 @@ class WarehouseServiceTest {
         assertNull(processedOrders);
     }
 
-    private List<OrderEntity> createOrder() {
+    private List<OrderEntity> createPackedOrders() {
         // Implement the method to create and return a list of OrderEntity objects
-        return new ArrayList<>();
+        List<OrderEntity> orderList = new ArrayList<>();
+        // Create Order 1 for John Doe
+        OrderEntity order1 = new OrderEntity.Builder()
+                .addCustomer(new Customer("UUID", "John", "Doe", "0123465789"))
+                .build();
+        order1.orderPacked();
+        orderList.add(order1);
+        // Create Order 2 for Jane Doe
+        OrderEntity order2 = new OrderEntity.Builder()
+                .addCustomer(new Customer("UUID", "Jane", "Doe", "0132456879"))
+                .build();
+        order2.orderPacked();
+        orderList.add(order2);
+        // Create Order 3 for Joe Doe
+        OrderEntity order3 = new OrderEntity.Builder()
+                .addCustomer(new Customer("UUID", "Joe", "Doe", "0142358769"))
+                .build();
+        order3.orderPacked();
+        orderList.add(order3);
+        return orderList;
     }
 }
 

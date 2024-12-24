@@ -285,6 +285,15 @@ public class OrderEntity {
 		}
 
 		/**
+		 * Order Status = ORDER_PACKED
+		 * @return
+		 */
+		public Builder orderPacked() {
+			order.orderStatus = OrderStatus.ORDER_PACKED;
+			return this;
+		}
+
+		/**
 		 * Order Status = READY_FOR_SHIPMENT
 		 */
 		public Builder orderReadyForShipment() {
@@ -359,6 +368,14 @@ public class OrderEntity {
 	 */
 	public void orderIsGettingPrepared() {
 		orderStatus = OrderStatus.PREPARING;
+	}
+
+	/**
+	 * Order Status = ORDER_PACKED
+	 * @return
+	 */
+	public void orderPacked() {
+		orderStatus = OrderStatus.ORDER_PACKED;
 	}
 
 	/**

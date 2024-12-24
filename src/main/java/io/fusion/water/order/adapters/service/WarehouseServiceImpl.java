@@ -26,7 +26,7 @@ import io.fusion.water.order.domain.services.ShippingService;
 import io.fusion.water.order.domain.services.WarehouseService;
 
 /**
- * Packing Service
+ * Warehouse Service
  * 
  * @author arafkarsh
  *
@@ -57,8 +57,13 @@ public class WarehouseServiceImpl implements WarehouseService {
 	 */
 	@Override
 	public List<OrderEntity> processOrders(List<OrderEntity> orderList) {
+		if(orderList == null || orderList.isEmpty()) {
+			return orderList;
+		}
 		List<OrderEntity> orders = packingService.packOrders(orderList);
+		for(OrderEntity order : orders) {
+			order.orderReadyForShipment();
+		}
 		return shippingService.shipOrder(orders);
 	}
-
 }
