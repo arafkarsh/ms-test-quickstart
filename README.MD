@@ -150,7 +150,7 @@ You can access the API's using http://localhost:9081/test-service/api/v1/swagger
 
 ![MS-Test-Quick-Start-1 based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/ms-test-qs-order.jpg)
 
-![[MS-Test-Quick-Start-2 based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/ms-test-qs-core.jpg)
+![MS-Test-Quick-Start-2 based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/ms-test-qs-core.jpg)
 
 Other Services
 
