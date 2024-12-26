@@ -19,7 +19,7 @@ import io.fusion.water.order.OrderApplication
 
 // Custom
 import io.fusion.water.order.domain.models.OrderStatus
-import test.fusion.water.order.utils.OrderMockObjects
+import test.fusion.water.order.utils.OrderMock
 // REST Assured
 import io.restassured.RestAssured
 import io.restassured.filter.log.RequestLoggingFilter
@@ -49,7 +49,7 @@ class OrderAPISpec extends Specification {
 
     def "POST: Create the Order"() {
         given: "The Order Entity is created"
-            def orderEntity = OrderMockObjects.mockGetOrderById("1234")
+            def orderEntity = OrderMock.getOrderById("1234")
 
         when: "The Order is saved in the Server"
             def response = RestAssured.given()

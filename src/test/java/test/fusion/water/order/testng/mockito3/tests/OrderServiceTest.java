@@ -22,7 +22,7 @@ import static org.testng.Assert.assertEquals;
  * @version:
  * @date:
  */
-public class OrderServiceTests {
+public class OrderServiceTest {
 
     private OrderEntity order;
     private PaymentStatus paymentAccepted;

@@ -36,7 +36,7 @@ import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.RestAssured5;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
-import test.fusion.water.order.utils.OrderMockObjects;
+import test.fusion.water.order.utils.OrderMock;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
@@ -59,7 +59,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
 @SpringBootTest(classes={OrderApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EmbeddedServerTests {
+public class EmbeddedServerTest {
 
     @LocalServerPort
     private int port;
@@ -90,7 +90,7 @@ public class EmbeddedServerTests {
     @Test
     @Order(1)
     void testPostOrder() {
-        OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        OrderEntity orderEntity = OrderMock.getOrderById("1234");
         given()
                 .contentType("application/json")
                 .body(orderEntity)

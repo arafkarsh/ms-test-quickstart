@@ -68,7 +68,7 @@ using the command line options.
 - Jakarta EE 10
 - Java 17+
 
-### 1. Junit (5.10.2) - 105 Test Cases
+### 1. Junit (5.10.2) - 110 Test Cases
 
 | 1   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
@@ -76,7 +76,7 @@ using the command line options.
 | 1.2 | SpringBootTest 3  | 3.3.4   | 01         |
 | 1.3 | RestAssured 5     | 5.4.0   | 29         |
 | 1.4 | Mockito 5         | 5.12.0  | 18         |
-| 1.5 | WireMock 3        | 3.6.0   | 07         |
+| 1.5 | WireMock 3        | 3.6.0   | 12          |
 | 1.6 | Cucumber 7        | 7.18.0  | 03         |
 | 1.7 | Selenium 4        | 4.12.0  | 02         |
 | 1.8 | Pact 4            | 4.0.10  | 03         |

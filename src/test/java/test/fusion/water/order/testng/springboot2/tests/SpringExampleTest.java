@@ -37,7 +37,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @date:
  */
 @SpringBootTest(classes={OrderApplication.class})
-public class SpringExampleTests extends AbstractTestNGSpringContextTests {
+public class SpringExampleTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     PaymentService paymentService;

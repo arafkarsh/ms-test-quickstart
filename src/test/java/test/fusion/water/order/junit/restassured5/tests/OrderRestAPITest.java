@@ -29,7 +29,7 @@ import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.RestAssured5;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
-import test.fusion.water.order.utils.OrderMockObjects;
+import test.fusion.water.order.utils.OrderMock;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
@@ -57,7 +57,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
-public class OrderRestAPITests {
+public class OrderRestAPITest {
 
     private Response response = null;
 
@@ -85,7 +85,7 @@ public class OrderRestAPITests {
     @Test
     @Order(1)
     void testPostOrder() {
-        OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+        OrderEntity orderEntity = OrderMock.getOrderById("1234");
         given()
                 .contentType("application/json")
                 .body(orderEntity)

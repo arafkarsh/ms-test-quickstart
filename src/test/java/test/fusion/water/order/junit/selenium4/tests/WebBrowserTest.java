@@ -45,7 +45,7 @@ import test.fusion.water.order.webdriver.WebDriverChrome;
 @Selenium4()
 @Critical()
 @Functional()
-public class WebBrowserTesting {
+public class WebBrowserTest {
 
 	@Test
 	@DisplayName("Search Amazon for Product and Add to Cart")

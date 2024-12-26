@@ -140,4 +140,16 @@ public final class RandomIDGenerator {
 		counter++;
 		return idHexBase + counter;
 	}
+
+	public static void main(String[] args) {
+		RandomIDGenerator r = new RandomIDGenerator();
+		System.out.println("ID Hex Base: "+r.idHexBase);
+		for(int x=0; x<1000; x++) {
+			System.out.println(r.nextRandomHexNumber());
+		}
+		System.out.println("ID Base: "+r.idBase);
+		for(int x=0; x<10; x++) {
+			System.out.println(r.nextRandomNumber());
+		}
+	}
 }

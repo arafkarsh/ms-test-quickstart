@@ -62,6 +62,11 @@ public enum OrderStatus {
 	READY_FOR_SHIPMENT,
 
 	/**
+	 * Order is Shipped
+	 */
+	ORDER_SHIPPED,
+
+	/**
 	 * Order in Transit > To Customer
 	 */
 	IN_TRANSIT,

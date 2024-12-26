@@ -47,6 +47,8 @@ public class RandomCardNumber {
 	private final int month;
 	private final int year;
 	private final int cardCode;
+	private final String firstName;
+	private final String lastName;
 
 	/**
 	 * Generates Random Credit/Debit Card
@@ -57,6 +59,9 @@ public class RandomCardNumber {
 		year  		= calculateYear();
 		cardCode 	= getRandomNumber(100,999);
 		cardHolder	= createCardHolder();
+		String[] names = cardHolder.split(" ");
+		firstName = names[0];
+		lastName = names[1];
 	}
 	
 	/**
@@ -172,5 +177,13 @@ public class RandomCardNumber {
 				+"|CVV="+r1.getCardCode()
 				);
 		}
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
 	}
 }

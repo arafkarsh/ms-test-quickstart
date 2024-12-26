@@ -32,7 +32,7 @@ import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.RestAssured5;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
-import test.fusion.water.order.utils.OrderMockObjects;
+import test.fusion.water.order.utils.OrderMock;
 
 import static io.restassured.RestAssured.given;
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -56,7 +56,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
-public class OrderRestAPIOtherTests {
+public class OrderRestAPIOtherTest {
 
     private Response response = null;
 
@@ -103,7 +103,7 @@ public class OrderRestAPIOtherTests {
         @Test
         @Order(1)
         void testContentType() {
-            OrderEntity orderEntity = OrderMockObjects.mockGetOrderById("1234");
+            OrderEntity orderEntity = OrderMock.getOrderById("1234");
             given()
                     .spec(requestSpec1)
                     .body(orderEntity)

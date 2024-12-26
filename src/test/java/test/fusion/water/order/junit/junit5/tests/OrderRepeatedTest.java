@@ -55,7 +55,7 @@ import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 @Junit5()
 @Functional()
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class OrderRepeatedTests {
+class OrderRepeatedTest {
 
 	private OrderEntity order;
 	

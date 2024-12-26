@@ -22,6 +22,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.atLeast;
@@ -36,8 +37,6 @@ import static org.mockito.AdditionalMatchers.or;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +78,7 @@ import test.fusion.water.order.junit.mockito3.utils.DeliveryCityAnswer;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
 @ExtendWith(MockitoExtension.class)
-public class ShippingServiceTest {
+class ShippingServiceTest {
 
 	static final Logger log = getLogger(lookup().lookupClass());
 
@@ -106,7 +105,7 @@ public class ShippingServiceTest {
     
     @BeforeEach
     public void setup() {
-        System.out.println(counter+". Create DeliveryCity...");
+        System.out.println(counter+". Create DeliveryCities...");
         bengaluru 	= new DeliveryCity("Bengaluru", "", "India", "00000");
         kochi 		= new DeliveryCity("Kochi", "", "India", "00000");
         chennai 	= new DeliveryCity("Chennai", "", "India", "00000");
@@ -326,11 +325,9 @@ public class ShippingServiceTest {
 		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
 
 		assertEquals(3, cityList.size());
-		for(String cityName : cities) {
-			assertTrue(cityList.stream()
-					.anyMatch(cityObj -> city.getValue().equalsIgnoreCase(cityObj.getCityName()))
-			);
-		}
+		assertTrue(cityList.stream()
+				.anyMatch(cityObj -> city.getValue().equalsIgnoreCase(cityObj.getCityName()))
+		);
 	}
 	
 	@Test
@@ -347,10 +344,9 @@ public class ShippingServiceTest {
 		cities.add("Chennai");
 		cities.add("Kochi");
 		boolean failed = false;
-		ArrayList<DeliveryCity> cityList = null;
 		try {
 			// Check the Delivery City in Shipping Service
-			cityList = (ArrayList)shippingService.getCities(cities, "", "India");
+			shippingService.getCities(cities, "", "India");
 		} catch (Exception e) {
 			failed = true;
 			System.out.println("Test 11 > "+e.getMessage());
@@ -358,15 +354,19 @@ public class ShippingServiceTest {
 		// Add the variant where Exception is tested implicitly
 		// Verify
 		assertTrue(failed);
+		System.out.println("Test 11: Negative Test Succeeded. Service thrown Exception!");
 	}
 	
 
 	
-	// @Test
+	@Test
 	@DisplayName("12. Mock > No Calls > Test Delivery Cities Bengaluru ")
-	@Order(20)
+	@Order(12)
 	void testDeliveryCitiesNoCalls() {
-		// No Expectations 
+		// Set the Shipping Service with multiple Cities
+		when(deliveryCityService.getDeliveryCity("Bengaluru", "", "India")).thenReturn(bengaluru);
+		when(deliveryCityService.getDeliveryCity("Chennai", "", "India")).thenReturn(chennai);
+		when(deliveryCityService.getDeliveryCity("Kochi", "", "India")).thenReturn(kochi);
 
 		// Change the Order of the Cities and the test will fail
 		ArrayList<String> cities = new ArrayList<String>();
@@ -375,11 +375,10 @@ public class ShippingServiceTest {
 		cities.add("Kochi");
 		
 		// Check the Delivery City in Shipping Service
-		try {
-			List<DeliveryCity> cityList = shippingService.getCities(cities, null, null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
+		System.out.println("Test 12 > "+cityList.size());
+		assertNotNull(cityList);
+		assertEquals(3, cityList.size());
 		verifyNoMoreInteractions(deliveryCityService);
 	}
 

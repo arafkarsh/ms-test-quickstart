@@ -36,7 +36,7 @@ import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.Pact4;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
-import test.fusion.water.order.utils.OrderMockObjects;
+import test.fusion.water.order.utils.OrderMock;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -78,7 +78,7 @@ public class OrderContractTest {
 	@Pact(consumer = "OrderApplication")
 	public RequestResponsePact createPact(PactDslWithProvider builder) {
 		System.out.println("creating Pact for Order Contract /order/");
-		OrderEntity order = OrderMockObjects.mockGetOrderById("1234");
+		OrderEntity order = OrderMock.getOrderById("1234");
 		RequestResponsePact rrp = builder
 				.given("A request to save an Order")
 				.uponReceiving("A request to save an Order")

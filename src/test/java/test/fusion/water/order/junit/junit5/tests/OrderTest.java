@@ -63,6 +63,7 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.slf4j.LoggerFactory.getLogger;
 import org.slf4j.Logger;
+import test.fusion.water.order.junit.junit5.utils.CustomerArgumentProvider;
 
 /**
  * Order Test Suite

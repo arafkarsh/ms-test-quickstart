@@ -386,6 +386,13 @@ public class OrderEntity {
 	}
 
 	/**
+	 * Order Status = ORDER_SHIPPED
+	 */
+	public void orderShipped() {
+		orderStatus = OrderStatus.ORDER_SHIPPED;
+	}
+
+	/**
 	 * Order Status = IN_TRANSIT
 	 */
 	public void orderInTransit() {

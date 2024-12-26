@@ -21,7 +21,7 @@ import io.fusion.water.order.domain.models.OrderEntity
 import io.fusion.water.order.domain.models.PaymentStatus
 import io.fusion.water.order.domain.services.OrderService
 import io.fusion.water.order.domain.services.PaymentService
-import test.fusion.water.order.utils.OrderMockObjects
+import test.fusion.water.order.utils.OrderMock
 
 // SpringBoot
 import org.springframework.beans.factory.annotation.Autowired
@@ -67,7 +67,7 @@ class SpockSpringBootSpec extends Specification {
      */
     def "1. Do Order Processing and Check Status"() {
         given: "An Order is created for a Customer"
-            order = OrderMockObjects.mockGetOrderById("1234")
+            order = OrderMock.getOrderById("1234")
 
         when: "The Order is processed for payment"
             OrderEntity result = orderService.prepareOrder(order)
@@ -85,7 +85,7 @@ class SpockSpringBootSpec extends Specification {
      */
     def "2. Get the Payment status"() {
         given: "The order is already created "
-            order = OrderMockObjects.mockGetOrderById("1234")
+            order = OrderMock.getOrderById("1234")
             OrderEntity result = orderService.prepareOrder(order)
 
         when: "Payment is Processed"

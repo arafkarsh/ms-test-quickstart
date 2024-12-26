@@ -36,14 +36,20 @@ public class PackingServiceImpl implements PackingService {
 
 	@Override
 	public List<OrderEntity> packOrders(List<OrderEntity> orderList) {
+		System.out.println(">> INSIDE Packing Orders...");
+
 		if(orderList == null || orderList.isEmpty()) {
 			return orderList;
 		}
+		System.out.println(">> 1. Packing Orders... Size = "+orderList.size());
 		List<OrderEntity> ordersReadyForShipment = new ArrayList<>();
 		for(OrderEntity order : orderList) {
 			if(order.getOrderStatus().equals(OrderStatus.ORDER_PACKED)) {
 				order.orderReadyForShipment();
 				ordersReadyForShipment.add(order);
+				System.out.println(">> 1.1 Order "+order.getOrderId()+" is PACKED. Ready for Shipment.");
+			} else {
+				System.out.println(">> 1.1 Order "+order.getOrderId()+" is not in PACKED Status. Cannot Ship the Order. Current Status = "+order.getOrderStatus());
 			}
 		}
 		return ordersReadyForShipment;

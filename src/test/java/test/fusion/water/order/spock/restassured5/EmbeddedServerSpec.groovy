@@ -18,7 +18,7 @@ package test.fusion.water.order.spock.restassured5
 // Custom
 import io.fusion.water.order.OrderApplication;
 import io.fusion.water.order.domain.models.OrderStatus;
-import test.fusion.water.order.utils.OrderMockObjects;
+import test.fusion.water.order.utils.OrderMock;
 
 
 // Spring
@@ -58,7 +58,7 @@ class EmbeddedServerSpec extends Specification {
 
     def "POST: Create the Order"() {
         given: "The Order Entity is created"
-            def orderEntity = OrderMockObjects.mockGetOrderById("1234")
+            def orderEntity = OrderMock.getOrderById("1234")
 
         when: "The Order is saved in the Server"
         RestAssured.baseURI = "http://localhost:$port/api/v1"  // moved inside the test

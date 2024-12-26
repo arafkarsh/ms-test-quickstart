@@ -18,6 +18,7 @@ package io.fusion.water.order.adapters.service;
 
 import java.util.List;
 
+import io.fusion.water.order.utils.Std;
 import org.springframework.stereotype.Service;
 
 import io.fusion.water.order.domain.models.OrderEntity;
@@ -52,18 +53,25 @@ public class WarehouseServiceImpl implements WarehouseService {
 
 	/**
 	 * Process Orders
+	 * Flow : Pack Orders -> Ship Orders
+	 * Packing Service will pick up all the orders in the ORDER_PACKED status
+	 * Packing Service will change the status to ORDER_READY_FOR_SHIPMENT
+	 * Shipping Service will pick up all the orders in the ORDER_READY_FOR_SHIPMENT status
+	 * Shipping Service will change the status to ORDER_SHIPPED
 	 * @param orderList
 	 * @return
 	 */
 	@Override
 	public List<OrderEntity> processOrders(List<OrderEntity> orderList) {
 		if(orderList == null || orderList.isEmpty()) {
+			Std.println("<< No Orders to Process");
 			return orderList;
 		}
-		List<OrderEntity> orders = packingService.packOrders(orderList);
-		for(OrderEntity order : orders) {
-			order.orderReadyForShipment();
-		}
-		return shippingService.shipOrder(orders);
+		Std.println("<< 1. Processing Orders: "+orderList.size());
+		List<OrderEntity> packedOrders = packingService.packOrders(orderList);
+		Std.println("<< 2. Packed List Size: "+packedOrders.size());
+		List<OrderEntity> ordersShipped = shippingService.shipOrder(packedOrders);
+		Std.println("<< 3. Shipped List Size: "+ordersShipped.size());
+		return ordersShipped;
 	}
 }

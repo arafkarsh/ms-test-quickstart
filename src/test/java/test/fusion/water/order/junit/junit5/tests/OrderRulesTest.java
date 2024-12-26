@@ -62,7 +62,7 @@ import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 @EnableRuleMigrationSupport
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
-class OrderTestRules {
+class OrderRulesTest {
 
 	private OrderEntity order;
 	

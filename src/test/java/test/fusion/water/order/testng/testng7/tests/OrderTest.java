@@ -27,7 +27,6 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import test.fusion.water.order.junit.junit5.tests.OrderTest;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -46,10 +45,10 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.containsString;
 
-public class OrderTests {
+public class OrderTest {
 
     // Set Logger
-    private static final Logger log = LogManager.getLogger(OrderTest.class.getName());
+    private static final Logger log = LogManager.getLogger(test.fusion.water.order.junit.junit5.tests.OrderTest.class.getName());
 
     private OrderEntity order;
     private int counter = 1;

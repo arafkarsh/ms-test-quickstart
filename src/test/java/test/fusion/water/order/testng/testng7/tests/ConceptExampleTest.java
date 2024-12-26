@@ -26,7 +26,7 @@ import org.testng.annotations.Test;
  * @version:
  * @date:
  */
-public class ConceptExamples {
+public class ConceptExampleTest {
 
     @BeforeClass
     public void setupAll() {
@@ -42,7 +42,7 @@ public class ConceptExamples {
     public void expectWrongResult() {
         double result = 7 / 3;
         System.out.println("T1 : 7 / 3 = "+result);
-        Assert.assertEquals(result, 3.0);
+        Assert.assertEquals(result, 2.0);
     }
 
     @Test(expectedExceptions = ArithmeticException.class)

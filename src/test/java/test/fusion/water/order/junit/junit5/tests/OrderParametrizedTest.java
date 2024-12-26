@@ -60,6 +60,7 @@ import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 import org.slf4j.Logger;
+import test.fusion.water.order.junit.junit5.utils.CustomerArgumentProvider;
 
 /**
  * Order Test Suite
@@ -73,7 +74,7 @@ import org.slf4j.Logger;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 // @PrintTestDuration
 @ExtendWith(TestTimeExtension.class)
-class OrderTestParametrized {
+class OrderParametrizedTest {
 	
 	static final Logger log = getLogger(lookup().lookupClass());
 

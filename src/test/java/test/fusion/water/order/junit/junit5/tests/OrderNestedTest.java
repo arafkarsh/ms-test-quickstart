@@ -39,7 +39,7 @@ import test.fusion.water.order.junit.junit5.annotations.tools.Junit5;
 @Junit5()
 @Functional()
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class OrderNestedTests {
+class OrderNestedTest {
 
 	private OrderEntity order;
 	

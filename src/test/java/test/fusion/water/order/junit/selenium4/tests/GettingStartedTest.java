@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
  * @version:
  * @date:
  */
-public class GettingStarted {
+public class GettingStartedTest {
 
     @Test
     void testGoogleSearch() throws InterruptedException {

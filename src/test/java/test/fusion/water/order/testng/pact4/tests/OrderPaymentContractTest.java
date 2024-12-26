@@ -18,6 +18,7 @@ package test.fusion.water.order.testng.pact4.tests;
 // PACT
 import au.com.dius.pact.consumer.MockServer;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
+import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.core.model.RequestResponseInteraction;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
@@ -60,7 +61,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 @SpringBootTest(classes={OrderApplication.class})
 // @PactTestFor(providerName = "PaymentService")
-public class OrderPaymentContractTests  extends AbstractTestNGSpringContextTests {
+public class OrderPaymentContractTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private PaymentService paymentService;
@@ -168,8 +169,8 @@ public class OrderPaymentContractTests  extends AbstractTestNGSpringContextTests
      * @param mockServer
      * @throws IOException
      */
-    // @Test(priority = 2, description = "2. Pact > Payment Service > Process Payments")
-    // @PactTestFor(pactMethod = "processPayments", port="8080")
+    @Test(priority = 2, description = "2. Pact > Payment Service > Process Payments")
+    @PactTestFor(pactMethod = "processPayments", port="8080")
     public void processPaymentsPost(MockServer mockServer) {
         System.out.println("PACT    |> MockServer|"+mockServer.getUrl());
         PaymentStatus paymentStatus = null;
@@ -181,7 +182,7 @@ public class OrderPaymentContractTests  extends AbstractTestNGSpringContextTests
         }
         System.out.println("Pass 2");
         assertNotNull(paymentStatus);
-        assertEquals("Accepted", paymentStatus.getPaymentStatus());
+        assertEquals(paymentStatus.getPaymentStatus(), "Accepted");
         System.out.println("Pass 3");
     }
 

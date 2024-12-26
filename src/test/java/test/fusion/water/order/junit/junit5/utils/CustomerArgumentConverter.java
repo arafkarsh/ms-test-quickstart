@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package test.fusion.water.order.junit.junit5.tests;
+package test.fusion.water.order.junit.junit5.utils;
 
 import org.junit.jupiter.params.converter.ArgumentConversionException;
 import org.junit.jupiter.params.converter.SimpleArgumentConverter;
