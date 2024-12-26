@@ -62,7 +62,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Critical
 @Functional
 @ExtendWith(TestTimeExtension.class)
-public class ExternalServiceTest {
+class ExternalServiceTest {
 
     private WireMockServer wireMockServer;
     private PaymentServiceImpl paymentService;
