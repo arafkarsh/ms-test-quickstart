@@ -421,6 +421,13 @@ public class OrderEntity {
 	}
 
 	/**
+	 * Order Status = INVALID
+	 */
+	public void orderIsInvalid() {
+		orderStatus = OrderStatus.INVALID;
+	}
+
+	/**
 	 * @param paymentStatus the paymentStatus to set
 	 */
 	public void setPaymentStatus(PaymentStatus paymentStatus) {

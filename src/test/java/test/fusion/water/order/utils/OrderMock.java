@@ -65,7 +65,9 @@ public class OrderMock {
      * @return
      */
     public static List<OrderEntity> createPaymentExpectedOrders() {
-        return createOrderList();
+        List<OrderEntity> orderList = createOrderList();
+        orderList.forEach(OrderEntity::orderWaitingForPayment);
+        return orderList;
     }
 
     /**
@@ -100,6 +102,17 @@ public class OrderMock {
     }
 
     /**
+     * Create Orders In Transit
+     * @param orderList
+     * @return
+     */
+    public static List<OrderEntity> createOrderInTransit(List<OrderEntity> orderList) {
+        // Implement the method to create and return a list of OrderEntity objects
+        orderList.forEach(OrderEntity::orderInTransit);
+        return orderList;
+    }
+
+    /**
      *
      * @return
      */
@@ -127,7 +140,7 @@ public class OrderMock {
                 .addShippingAddress(new ShippingAddress("321 Cobblestone Ln,", "", "Edison", "NJ", "", "USA", "08820"))
                 .addPaymentType(PaymentType.CREDIT_CARD)
                 .addCardDetails(new CardDetails(rcn.getCardNumber(), rcn.getCardHolder(), rcn.getMonth(), rcn.getYear(), rcn.getCardCode(),CardType.MASTER))
-                .waitingForPayment()
+                // .waitingForPayment()
                 .build();
     }
 
@@ -146,7 +159,7 @@ public class OrderMock {
                 .addShippingAddress(new ShippingAddress("323 Cobblestone Ln,", "", "Edison", "NJ", "", "USA", "08820"))
                 .addPaymentType(PaymentType.DEBIT_CARD)
                 .addCardDetails(new CardDetails(rcn.getCardNumber(), rcn.getCardHolder(), rcn.getMonth(), rcn.getYear(), rcn.getCardCode(),CardType.MASTER))
-                .waitingForPayment()
+                // .waitingForPayment()
                 .build();
     }
 
@@ -165,7 +178,7 @@ public class OrderMock {
                 .addShippingAddress(new ShippingAddress("323 Cobblestone Ln,", "", "Edison", "NJ", "", "USA", "08820"))
                 .addPaymentType(PaymentType.GOOGLE_PAY)
                 .addCardDetails(new CardDetails(rcn.getCardNumber(), rcn.getCardHolder(), rcn.getMonth(), rcn.getYear(), rcn.getCardCode(),CardType.MASTER))
-                .waitingForPayment()
+                // .waitingForPayment()
                 .build();
     }
 

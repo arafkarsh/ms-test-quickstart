@@ -79,6 +79,13 @@ public enum OrderStatus {
 	/**
 	 * Order Returned
 	 */
-	RETURNED;
+	RETURNED,
+
+	/**
+	 * Order is Invalid
+	 */
+	INVALID;
+
+
 
 }
