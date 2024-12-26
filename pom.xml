@@ -59,7 +59,7 @@
 		<hamcrest.version>2.2</hamcrest.version>
 		<truth.version>1.0.1</truth.version>
 		<mockito.version>5.12.0</mockito.version>
-		<wiremock.version>3.10.0</wiremock.version>
+		<wiremock.springboot.version>3.3.0</wiremock.springboot.version>
 		<cucumber.version>7.18.0</cucumber.version>
 		<selenium.version>4.12.0</selenium.version>
 		<restassured.version>5.4.0</restassured.version>
@@ -462,77 +462,9 @@
 		<dependency>
 			<groupId>org.wiremock.integrations</groupId>
 			<artifactId>wiremock-spring-boot</artifactId>
-			<version>3.3.0</version>
+			<version>${wiremock.springboot.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>org.wiremock</groupId>
-			<artifactId>wiremock</artifactId>
-			<version>${wiremock.version}</version>
-			<scope>test</scope>
-		</dependency>
-		-->
-		<!-- https://mvnrepository.com/artifact/org.wiremock/wiremock -->
-		<!--
-		<dependency>
-			<groupId>org.wiremock</groupId>
-			<artifactId>wiremock</artifactId>
-			<version>${wiremock.version}</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.wiremock</groupId>
-			<artifactId>wiremock-jetty12</artifactId>
-			<version>3.10.0</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-server</artifactId>
-			<version>12.0.16</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-util</artifactId>
-			<version>12.0.16</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-io</artifactId>
-			<version>12.0.16</version>
-		</dependency>
-		<dependency>
-    			<groupId>org.eclipse.jetty.http2</groupId>
-    			<artifactId>jetty-http2-server</artifactId>
-    			<version>12.0.16</version>
-    			<scope>test</scope>
-		</dependency>
-		-->
-
-
-		<!--
-		<dependency>
-			<groupId>org.wiremock</groupId>
-			<artifactId>wiremock-standalone</artifactId>
-			<version>3.10.0</version>
-			<scope>test</scope>
-		</dependency>
-		-->
 
 		<!-- ================================================================= -->
 		<!-- Pact Framework -->

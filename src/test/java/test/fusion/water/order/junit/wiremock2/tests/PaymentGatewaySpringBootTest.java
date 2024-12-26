@@ -81,7 +81,7 @@ import test.fusion.water.order.utils.SampleData;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(classes={OrderApplication.class})
 @ExtendWith(TestTimeExtension.class)
-public class PaymentGatewaySpringBootTest {
+class PaymentGatewaySpringBootTest {
 	
 	@Autowired
 	private PaymentService paymentService;
