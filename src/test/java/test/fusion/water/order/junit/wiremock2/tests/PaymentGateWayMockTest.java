@@ -15,7 +15,6 @@
  */
 package test.fusion.water.order.junit.wiremock2.tests;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -77,13 +76,13 @@ public class PaymentGateWayMockTest {
 	
     @BeforeAll
     public void setupAll() {
-        System.out.println("== Payment Service WireMock HTTP Tests Started...");
+        System.out.println("0]== Payment Service WireMock HTTP Tests Started...");
     	// Setup WireMock Server (Defaults to Port 8080)
     	wireMockServer = new WireMockServer(port);
         wireMockServer.start(); 
         WireMock.configureFor(host, port);
 
-        System.out.println(counter+"] WireMock Server Started.. on " +wireMockServer.baseUrl());
+        System.out.println(counter+"]== WireMock Server Started.. on " +wireMockServer.baseUrl());
     }
     
     @BeforeEach
