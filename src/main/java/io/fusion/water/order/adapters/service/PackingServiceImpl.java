@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.fusion.water.order.domain.models.OrderStatus;
+import io.fusion.water.order.utils.Std;
 import org.springframework.stereotype.Service;
 
 import io.fusion.water.order.domain.models.OrderEntity;
@@ -36,20 +37,20 @@ public class PackingServiceImpl implements PackingService {
 
 	@Override
 	public List<OrderEntity> packOrders(List<OrderEntity> orderList) {
-		System.out.println(">> INSIDE Packing Orders...");
+		Std.println(">> INSIDE Packing Orders...");
 
 		if(orderList == null || orderList.isEmpty()) {
 			return orderList;
 		}
-		System.out.println(">> 1. Packing Orders... Size = "+orderList.size());
+		Std.println(">> 1. Packing Orders... Size = "+orderList.size());
 		List<OrderEntity> ordersReadyForShipment = new ArrayList<>();
 		for(OrderEntity order : orderList) {
 			if(order.getOrderStatus().equals(OrderStatus.ORDER_PACKED)) {
 				order.orderReadyForShipment();
 				ordersReadyForShipment.add(order);
-				System.out.println(">> 1.1 Order "+order.getOrderId()+" is PACKED. Ready for Shipment.");
+				Std.println(">> 1.1 Order "+order.getOrderId()+" is PACKED. Ready for Shipment.");
 			} else {
-				System.out.println(">> 1.1 Order "+order.getOrderId()+" is not in PACKED Status. Cannot Ship the Order. Current Status = "+order.getOrderStatus());
+				Std.println(">> 1.1 Order "+order.getOrderId()+" is not in PACKED Status. Cannot Ship the Order. Current Status = "+order.getOrderStatus());
 			}
 		}
 		return ordersReadyForShipment;
