@@ -111,10 +111,10 @@ using the command line options.
 
 ### 4. Support Libraries
 
-| 4   | Testing Framework | Version | Test Cases |
-|-----|-------------------|---------|------------|
-| 4.1 | Hamcrest 2        | 2.2.0   | -          |
-| 4.2 | AssertJ 3         | 3.26.3  | -          |
+| 4   | Testing Framework | Version | 
+|-----|-------------------|---------|
+| 4.1 | Hamcrest 2        | 2.2.0   | 
+| 4.2 | AssertJ 3         | 3.26.3  | 
 
 ### 5. Other Utilities
 
@@ -146,11 +146,11 @@ Warhouse, Shipping etc) and external (Payment) service integration and it has al
 to use various testing frameworks. The objective is to demonstrate various testing frameworks. 
 
 Order Service REST Endpoints are documented using Open API v3. 
-You can access the API's using http://localhost:9081/test-service/api/v1/swagger-ui/index.html#/
+You can access the API's using http://localhost:9081/test-service/api/v1/swagger-ui.html
 
-![Order Service API based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Order-OpenAPI-Order.jpg)
+![MS-Test-Quick-Start-1 based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/ms-test-qs-order.jpg)
 
-![Order Service API based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Order-OpenAPI-Core.jpg)
+![[MS-Test-Quick-Start-2 based on Open API v3](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/ms-test-qs-core.jpg)
 
 Other Services
 
@@ -180,5 +180,5 @@ All the tests will be fully automated as part of your CI/CD pipeline.
 ![Microservices Testing Frameworks](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/Microservices-Testing-Tools.jpg)
 
 
-Copyright (c) 2021-24, Apache 2.0 License, Author: Araf Karsh Hamid
+Copyright (c) 2021-25, Apache 2.0 License, Author: Araf Karsh Hamid
 
