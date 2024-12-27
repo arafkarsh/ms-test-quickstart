@@ -25,7 +25,7 @@
  * under the terms of the Apache 2 License version 2.0
  * as published by the Apache Software Foundation.
  */
-package test.fusion.water.order.junit.wiremock2.tests;
+package test.fusion.water.order.junit.wiremock3.tests;
 // JUnit 5
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;

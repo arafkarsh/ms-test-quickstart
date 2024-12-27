@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.fusion.water.order.junit.wiremock2.tests;
+package test.fusion.water.order.junit.wiremock3.tests;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;

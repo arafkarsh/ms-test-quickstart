@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.fusion.water.order.junit.springboot2.tests;
+package test.fusion.water.order.junit.springboot3.tests;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -35,7 +35,7 @@ import test.fusion.water.order.junit.junit5.annotations.tests.NonFunctional;
 import test.fusion.water.order.junit.junit5.annotations.tools.SpringTest2;
 
 /**
- * Spring Boot 2.5.2 with JUnit 5 Integration
+ * Spring Boot 3.3.4 with JUnit 5 Integration
  * 
  * The following Application Class is defined as the package structure
  * for the Application and package structure for test packages are 

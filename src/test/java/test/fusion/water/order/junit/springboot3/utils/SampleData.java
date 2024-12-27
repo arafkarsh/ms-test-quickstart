@@ -13,29 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.fusion.water.order.junit.wiremock2.utils;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+package test.fusion.water.order.junit.springboot3.utils;
 
 /**
  * 
  * @author arafkarsh
  *
  */
-public class DateTest {
-
-	public static void main(String[] args) {
-
-		Date dateToday = new Date();
-		LocalDate today = LocalDate.now();
-		LocalDateTime todayTime = LocalDateTime.now();
-		
-		System.out.println(dateToday);
-		System.out.println(today);
-		System.out.println(todayTime);
-
-	}
+public class SampleData {
 
 }

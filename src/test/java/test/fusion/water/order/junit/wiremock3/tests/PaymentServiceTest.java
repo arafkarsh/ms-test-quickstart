@@ -25,7 +25,7 @@
  * under the terms of the Apache 2 License version 2.0
  * as published by the Apache Software Foundation.
  */
-package test.fusion.water.order.junit.wiremock2.tests;
+package test.fusion.water.order.junit.wiremock3.tests;
 // Custom
 import io.fusion.water.order.adapters.external.ExternalGateWay;
 import io.fusion.water.order.adapters.service.PaymentServiceImpl;
