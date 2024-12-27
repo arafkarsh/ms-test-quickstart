@@ -31,7 +31,7 @@
 		<maven-compiler-plugin>3.8.1</maven-compiler-plugin>
 		<maven-dependency-plugin>3.3.0</maven-dependency-plugin>
 		<maven-jar-plugin>3.2.2</maven-jar-plugin>
-		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
 
 		<!-- Encoding ====================================================== -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -142,6 +142,13 @@
 			<groupId>org.apache.httpcomponents.client5</groupId>
 			<artifactId>httpclient5</artifactId>
 			<version>${apache.httpclient.version}</version>
+			<!-- WireMock issues with old httpClient 4 -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -810,20 +817,23 @@
 					Tags for Filtering
 					All (runs All Test Cases)
 					Cucumber (Runs Cucumber Test Cases)
-					JUnit (Runs JUnit Test Cases)
+					Junit5 (Runs JUnit Test Cases)
 					Mockito (Runs Mockito Test Cases)
 					WireMock (Runs WireMock Test Cases)
 					Pact  (Runs Pact Test Cases)
 					Selenium  (Runs Selenium Test Cases)
 					SpringBoot (Runs SpringBoot Test Cases)
+					Functional (Runs Functional Test cases)
+					Security (Runs Security Test Cases)
+					Non-Functional (Runs All Non-Functional Test Cases)
 					Ex.
-					<groups>Junit</groups>
+					<groups>Junit5</groups>
 					OR
 					<groups>Mockito</groups>
 				-->	
                 <configuration>
                     <groups>none</groups>
-                    <excludedGroups></excludedGroups>
+                    <excludedGroups>Pact</excludedGroups>
                     <!-- to be used with Pact and JUnit 5 -->
                     <useSystemClassLoader>false</useSystemClassLoader>
 					<systemPropertyVariables>

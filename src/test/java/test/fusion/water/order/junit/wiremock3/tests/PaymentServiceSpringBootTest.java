@@ -56,6 +56,7 @@ import io.fusion.water.order.utils.Utils;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.SpringTest2;
 import test.fusion.water.order.junit.junit5.annotations.tools.WireMock2;
+import test.fusion.water.order.junit.junit5.annotations.tools.WireMock3;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 import test.fusion.water.order.utils.SampleData;
 
@@ -73,7 +74,7 @@ import test.fusion.water.order.utils.SampleData;
  */
 
 // Tags using Custom Annotations For Filtering --------------------------
-@WireMock2()
+@WireMock3()
 @SpringTest2()
 @Functional()
 // Tagging done ---------------------------------------------------------
