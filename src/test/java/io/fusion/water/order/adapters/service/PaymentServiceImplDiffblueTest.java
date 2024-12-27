@@ -112,7 +112,7 @@ class PaymentServiceImplDiffblueTest {
         PaymentStatus actualProcessPaymentsResult = paymentService.processPayments(new PaymentDetails());
 
         // Assert
-        assertEquals("Accepted", actualProcessPaymentsResult.getPaymentStatus());
+        assertEquals("Accepted", actualProcessPaymentsResult.getPayStatus());
         assertEquals("Ref-uuid", actualProcessPaymentsResult.getPaymentReference());
         assertNull(actualProcessPaymentsResult.getTransactionId());
         assertNull(actualProcessPaymentsResult.getTransactionDate());
@@ -161,7 +161,7 @@ class PaymentServiceImplDiffblueTest {
         PaymentStatus actualProcessPaymentsDefaultResult = paymentService.processPaymentsDefault(new PaymentDetails());
 
         // Assert
-        assertEquals("Accepted", actualProcessPaymentsDefaultResult.getPaymentStatus());
+        assertEquals("Accepted", actualProcessPaymentsDefaultResult.getPayStatus());
         assertEquals("Ref-uuid", actualProcessPaymentsDefaultResult.getPaymentReference());
         assertNull(actualProcessPaymentsDefaultResult.getTransactionId());
         assertNull(actualProcessPaymentsDefaultResult.getTransactionDate());

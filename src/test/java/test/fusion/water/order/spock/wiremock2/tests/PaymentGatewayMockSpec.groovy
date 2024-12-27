@@ -85,7 +85,7 @@ class PaymentGatewayMockSpec extends Specification {
 
         then: "Payment status must NOT be NULL and payment status equals Accepted"
             payStatus != null
-            payStatus.getPaymentStatus() == "Accepted"
+            payStatus.getPayStatus() == "Accepted"
 
         and:
             verify(postRequestedFor(urlPathEqualTo("/payment"))
@@ -108,7 +108,7 @@ class PaymentGatewayMockSpec extends Specification {
 
         then: "Payment status must NOT be NULL and payment status equals Declined"
             payStatus != null
-            payStatus.getPaymentStatus() == "Declined"
+            payStatus.getPayStatus() == "Declined"
 
         and:
             verify(postRequestedFor(urlPathEqualTo("/payment"))

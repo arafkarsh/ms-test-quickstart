@@ -113,7 +113,7 @@ class PaymentGatewaySpringBootSpec extends Specification {
 
         then:
             payStatus != null
-            payStatus.getPaymentStatus() == "Accepted"
+            payStatus.getPayStatus() == "Accepted"
 
         and:
             verify(postRequestedFor(urlPathEqualTo("/payment"))
@@ -135,7 +135,7 @@ class PaymentGatewaySpringBootSpec extends Specification {
 
         then:
             payStatus != null
-            payStatus.getPaymentStatus() == "Declined"
+            payStatus.getPayStatus() == "Declined"
 
         and:
             verify(postRequestedFor(urlPathEqualTo("/payment"))

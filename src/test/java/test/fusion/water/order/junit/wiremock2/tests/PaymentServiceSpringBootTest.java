@@ -15,10 +15,21 @@
  */
 package test.fusion.water.order.junit.wiremock2.tests;
 
+import com.github.tomakehurst.wiremock.client.WireMock;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
+import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.verify;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import io.fusion.water.order.adapters.external.ExternalGateWay;
+import io.fusion.water.order.OrderApplication;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -30,77 +41,101 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-import com.github.tomakehurst.wiremock.client.WireMock;
 
-import io.fusion.water.order.adapters.service.PaymentServiceImpl;
 import io.fusion.water.order.domain.models.EchoData;
 import io.fusion.water.order.domain.models.EchoResponseData;
 import io.fusion.water.order.domain.models.PaymentDetails;
 import io.fusion.water.order.domain.models.PaymentStatus;
+import io.fusion.water.order.domain.services.PaymentService;
+import io.fusion.water.order.server.ServiceConfiguration;
 import io.fusion.water.order.utils.Utils;
-import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
+import test.fusion.water.order.junit.junit5.annotations.tools.SpringTest2;
 import test.fusion.water.order.junit.junit5.annotations.tools.WireMock2;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 import test.fusion.water.order.utils.SampleData;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
-
 /**
- * WireMock with JUnit 5
+ * Spring Boot 2.7.2 / JUnit 5 / WireMock 2 Integration
+ * 
+ * The following Application Class is defined as the package structure
+ * for the Application and package structure for test packages are 
+ * completely different
+ * 
+ * @SpringBootTest(classes={io.fusion.water.order.OrderService.class})
  * 
  * @author arafkarsh
  *
  */
-//Following Annotations Tags the Tests --------------------------------
+
+// Tags using Custom Annotations For Filtering --------------------------
 @WireMock2()
-@Critical()
+@SpringTest2()
 @Functional()
-//Tagging done ---------------------------------------------------------
+// Tagging done ---------------------------------------------------------
 @TestMethodOrder(OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest(classes={OrderApplication.class})
 @ExtendWith(TestTimeExtension.class)
-class PaymentGateWayMockOldTest {
-
-	// WireMock Server for Junit 5 
+class PaymentServiceSpringBootTest {
+	
+	@Autowired
+	private PaymentService paymentService;
+	
+	@Autowired
+	private ServiceConfiguration serviceConfig;
+	
+	// WireMock Server for JUnit 5 
 	private WireMockServer wireMockServer;
-	
-	private String host	= "127.0.0.1";
-	private int port	= 8081;
-	
-	// Actual Payment Service
-	PaymentServiceImpl paymentService;
 	private static int counter=1;
 	
+	/**
+	 * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+	 * is available then the method need not be static
+	 */
     @BeforeAll
     public void setupAll() {
-        System.out.println("0]== Payment Service WireMock HTTP Tests Started...");
-    	// Setup WireMock Server (Defaults to Port 8080)
-    	wireMockServer = new WireMockServer(port);
+        System.out.println("== Payment Service SpringBoot/WireMock HTTP Tests Started... ");
+        System.out.println("Host:"+serviceConfig.getRemoteHost()+":"
+        						  +serviceConfig.getRemotePort());
+        // Setup WireMock Server (Defaults to Port 8080)
+    	wireMockServer = new WireMockServer(serviceConfig.getRemotePort());
         wireMockServer.start(); 
-        WireMock.configureFor(host, port);
-
-        System.out.println(counter+"]== WireMock Server Started.. on " +wireMockServer.baseUrl());
+        WireMock.configureFor(serviceConfig.getRemoteHost(), serviceConfig.getRemotePort());       
+        System.out.println(counter+"] WireMock Server Started.. on "
+        					+wireMockServer.baseUrl());
     }
     
     @BeforeEach
     public void setup() {
-        // Initialize Payment Service with Payment Gateway
-        ExternalGateWay gw = new ExternalGateWay(host, port);
-        paymentService = new PaymentServiceImpl(gw);
-
+        System.out.println("@BeforeEach: Payment Service is autowired using SpringBoot!");
     }
-
+	
 	@Test
-	@DisplayName("1. Payment Service HTTP : Remote Echo")
+	@DisplayName("1. Spring Boot Testing Autowired Payment Service")
 	@Order(1)
-	void paymentServiceRemoteEcho() {
-		EchoData param = new EchoData("John");
-		EchoResponseData expectedResult = new EchoResponseData("John");
+	void paymentServiceLocalEcho() {
+		String param = "World";
+		String expectedResult = "Hello "+param;
+		String result = paymentService.echo("World");
+		System.out.println("@Test: Spring Boot test "+result);
+        assertThat(expectedResult, org.hamcrest.CoreMatchers.equalTo(result));
 
-		// Given
+	}
+	
+	@Test
+	@DisplayName("2. Payment Service HTTP : Remote Echo")
+	@Order(2)
+	void paymentServiceRemoteEcho() {
+
+		EchoData param = new EchoData("John");
+		EchoResponseData expectedResult =  new EchoResponseData("John");
+		
+	    // Given
 	    stubFor(post("/remoteEcho")
 		    .withRequestBody(equalToJson(Utils.toJsonString(param)))
 		    .willReturn(okJson(Utils.toJsonString(expectedResult))));
@@ -116,12 +151,13 @@ class PaymentGateWayMockOldTest {
 	    verify(postRequestedFor(urlPathEqualTo("/remoteEcho"))
 		        .withRequestBody(equalToJson(Utils.toJsonString(param)))
 		        .withHeader("Content-Type", 
-		        WireMock.equalTo("application/json")));	
+		        WireMock.equalTo("application/json")));
+		
 	}
 	
 	@Test
-	@DisplayName("2. Payment Service HTTP : Accepted")
-	@Order(2)
+	@DisplayName("3. Payment Service HTTP : Accepted")
+	@Order(3)
 	void paymentServiceTest1() {
 
 		PaymentDetails pd = SampleData.getPaymentDetails();
@@ -138,18 +174,19 @@ class PaymentGateWayMockOldTest {
 
 	    // Then
 	    assertNotNull(payStatus);
-	    assertEquals("Accepted", payStatus.getPaymentStatus());
+	    assertEquals("Accepted", payStatus.getPayStatus());
 
 	    // Verify
 	    verify(postRequestedFor(urlPathEqualTo("/payment"))
 		        .withRequestBody(equalToJson(Utils.toJsonString(pd)))
-		        .withHeader("Content-Type", equalTo("application/json")));
+		        .withHeader("Content-Type", 
+		        WireMock.equalTo("application/json")));
 
 	}
 	
 	@Test
-	@DisplayName("3. Payment Service HTTP : Declined")
-	@Order(3)
+	@DisplayName("4. Payment Service HTTP : Declined")
+	@Order(4)
 	void paymentServiceTest2() {
 
 		PaymentDetails pd = SampleData.getPaymentDetails();
@@ -166,12 +203,14 @@ class PaymentGateWayMockOldTest {
 
 	    // Then
 	    assertNotNull(payStatus);
-	    assertEquals("Declined", payStatus.getPaymentStatus());
+	    assertEquals("Declined", payStatus.getPayStatus());
 
 	    // Verify
 	    verify(postRequestedFor(urlPathEqualTo("/payment"))
 		        .withRequestBody(equalToJson(Utils.toJsonString(pd)))
-		        .withHeader("Content-Type", equalTo("application/json")));
+		        .withHeader("Content-Type", 
+		        		WireMock.equalTo("application/json")));
+	
 	}
 	
     @AfterEach
@@ -182,6 +221,6 @@ class PaymentGateWayMockOldTest {
     @AfterAll
     public void tearDownAll() {
         wireMockServer.stop();
-        System.out.println("== Payment Service WireMock HTTP Tests Completed...");
+        System.out.println("== Payment Service SpringBoot/WireMock HTTP Tests Completed...");
     }
 }

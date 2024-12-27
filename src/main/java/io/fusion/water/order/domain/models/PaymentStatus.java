@@ -82,7 +82,7 @@ public class PaymentStatus {
 	/**
 	 * @return the paymentStatus
 	 */
-	public String getPaymentStatus() {
+	public String getPayStatus() {
 		return payStatus;
 	}
 	/**

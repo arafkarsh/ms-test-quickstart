@@ -92,7 +92,7 @@ class SpockSpringBootSpec extends Specification {
             paymentStatus = paymentService.processPayments(result.getPaymentDetails())
 
         then: "The Payment Status must be Accepted"
-            paymentStatus.getPaymentStatus() == "Accepted"
+            paymentStatus.getPayStatus() == "Accepted"
     }
 
     def cleanup() {

@@ -436,7 +436,7 @@ public class OrderEntity {
 			return;
 		}
 		this.paymentStatus = paymentStatus;
-		if(this.paymentStatus.getPaymentStatus().equalsIgnoreCase("Accepted")) {
+		if(this.paymentStatus.getPayStatus().equalsIgnoreCase("Accepted")) {
 			orderStatus = OrderStatus.PAID;
 		} else {
 			orderStatus = OrderStatus.PAYMENT_DECLINED;

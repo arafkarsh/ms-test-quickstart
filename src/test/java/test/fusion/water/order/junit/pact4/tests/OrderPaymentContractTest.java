@@ -196,7 +196,7 @@ public class OrderPaymentContractTest {
 		}
 		System.out.println("Pass 2");
 	    assertNotNull(paymentStatus);
-	    assertEquals("Accepted", paymentStatus.getPaymentStatus());       
+	    assertEquals("Accepted", paymentStatus.getPayStatus());
 		System.out.println("Pass 3");
   }
 	

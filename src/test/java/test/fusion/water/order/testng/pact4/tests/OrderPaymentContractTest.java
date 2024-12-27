@@ -182,7 +182,7 @@ public class OrderPaymentContractTest extends AbstractTestNGSpringContextTests {
         }
         System.out.println("Pass 2");
         assertNotNull(paymentStatus);
-        assertEquals(paymentStatus.getPaymentStatus(), "Accepted");
+        assertEquals(paymentStatus.getPayStatus(), "Accepted");
         System.out.println("Pass 3");
     }
 
