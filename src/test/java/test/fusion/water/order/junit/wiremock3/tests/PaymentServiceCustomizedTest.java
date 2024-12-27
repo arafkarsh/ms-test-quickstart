@@ -62,7 +62,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 @TestMethodOrder(OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
-class PaymentServiceOldTest {
+class PaymentServiceCustomizedTest {
 
 	// WireMock Server for Junit 5 
 	private WireMockServer wireMockServer;
