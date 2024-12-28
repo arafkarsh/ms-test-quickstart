@@ -816,18 +816,24 @@
 					All test cases with the tag mentioned in excludedGroups will be filtered out.
 					Tags for Filtering
 					All (runs All Test Cases)
+					Junit (Runs JUnit5 Test Cases)
 					Cucumber (Runs Cucumber Test Cases)
-					Junit5 (Runs JUnit Test Cases)
 					Mockito (Runs Mockito Test Cases)
+					RestAssured (Runs RestAssured Test Cases)
 					WireMock (Runs WireMock Test Cases)
 					Pact  (Runs Pact Test Cases)
 					Selenium  (Runs Selenium Test Cases)
 					SpringBoot (Runs SpringBoot Test Cases)
 					Functional (Runs Functional Test cases)
+					NonFunctional (Runs Non Functional Test cases)
 					Security (Runs Security Test Cases)
-					Non-Functional (Runs All Non-Functional Test Cases)
+					Performance (Runs All Performance Test Cases)
+					Unit (Runs All JUnit Test Cases)
+					Component (Runs All Component - Mockito, Rest Assured, Cucumber test cases)
+					Contract (Runs All Contract - Pact, WireMock test cases)
+					Integration (Runs All Integration - WireMock test cases)
 					Ex.
-					<groups>Junit5</groups>
+					<groups>Junit</groups>
 					OR
 					<groups>Mockito</groups>
 				-->	

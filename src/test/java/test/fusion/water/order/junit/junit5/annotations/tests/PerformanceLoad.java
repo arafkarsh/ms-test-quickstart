@@ -23,15 +23,16 @@ import java.lang.annotation.Target;
 import org.junit.jupiter.api.Tag;
 
 /**
- * 
- * @author arafkarsh
+ * Performance Load Test Annotation
  *
+ * @author arafkarsh
  */
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
-@Tag("non-functional")
-@Tag("performance")
-@Tag("load")
+@Tag("NonFunctional")
+@Tag("Performance")
+@Tag("Load")
+@Tag("All")
 public @interface PerformanceLoad {
 
 }

@@ -29,8 +29,10 @@ import org.junit.jupiter.api.Tag;
  */
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
+@Tag("JUnit5")
 @Tag("Junit5")
 @Tag("Junit")
+@Tag("JUnit")
 @Tag("Unit")
 @Tag("All")
 public @interface Junit5 {

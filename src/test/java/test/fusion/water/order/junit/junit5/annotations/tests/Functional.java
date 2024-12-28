@@ -29,7 +29,8 @@ import org.junit.jupiter.api.Tag;
  */
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
-@Tag("functional")
+@Tag("Functional")
+@Tag("All")
 public @interface Functional {
 
 }

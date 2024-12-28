@@ -29,8 +29,9 @@ import org.junit.jupiter.api.Tag;
  */
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
-@Tag("non-functional")
-@Tag("security")
+@Tag("NonFunctional")
+@Tag("Security")
+@Tag("All")
 public @interface Security {
 
 }

@@ -32,6 +32,8 @@ import org.junit.jupiter.api.Tag;
 @Tag("WireMock2")
 @Tag("WireMock")
 @Tag("Contracts")
+@Tag("Contract")
+@Tag("Integration")
 @Tag("All")
 public @interface WireMock2 {
 

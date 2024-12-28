@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Tag;
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Tag("Critical")
+@Tag("All")
 public @interface Critical {
 
 }

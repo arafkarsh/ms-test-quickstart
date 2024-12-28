@@ -33,6 +33,8 @@ import java.lang.annotation.Target;
 @Tag("WireMock3")
 @Tag("WireMock")
 @Tag("Contracts")
+@Tag("Contract")
+@Tag("Integration")
 @Tag("All")
 public @interface WireMock3 {
 

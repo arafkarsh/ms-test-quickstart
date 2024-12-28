@@ -33,6 +33,7 @@ import java.lang.annotation.Target;
 @Tag("RestAssured5")
 @Tag("RestAssured")
 @Tag("RESTAssured")
+@Tag("BDD")
 @Tag("All")
 public @interface RestAssured5 {
 
