@@ -68,11 +68,11 @@ using the command line options.
 - Jakarta EE 10
 - Java 17+
 
-### 1. Junit (5.10.2) - 119 Test Cases
+### 1. Junit (5.10.2) - 123 Test Cases
 
 | 1   | Testing Framework | Version | Test Cases |
 |-----|-------------------|---------|------------|
-| 1.1 | JUnit 5           | 5.10.2  | 51         |
+| 1.1 | JUnit 5           | 5.10.2  | 54         |
 | 1.2 | SpringBootTest 3  | 3.3.4   | 01         |
 | 1.3 | RestAssured 5     | 5.4.0   | 29         |
 | 1.4 | Mockito 5         | 5.12.0  | 18         |
