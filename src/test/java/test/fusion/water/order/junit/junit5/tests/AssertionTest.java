@@ -51,6 +51,7 @@ import static java.time.Duration.ofMinutes;
 /**
  * ms-test-quickstart / AssertionTest 
  *
+ * Source: https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions
  * @author: Araf Karsh Hamid
  * @version: 0.1
  * @date: 2024-12-28T8:08 PM
