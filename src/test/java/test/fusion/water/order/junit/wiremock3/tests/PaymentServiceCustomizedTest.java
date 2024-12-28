@@ -42,7 +42,6 @@ import io.fusion.water.order.domain.models.PaymentStatus;
 import io.fusion.water.order.utils.Utils;
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
-import test.fusion.water.order.junit.junit5.annotations.tools.WireMock2;
 import test.fusion.water.order.junit.junit5.annotations.tools.WireMock3;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 import test.fusion.water.order.utils.SampleData;

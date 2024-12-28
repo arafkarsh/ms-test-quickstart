@@ -46,7 +46,7 @@ public class Person {
      * Default Constructor
      */
     public Person() {
-        this("Jane", "Doe", 29, "New York");;
+        this("Jane", "Doe", 29, "New York");
     }
 
     /**
