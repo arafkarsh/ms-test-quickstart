@@ -110,7 +110,7 @@ class Http2Test {
 
 	@DisplayName("1. Basic HTTP Post Request with WireMock")
 	@Order(1)
-	// @Test
+    @Test
 	void testWireMockWithSpringBoot() throws Exception {
         System.out.println("Spring Boot Example using Rest Template /api/data HTTP/2 : ["+port+"]");
         EchoData requestData = new EchoData("John");
