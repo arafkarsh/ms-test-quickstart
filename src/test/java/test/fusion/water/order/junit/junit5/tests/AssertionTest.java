@@ -29,6 +29,8 @@ package test.fusion.water.order.junit.junit5.tests;
 // JUnit 5
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+// Hamcrest
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -36,6 +38,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.hamcrest.Matchers.*;
 // Custom
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
@@ -44,6 +47,8 @@ import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 import test.fusion.water.order.utils.Calculator;
 import test.fusion.water.order.utils.Person;
 // Java
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import static java.time.Duration.ofMillis;
 import static java.time.Duration.ofMinutes;
@@ -202,6 +207,27 @@ class AssertionTest {
             // Simulate task that takes more than 10 ms.
             new CountDownLatch(1).await();
         });
+    }
+
+    @DisplayName("10. Hamcrest Assertions")
+    @Order(10)
+    @Test
+    void testHamcrestAssertions() {
+        // Example 1: Using 'is' for equality
+        int result = 5 + 3;
+        assertThat("Result should be 8", result, is(8));
+
+        // Example 2: Using 'not' for inequality
+        String name = "JUnit";
+        assertThat("Name should not be 'TestNG'", name, is(not("TestNG")));
+
+        // Example 3: Using 'contains' for collection validation
+        List<String> fruits = Arrays.asList("Apple", "Banana", "Cherry");
+        assertThat("Fruits list should contain 'Banana'", fruits, contains("Apple", "Banana", "Cherry"));
+
+        // Example 4: Using 'containsString' for substring validation
+        String sentence = "JUnit is great for testing.";
+        assertThat("Sentence should contain 'testing'", sentence, containsString("testing"));
     }
 
     /**

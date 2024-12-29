@@ -16,18 +16,21 @@
 
 package test.fusion.water.order.junit.mockito3.tests;
 
-
-import static java.lang.invoke.MethodHandles.lookup;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
-import static org.slf4j.LoggerFactory.getLogger;
-
+// Java
 import java.util.ArrayList;
 import java.util.List;
-
-import io.fusion.water.order.adapters.service.ShippingServiceImpl;
-import io.fusion.water.order.domain.models.*;
+import static java.lang.invoke.MethodHandles.lookup;
+import static org.slf4j.LoggerFactory.getLogger;
+import org.slf4j.Logger;
+// Mockito
+import static org.mockito.Mockito.when;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
+// JUnit
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -42,11 +45,6 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Spy;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.slf4j.Logger;
 // Custom
 import io.fusion.water.order.adapters.service.OrderServiceImpl;
 import io.fusion.water.order.adapters.service.PackingServiceImpl;
@@ -58,6 +56,9 @@ import test.fusion.water.order.junit.junit5.annotations.tools.Mockito3;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 import io.fusion.water.order.domain.services.OrderRepository;
 import test.fusion.water.order.utils.OrderMock;
+import io.fusion.water.order.adapters.service.ShippingServiceImpl;
+import io.fusion.water.order.domain.models.OrderEntity;
+import io.fusion.water.order.domain.models.OrderStatus;
 
 /**
  * Warehouse Service Test
@@ -65,7 +66,6 @@ import test.fusion.water.order.utils.OrderMock;
  * @author arafkarsh
  *
  */
-
 @Mockito3()
 @Critical()
 @Functional()

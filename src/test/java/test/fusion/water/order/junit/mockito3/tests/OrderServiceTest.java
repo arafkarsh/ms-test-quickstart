@@ -16,35 +16,33 @@
 
 package test.fusion.water.order.junit.mockito3.tests;
 
-
+// Mockito
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import org.mockito.junit.jupiter.MockitoExtension;
+// Java
 import static org.slf4j.LoggerFactory.getLogger;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
-
-
+import org.slf4j.Logger;
+// JUnit 5
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.slf4j.Logger;
-
+// Custom
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.Mockito3;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
-
 import io.fusion.water.order.domain.models.*;
 import io.fusion.water.order.domain.services.OrderRepository;
 import io.fusion.water.order.domain.services.PaymentService;
 import io.fusion.water.order.adapters.service.OrderServiceImpl;
-
-
 
 /**
  * Order Service Test
@@ -100,9 +98,10 @@ public class OrderServiceTest {
         paymentDeclined = createPaymentStatusDeclined(order.getPaymentDetails());
 
     }
-    
-	@Test
+
 	@DisplayName("1. Test for Payment Accepted")
+	@Order(1)
+	@Test
 	void testValidatePaymentAccepted() {
 		// Given Order is Ready
 		when(orderRepo.saveOrder(order))
@@ -119,9 +118,10 @@ public class OrderServiceTest {
 				processedOrder.getOrderStatus()
 				);
 	}
-	
-	@Test
+
 	@DisplayName("2. Test for Payment Declined")
+	@Order(2)
+	@Test
 	void testValidatePaymentDeclined() {
 		// Given Order is Ready
 		when(orderRepo.saveOrder(order))
@@ -137,6 +137,23 @@ public class OrderServiceTest {
 				OrderStatus.PAYMENT_DECLINED,
 				processedOrder.getOrderStatus()
 				);
+	}
+
+	@DisplayName("3. Process Order with Verification")
+	@Order(3)
+	@Test
+	void testPlaceOrder() {
+		// Given Order is Ready: Order is set in setup() method
+		// When
+		when(orderRepo.saveOrder(order)).thenReturn(order);
+		when(paymentService.processPayments(order.getPaymentDetails()))
+				.thenReturn(paymentAccepted);
+		// Then
+		orderService.processOrder(order);
+
+		// Verify
+		verify(orderRepo).saveOrder(order); // Ensure the order was saved
+		verify(paymentService).processPayments(any()); // Ensure payment was processed
 	}
  
 	/**

@@ -56,15 +56,7 @@ import io.fusion.water.order.domain.services.OrderRepository;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(TestTimeExtension.class)
 @ExtendWith(MockitoExtension.class)
-class OrderItemGroupTest {
-
-	static final Logger log = getLogger(lookup().lookupClass());
-
-	private OrderEntity order;
-	private PaymentStatus paymentAccepted;
-	private PaymentStatus paymentDeclined;
-	
-	private int counter = 1;
+class ZorderItemGroupTest {
 
 	@Mock
 	OrderRepository orderRepo;
@@ -74,6 +66,14 @@ class OrderItemGroupTest {
 	
 	@InjectMocks
 	OrderServiceImpl orderService;
+
+	static final Logger log = getLogger(lookup().lookupClass());
+
+	private OrderEntity order;
+	private PaymentStatus paymentAccepted;
+	private PaymentStatus paymentDeclined;
+
+	private int counter = 1;
 	
 	/**
 	 * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)

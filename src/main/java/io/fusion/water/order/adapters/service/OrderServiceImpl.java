@@ -80,6 +80,9 @@ public class OrderServiceImpl implements OrderService {
 			PaymentStatus payStatus = paymentService.processPayments(
 					order.getPaymentDetails());
 			// Update Payment Status
+			if(payStatus == null) {
+				throw new RuntimeException("Payment Failed - Null Status");
+			}
 			order.setPaymentStatus(payStatus);
 		}
 		return order;

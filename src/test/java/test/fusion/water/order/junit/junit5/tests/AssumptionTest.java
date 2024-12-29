@@ -39,7 +39,6 @@ import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
 import test.fusion.water.order.junit.junit5.annotations.tools.Junit5;
 import test.fusion.water.order.junit.junit5.extensions.TestTimeExtension;
 import test.fusion.water.order.utils.Calculator;
-
 /**
  * ms-test-quickstart / AssumptionTest
  *
