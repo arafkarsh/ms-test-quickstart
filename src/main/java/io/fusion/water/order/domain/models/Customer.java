@@ -16,6 +16,8 @@
 
 package io.fusion.water.order.domain.models;
 
+import io.fusion.water.order.domain.exceptions.InputDataException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,16 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         phoneList	= new ArrayList<>();
         addPhoneNumber(phoneNumber);
+        // Added to demo Null Check in Test Cases (JUnit 5 / OrderNestedTest)
+        if(firstName == null ) {
+            throw new InputDataException("First Name can't be Null!");
+        }
+        if(lastName == null) {
+            throw new InputDataException("Last Name can't be Null!");
+        }
+        if(phoneNumber == null) {
+            throw new InputDataException("Phone Number can't be Null!");
+        }
     }
     
     /**

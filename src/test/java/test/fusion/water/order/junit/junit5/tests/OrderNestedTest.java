@@ -16,6 +16,7 @@
 package test.fusion.water.order.junit.junit5.tests;
 
 
+import io.fusion.water.order.domain.exceptions.InputDataException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -38,6 +39,7 @@ import test.fusion.water.order.junit.junit5.annotations.tools.Junit5;
  */
 @Junit5()
 @Functional()
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class OrderNestedTest {
 
@@ -74,7 +76,7 @@ class OrderNestedTest {
         @DisplayName("1.2 Should Not Create Customer When First Name is Null")
         @Order(2)
         void shouldThrowRuntimeExceptionWhenFirstNameIsNull() {
-            Assertions.assertThrows(RuntimeException.class, () -> {
+            Assertions.assertThrows(InputDataException.class, () -> {
                 order = new OrderEntity.Builder()
                         .addCustomer(new Customer("UUID", null, "Doe", "0123456789"))
                         .build();
@@ -85,7 +87,7 @@ class OrderNestedTest {
         @DisplayName("1.3 Should Not Create Customer When Last Name is Null")
         @Order(3)
         void shouldThrowRuntimeExceptionWhenLastNameIsNull() {
-            Assertions.assertThrows(RuntimeException.class, () -> {
+            Assertions.assertThrows(InputDataException.class, () -> {
                 order = new OrderEntity.Builder()
                         .addCustomer(new Customer("UUID", "John", null, "0123456789"))
                         .build();
@@ -96,7 +98,7 @@ class OrderNestedTest {
         @DisplayName("1.4 Should Not Create Contact When Phone Number is Null")
         @Order(4)
         void shouldThrowRuntimeExceptionWhenPhoneNumberIsNull() {
-            Assertions.assertThrows(RuntimeException.class, () -> {
+            Assertions.assertThrows(InputDataException.class, () -> {
                 order = new OrderEntity.Builder()
                         .addCustomer(new Customer("UUID", "John", "Doe", null))
                         .build();

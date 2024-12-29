@@ -26,8 +26,6 @@ import static org.mockito.Mockito.verify;
 import org.mockito.junit.jupiter.MockitoExtension;
 // Java
 import static org.slf4j.LoggerFactory.getLogger;
-import java.time.LocalDateTime;
-import java.util.UUID;
 import org.slf4j.Logger;
 // JUnit 5
 import org.junit.jupiter.api.*;

@@ -17,6 +17,7 @@
 package io.fusion.water.order.adapters.service;
 
 import io.fusion.water.order.adapters.external.ExternalGateWay;
+import io.fusion.water.order.domain.exceptions.InputDataException;
 import io.fusion.water.order.domain.models.*;
 import jakarta.resource.ResourceException;
 import org.springframework.stereotype.Service;
@@ -81,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
 					order.getPaymentDetails());
 			// Update Payment Status
 			if(payStatus == null) {
-				throw new RuntimeException("Payment Failed - Null Status");
+				throw new InputDataException("Payment Failed - Null Status");
 			}
 			order.setPaymentStatus(payStatus);
 		}
@@ -144,7 +145,7 @@ public class OrderServiceImpl implements OrderService {
 		// Fetch Order based on Order Id
 		OrderEntity order =  mockGetOrderById(id);
 		if(order == null) {
-			throw new RuntimeException("Order Not Found");
+			throw new InputDataException("Order Not Found");
 		}
 		// Set Order Status
 		if(status.equalsIgnoreCase(OrderStatus.IN_TRANSIT.name())) {
@@ -156,7 +157,7 @@ public class OrderServiceImpl implements OrderService {
 		} else if(status.equalsIgnoreCase(OrderStatus.RETURNED.name())) {
 			order.orderReturned();
 		} else {
-			throw new RuntimeException("Invalid Status");
+			throw new InputDataException("Invalid Status");
 		}
 		// Save Order
 		return orderRepo.saveOrder(order);
