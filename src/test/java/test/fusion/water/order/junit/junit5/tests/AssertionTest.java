@@ -29,8 +29,6 @@ package test.fusion.water.order.junit.junit5.tests;
 // JUnit 5
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-// Hamcrest
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -38,6 +36,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+// Hamcrest
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 // Custom
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;

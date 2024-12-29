@@ -182,12 +182,33 @@ public class OrderMock {
                 .build();
     }
 
+    /**
+     * Create Payment Accepted
+     * @param order
+     * @return
+     */
     public static PaymentStatus paymentAccepted(OrderEntity order) {
         // Implement the method to create and return a list of OrderEntity objects
         return new  PaymentStatus(
                 order.getPaymentDetails().getTransactionId(),
                 order.getPaymentDetails().getTransactionDate(),
                 "Accepted",
+                UUID.randomUUID().toString(),
+                LocalDateTime.now(),
+                PaymentType.CREDIT_CARD);
+    }
+
+    /**
+     * Payment Status - Declined
+     *
+     * @param paymentDetails
+     * @return
+     */
+    public static PaymentStatus paymentDeclined(PaymentDetails paymentDetails) {
+        return new PaymentStatus(
+                paymentDetails.getTransactionId(),
+                paymentDetails.getTransactionDate(),
+                "Declined",
                 UUID.randomUUID().toString(),
                 LocalDateTime.now(),
                 PaymentType.CREDIT_CARD);
