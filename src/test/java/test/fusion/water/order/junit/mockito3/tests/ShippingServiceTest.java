@@ -112,17 +112,18 @@ class ShippingServiceTest {
 
     }
     
-	@Test
 	@DisplayName("1. Mock > Test Delivery City Bengaluru")
 	@Order(1)
+	@Test
 	void testDeliveryCity() {
-		// Set the Shipping Service with Bengaluru City
+		// Given the Delivery City Service is set with Bengaluru City
+
+		// When the Shipping Service is called with Bengaluru City
 		when(deliveryCityService.getDeliveryCity("Bengaluru", "", "India")).thenReturn(bengaluru);
-		
 		// Check the Delivery City in Shipping Service
 		DeliveryCity city = shippingService.getCity("Bengaluru", "", "India");
 		
-		// Then Check the City
+		// Then Assert that City is Bengaluru
 		assertEquals(bengaluru.getCityName(), city.getCityName());
 	}
 	
