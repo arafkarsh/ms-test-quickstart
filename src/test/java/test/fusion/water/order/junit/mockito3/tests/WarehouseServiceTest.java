@@ -20,6 +20,7 @@ package test.fusion.water.order.junit.mockito3.tests;
 import java.util.ArrayList;
 import java.util.List;
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.slf4j.LoggerFactory.getLogger;
 import org.slf4j.Logger;
 // Mockito
@@ -29,8 +30,6 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 // JUnit
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -130,6 +129,7 @@ class WarehouseServiceTest {
 
 		// Then Payment Service will return as Payment Accepted
 		assertTrue(processedOrder.isCustomerAvailable());
+		assertNotNull(processedOrder.getOrderStatus());
 		assertEquals(OrderStatus.PAID, processedOrder.getOrderStatus());
 		orderReadyList.add(processedOrder);
 	}
