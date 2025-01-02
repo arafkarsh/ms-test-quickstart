@@ -15,6 +15,9 @@
  */
 package io.fusion.water.order.adapters.utils;
 
+import io.fusion.water.order.utils.Std;
+
+import java.security.SecureRandom;
 import java.util.Random;
 
 /**
@@ -36,14 +39,15 @@ public final class RandomIDGenerator {
 									8100, 8200,8300,8400,8500,8600,8700,8800,8900,
 									9100, 9200,9300,9400,9500,9600,9700,9800 };
 	private int counter;
-	
+
+	private static final Random random = new SecureRandom();
 	
 	/**
 	 * Create Random ID Base
 	 */
 	public RandomIDGenerator() {
-		timeMillis	= System.currentTimeMillis();
-		idBase		= createIdBase();
+		timeMillis		= System.currentTimeMillis();
+		idBase			= createIdBase();
 		idHexBase	= createIdHexBase();
 		counter		= getCounterInitialState();
 	}
@@ -69,7 +73,7 @@ public final class RandomIDGenerator {
 	 * @return
 	 */
 	public static int getRandomNumber(int start, int end) {
-		return new Random().nextInt(end-start) + start;
+		return random.nextInt(end-start) + start;
 	}
 	
 	/**
@@ -78,15 +82,16 @@ public final class RandomIDGenerator {
 	 * @return
 	 */
 	private String createIdBase() {
-		int result  = RandomIDGenerator.getRandomNumber(100, 1000);
+		int result  = getRandomNumber(100, 1000);
 		String ts 	= timeMillis+""+result;
 
 		StringBuilder sb = new StringBuilder();
-		for(int x=0,s=0; x<ts.length(); x++,s++) {
+		int tslen = ts.length();
+		for(int x=0,s=0; x<tslen; x++,s++) {
 			sb.append(ts.charAt(x));
 			if(s==4) {
 				sb.append("-");
-				s=-1;
+				break;
 			}
 		}
 		return sb.toString();
@@ -98,7 +103,7 @@ public final class RandomIDGenerator {
 	 * @return
 	 */
 	private String createIdHexBase() {
-		int result  = RandomIDGenerator.getRandomNumber(10000, 100000);
+		int result  = getRandomNumber(10000, 100000);
 		String ts 	= timeMillis+""+result;
 		try {
 			ts = Long.toHexString(Long.parseLong(ts));
@@ -111,7 +116,7 @@ public final class RandomIDGenerator {
 			sb.append(ts.charAt(x));
 			if(s==5) {
 				sb.append("-");
-				s=-1;
+				break;
 			}
 		}
 		return sb.toString();
@@ -143,13 +148,13 @@ public final class RandomIDGenerator {
 
 	public static void main(String[] args) {
 		RandomIDGenerator r = new RandomIDGenerator();
-		System.out.println("ID Hex Base: "+r.idHexBase);
-		for(int x=0; x<1000; x++) {
-			System.out.println(r.nextRandomHexNumber());
-		}
-		System.out.println("ID Base: "+r.idBase);
+		Std.println("ID Hex Base: "+r.idHexBase);
 		for(int x=0; x<10; x++) {
-			System.out.println(r.nextRandomNumber());
+			Std.println(r.nextRandomHexNumber());
+		}
+		Std.println("ID Base: "+r.idBase);
+		for(int x=0; x<10; x++) {
+			Std.println(r.nextRandomNumber());
 		}
 	}
 }
