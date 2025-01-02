@@ -15,6 +15,8 @@
  */
 package io.fusion.water.order.adapters.utils;
 
+import io.fusion.water.order.utils.Std;
+
 import java.time.LocalDate;
 import java.util.Random;
 
@@ -49,6 +51,8 @@ public class RandomCardNumber {
 	private final int cardCode;
 	private final String firstName;
 	private final String lastName;
+
+	private Random random = new Random();
 
 	/**
 	 * Generates Random Credit/Debit Card
@@ -126,7 +130,7 @@ public class RandomCardNumber {
 	 * @return
 	 */
 	private int getRandomNumber(int start, int end) {
-		return new Random().nextInt(end-start) + start;
+		return random.nextInt(end-start) + start;
 	}
 
 	/**
@@ -171,7 +175,7 @@ public class RandomCardNumber {
 	public static void main(String[] args) {
 		for(int x=0; x<10; x++) {
 			RandomCardNumber r1 = new RandomCardNumber();
-			System.out.println(x+">> "+r1.getCardNumber()
+			Std.println(x+">> "+r1.getCardNumber()
 				+"|N="+r1.getCardHolder()
 				+"|M="+r1.getMonth()+"|Y="+r1.getYear()
 				+"|CVV="+r1.getCardCode()
