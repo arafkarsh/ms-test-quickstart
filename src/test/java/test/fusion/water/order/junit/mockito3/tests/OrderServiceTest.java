@@ -22,21 +22,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
 
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 // Java
+import static org.mockito.Mockito.*;
 import static org.slf4j.LoggerFactory.getLogger;
 import org.slf4j.Logger;
 // JUnit 5
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 // Custom
 import test.fusion.water.order.junit.junit5.annotations.tests.Critical;
 import test.fusion.water.order.junit.junit5.annotations.tests.Functional;
@@ -67,7 +63,7 @@ public class OrderServiceTest {
 
 	private OrderEntity order;
 	private int counter = 1;
-	
+
 	@Captor
 	ArgumentCaptor<String> orderIdCaptor;
 
@@ -176,6 +172,28 @@ public class OrderServiceTest {
 		assertEquals("12C45", orderIdCaptor.getValue());
 		assertEquals(OrderStatus.CANCELLED, orderEntity.getOrderStatus());
 		assertEquals(orderEntity.getOrderId(), orderIdCaptor.getValue());
+	}
+
+	@DisplayName("5. InOrder Test")
+	@Order(5)
+	@Test
+	void testInOrder() {
+		// Given Order is Ready
+		PaymentStatus paymentAccepted = OrderMock.paymentAccepted(order);
+		// When
+		when(orderRepo.saveOrder(order))
+				.thenReturn(order);
+		when(paymentService.processPayments(order.getPaymentDetails()))
+				.thenReturn(paymentAccepted);
+		OrderEntity processedOrder = orderService.processOrder(order);
+
+		// Then Check the Payment Status as Accepted
+		assertEquals(OrderStatus.PAID, processedOrder.getOrderStatus());
+
+		// Verify the Order of the Mocks
+		InOrder inOrder = inOrder(orderRepo, paymentService);
+		inOrder.verify(orderRepo).saveOrder(order);
+		inOrder.verify(paymentService).processPayments(order.getPaymentDetails());
 	}
 
 	/**
