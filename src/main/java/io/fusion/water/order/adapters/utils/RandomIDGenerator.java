@@ -17,6 +17,7 @@ package io.fusion.water.order.adapters.utils;
 
 import io.fusion.water.order.utils.Std;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 /**
@@ -39,14 +40,14 @@ public final class RandomIDGenerator {
 									9100, 9200,9300,9400,9500,9600,9700,9800 };
 	private int counter;
 
-	private static Random random = new Random();
+	private static final Random random = new SecureRandom();
 	
 	/**
 	 * Create Random ID Base
 	 */
 	public RandomIDGenerator() {
-		timeMillis	= System.currentTimeMillis();
-		idBase		= createIdBase();
+		timeMillis		= System.currentTimeMillis();
+		idBase			= createIdBase();
 		idHexBase	= createIdHexBase();
 		counter		= getCounterInitialState();
 	}
@@ -81,7 +82,7 @@ public final class RandomIDGenerator {
 	 * @return
 	 */
 	private String createIdBase() {
-		int result  = RandomIDGenerator.getRandomNumber(100, 1000);
+		int result  = getRandomNumber(100, 1000);
 		String ts 	= timeMillis+""+result;
 
 		StringBuilder sb = new StringBuilder();
@@ -102,7 +103,7 @@ public final class RandomIDGenerator {
 	 * @return
 	 */
 	private String createIdHexBase() {
-		int result  = RandomIDGenerator.getRandomNumber(10000, 100000);
+		int result  = getRandomNumber(10000, 100000);
 		String ts 	= timeMillis+""+result;
 		try {
 			ts = Long.toHexString(Long.parseLong(ts));

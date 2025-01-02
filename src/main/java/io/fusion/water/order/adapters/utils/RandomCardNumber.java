@@ -17,6 +17,7 @@ package io.fusion.water.order.adapters.utils;
 
 import io.fusion.water.order.utils.Std;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.Random;
 
@@ -52,7 +53,7 @@ public class RandomCardNumber {
 	private final String firstName;
 	private final String lastName;
 
-	private Random random = new Random();
+	private final Random random = new SecureRandom();
 
 	/**
 	 * Generates Random Credit/Debit Card
@@ -60,7 +61,7 @@ public class RandomCardNumber {
 	public RandomCardNumber() {
 		cardNumber	= calculateCardNumber();
 		month 		= getRandomNumber(1,12);
-		year  		= calculateYear();
+		year  			= calculateYear();
 		cardCode 	= getRandomNumber(100,999);
 		cardHolder	= createCardHolder();
 		String[] names = cardHolder.split(" ");
