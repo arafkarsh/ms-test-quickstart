@@ -17,8 +17,9 @@
 package test.fusion.water.order.junit.mockito3.utils;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
+import io.fusion.water.order.utils.Std;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -30,25 +31,20 @@ import io.fusion.water.order.domain.models.DeliveryCity;
  */
 public class DeliveryCityAnswer<T> implements Answer<Object> {
 	
-	private HashMap<String, DeliveryCity> cities;
+	private LinkedHashMap<String, DeliveryCity> cities;
 
 	/**
 	 * Custom Delivery City Answers
 	 */
 	public DeliveryCityAnswer() {
-		cities = new HashMap<String, DeliveryCity>();
+		cities = new LinkedHashMap<>();
 		loadData();
-	}
-	
-	/**
-	 * Load Data
-	 */
-	public void loadData() {
-		addCity(new DeliveryCity("Bengaluru", "", "India", "00000"));
-		addCity(new DeliveryCity("Kochi", "", "India", "00000"));
-		addCity(new DeliveryCity("Chennai", "", "India", "00000"));
+		Std.println("DeliveryCityAnswer: Total Cities = "+cities.size());
 	}
 
+	/**
+	 * Get the answer for the Delivery City
+	 */
 	@Override
 	public DeliveryCity answer(InvocationOnMock invocation) throws Throwable {
 		String city="", state="", country="";
@@ -59,49 +55,65 @@ public class DeliveryCityAnswer<T> implements Answer<Object> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		Std.println("DeliveryCityAnswer: City = "+city+" State = "+state+" Country = "+country);
 		return getDeliveryCity( city,  state,  country);
 	}
-	
-	/**
-	 * Add Delivery City
-	 * 
-	 * @param deliveryCity
-	 * @return
-	 */
-	public void addCity(DeliveryCity deliveryCity) {
-		cities.put(deliveryCity.getCityKey(), deliveryCity);
-	}
-	
+
 	/**
 	 * Returns Delivery City
-	 * 
+	 *
 	 * @param city
 	 * @param state
 	 * @param country
 	 * @return
 	 */
-	public DeliveryCity getDeliveryCity(String city, String state, String country) {
-		return cities.get(DeliveryCity.createCityKey(city, state, country));
+	private DeliveryCity getDeliveryCity(String city, String state, String country) {
+		String key = DeliveryCity.createCityKey(city, state, country);
+		Std.println("DeliveryCityAnswer: Search Key = "+key);
+		return cities.get(key);
 	}
-	
+
 	/**
-	 * Returns Delivery City
-	 * 
-	 * @param cityName
+	 * Load Data
+	 */
+	private void loadData() {
+		// India
+		addCity(new DeliveryCity("Bengaluru", "", "India", "00000"));
+		addCity(new DeliveryCity("Kochi", "", "India", "00000"));
+		addCity(new DeliveryCity("Chennai", "", "India", "00000"));
+		// USA
+		addCity(new DeliveryCity("New York", "NY", "USA", "00000"));
+		addCity(new DeliveryCity("Los Angeles", "CA", "USA", "00000"));
+		addCity(new DeliveryCity("San Francisco", "CA", "USA", "00000"));
+		// UK
+		addCity(new DeliveryCity("London", "", "UK", "00000"));
+		addCity(new DeliveryCity("Manchester", "", "UK", "00000"));
+		addCity(new DeliveryCity("Birmingham", "", "UK", "00000"));
+	}
+
+	public void printCities() {
+		cities.forEach((k, v) -> {
+			Std.println("City Key = "+k+" City = "+v.getCityName()+" State = "+v.getStateName()+" Country = "+v.getCountryName());
+		});
+	}
+
+	/**
+	 * Add Delivery City
+	 *
+	 * @param deliveryCity
 	 * @return
 	 */
-	public DeliveryCity getDeliveryCity(String cityName) {
-		if(cityName == null) {
-			return null;
-		}
-		for(DeliveryCity city : cities.values()) {
-			if(city.getCityName().equalsIgnoreCase(cityName)) {
-				return city;
-			}
-		}
-		return null;
+	private void addCity(DeliveryCity deliveryCity) {
+		// Add Cities with City Name, State Name and Country Name
+		cities.put(deliveryCity.getCityKey(), deliveryCity);
+		// Add City with City Name and State Name
+		DeliveryCity dc2 = new DeliveryCity(deliveryCity.getCityName(), deliveryCity.getStateName(), "", "");
+		cities.put(dc2.getCityKey(), dc2);
+		// Add City with City Name
+		DeliveryCity dc3 = new DeliveryCity(deliveryCity.getCityName(), "", "", "");
+		cities.put(dc3.getCityKey(), dc3);
 	}
-	
+
 	/**
 	 * Returns All Delivery Cities
 	 * @return

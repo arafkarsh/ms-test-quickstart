@@ -60,6 +60,7 @@ public class OrderEntity {
 	 */
 	public OrderEntity() {
 		orderItems = new ArrayList<>();
+		orderId = null;
 	}
 
 	/**
@@ -189,7 +190,6 @@ public class OrderEntity {
 		 * @return
 		 */
 		public Builder addCustomer(Customer customer) {
-			order.orderId = UUID.randomUUID().toString();
 			order.orderDate = LocalDateTime.now();
 			order.orderStatus = OrderStatus.INITIATED;
 			order.addCustomer(customer);
@@ -334,6 +334,9 @@ public class OrderEntity {
 		 * @return
 		 */
 		public OrderEntity build() {
+			if(order.orderId == null) {
+				order.orderId = UUID.randomUUID().toString();
+			}
 			return order;
 		}
 	}

@@ -16,6 +16,7 @@
 
 package io.fusion.water.order.adapters.repository;
 
+import io.fusion.water.order.adapters.utils.OrderSampleData;
 import org.springframework.stereotype.Service;
 
 import io.fusion.water.order.domain.models.OrderEntity;
@@ -33,7 +34,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 	@Override
 	public OrderEntity getOrderById(String id) {
 		// Mock API
-		return null;
+		return OrderSampleData.getOrderById(id);
 	}
 
 	@Override
@@ -45,18 +46,26 @@ public class OrderRepositoryImpl implements OrderRepository {
 	@Override
 	public OrderEntity cancelOrder(OrderEntity order) {
 		// Mock API
+		if(order != null) {
+			order.orderCancelled();
+		}
 		return order;
 	}
 
 	@Override
 	public OrderEntity cancelOrder(String id) {
 		// Mock API
-		return null;
+		OrderEntity order = OrderSampleData.getOrderById(id);
+		order.orderCancelled();
+		return order;
 	}
 
 	@Override
 	public OrderEntity prepareOrder(OrderEntity order) {
 		// Mock API
+		if(order != null) {
+			order.orderIsGettingPrepared();
+		}
 		return order;
 	}
 

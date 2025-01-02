@@ -42,9 +42,28 @@ public class DeliveryCity {
 		this.cityName		= (city 		== null) ? "" : city;
 		this.stateName 		= (state 		== null) ? "" : state;
 		this.countryName 	= (country 	== null) ? "" : country;
-		this.zipCode		= (zip 		== null) ? "" : zip;
+		this.zipCode			= (zip 		== null) ? "" : zip;
 		
 		this.cityKey		= createCityKey( cityName,  stateName,  countryName);
+	}
+
+	/**
+	 * Create City Key
+	 *
+	 * @param city
+	 * @param state
+	 * @param country
+	 * @return
+	 */
+	public static String createCityKey(String city, String state, String country) {
+		city 	= (city 	== null) ? "" : city;
+		state 	= (state 	== null) ? "" : state;
+		country = (country 	== null) ? "" : country;
+		return new StringBuilder()
+				.append(city).append("|")
+				.append(state).append("|")
+				.append(country).append("|")
+				.toString();
 	}
 
 	/**
@@ -94,25 +113,6 @@ public class DeliveryCity {
 	 */
 	public String getCityKey() {
 		return cityKey;
-	}
-	
-	/**
-	 * Create City Key
-	 * 
-	 * @param city
-	 * @param state
-	 * @param country
-	 * @return
-	 */
-	public static String createCityKey(String city, String state, String country) {
-		city 	= (city 	== null) ? "" : city;
-		state 	= (state 	== null) ? "" : state;
-		country = (country 	== null) ? "" : country;
-		return new StringBuilder()
-				.append(city).append("|")
-				.append(state).append("|")
-				.append(country).append("|")
-				.toString();
 	}
 
 	/**

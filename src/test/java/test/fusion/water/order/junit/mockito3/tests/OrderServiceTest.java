@@ -21,8 +21,12 @@ import static java.lang.invoke.MethodHandles.lookup;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
+
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.junit.jupiter.MockitoExtension;
 // Java
 import static org.slf4j.LoggerFactory.getLogger;
@@ -63,6 +67,9 @@ public class OrderServiceTest {
 
 	private OrderEntity order;
 	private int counter = 1;
+	
+	@Captor
+	ArgumentCaptor<String> orderIdCaptor;
 
 	@Mock
 	OrderRepository orderRepo;
@@ -87,7 +94,7 @@ public class OrderServiceTest {
     
     @BeforeEach
     public void setup() {
-        System.out.println(counter+". Create Order, PaymentStatus...");
+        System.out.println(counter+". Create Mock Order: OrderMock.createOrder1()");
 		order = OrderMock.createOrder1();
 	}
 
@@ -146,6 +153,29 @@ public class OrderServiceTest {
 		// Verify: Check that the desired interactions occurred and validate the results.
 		verify(orderRepo).saveOrder(order); // Ensure the order was saved
 		verify(paymentService).processPayments(any()); // Ensure payment was processed
+	}
+
+	@DisplayName("4. Argument Captor Test")
+	@Order(4)
+	@Test
+	void testArgumentCaptor() {
+		// Given Order is Ready
+		OrderEntity ord = OrderMock.getOrderById("12C45");
+		ord.orderCancelled();
+
+		// When: Set up the behavior of mock objects
+		when(orderRepo.cancelOrder(anyString())).thenReturn(ord);
+		// Execute the Component under the Test
+		OrderEntity orderEntity = orderRepo.cancelOrder("12C45");
+
+		// Capture the arguments to OrderRepository
+		verify(orderRepo).cancelOrder(orderIdCaptor.capture());
+
+		// Then: Assert captured values
+		assertNotNull(orderEntity);
+		assertEquals("12C45", orderIdCaptor.getValue());
+		assertEquals(OrderStatus.CANCELLED, orderEntity.getOrderStatus());
+		assertEquals(orderEntity.getOrderId(), orderIdCaptor.getValue());
 	}
 
 	/**
