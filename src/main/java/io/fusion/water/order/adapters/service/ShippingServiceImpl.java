@@ -92,8 +92,9 @@ public class ShippingServiceImpl implements ShippingService {
 			return dCities;
 		}
 		for(String cityName : cities) {
+			Std.println("ShippingServiceImpl: INPUT: City="+cityName);
 			DeliveryCity city = deliveryCityService.getDeliveryCity(cityName, state, country);
-			Std.println("ShippingServiceImpl.getCities(cities,state,country) = "+city);
+			Std.println("ShippingServiceImpl: getCities(cities,state,country) INPUT="+cityName+" OUTPUT="+city);
 			if(city != null) {
 				dCities.add(city);
 			}

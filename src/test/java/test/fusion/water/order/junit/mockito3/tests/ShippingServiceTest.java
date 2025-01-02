@@ -16,10 +16,7 @@
 
 package test.fusion.water.order.junit.mockito3.tests;
 
-import org.mockito.ArgumentCaptor;
-import org.mockito.InOrder;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -93,6 +90,9 @@ class ShippingServiceTest {
 	
 	@InjectMocks
 	private ShippingServiceImpl shippingService;
+
+	@Captor
+	ArgumentCaptor<String> cityCaptor;
 	
 	/**
 	 * if the @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -278,9 +278,9 @@ class ShippingServiceTest {
 
 	}
 	
-	@Test
 	@DisplayName("9. Mock > Answer > Test Delivery Cities ")
 	@Order(9)
+	@Test
 	void testDeliveryCitiesCustomAnswer() {
 		// Set the Shipping Service with multiple Cities
 		when(deliveryCityService.getDeliveryCity(anyString(), anyString(), anyString()))
@@ -289,11 +289,11 @@ class ShippingServiceTest {
 		// Change the Order of the Cities and the test will fail
 		ArrayList<String> cities = new ArrayList<String>();
 		cities.add("Bengaluru");
-		cities.add("Chennai");
-		cities.add("Kochi");
+		cities.add("London");
+		cities.add("New York");
 		
 		// Check the Delivery City in Shipping Service
-		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
+		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "");
 
 		assertEquals(3, cityList.size());
 		for(String cityName : cities) {
@@ -304,36 +304,47 @@ class ShippingServiceTest {
 	}
 	
 	@Test
-	@DisplayName("10. Mock > Captor > Test Delivery Cities ")
+	@DisplayName("10. Single Argument Captor > Test Delivery City ")
 	@Order(10)
 	void testDeliveryCitiesCaptor() {
+		// Given the City Captor
+
+		// When the Delivery City Service is set with Bengaluru City
+		when(deliveryCityService.getDeliveryCity(cityCaptor.capture())).thenReturn(bengaluru);
+
+		DeliveryCity deliveryCity = deliveryCityService.getDeliveryCity("Bengaluru");
+
+		// Then: Assert the Captured Value
+		assertNotNull(deliveryCity);
+		assertEquals("Bengaluru", cityCaptor.getValue());
+	}
+
+	@DisplayName("11. Multiple Argument Captor Test")
+	@Order(11)
+	@Test
+	void testArgumentCaptor() {
+		// Given the Captors
 		ArgumentCaptor<String> city = ArgumentCaptor.forClass(String.class);
 		ArgumentCaptor<String> state = ArgumentCaptor.forClass(String.class);
 		ArgumentCaptor<String> country = ArgumentCaptor.forClass(String.class);
 
-		
-		// Set the Shipping Service with multiple Cities
+		// When: Set the DeliveryCityService with Dynamic Answer and Capture the Input
 		when(deliveryCityService.getDeliveryCity(city.capture(), state.capture(), country.capture()))
-		.thenAnswer(new DeliveryCityAnswer());
-		
-		// Change the Order of the Cities and the test will fail
-		ArrayList<String> cities = new ArrayList<String>();
-		cities.add("Bengaluru");
-		cities.add("Chennai");
-		cities.add("Kochi");
+				.thenAnswer(new DeliveryCityAnswer());
 
-		// Check the Delivery City in Shipping Service
-		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
+		DeliveryCity deliveryCity = deliveryCityService.getDeliveryCity("New York", "NY", "USA");
 
-		assertEquals(3, cityList.size());
-		assertTrue(cityList.stream()
-				.anyMatch(cityObj -> city.getValue().equalsIgnoreCase(cityObj.getCityName()))
-		);
+		// Then: Assert the Captured Values
+		assertEquals("New York", city.getValue());
+		assertEquals("NY", state.getValue());
+		assertEquals("USA", country.getValue());
+		assertNotNull(deliveryCity);
 	}
+
 	
 	@Test
-	@DisplayName("11. Mock > Throw Exception > Test Delivery Cities ")
-	@Order(11)
+	@DisplayName("12. Mock > Throw Exception > Test Delivery Cities ")
+	@Order(12)
 	void testDeliveryCitiesThrowException() {
 		// Set the Shipping Service with multiple Cities
 		when(deliveryCityService.getDeliveryCity(anyString(), anyString(), anyString()))
@@ -350,19 +361,19 @@ class ShippingServiceTest {
 			shippingService.getCities(cities, "", "India");
 		} catch (Exception e) {
 			failed = true;
-			System.out.println("Test 11 > "+e.getMessage());
+			System.out.println("Test 12 > "+e.getMessage());
 		}
 		// Add the variant where Exception is tested implicitly
 		// Verify
 		assertTrue(failed);
-		System.out.println("Test 11: Negative Test Succeeded. Service thrown Exception!");
+		System.out.println("Test 12: Negative Test Succeeded. Service thrown Exception!");
 	}
 	
 
 	
 	@Test
-	@DisplayName("12. Mock > No Calls > Test Delivery Cities Bengaluru ")
-	@Order(12)
+	@DisplayName("13. Mock > No Calls > Test Delivery Cities Bengaluru ")
+	@Order(13)
 	void testDeliveryCitiesNoCalls() {
 		// Set the Shipping Service with multiple Cities
 		when(deliveryCityService.getDeliveryCity("Bengaluru", "", "India")).thenReturn(bengaluru);
@@ -377,7 +388,7 @@ class ShippingServiceTest {
 		
 		// Check the Delivery City in Shipping Service
 		List<DeliveryCity> cityList = shippingService.getCities(cities, "", "India");
-		System.out.println("Test 12 > "+cityList.size());
+		System.out.println("Test 13 > "+cityList.size());
 		assertNotNull(cityList);
 		assertEquals(3, cityList.size());
 		verifyNoMoreInteractions(deliveryCityService);

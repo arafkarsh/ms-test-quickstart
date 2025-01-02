@@ -19,10 +19,12 @@ package io.fusion.water.order.adapters.service;
 import java.util.Collection;
 import java.util.HashMap;
 
+import io.fusion.water.order.utils.Std;
 import org.springframework.stereotype.Service;
 
 import io.fusion.water.order.domain.models.DeliveryCity;
 import io.fusion.water.order.domain.services.DeliveryCityService;
+import org.springframework.web.context.annotation.RequestScope;
 
 /**
  * 
@@ -30,8 +32,10 @@ import io.fusion.water.order.domain.services.DeliveryCityService;
  *
  */
 @Service
+@RequestScope
 public class DeliveryCityServiceImpl implements DeliveryCityService {
-	
+
+	// Due to this class variable this Service needs to be Request Scoped
 	private HashMap<String, DeliveryCity> cities;
 
 	/**
@@ -73,7 +77,15 @@ public class DeliveryCityServiceImpl implements DeliveryCityService {
 	 * @return
 	 */
 	public DeliveryCityService addCity(DeliveryCity deliveryCity) {
+		// Add Cities with City Name, State Name and Country Name
 		cities.put(deliveryCity.getCityKey(), deliveryCity);
+		// Add City with City Name and State Name
+		DeliveryCity dc2 = new DeliveryCity(deliveryCity.getCityName(), deliveryCity.getStateName(), "", "");
+		cities.put(dc2.getCityKey(), dc2);
+		// Add City with City Name
+		DeliveryCity dc3 = new DeliveryCity(deliveryCity.getCityName(), "", "", "");
+		cities.put(dc3.getCityKey(), dc3);
+
 		return this;
 	}
 	
@@ -87,6 +99,7 @@ public class DeliveryCityServiceImpl implements DeliveryCityService {
 	 * @return
 	 */
 	public DeliveryCity getDeliveryCity(String city, String state, String country) {
+		Std.println("B4 getDeliveryCity( CN="+city+" ST="+state+" CO="+country+" )");
 		return cities.get(DeliveryCity.createCityKey(city, state, country));
 	}
 	
