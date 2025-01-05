@@ -46,9 +46,8 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
  * 
  */
 @RestController
-@RequestMapping("/api/v1/order/core")
-@RequestScope
-@Tag(name = "Core", description = "Order Core Service (Health, Readiness, ReStart.. etc)")
+@RequestMapping("/api/v1/order/system")
+@Tag(name = "System", description = "Order System APIs (Security, Health, Readiness, ReStart.. etc)")
 public class SecurityController {
 
 	// Set Logger -> Lookup will automatically determine the class name.
