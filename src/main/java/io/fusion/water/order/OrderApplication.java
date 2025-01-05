@@ -158,15 +158,35 @@ public class OrderApplication {
 	 * Micro Service - Home Page
 	 * @return
 	 */
-	@GetMapping("/root")
+	@GetMapping("/home")
 	public String home(HttpServletRequest request) {
 		String str = printRequestURI(request);
 		log.info("Request to Home Page of Service... {} ", str );
+		StringBuilder sb = new StringBuilder();
+		sb.append(getTitle());
+		sb.append(getServiceAPIUrl());
+		return sb.toString();
+	}
+
+	private String getTitle() {
 		return (serviceConfig == null) ? TITLE :
 				TITLE.replace("MICRO", serviceConfig.getServiceName())
 						.replace("COMPANY", serviceConfig.getServiceOrg())
 						.replace("BN", "" + serviceConfig.getBuildNumber())
 						.replace("BD", serviceConfig.getBuildDate());
+	}
+
+	private String getServiceAPIUrl() {
+		String serviceHelp = "";
+		if(serviceConfig != null) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("<br>");
+			sb.append("<a href=\"").append(serviceConfig.apiURL()).append("\">");
+			sb.append("Service API Documentation</a>");
+			sb.append("<br>");
+			serviceHelp = sb.toString();
+		}
+		return serviceHelp;
 	}
 
 	/**

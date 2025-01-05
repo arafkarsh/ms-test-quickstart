@@ -54,9 +54,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  */
 @Configuration
 @RestController
-@RequestMapping("/api/v1/order/core")
-@RequestScope
-@Tag(name = "Core", description = "Order Core Service (Health, Readiness, ReStart.. etc)")
+@RequestMapping("/api/v1/order/system")
+@Tag(name = "System", description = "Order System APIs (Security, Health, Readiness, ReStart.. etc)")
 public class ServiceHealthController {
 
 	// Set Logger -> Lookup will automatically determine the class name.

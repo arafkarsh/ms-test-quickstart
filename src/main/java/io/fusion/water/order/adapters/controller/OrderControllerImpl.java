@@ -52,8 +52,7 @@ import org.springframework.web.util.HtmlUtils;
  */
 @RestController
 @RequestMapping(value = "/api/v1/order")
-@RequestScope
-@Tag(name = "Order", description = "Order Service")
+@Tag(name = "Order", description = "Order Service (To Demo Various Test Suites - JUnit5, Mockito, WireMock, RestAssured...)")
 public class OrderControllerImpl implements OrderController {
 
 	// Set Logger -> Lookup will automatically determine the class name.
