@@ -5,6 +5,10 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=arafkarsh_ms-test-quickstart&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=arafkarsh_ms-test-quickstart)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=arafkarsh_ms-test-quickstart&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=arafkarsh_ms-test-quickstart)
 
+- SpringBoot 3 (3.4.1)
+- Jakarta EE 10
+- Java 21+
+- 
 Thorough automation in application testing is crucial for guaranteeing the dependability and optimal 
 performance of cloud-native applications, particularly when prioritizing a rapid time-to-market 
 approach through Continuous Deployment.
@@ -64,9 +68,9 @@ using the command line options.
 
 ## Spring Framework Versions
 
-- SpringBoot 3 (3.3.4)
+- SpringBoot 3 (3.4.1)
 - Jakarta EE 10
-- Java 17+
+- Java 21+
 
 ### 1. Junit (5.10.2) - 134 Test Cases
 

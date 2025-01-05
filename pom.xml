@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.4</version>
+		<version>3.4.1</version>
 	</parent>
 	<!-- ================================================================= -->
 	<!-- Properties / Versions -->
@@ -43,7 +43,7 @@
 		<logstash.version>8.0</logstash.version>
 
 		<!-- Utilities ===================================================== -->
-		<google.gson.version>2.9.0</google.gson.version>
+		<google.gson.version>2.11.0</google.gson.version>
 		<google.guava.version>33.3.1-jre</google.guava.version>
 		<apache.httpclient.version>5.4.1</apache.httpclient.version>
 		<apache.httpcore.version>5.3.1</apache.httpcore.version>
@@ -83,12 +83,12 @@
 		<jasypt.version>1.9.3</jasypt.version>
 
 		<!-- Spring Boot ================================================= -->
-		<spring.boot.version>3.3.4</spring.boot.version>
+		<spring.boot.version>3.4.1</spring.boot.version>
 		<spring.cloud.version>2023.0.1</spring.cloud.version>
-		<spring.security.version>6.3.3</spring.security.version>
+		<spring.security.version>6.4.2</spring.security.version>
 
 		<!-- Open API v3 - Swagger UI ==================================== -->
-		<openapi.webmvc.version>2.6.0</openapi.webmvc.version>
+		<openapi.webmvc.version>2.7.0</openapi.webmvc.version>
 		<openapi.common.version>1.8.0</openapi.common.version>
 	</properties>
 
@@ -281,33 +281,26 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-		<dependency>
-		    <groupId>org.junit.jupiter</groupId>
-		    <artifactId>junit-jupiter-api</artifactId>
-			<version>${junit.jupiter.version}</version>
-		    <scope>test</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
-		<dependency>
-		    <groupId>org.junit.jupiter</groupId>
-		    <artifactId>junit-jupiter-engine</artifactId>
-			<version>${junit.jupiter.version}</version>
-		    <scope>test</scope>
-		</dependency>
-
 		<dependency>
 		    <groupId>org.junit.vintage</groupId>
 		    <artifactId>junit-vintage-engine</artifactId>
 		    <version>${junit.jupiter.version}</version>
 		    <scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
 		<dependency>
 		   <groupId>org.junit.jupiter</groupId>
 		   <artifactId>junit-jupiter-migrationsupport</artifactId>
 		   <version>${junit.jupiter.version}</version>
 		   <scope>test</scope>
 		</dependency>
+
 	    <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
@@ -647,14 +640,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk16 -->
-		<!--
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcprov-jdk16</artifactId>
-			<version>${bouncycastle.version}</version>
-		</dependency>
-		-->
 		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk18on -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
@@ -716,21 +701,20 @@
         <!-- ================================================================= -->
 		<!-- API Docs - Open API v3.0 (Swagger 3) -->
 		<!-- ================================================================= -->
-		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${openapi.webmvc.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-common -->
-		<!--
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-common -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-common</artifactId>
-			<version>${openapi.common.version}</version>
+			<artifactId>springdoc-openapi-starter-common</artifactId>
+			<version>${openapi.webmvc.version}</version>
 		</dependency>
-		-->
+
 		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-data-rest -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
