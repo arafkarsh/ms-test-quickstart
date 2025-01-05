@@ -280,7 +280,7 @@
 			<!-- Junit Dependencies are ONLY Part of test Scope it won't be there in your build. -->
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 		    <groupId>org.junit.vintage</groupId>
 		    <artifactId>junit-vintage-engine</artifactId>

@@ -5,10 +5,13 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=arafkarsh_ms-test-quickstart&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=arafkarsh_ms-test-quickstart)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=arafkarsh_ms-test-quickstart&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=arafkarsh_ms-test-quickstart)
 
-- SpringBoot 3 (3.4.1)
-- Jakarta EE 10
-- Java 21+
-- 
+- SpringBoot - 3.4.1
+- Spring Security - 6.4.2
+- Jakarta EE - 10
+- Java - 21+
+- Open API Swagger Docs - 2.7.0
+- Google Gson - 2.11.0
+
 Thorough automation in application testing is crucial for guaranteeing the dependability and optimal 
 performance of cloud-native applications, particularly when prioritizing a rapid time-to-market 
 approach through Continuous Deployment.
@@ -65,12 +68,6 @@ You can use the following REST Endpoint to encrypt the sensitive data. This will
 the environment variable JASYPT_ENCRYPTOR_PASSWORD and creating the first DB password
 using the command line options.
 ![Passowrd-REST](https://raw.githubusercontent.com/arafkarsh/ms-test-quickstart/master/diagrams/ms-test-encrypt.jpg)
-
-## Spring Framework Versions
-
-- SpringBoot 3 (3.4.1)
-- Jakarta EE 10
-- Java 21+
 
 ### 1. Junit (5.10.2) - 134 Test Cases
 
