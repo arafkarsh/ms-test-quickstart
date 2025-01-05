@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error Page</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+<h1>MS Test Service (Order Service) </h1>
+<h2>Something went wrong!</h2>
+<p th:text="'Error Code: ' + ${status}"></p>
+<p th:text="'Message: ' + ${error}"></p>
+<p th:text="'Path: ' + ${path}"></p>
+<a th:href="@{/}">Go to Home Page</a>
+</body>
+</html>
